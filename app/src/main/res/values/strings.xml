@@ -1,6 +1,17 @@
 <resources>
     <string name="app_name">TableBooking</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="order_menu">Order Menu</string>
     <!-- TODO: Remove or change this placeholder text -->
+    <string-array name="cuisine_type">
+        <item>Buffet</item>
+        <item>Chinese</item>
+        <item>Japanese</item>
+        <item>French</item>
+        <item>Indian</item>
+        <item>Malaysian</item>
+        <item>International</item>
+        <item>Korean</item>
+        <item>Thai</item>
+    </string-array>
 </resources>
