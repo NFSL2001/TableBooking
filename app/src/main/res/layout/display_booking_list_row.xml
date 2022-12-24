@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="15dp"
+    android:layout_marginRight="25dp"
+    android:layout_marginLeft="25dp"
+    android:background="@drawable/booking_list_layout">
+
+    <TextView
+        android:id="@+id/TVTable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Table"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/TVBookedCustName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Cutomer Name"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVTable"
+        app:layout_constraintWidth_percent="0.5" />
+
+    <TextView
+        android:id="@+id/TVBookingDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintWidth_percent="0.4"
+        android:text="Booking Date"
+        android:gravity="right"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/TVVookingTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Booking Time"
+        android:textColor="@color/black"
+        android:gravity="right"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVBookingDate"
+        app:layout_constraintWidth_percent="0.4" />
+
+    <Button
+        android:id="@+id/BtnViewBooking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="16dp"
+        android:text="View Booking"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVBookedCustName" />
+
+    <Button
+        android:id="@+id/BtnAcceptBooking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="16dp"
+        android:text="Accept"
+        app:layout_constraintEnd_toStartOf="@+id/BtnViewBooking"
+        app:layout_constraintTop_toBottomOf="@+id/TVBookedCustName" />
+
+    <TextView
+        android:id="@+id/TVTableId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:text="TableID"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/TVTable"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/TVCancelled"
+        android:layout_width="86dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="16dp"
+        android:text="Cancelled"
+        android:textColor="@color/red"
+        android:textStyle="bold"
+        android:gravity="center_vertical"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/BtnViewBooking"
+        app:layout_constraintTop_toBottomOf="@+id/TVBookedCustName" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,9 +2,10 @@
     <string name="app_name">TableBooking</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="order_menu">Order Menu</string>
+    <string name="food_order">Food Order</string>
+    <string name="sort_by">Sort By</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string-array name="cuisine_type">
-        <item>Buffet</item>
         <item>Chinese</item>
         <item>Japanese</item>
         <item>French</item>
@@ -13,5 +14,13 @@
         <item>International</item>
         <item>Korean</item>
         <item>Thai</item>
+    </string-array>
+
+    <string-array name="sorting_condition">
+        <item>Date/Time</item>
+        <item>Name</item>
+        <item>Table No.</item>
+        <item>No. of pax</item>
+        <item>Booking Status</item>
     </string-array>
 </resources>

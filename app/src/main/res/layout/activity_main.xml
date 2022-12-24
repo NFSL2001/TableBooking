@@ -16,7 +16,9 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/NHFMain"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:name="wia2007.project.tablebooking.BookingList"
+        tools:layout="@layout/fragment_booking_list" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav_view"

@@ -1,13 +1,11 @@
 package wia2007.project.tablebooking;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 public class RestaurantInfo extends AppCompatActivity {
 
@@ -16,7 +14,12 @@ public class RestaurantInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_info);
 
-        TextView MultiSelectCuisineType = findViewById(R.id.MultiSelectCuisineType);
+        getSupportActionBar().setTitle("Restaurant Info");
 
+        Spinner spinnerCuisineType = findViewById(R.id.SpinnerCuisineType);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.cuisine_type, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        spinnerCuisineType.setAdapter(adapter);
     }
 }

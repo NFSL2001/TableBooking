@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +61,12 @@ public class BookingList extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_booking_list, container, false);
+        View view =  inflater.inflate(R.layout.fragment_booking_list, container, false);
+        Spinner SpinnerSortCondition = (Spinner) view.findViewById(R.id.SpinnerSortCondition);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(view.getContext(),R.array.sorting_condition, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        SpinnerSortCondition.setAdapter(adapter);
+        return view;
     }
 }
