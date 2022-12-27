@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/AdminHomeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment_AdminHome">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <Button
+        android:id="@+id/ResMenu"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#C1121F"
+        android:fontFamily="@font/stylish"
+        android:text="Restaurant Menu"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ResInfo" />
+
+    <Button
+        android:id="@+id/BookList"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#C1121F"
+        android:fontFamily="@font/stylish"
+        android:text="Booking List"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TableAvai" />
+
+    <Button
+        android:id="@+id/TableArrangement"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#C1121F"
+        android:fontFamily="@font/stylish"
+        android:text="Table Arrangement"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ResMenu" />
+
+    <Button
+        android:id="@+id/TableAvai"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#C1121F"
+        android:fontFamily="@font/stylish"
+        android:text="Table Avalability"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TableArrangement" />
+
+    <Button
+        android:id="@+id/ResInfo"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="270dp"
+        android:backgroundTint="#C1121F"
+        android:fontFamily="@font/stylish"
+        android:text="Restaurant Info"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/AdminNoti"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#C1121F"
+        android:fontFamily="@font/stylish"
+        android:text="Notification"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BookList" />
+
+    <ImageView
+        android:id="@+id/circle"
+        android:layout_width="466dp"
+        android:layout_height="328dp"
+        android:layout_marginBottom="80dp"
+        android:src="@drawable/circle"
+        app:layout_constraintBottom_toTopOf="@+id/ResInfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/ResName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/stylish"
+        android:text="Restaurant Name"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

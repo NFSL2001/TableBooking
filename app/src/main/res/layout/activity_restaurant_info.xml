@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ResInfoFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".RestaurantInfo">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="420dp"
+            android:layout_height="80dp"
+            android:src="@drawable/red_rectangle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/resinfoTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/stylish"
+            android:text="Restaurant Info"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/stylish"
+            android:text="Name"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/stylish"
+            android:text="Address"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/FillName" />
+
+        <TextView
+            android:id="@+id/Contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/stylish"
+            android:text="Phone Number"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fillAdd" />
+
+        <TextView
+            android:id="@+id/AveragePrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/stylish"
+            android:text="Average Price"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/IVPhone" />
+
+        <TextView
+            android:id="@+id/CuisineType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/stylish"
+            android:text="Cuisine Type"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/FillAverageP" />
+
+        <TextView
+            android:id="@+id/Description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/stylish"
+            android:text="Description"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fillCusineT" />
+
+        <EditText
+            android:id="@+id/FillName"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:fontFamily="@font/stylish"
+            android:inputType="textPersonName"
+            android:text="Name"
+            android:textColor="@color/material_dynamic_neutral80"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name" />
+
+        <EditText
+            android:id="@+id/fillAdd"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:fontFamily="@font/stylish"
+            android:inputType="textPersonName"
+            android:text="Address"
+            android:textColor="@color/material_dynamic_neutral80"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/address" />
+
+        <ImageView
+            android:id="@+id/IVName"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/round_rectangle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name" />
+
+        <ImageView
+            android:id="@+id/IVAdd"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/round_rectangle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/address" />
+
+        <ImageView
+            android:id="@+id/IVPhone"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/round_rectangle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Contact" />
+
+        <EditText
+            android:id="@+id/fillContact"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:inputType="number|phone"
+            android:text="Phone Number"
+            android:textColor="@color/material_dynamic_neutral80"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Contact" />
+
+        <EditText
+            android:id="@+id/FillAverageP"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:inputType="number"
+            android:text="Average Price"
+            android:textColor="@color/material_dynamic_neutral80"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/AveragePrice" />
+
+        <ImageView
+            android:id="@+id/IVAP"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/round_rectangle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/AveragePrice" />
+
+        <EditText
+            android:id="@+id/fillCusineT"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Cuisine Type"
+            android:textColor="@color/material_dynamic_neutral80"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CuisineType" />
+
+        <ImageView
+            android:id="@+id/IVCT"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/round_rectangle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CuisineType" />
+
+        <EditText
+            android:id="@+id/fillDes"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Description"
+            android:textAlignment="viewStart"
+            android:textAllCaps="false"
+            android:textColor="@color/material_dynamic_neutral80"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Description" />
+
+        <ImageView
+            android:id="@+id/IVDes"
+            android:layout_width="350dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/round_rectangle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Description" />
+
+        <TextView
+            android:id="@+id/OperationHour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/stylish"
+            android:text="Operation Hour"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/IVDes" />
+
+        <EditText
+            android:id="@+id/FillOperationHour"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Operation Hour"
+            android:textColor="@color/material_dynamic_neutral80"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/OperationHour" />
+
+        <ImageView
+            android:id="@+id/IVOH"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/round_rectangle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/OperationHour" />
+
+        <TextView
+            android:id="@+id/Accessibility"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/stylish"
+            android:text="Accessibility"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/FillOperationHour" />
+
+        <Switch
+            android:id="@+id/WheelChair"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/stylish"
+            android:text="Wheelchair-friendly"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Accessibility" />
+
+        <Switch
+            android:id="@+id/blind"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:fontFamily="@font/stylish"
+            android:text="Blind-friendly"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/WheelChair" />
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="20dp"
+            android:backgroundTint="#C1121F"
+            android:text="Save"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toStartOf="@+id/cancelButton"
+            app:layout_constraintTop_toBottomOf="@+id/blind" />
+
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="30dp"
+            android:backgroundTint="#000000"
+            android:text="Cancel"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/blind" />
+
+        <ImageView
+            android:id="@+id/backArrow"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
