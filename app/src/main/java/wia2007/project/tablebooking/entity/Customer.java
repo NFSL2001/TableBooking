@@ -7,19 +7,23 @@ import java.sql.Date;
 
 @Entity
 public class Customer {
+    public static final int GENDER_MALE = 0;
+    public static final int GENDER_FEMALE = 1;
+    public static final int GENDER_OTHER = 2;
+
     @PrimaryKey(autoGenerate = true)
     private Integer customer_id;
     private String user_name;
     private String password;
     private String mobile_number;
     private String email;
-    private String gender;
+    private Integer gender;
     private Date birth_date;
 
     public Customer() {
     }
 
-    public Customer(Integer customer_id, String user_name, String password, String mobile_number, String email, String gender, Date birth_date) {
+    public Customer(Integer customer_id, String user_name, String password, String mobile_number, String email, Integer gender, Date birth_date) {
         this.customer_id = customer_id;
         this.user_name = user_name;
         this.password = password;
@@ -69,11 +73,11 @@ public class Customer {
         this.email = email;
     }
 
-    public String getGender() {
+    public Integer getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Integer gender) {
         this.gender = gender;
     }
 
@@ -92,7 +96,7 @@ public class Customer {
                 ", user_name='" + user_name + '\'' +
                 ", mobile_number='" + mobile_number + '\'' +
                 ", email='" + email + '\'' +
-                ", gender='" + gender + '\'' +
+                ", gender='" + ((gender == GENDER_MALE)?"male": ((gender == GENDER_FEMALE)?"female":"other")) + '\'' +
                 ", birth_date=" + birth_date +
                 '}';
     }
