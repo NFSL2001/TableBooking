@@ -47,21 +47,23 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/main_BtnAllCuisine"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:background="@drawable/bg_white_rounded"
-                android:text="@string/main_btnAllCuisine"/>
+                android:text="@string/main_btnAllCuisine"
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
+                />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/main_BtnByCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:background="@drawable/bg_white_rounded"
-                android:text="@string/main_btnByCategory"/>
+                android:text="@string/main_btnByCategory"
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
+                />
         </LinearLayout>
     </HorizontalScrollView>
 
