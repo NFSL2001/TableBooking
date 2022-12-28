@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".MainMenu">
 
-    <!-- TODO: Update blank fragment layout -->
     <View
         android:id="@+id/rectangle_at_the_top"
         android:layout_width="match_parent"
@@ -49,24 +48,27 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/main_allCuisine"
+                android:id="@+id/main_BtnAllCuisine"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:background="@drawable/bg_white_rounded"
-                android:text="All cuisine" />
+                android:text="All cuisine"
+                android:onClick="onClickAllMenu"/>
 
             <Button
-                android:id="@+id/main_Category"
+                android:id="@+id/main_BtnByCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:background="@drawable/bg_white_rounded"
-                android:text="By category" />
+                android:text="By category"
+                android:onClick="onClickByCategory"/>
         </LinearLayout>
     </HorizontalScrollView>
 
     <ScrollView
+        android:id="@+id/main_menuListAll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -74,7 +76,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_optionScroll">
+        app:layout_constraintTop_toBottomOf="@+id/main_optionScroll"
+        android:visibility="visible"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -82,9 +86,12 @@
             android:orientation="vertical">
 
             <TextView
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="10dp"
                 android:text="Thought you would like to book…"/>
 
             <androidx.cardview.widget.CardView
@@ -101,35 +108,95 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_rowWeight="1"
-                        />
+                        android:layout_columnWeight="1"
+                        android:scaleType="centerInside"
+                        app:srcCompat="@android:drawable/ic_menu_gallery" />
 
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_rowWeight="2">
+                        android:layout_columnWeight="3"
+                        android:padding="8dp">
 
                         <TextView
+                            style="?attr/textAppearanceSearchResultTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="ATMOSPHERE 360"
                             android:textAllCaps="false" />
 
                         <TextView
+                            style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Buffet"/>
+                            android:text="Buffet" />
+
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Book a table"
-                            android:gravity="right"/>
+                            android:layout_gravity="right"
+                            />
                     </LinearLayout>
                 </GridLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
     </ScrollView>
+
+    <ScrollView
+        android:id="@+id/main_menuListCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_optionScroll"
+        android:visibility="gone"
+        >
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_columnWeight="1">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scaleType="centerInside"
+                        app:srcCompat="@android:drawable/ic_menu_gallery"
+                        />
+
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Malaysian"
+                        />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+        </GridLayout>
+    </ScrollView>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

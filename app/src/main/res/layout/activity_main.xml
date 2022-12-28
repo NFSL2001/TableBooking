@@ -8,15 +8,21 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/AppBar"
+        style="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="parent"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"/>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/NHFMain"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"
+        tools:layout="@layout/fragment_main_menu"
+        app:layout_constraintTop_toBottomOf="@id/AppBar" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav_view"
