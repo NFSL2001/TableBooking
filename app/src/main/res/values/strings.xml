@@ -2,4 +2,8 @@
     <string name="app_name">TableBooking</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="main_btnByCategory">By category</string>
+    <string name="main_btnAllCuisine">All cuisine</string>
+    <string name="main_AllCuisineSubtitle">Thought you would like to book…</string>
+    <string name="main_btnBooking">Book a table</string>
 </resources>

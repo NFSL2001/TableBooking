@@ -53,8 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:background="@drawable/bg_white_rounded"
-                android:text="All cuisine"
-                android:onClick="onClickAllMenu"/>
+                android:text="@string/main_btnAllCuisine"/>
 
             <Button
                 android:id="@+id/main_BtnByCategory"
@@ -62,8 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:background="@drawable/bg_white_rounded"
-                android:text="By category"
-                android:onClick="onClickByCategory"/>
+                android:text="@string/main_btnByCategory"/>
         </LinearLayout>
     </HorizontalScrollView>
 
@@ -82,7 +80,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
@@ -92,7 +90,7 @@
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
                 android:layout_marginBottom="10dp"
-                android:text="Thought you would like to book…"/>
+                android:text="@string/main_AllCuisineSubtitle"/>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -106,6 +104,7 @@
                     android:columnCount="2">
 
                     <ImageView
+                        android:id="@+id/main_all_picture"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_columnWeight="1"
@@ -120,6 +119,7 @@
                         android:padding="8dp">
 
                         <TextView
+                            android:id="@+id/main_all_storeName"
                             style="?attr/textAppearanceSearchResultTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -127,15 +127,17 @@
                             android:textAllCaps="false" />
 
                         <TextView
+                            android:id="@+id/main_all_storeType"
                             style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Buffet" />
 
                         <Button
+                            android:id="@+id/main_all_BtnBook"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Book a table"
+                            android:text="@string/main_btnBooking"
                             android:layout_gravity="right"
                             />
                     </LinearLayout>
@@ -176,6 +178,7 @@
                     android:gravity="center">
 
                     <ImageView
+                        android:id="@+id/main_category_picture"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:scaleType="centerInside"
@@ -183,6 +186,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/main_category_name"
                         style="@style/TextAppearance.AppCompat.Caption"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
