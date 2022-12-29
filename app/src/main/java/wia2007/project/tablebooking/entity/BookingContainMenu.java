@@ -1,16 +1,21 @@
 package wia2007.project.tablebooking.entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 
 @Entity(primaryKeys = {"booking_id", "menu_id"}, tableName = "Contain")
 public class BookingContainMenu {
+    @NonNull
     private Integer booking_id;
+    @NonNull
     private Integer menu_id;
     private Integer quantity;
 
     public BookingContainMenu() {
     }
 
+    @Ignore
     public BookingContainMenu(Integer booking_id, Integer menu_id, Integer quantity) {
         this.booking_id = booking_id;
         this.menu_id = menu_id;

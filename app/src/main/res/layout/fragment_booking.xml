@@ -8,15 +8,6 @@
     android:orientation="vertical"
     tools:context=".BookingFragment">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/TBBooking"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:title="Booking" />
-
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="wrap_content"

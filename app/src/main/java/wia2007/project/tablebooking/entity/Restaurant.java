@@ -1,6 +1,7 @@
 package wia2007.project.tablebooking.entity;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
@@ -18,6 +19,7 @@ public class Restaurant {
     public Restaurant() {
     }
 
+    @Ignore
     public Restaurant(Integer restaurant_id, String restaurant_user_name, String password, String restaurant_name, String contact_number, Float average_price, String address, Integer cuisine_type) {
         this.restaurant_id = restaurant_id;
         this.restaurant_user_name = restaurant_user_name;

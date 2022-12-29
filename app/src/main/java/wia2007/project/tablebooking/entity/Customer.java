@@ -1,6 +1,7 @@
 package wia2007.project.tablebooking.entity;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.sql.Date;
@@ -23,6 +24,7 @@ public class Customer {
     public Customer() {
     }
 
+    @Ignore
     public Customer(Integer customer_id, String user_name, String password, String mobile_number, String email, Integer gender, Date birth_date) {
         this.customer_id = customer_id;
         this.user_name = user_name;
