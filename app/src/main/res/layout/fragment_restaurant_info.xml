@@ -21,16 +21,21 @@
                 android:adjustViewBounds="true"
                 tools:listitem="@layout/individual_restaurant_image"
                 />
+
             <TextView
                 android:id="@+id/restInfo_topGalleryPageIndicator"
                 style="@style/TextAppearance.MaterialComponents.Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_white_rounded"
-                android:backgroundTint="@color/white"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_margin="4dp"/>
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/bg_white_rounded"
+                android:backgroundTint="@color/white"
+                android:textColor="?attr/colorPrimaryDark"/>
             <!--foreground for click effect-->
             <ImageButton
                 android:id="@+id/restInfo_topGalleryShowMore"
@@ -80,7 +85,8 @@
                 android:layout_marginTop="8dp"
                 android:text="Buffet"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/restInfo_stars" />
+                app:layout_constraintTop_toBottomOf="@id/restInfo_stars"
+                app:drawableTint="?attr/colorOnBackground" />
 
             <TextView
                 android:id="@+id/restInfo_topAddress"
@@ -91,7 +97,8 @@
                 android:text="TH02, Menara Kuala Lumpur, 2, Jalan Puncak,\n50250 Kuala Lumpur"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/restInfo_topType"
-                app:drawableLeftCompat="@drawable/ic_baseline_map_24" />
+                app:drawableLeftCompat="@drawable/ic_baseline_map_24"
+                app:drawableTint="?attr/colorOnBackground"  />
 
             <TextView
                 android:id="@+id/restInfo_topPrice"
@@ -112,7 +119,7 @@
             android:layout_marginBottom="4dp"
             app:icon="@drawable/ic_baseline_restaurant_menu_24"
             app:iconGravity="textStart"
-            app:iconTint="#fff"
+            app:iconTint="?attr/colorOnPrimary"
             android:text="View Menu"
             />
 
@@ -145,6 +152,7 @@
                 app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
                 app:icon="@drawable/person"
                 app:iconGravity="textStart"
+                app:iconTint="?attr/colorOnPrimary"
                 />
         </LinearLayout>
 
@@ -187,7 +195,8 @@
                         android:layout_height="wrap_content"
                         android:padding="2.5dp"
                         android:layout_marginEnd="4dp"
-                        android:src="@drawable/ic_baseline_map_24"/>
+                        android:src="@drawable/ic_baseline_map_24"
+                        app:tint="?attr/colorOnBackground" />
                     <TextView
                         android:id="@+id/menuInfo_dataAddress"
                         style="@style/TextAppearance.AppCompat.Body1"
@@ -219,7 +228,8 @@
                         android:layout_height="wrap_content"
                         android:padding="2.5dp"
                         android:layout_marginEnd="4dp"
-                        android:src="@drawable/ic_baseline_phone_24"/>
+                        android:src="@drawable/ic_baseline_phone_24"
+                        app:tint="?attr/colorOnBackground"/>
                     <TextView
                         android:id="@+id/menuInfo_dataPhone"
                         style="@style/TextAppearance.AppCompat.Body1"
@@ -251,7 +261,8 @@
                         android:layout_height="wrap_content"
                         android:padding="2.5dp"
                         android:layout_marginEnd="4dp"
-                        android:src="@drawable/ic_baseline_access_time_24"/>
+                        android:src="@drawable/ic_baseline_access_time_24"
+                        app:tint="?attr/colorOnBackground"/>
                     <TextView
                         android:id="@+id/menuInfo_dataTime"
                         style="@style/TextAppearance.AppCompat.Body1"
@@ -283,7 +294,8 @@
                         android:layout_height="wrap_content"
                         android:padding="2.5dp"
                         android:layout_marginEnd="4dp"
-                        android:src="@drawable/ic_baseline_restaurant_24"/>
+                        android:src="@drawable/ic_baseline_restaurant_24"
+                        app:tint="?attr/colorOnBackground"/>
                     <TextView
                         android:id="@+id/menuInfo_dataCuisine"
                         style="@style/TextAppearance.AppCompat.Body1"
@@ -315,7 +327,8 @@
                         android:layout_height="wrap_content"
                         android:padding="2.5dp"
                         android:layout_marginEnd="4dp"
-                        android:src="@drawable/ic_baseline_price_check_24"/>
+                        android:src="@drawable/ic_baseline_price_check_24"
+                        app:tint="?attr/colorOnBackground"/>
                     <TextView
                         android:id="@+id/menuInfo_dataAveragePrice"
                         style="@style/TextAppearance.AppCompat.Body1"
@@ -347,7 +360,8 @@
                         android:layout_height="wrap_content"
                         android:padding="2.5dp"
                         android:layout_marginEnd="4dp"
-                        android:src="@drawable/ic_baseline_payment_24"/>
+                        android:src="@drawable/ic_baseline_payment_24"
+                        app:tint="?attr/colorOnBackground"/>
                     <TextView
                         android:id="@+id/menuInfo_dataPayment"
                         style="@style/TextAppearance.AppCompat.Body1"
@@ -379,7 +393,8 @@
                         android:layout_height="wrap_content"
                         android:padding="2.5dp"
                         android:layout_marginEnd="4dp"
-                        android:src="@drawable/ic_baseline_payment_24"/>
+                        android:src="@drawable/ic_baseline_payment_24"
+                        app:tint="?attr/colorOnBackground"/>
                     <TextView
                         android:id="@+id/menuInfo_dataParking"
                         style="@style/TextAppearance.AppCompat.Body1"
@@ -411,7 +426,8 @@
                         android:layout_height="wrap_content"
                         android:padding="2.5dp"
                         android:layout_marginEnd="4dp"
-                        android:src="@drawable/ic_baseline_checkroom_24"/>
+                        android:src="@drawable/ic_baseline_checkroom_24"
+                        app:tint="?attr/colorOnBackground"/>
                     <TextView
                         android:id="@+id/menuInfo_dataDressCode"
                         style="@style/TextAppearance.AppCompat.Body1"
@@ -443,7 +459,8 @@
                         android:layout_height="wrap_content"
                         android:padding="2.5dp"
                         android:layout_marginEnd="4dp"
-                        android:src="@drawable/ic_baseline_accessibility_new_24"/>
+                        android:src="@drawable/ic_baseline_accessibility_new_24"
+                        app:tint="?attr/colorOnBackground"/>
                     <TextView
                         android:id="@+id/menuInfo_dataAccessibility"
                         style="@style/TextAppearance.AppCompat.Body1"
@@ -475,7 +492,8 @@
                         android:layout_height="wrap_content"
                         android:padding="2.5dp"
                         android:layout_marginEnd="4dp"
-                        android:src="@drawable/ic_baseline_language_24"/>
+                        android:src="@drawable/ic_baseline_language_24"
+                        app:tint="?attr/colorOnBackground"/>
 
                     <TextView
                         android:id="@+id/menuInfo_dataWebsite"
@@ -511,7 +529,7 @@
                     android:linksClickable="true"
                     android:lineSpacingMultiplier="0.8"
                     android:text="@string/restaurant_descriptionSample"
-                    android:paddingBottom="128dp"
+                    android:paddingBottom="64dp"
                     />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
