@@ -21,8 +21,7 @@
         android:id="@+id/NHFMain"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:name="wia2007.project.tablebooking.RestaurantMenuFragment"
-        tools:layout="@layout/fragment_restaurant_menu"
+        tools:layout="@layout/fragment_restaurant_gallery"
         app:layout_constraintTop_toBottomOf="@id/AppBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

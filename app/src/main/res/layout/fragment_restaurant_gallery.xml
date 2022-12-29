@@ -16,5 +16,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"
-        tools:listitem="@layout/individual_restaurant_menu_section"/>
+        tools:listitem="@layout/individual_restaurant_image"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

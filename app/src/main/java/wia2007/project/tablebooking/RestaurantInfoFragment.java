@@ -3,62 +3,77 @@ package wia2007.project.tablebooking;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link RestaurantInfoFragment#newInstance} factory method to
- * create an instance of this fragment.
  */
 public class RestaurantInfoFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private TextView pagerIndicator;
 
     public RestaurantInfoFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MenuRestuarantInfoFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static RestaurantInfoFragment newInstance(String param1, String param2) {
-        RestaurantInfoFragment fragment = new RestaurantInfoFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_restaurant_info, container, false);
+        View view = inflater.inflate(R.layout.fragment_restaurant_info, container, false);
+
+        // TODO: Template list change to dynamic list
+        // prepare list for adapter to show
+        List<RestaurantImage> restaurantImages = new ArrayList<>();
+        restaurantImages.add(new RestaurantImage(R.drawable.restaurant_sample_1));
+        restaurantImages.add(new RestaurantImage(R.drawable.restaurant_sample_2));
+        restaurantImages.add(new RestaurantImage(R.drawable.restaurant_sample_3));
+        restaurantImages.add(new RestaurantImage(R.drawable.restaurant_sample_4));
+        restaurantImages.add(new RestaurantImage(R.drawable.restaurant_sample_5));
+
+
+        // get recycler view and bind view holder
+        ViewPager2 viewPager = view.findViewById(R.id.restInfo_topGallery);
+        // set adapter
+        viewPager.setAdapter(new RestaurantImagePagerAdapter(view.getContext(), restaurantImages));
+        // set swipe event
+        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                //change page number
+                pagerIndicator.setText(Integer.toString(position + 1) + "/" + Integer.toString(viewPager.getAdapter().getItemCount()));
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                super.onPageScrollStateChanged(state);
+            }
+        });
+
+        // get indicator
+        pagerIndicator = view.findViewById(R.id.restInfo_topGalleryPageIndicator);
+        // initialize start page 1/5
+        pagerIndicator.setText(Integer.toString(1) + "/" + Integer.toString(viewPager.getAdapter().getItemCount()));
+
+        return view;
     }
 }
