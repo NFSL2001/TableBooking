@@ -1,10 +1,7 @@
 package wia2007.project.tablebooking;
 
-import android.app.Activity;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -12,14 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class MainMenu extends Fragment {
+public class MainMenuFragment extends Fragment {
 
     private Button menuTypeAll;
     private Button menuTypeCategory;
     private ViewGroup viewGroupAll;
     private ViewGroup viewGroupCategory;
 
-    public MainMenu() {
+    public MainMenuFragment() {
         // Required empty public constructor
     }
 
