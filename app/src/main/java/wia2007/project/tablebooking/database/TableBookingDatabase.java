@@ -5,10 +5,13 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import wia2007.project.tablebooking.converter.DateConverter;
+import wia2007.project.tablebooking.converter.TimeConverter;
 import wia2007.project.tablebooking.dao.BookingContainMenuDAO;
 import wia2007.project.tablebooking.dao.BookingDAO;
 import wia2007.project.tablebooking.dao.CustomerDAO;
@@ -22,7 +25,8 @@ import wia2007.project.tablebooking.entity.Menu;
 import wia2007.project.tablebooking.entity.Restaurant;
 import wia2007.project.tablebooking.entity.Table;
 
-@Database(entities = {Booking.class, BookingContainMenu.class, Customer.class, Menu.class, Restaurant.class, Table.class}, version = 1)
+@Database(entities = {Booking.class, BookingContainMenu.class, Customer.class, Menu.class, Restaurant.class, Table.class}, version = 1, exportSchema = false)
+@TypeConverters({TimeConverter.class, DateConverter.class})
 public abstract class TableBookingDatabase extends RoomDatabase {
     public abstract BookingContainMenuDAO bookingContainMenuDAO();
     public abstract BookingDAO bookingDAO();

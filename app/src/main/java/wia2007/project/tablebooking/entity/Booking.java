@@ -1,7 +1,11 @@
 package wia2007.project.tablebooking.entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.Time;
 
@@ -13,23 +17,19 @@ public class Booking {
     private Integer customer_id;
     private Time start_time;
     private Time end_time;
+    private String remark;
 
     public Booking() {
     }
 
-    public Booking(Integer booking_id, Integer table_id, Integer customer_id, Time start_time, Time end_time) {
+    @Ignore
+    public Booking(Integer booking_id, Integer table_id, Integer customer_id, Time start_time, Time end_time, String remark) {
         this.booking_id = booking_id;
         this.table_id = table_id;
         this.customer_id = customer_id;
         this.start_time = start_time;
         this.end_time = end_time;
-    }
-
-    public Booking(Integer booking_id, Integer table_id, Integer customer_id, Time start_time) {
-        this.booking_id = booking_id;
-        this.table_id = table_id;
-        this.customer_id = customer_id;
-        this.start_time = start_time;
+        this.remark = remark;
     }
 
     public Integer getBooking_id() {
@@ -64,6 +64,22 @@ public class Booking {
         this.start_time = start_time;
     }
 
+    public Time getEnd_time() {
+        return end_time;
+    }
+
+    public void setEnd_time(Time end_time) {
+        this.end_time = end_time;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
     @Override
     public String toString() {
         return "Booking{" +
@@ -72,6 +88,7 @@ public class Booking {
                 ", customer_id=" + customer_id +
                 ", start_time=" + start_time +
                 ", end_time=" + end_time +
+                ", remark='" + remark + '\'' +
                 '}';
     }
 }

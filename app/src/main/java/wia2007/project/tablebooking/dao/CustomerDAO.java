@@ -10,12 +10,13 @@ import java.util.List;
 
 import wia2007.project.tablebooking.entity.Customer;
 
+@Dao
 public interface CustomerDAO {
     @Update
     public void updateCustomers(Customer ...customers);
 
     @Insert
-    public void insertCustomers(Customer ...customers);
+    public List<Long> insertCustomers(Customer ...customers);
 
     @Delete
     public void deleteCustomers(Customer ...customers);
@@ -25,4 +26,7 @@ public interface CustomerDAO {
 
     @Query("SELECT * FROM Customer WHERE user_name = :username")
     public List<Customer> getCustomerByUsername(String username);
+
+    @Query("DELETE FROM Customer")
+    public void deleteAll();
 }

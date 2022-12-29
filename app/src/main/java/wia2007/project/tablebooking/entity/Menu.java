@@ -1,23 +1,25 @@
 package wia2007.project.tablebooking.entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
 public class Menu {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private Integer menu_id;
     private String menu_name;
     private Float price;
     private Integer restaurant;
-    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     private String path;
 
     public Menu() {
     }
 
+    @Ignore
     public Menu(Integer menu_id, String menu_name, Float price, Integer restaurant, String path) {
         this.menu_id = menu_id;
         this.menu_name = menu_name;
