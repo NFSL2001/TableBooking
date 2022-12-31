@@ -32,8 +32,7 @@ public class MenuHolder extends RecyclerView.ViewHolder {
     }
 
     static MenuHolder create(ViewGroup parent) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.display_menu_row, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.display_menu_row, parent, false);
         return new MenuHolder(view);
     }
 
