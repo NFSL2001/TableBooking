@@ -43,7 +43,7 @@ public abstract class TableBookingDatabase extends RoomDatabase {
         if (INSTANCE == null) {
             synchronized (TableBookingDatabase.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), TableBookingDatabase.class, "table_booking_database").build();
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), TableBookingDatabase.class, "table_booking_database").allowMainThreadQueries().build();
                 }
             }
         }

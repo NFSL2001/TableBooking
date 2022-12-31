@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +15,9 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class OrderMenuPopUp extends Fragment {
+//    DatabaseHelper myDb;
+
+    int BookingID;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -59,6 +63,21 @@ public class OrderMenuPopUp extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_order_menu_pop_up, container, false);
+        View view =  inflater.inflate(R.layout.fragment_order_menu_pop_up, container, false);
+//        myDb = new DatabaseHelper(this.getContext());
+        BackGroundTaskFood backGroundTaskFood = new BackGroundTaskFood(this.getContext());
+        backGroundTaskFood.execute("get_food_order");
+
+
+        Button btnFoodOrderOK = view.findViewById(R.id.BtnFoodOrderOK);
+        btnFoodOrderOK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                view.setVisibility(View.INVISIBLE);
+            }
+        });
+        return view;
     }
+
+
 }

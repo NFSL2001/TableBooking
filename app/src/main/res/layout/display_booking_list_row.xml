@@ -27,12 +27,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Cutomer Name"
+        android:text="Customer Name"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TVTable"
-        app:layout_constraintWidth_percent="0.5" />
+        app:layout_constraintWidth_percent="0.45" />
 
     <TextView
         android:id="@+id/TVBookingDate"
@@ -49,7 +49,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/TVVookingTime"
+        android:id="@+id/TVBookingTime"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -60,7 +60,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TVBookingDate"
-        app:layout_constraintWidth_percent="0.4" />
+        app:layout_constraintWidth_percent="0.45" />
 
     <Button
         android:id="@+id/BtnViewBooking"
@@ -71,16 +71,6 @@
         android:layout_marginEnd="16dp"
         android:text="View Booking"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TVBookedCustName" />
-
-    <Button
-        android:id="@+id/BtnAcceptBooking"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="16dp"
-        android:text="Accept"
-        app:layout_constraintEnd_toStartOf="@+id/BtnViewBooking"
         app:layout_constraintTop_toBottomOf="@+id/TVBookedCustName" />
 
     <TextView
@@ -96,17 +86,4 @@
         app:layout_constraintStart_toEndOf="@+id/TVTable"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/TVCancelled"
-        android:layout_width="86dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="16dp"
-        android:text="Cancelled"
-        android:textColor="@color/red"
-        android:textStyle="bold"
-        android:gravity="center_vertical"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toStartOf="@+id/BtnViewBooking"
-        app:layout_constraintTop_toBottomOf="@+id/TVBookedCustName" />
 </androidx.constraintlayout.widget.ConstraintLayout>

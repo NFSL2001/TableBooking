@@ -15,6 +15,7 @@ public class Menu {
     private Float price;
     private Integer restaurant;
     private String path;
+    private String description;
 
     public Menu() {
     }
@@ -66,5 +67,13 @@ public class Menu {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

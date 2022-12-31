@@ -1,5 +1,7 @@
 package wia2007.project.tablebooking.dao;
 
+import android.database.Cursor;
+
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -21,4 +23,10 @@ public interface BookingContainMenuDAO {
 
     @Query("SELECT * FROM Contain WHERE booking_id = :bookingId")
     public List<BookingContainMenu> getContainsByBookingId(Integer bookingId);
+
+    @Query("SELECT B.Booking_id, M.Menu_name, BM.Quantity, BM.Quantity*M.Price AS Total_cost FROM Booking B INNER JOIN Menu M, Contain BM ON B.Booking_id = BM.Booking_id AND BM.Menu_id = M.Menu_id WHERE B.Booking_id = :bookingId")
+    Cursor getFoodOrder(int bookingId);
+
+    @Query("DELETE FROM Contain WHERE booking_id = :booking_id;")
+    public void rejectBooking(int booking_id);
 }

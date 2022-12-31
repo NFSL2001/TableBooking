@@ -17,11 +17,12 @@
     </string-array>
 
     <string-array name="sorting_condition">
-        <item>Date/Time</item>
-        <item>Name</item>
-        <item>Table No.</item>
-        <item>No. of pax</item>
-        <item>Booking Status</item>
+        <item>Name Asc</item>
+        <item>Date/Time Asc</item>
+        <item>Table Asc</item>
+        <item>Name Desc</item>
+        <item>Date/Time Desc</item>
+        <item>Table Desc</item>
     </string-array>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_login">LoginActivity</string>

@@ -1,13 +1,23 @@
 package wia2007.project.tablebooking;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 
 /**
@@ -16,7 +26,7 @@ import android.widget.Spinner;
  * create an instance of this fragment.
  */
 public class BookingList extends Fragment {
-
+    //    DatabaseHelper myDb;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -56,17 +66,52 @@ public class BookingList extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
+    int iCurrentSelection;
+    String sortcondition;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_booking_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_booking_list, container, false);
+        getActivity().setTitle("Booking List");//.getActionBar().setTitle("Booking List");
+
         Spinner SpinnerSortCondition = (Spinner) view.findViewById(R.id.SpinnerSortCondition);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(view.getContext(),R.array.sorting_condition, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(view.getContext(), R.array.sorting_condition, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         SpinnerSortCondition.setAdapter(adapter);
+
+
+        SharedPreferences sharedPref = this.getActivity().getSharedPreferences("FileName",MODE_PRIVATE);
+        int spinnerValue = sharedPref.getInt("userChoiceSpinner",-1);
+        if(spinnerValue != -1) {
+            // set the selected value of the spinner
+            SpinnerSortCondition.setSelection(spinnerValue);
+        }
+        sortcondition = Integer.toString(SpinnerSortCondition.getSelectedItemPosition());
+        iCurrentSelection = SpinnerSortCondition.getSelectedItemPosition();
+        SpinnerSortCondition.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (iCurrentSelection != i){
+                    int userChoice = SpinnerSortCondition.getSelectedItemPosition();
+                    SharedPreferences sharedPref = getActivity().getSharedPreferences("FileName",0);
+                    SharedPreferences.Editor prefEditor = sharedPref.edit();
+                    prefEditor.putInt("userChoiceSpinner",userChoice);
+                    prefEditor.commit();
+                    SpinnerSortCondition.setSelection(spinnerValue);
+                    sortcondition = Integer.toString(SpinnerSortCondition.getSelectedItemPosition());
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.NHFMain,BookingList.class,null).commit();
+                }
+            }
+
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                return;
+            }
+        });
+
+        BackGroundTaskBooking backGroundTaskBooking = new BackGroundTaskBooking(this.getContext());
+        backGroundTaskBooking.execute("get_info", sortcondition);
+
         return view;
     }
 }

@@ -1,12 +1,19 @@
 package wia2007.project.tablebooking;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import wia2007.project.tablebooking.database.TableBookingDatabase;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,7 +21,7 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class RejectBookingPopUp extends Fragment {
-
+    int bookingId;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -59,6 +66,36 @@ public class RejectBookingPopUp extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_reject_booking_pop_up, container, false);
+        View view =  inflater.inflate(R.layout.fragment_reject_booking_pop_up, container, false);
+
+        Bundle bundle = getActivity().getIntent().getExtras();
+        if(bundle != null){
+            bookingId=bundle.getInt("BookingId");
+            System.out.println("BookingID:"+bookingId);
+        }
+
+        Button BtnConfirmReject = view.findViewById(R.id.BtnConfirmReject);
+        BtnConfirmReject.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                view.setVisibility(View.INVISIBLE);
+                TableBookingDatabase.getDatabase(view.getContext()).bookingDAO().rejectBooking(bookingId);
+                TableBookingDatabase.getDatabase(view.getContext()).bookingContainMenuDAO().rejectBooking(bookingId);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.NHFMain,BookingList.class,null).commit();
+                getActivity().overridePendingTransition(0,0);
+                getActivity().finish();
+            }
+        });
+
+        Button closeFragment = view.findViewById(R.id.BtnCloseReject);
+        closeFragment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                view.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        return view;
     }
 }
