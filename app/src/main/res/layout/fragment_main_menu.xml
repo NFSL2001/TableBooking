@@ -151,7 +151,7 @@
     <ScrollView
         android:id="@+id/main_menuListCategory"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_margin="16dp"
         android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
@@ -162,41 +162,10 @@
         >
 
         <GridLayout
+            android:id="@+id/main_menuListCategoryLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:columnCount="2">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:layout_columnWeight="1">
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:id="@+id/main_category_picture"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@android:drawable/ic_menu_gallery"
-                        />
-
-                    <TextView
-                        android:id="@+id/main_category_name"
-                        style="@style/TextAppearance.AppCompat.Caption"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Malaysian"
-                        />
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
 
 
         </GridLayout>

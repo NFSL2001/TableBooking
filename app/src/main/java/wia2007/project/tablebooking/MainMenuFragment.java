@@ -2,12 +2,18 @@ package wia2007.project.tablebooking;
 
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.GridLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import wia2007.project.tablebooking.entity.Cuisine;
 
 public class MainMenuFragment extends Fragment {
 
@@ -25,6 +31,23 @@ public class MainMenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main_menu, container, false);
+
+        // fill in by category section
+        GridLayout categoryGridLayout = (GridLayout) view.findViewById(R.id.main_menuListCategoryLayout);
+        for (int i=0; i < Cuisine.getSize(); i++){
+            //get layout file and inflate it
+            View temp = inflater.inflate(R.layout.individual_main_category_item, categoryGridLayout, false);
+            //get each cuisine item
+            Cuisine.CuisineItem item = Cuisine.getCuisineItem(i);
+            //get text, set text
+            TextView temp_categoryName = (TextView) temp.findViewById(R.id.main_category_name);
+            temp_categoryName.setText(item.name);
+            //get image, set image
+            ImageView temp_categoryIcon = temp.findViewById(R.id.main_category_picture);
+            temp_categoryIcon.setImageResource(item.iconResource);
+            //add item to grid
+            categoryGridLayout.addView(temp);
+        }
 
         // get the buttons and views
         this.menuTypeAll = view.findViewById(R.id.main_BtnAllCuisine);
