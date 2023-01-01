@@ -3,6 +3,7 @@ package wia2007.project.tablebooking;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -35,6 +36,8 @@ public class RestaurantInfoFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_restaurant_info, container, false);
 
+        // code to inflate viewPager (image gallery)
+
         // TODO: Template list change to dynamic list
         // prepare list for adapter to show
         List<RestaurantImage> restaurantImages = new ArrayList<>();
@@ -43,7 +46,6 @@ public class RestaurantInfoFragment extends Fragment {
         restaurantImages.add(new RestaurantImage(R.drawable.restaurant_sample_3));
         restaurantImages.add(new RestaurantImage(R.drawable.restaurant_sample_4));
         restaurantImages.add(new RestaurantImage(R.drawable.restaurant_sample_5));
-
 
         // get recycler view and bind view holder
         ViewPager2 viewPager = view.findViewById(R.id.restInfo_topGallery);

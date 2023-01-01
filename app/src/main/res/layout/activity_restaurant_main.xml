@@ -18,10 +18,12 @@
         app:layout_constraintLeft_toLeftOf="parent"/>
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/NHFMain"
+        android:id="@+id/FCVRestaurant"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:name="wia2007.project.tablebooking.RestaurantInfoFragment"
         tools:layout="@layout/fragment_restaurant_gallery"
-        app:layout_constraintTop_toBottomOf="@id/AppBar" />
+        app:layout_constraintTop_toBottomOf="@id/AppBar"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
