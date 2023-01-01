@@ -38,13 +38,6 @@ public class BackGroundTaskBooking extends AsyncTask<String, ShowBookingsList, S
             bookingsAdapter = new BookingsAdapter(context, R.layout.display_booking_list_row);
             String sortCondition = strings[1];
             int sortInt = 0;
-//            if("Name".equalsIgnoreCase(sortCondition)){
-//                sortInt = 1;
-//            }else if("Date/Time".equalsIgnoreCase(sortCondition)){
-//                sortInt = 2;
-//            }else if("Table".equalsIgnoreCase(sortCondition)){
-//                sortInt = 3;
-//            }
             sortInt = Integer.parseInt(sortCondition);
             Cursor cursor = TableBookingDatabase.getDatabase(this.context).bookingDAO().getBookingsList(1,sortInt);
 

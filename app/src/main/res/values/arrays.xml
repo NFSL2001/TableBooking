@@ -9,4 +9,30 @@
         <item>Sort by date</item>
         <item>Sort by restaurant name</item>
     </string-array>
+
+    <string-array name="sorting_condition">
+        <item>Name Asc</item>
+        <item>Date/Time Asc</item>
+        <item>Table Asc</item>
+        <item>Name Desc</item>
+        <item>Date/Time Desc</item>
+        <item>Table Desc</item>
+    </string-array>
+
+    <string-array name="SpinnerForItemDetail">
+        <item>Main dish</item>
+        <item>Starter dish</item>
+        <item>Side dish</item>
+        <item>Dessert dish</item>
+        <item>Beverage</item>
+    </string-array>
+
+    <string-array name="SpinnerForMenuAdmin">
+        <item>Add Time Asc</item>
+        <item>Add Time Desc</item>
+        <item>Price Asc</item>
+        <item>Price Desc</item>
+        <item>Type Asc</item>
+        <item>Type Desc</item>
+    </string-array>
 </resources>

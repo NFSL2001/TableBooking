@@ -16,6 +16,7 @@ public class Menu {
     private Integer restaurant;
     private String path;
     private String description;
+    private String type;
 
     public Menu() {
     }
@@ -25,6 +26,21 @@ public class Menu {
         this.menu_id = menu_id;
         this.menu_name = menu_name;
         this.price = price;
+        this.restaurant = restaurant;
+        this.path = path;
+    }
+
+    public Menu(String menu_name, Float price,String description, Integer restaurant) {
+        this.menu_name = menu_name;
+        this.price = price;
+        this.description = description;
+        this.restaurant = restaurant;
+    }
+
+    public Menu(String menu_name, Float price,String description, Integer restaurant, String path) {
+        this.menu_name = menu_name;
+        this.price = price;
+        this.description = description;
         this.restaurant = restaurant;
         this.path = path;
     }
@@ -75,5 +91,13 @@ public class Menu {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

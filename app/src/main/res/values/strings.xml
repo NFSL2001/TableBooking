@@ -5,25 +5,6 @@
     <string name="food_order">Food Order</string>
     <string name="sort_by">Sort By</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string-array name="cuisine_type">
-        <item>Chinese</item>
-        <item>Japanese</item>
-        <item>French</item>
-        <item>Indian</item>
-        <item>Malaysian</item>
-        <item>International</item>
-        <item>Korean</item>
-        <item>Thai</item>
-    </string-array>
-
-    <string-array name="sorting_condition">
-        <item>Name Asc</item>
-        <item>Date/Time Asc</item>
-        <item>Table Asc</item>
-        <item>Name Desc</item>
-        <item>Date/Time Desc</item>
-        <item>Table Desc</item>
-    </string-array>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>

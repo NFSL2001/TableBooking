@@ -25,7 +25,7 @@ import wia2007.project.tablebooking.entity.Menu;
 import wia2007.project.tablebooking.entity.Restaurant;
 import wia2007.project.tablebooking.entity.Table;
 
-@Database(entities = {Booking.class, BookingContainMenu.class, Customer.class, Menu.class, Restaurant.class, Table.class}, version = 2, exportSchema = false)
+@Database(entities = {Booking.class, BookingContainMenu.class, Customer.class, Menu.class, Restaurant.class, Table.class}, version = 3, exportSchema = false)
 @TypeConverters({TimeConverter.class, DateConverter.class})
 public abstract class TableBookingDatabase extends RoomDatabase {
     public abstract BookingContainMenuDAO bookingContainMenuDAO();
