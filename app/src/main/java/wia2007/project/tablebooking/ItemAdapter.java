@@ -35,6 +35,9 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     public void onBindViewHolder(@NonNull ItemAdapter.ItemViewHolder holder, int position) {
         holder.menuName.setText(itemList.get(position).getMenu_name());
         holder.menuDescription.setText(itemList.get(position).getDescription());
+        if(itemList.get(position).getDescription() == null || itemList.get(position).getDescription().equals("")){
+            holder.menuDescription.setVisibility(View.GONE);
+        }
         float price = itemList.get(position).getPrice();
         if(price != -1){
             holder.menuPrice.setText("RM "+String.format("%.02f", price));
@@ -94,5 +97,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             });
         }
 
+    }
+    public List<Menu> getMenuItem() {
+        return itemList;
     }
 }

@@ -20,14 +20,13 @@
         android:id="@+id/TVDescriptionMenuAdmin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="16dp"
-        android:paddingBottom="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
         android:text="Description of the Menu"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TVMenuPriceAdmin"
+        app:layout_constraintStart_toEndOf="@+id/MenuImage"
+        app:layout_constraintTop_toBottomOf="@+id/TVDishType"
         app:layout_constraintWidth_percent="0.45" />
 
     <TextView
@@ -47,23 +46,25 @@
         android:id="@+id/TVMenuPriceAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="9dp"
+        android:paddingBottom="20dp"
         android:text="Price"
         android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TVDishType" />
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/MenuImage"
+        app:layout_constraintTop_toBottomOf="@+id/TVDescriptionMenuAdmin" />
 
     <ImageView
         android:id="@+id/MenuImage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="15dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
         android:adjustViewBounds="true"
         android:paddingBottom="20dp"
         android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TVMenuName"
         app:layout_constraintWidth_percent="0.43"
         app:srcCompat="@drawable/ic_baseline_image_24" />
@@ -72,10 +73,10 @@
         android:id="@+id/TVDishType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="13dp"
-        android:textColor="@color/red"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
         android:text="Type of dishes"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/red"
+        app:layout_constraintStart_toEndOf="@+id/MenuImage"
         app:layout_constraintTop_toBottomOf="@+id/TVMenuName" />
 </androidx.constraintlayout.widget.ConstraintLayout>

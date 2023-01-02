@@ -36,7 +36,6 @@ import wia2007.project.tablebooking.database.TableBookingDatabase;
 import wia2007.project.tablebooking.entity.Menu;
 
 public class MenuAdmin extends AppCompatActivity implements RecycleViewInterface {
-    RecycleViewInterface r;
     ExtendedFloatingActionButton BtnAddItem;
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
@@ -163,7 +162,7 @@ public class MenuAdmin extends AppCompatActivity implements RecycleViewInterface
     @Override
     public void onItemClick(int position) {
         Intent intent = new Intent(MenuAdmin.this, ItemDetails.class);
-        MenuAdapter menuAdapter = (MenuAdapter) adapter;
+        ItemAdapter menuAdapter = ((MenuAdapter)adapter).getItemAdapter();
         intent.putExtra("ItemId", Integer.toString(menuAdapter.getMenuItem().get(position).getMenu_id()));
         intent.putExtra("ItemName", menuAdapter.getMenuItem().get(position).getMenu_name());
         intent.putExtra("ItemDescription", menuAdapter.getMenuItem().get(position).getDescription());
@@ -194,9 +193,9 @@ public class MenuAdmin extends AppCompatActivity implements RecycleViewInterface
     }
 
     private void deleteItem(int position) {
-        MenuAdapter menuAdapter = (MenuAdapter) adapter;
+        ItemAdapter menuAdapter = ((MenuAdapter)adapter).getItemAdapter();
         TableBookingDatabase.getDatabase(getApplicationContext()).menuDAO().deleteMenuItem(menuAdapter.getMenuItem().get(position).getMenu_id());
-        String toast = ((MenuAdapter) adapter).getMenuItem().get(position).getMenu_name() + " is successfully deleted";
+        String toast = menuAdapter.getMenuItem().get(position).getMenu_name() + " is successfully deleted";
         Toast.makeText(getApplicationContext(), toast, Toast.LENGTH_LONG).show();
     }
 

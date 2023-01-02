@@ -1,6 +1,7 @@
 package wia2007.project.tablebooking;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,6 +27,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuHolder> {
     List<DataModel> menuItem;
     List<Menu> itemList = new ArrayList<>();
     private final RecycleViewInterface recycleViewInterface;
+    ItemAdapter itemAdapter;
     public MenuAdapter(Context context, List<DataModel> menuItem, RecycleViewInterface recycleViewInterface) {
         this.context = context;
         this.menuItem = menuItem;
@@ -47,6 +50,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MenuHolder holder, int position) {
+        int pos = position;
         DataModel dataModel = menuItem.get(position);
         holder.menu_type_title.setText(dataModel.getMenuType());
 
@@ -55,10 +59,13 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuHolder> {
 
         if(isExpandable){
             holder.arrowIV.setImageResource(R.drawable.restaurant_menu_collapse);
-        }else
+            holder.TypeBackground.setBackgroundColor(Color.parseColor("#33000000"));
+        }else {
             holder.arrowIV.setImageResource(R.drawable.restaurant_menu_expand);
+            holder.TypeBackground.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        }
 
-        ItemAdapter itemAdapter = new ItemAdapter(itemList,recycleViewInterface);
+        itemAdapter = new ItemAdapter(itemList,recycleViewInterface);
         holder.nestedRV.setLayoutManager(new LinearLayoutManager(holder.itemView.getContext()));
         holder.nestedRV.setHasFixedSize(true);
         holder.nestedRV.setAdapter(itemAdapter);
@@ -66,9 +73,19 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuHolder> {
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dataModel.setExpandable(!dataModel.isExpandable());
-                itemList = dataModel.getNestedMenuList();
-                notifyItemChanged(holder.getAdapterPosition());
+                for (int i = 0; i < menuItem.size(); i++) {
+                    if (i == pos) {
+                        if (menuItem.get(pos).isExpandable()) {
+                            menuItem.get(pos).setExpandable(false);
+                        } else {
+                            menuItem.get(pos).setExpandable(true);
+                        }
+                    } else {
+                        menuItem.get(i).setExpandable(false);
+                    }
+                    itemList = dataModel.getNestedMenuList();
+                    notifyDataSetChanged();
+                }
             }
         });
     }
@@ -85,6 +102,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuHolder> {
         private TextView menu_type_title;
         private ImageView arrowIV;
         private RecyclerView nestedRV;
+        private ConstraintLayout TypeBackground;
 
         public MenuHolder(@NonNull View itemView, RecycleViewInterface recycleViewInterface) {
             super(itemView);
@@ -93,26 +111,12 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuHolder> {
             menu_type_title = itemView.findViewById(R.id.menuTypeTv);
             arrowIV = itemView.findViewById(R.id.arrow_imageview);
             nestedRV = itemView.findViewById(R.id.child_rv);
-
-
-            itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View view) {
-                    int pos = getAdapterPosition();
-
-                    if(pos!=RecyclerView.NO_POSITION){
-                        recycleViewInterface.onLongClick(pos);
-                        return true;
-                    }
-                    return false;
-                }
-            });
+            TypeBackground = itemView.findViewById(R.id.TypeBackground);
         }
 
     }
 
-    public List<Menu> getMenuItem() {
-        return itemList;
+    public ItemAdapter getItemAdapter() {
+        return itemAdapter;
     }
-
 }
