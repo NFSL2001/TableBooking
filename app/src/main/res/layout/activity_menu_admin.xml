@@ -29,18 +29,15 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/RestaurantMenuActLayout">
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+
         <TextView
             android:id="@+id/TVSortBy"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="7dp"
-            android:layout_marginEnd="14dp"
             android:gravity="center_vertical"
-            android:text="@string/sort_by"
+            android:text="Menu Sort"
             android:textColor="@color/black"
             app:layout_constraintEnd_toStartOf="@+id/SpinnerLayout2"
             app:layout_constraintTop_toTopOf="parent" />
@@ -51,17 +48,54 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/edit_text_layout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <Spinner
                 android:id="@+id/SpinnerMenuSortCondition"
-                android:layout_width="162dp"
+                android:layout_width="130dp"
                 android:layout_height="48dp"
                 android:contentDescription="@string/sort_by"
+                android:dropDownWidth="130dp"
+                android:overlapAnchor="false"
+                android:spinnerMode="dropdown"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
+                tools:ignore="DuplicateSpeakableTextCheck" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/TVItemSortBy"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="7dp"
+            android:gravity="center_vertical"
+            android:text="Item Sort"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@+id/SpinnerLayout2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RelativeLayout
+            android:gravity="right"
+            android:id="@+id/SpinnerRelativeLayoutItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/edit_text_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Spinner
+                android:id="@+id/SpinnerItemSortCondition"
+                android:layout_width="150dp"
+                android:layout_height="48dp"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                android:spinnerMode="dropdown"
+                android:overlapAnchor="false"
+                android:contentDescription="@string/sort_by"
+                android:dropDownWidth="150dp"
                 tools:ignore="DuplicateSpeakableTextCheck" />
         </RelativeLayout>
 

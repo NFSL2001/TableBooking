@@ -1,34 +1,37 @@
 package wia2007.project.tablebooking;
 
 import android.content.Context;
-import android.graphics.Movie;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Spinner;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import wia2007.project.tablebooking.entity.Menu;
 
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuHolder> {
     Context context;
-    List<Menu> menuItem;
+    List<DataModel> menuItem;
+    List<Menu> itemList = new ArrayList<>();
     private final RecycleViewInterface recycleViewInterface;
-    public MenuAdapter(Context context, List<Menu> menuItem, RecycleViewInterface recycleViewInterface) {
+    public MenuAdapter(Context context, List<DataModel> menuItem, RecycleViewInterface recycleViewInterface) {
         this.context = context;
         this.menuItem = menuItem;
         this.recycleViewInterface = recycleViewInterface;
     }
 
-    public void notifyNewData(List<Menu> menu){
+    public void notifyNewData(List<DataModel> menu){
         this.menuItem.clear();
         menuItem = menu;
         notifyDataSetChanged();
@@ -37,28 +40,37 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuHolder> {
     @NonNull
     @Override
     public MenuAdapter.MenuHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.display_menu_row, parent, false);
+//        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.display_menu_row, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.menu_each_type_card_view, parent, false);
         return new MenuHolder(view, recycleViewInterface);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MenuHolder holder, int position) {
-        holder.menuName.setText(menuItem.get(position).getMenu_name());
-        holder.menuDescription.setText(menuItem.get(position).getDescription());
-        float price = menuItem.get(position).getPrice();
-        if(price != -1){
-            holder.menuPrice.setText("RM "+String.format("%.02f", price));
-        }else{
-            holder.menuPrice.setText("");
-        }
-        String path = menuItem.get(position).getPath();
-        if(path != null){
-            File img = new File(path);
-            holder.menuImage.setImageURI(Uri.fromFile(img));
-        }else{
-            holder.menuImage.setVisibility(View.GONE);
-        }
-        holder.menuType.setText(menuItem.get(position).getType());
+        DataModel dataModel = menuItem.get(position);
+        holder.menu_type_title.setText(dataModel.getMenuType());
+
+        boolean isExpandable = dataModel.isExpandable();
+        holder.expandableLayout.setVisibility(isExpandable ? View.VISIBLE : View.GONE);
+
+        if(isExpandable){
+            holder.arrowIV.setImageResource(R.drawable.restaurant_menu_collapse);
+        }else
+            holder.arrowIV.setImageResource(R.drawable.restaurant_menu_expand);
+
+        ItemAdapter itemAdapter = new ItemAdapter(itemList,recycleViewInterface);
+        holder.nestedRV.setLayoutManager(new LinearLayoutManager(holder.itemView.getContext()));
+        holder.nestedRV.setHasFixedSize(true);
+        holder.nestedRV.setAdapter(itemAdapter);
+
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dataModel.setExpandable(!dataModel.isExpandable());
+                itemList = dataModel.getNestedMenuList();
+                notifyItemChanged(holder.getAdapterPosition());
+            }
+        });
     }
 
     @Override
@@ -68,29 +80,20 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuHolder> {
 
     public class MenuHolder extends RecyclerView.ViewHolder {
 
-        TextView menuName,menuPrice,menuDescription,menuType;
-        ImageView menuImage;
+        private LinearLayout linearLayout;
+        private RelativeLayout expandableLayout;
+        private TextView menu_type_title;
+        private ImageView arrowIV;
+        private RecyclerView nestedRV;
 
         public MenuHolder(@NonNull View itemView, RecycleViewInterface recycleViewInterface) {
             super(itemView);
-            menuName = itemView.findViewById(R.id.TVMenuName);
-            menuPrice = itemView.findViewById(R.id.TVMenuPriceAdmin);
-            menuDescription = itemView.findViewById(R.id.TVDescriptionMenuAdmin);
-            menuImage = itemView.findViewById(R.id.MenuImage);
-            menuType = itemView.findViewById(R.id.TVDishType);
+            linearLayout = itemView.findViewById(R.id.menuLinearlayout);
+            expandableLayout = itemView.findViewById(R.id.expandable_layout);
+            menu_type_title = itemView.findViewById(R.id.menuTypeTv);
+            arrowIV = itemView.findViewById(R.id.arrow_imageview);
+            nestedRV = itemView.findViewById(R.id.child_rv);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (recycleViewInterface != null){
-                        int pos = getAdapterPosition();
-
-                        if(pos!=RecyclerView.NO_POSITION){
-                            recycleViewInterface.onItemClick(pos);
-                        }
-                    }
-                }
-            });
 
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -109,7 +112,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuHolder> {
     }
 
     public List<Menu> getMenuItem() {
-        return menuItem;
+        return itemList;
     }
 
 }

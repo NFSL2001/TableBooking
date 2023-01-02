@@ -83,7 +83,10 @@
                         android:layout_width="356dp"
                         android:layout_height="59dp"
                         android:ems="10"
+                        android:dropDownWidth="356dp"
                         app:popupTheme="@style/AppTheme.PopupOverlay"
+                        android:spinnerMode="dropdown"
+                        android:overlapAnchor="false"
                         android:hint="Item Type"
                         android:paddingLeft="10dp" />
                 </RelativeLayout>

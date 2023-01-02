@@ -20,19 +20,23 @@
     </string-array>
 
     <string-array name="SpinnerForItemDetail">
-        <item>Main dish</item>
-        <item>Starter dish</item>
-        <item>Side dish</item>
-        <item>Dessert dish</item>
+        <item>Main Dish</item>
+        <item>Starter Dish</item>
+        <item>Side Dish</item>
+        <item>Dessert Dish</item>
         <item>Beverage</item>
+        <item>Others</item>
     </string-array>
 
     <string-array name="SpinnerForMenuAdmin">
+        <item>Ascending</item>
+        <item>Descending</item>
+    </string-array>
+
+    <string-array name="SpinnerForMenuItemAdmin">
         <item>Add Time Asc</item>
         <item>Add Time Desc</item>
         <item>Price Asc</item>
         <item>Price Desc</item>
-        <item>Type Asc</item>
-        <item>Type Desc</item>
     </string-array>
 </resources>
