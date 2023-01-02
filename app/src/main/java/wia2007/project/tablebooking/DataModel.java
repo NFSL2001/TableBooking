@@ -16,12 +16,6 @@ public class DataModel {
         this.isExpandable = false;
     }
 
-    public DataModel(List<DataModel> list) {
-        this.nestedMenuList = (List<Menu>) nestedMenuList.get(1);
-        this.menuType = String.valueOf(list.get(0));
-        this.isExpandable = false;
-    }
-
     public List<Menu> getNestedMenuList() {
         return nestedMenuList;
     }
