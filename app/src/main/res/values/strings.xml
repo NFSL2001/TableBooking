@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TableBooking</string>
+    <string name="app_name">Table Booking</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="order_menu">Order Menu</string>
     <string name="food_order">Food Order</string>
@@ -41,4 +41,6 @@
     <string name="username">Username</string>
     <string name="for_table_ordering_purpose">For table ordering purpose</string>
     <string name="sign_up">Sign Up</string>
+    <string name="search_title">Search</string>
+    <string name="search_hint">Search restaurants</string>
 </resources>

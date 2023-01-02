@@ -17,19 +17,28 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchView"
+    <LinearLayout
+        android:id="@+id/main_searchView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?android:attr/actionBarSize"
         android:layout_marginHorizontal="28dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/bg_white_rounded"
+        android:foreground="?android:attr/selectableItemBackground"
         android:elevation="20dp"
         android:submitBackground="@drawable/bg_white_rounded"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:inputType="none"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="6dp"
+            android:src="@drawable/ic_baseline_search_24"/>
+    </LinearLayout>
 
     <HorizontalScrollView
         android:id="@+id/main_optionScroll"
@@ -39,7 +48,7 @@
         android:layout_marginTop="16dp"
         android:scrollbars="none"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView">
+        app:layout_constraintTop_toBottomOf="@+id/main_searchView">
 
         <LinearLayout
             android:layout_width="wrap_content"

@@ -1,5 +1,7 @@
 package wia2007.project.tablebooking.dao;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -32,4 +34,16 @@ public interface RestaurantDAO {
 
     @Query("SELECT * FROM Restaurant WHERE cuisine_type = :type")
     public List<Restaurant> getRestaurantByCuisine(Integer type);
+
+    @Query("SELECT restaurant_id, restaurant_name FROM Restaurant")
+    public List<RestaurantNameInfoPair> listAllRestaurantName();
+
+    class RestaurantNameInfoPair {
+        @ColumnInfo(name = "restaurant_id")
+        @NonNull
+        public int id;
+
+        @ColumnInfo(name = "restaurant_name")
+        public String name;
+    }
 }

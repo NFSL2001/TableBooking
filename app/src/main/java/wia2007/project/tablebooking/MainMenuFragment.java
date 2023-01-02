@@ -1,7 +1,9 @@
 package wia2007.project.tablebooking;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
@@ -55,7 +57,6 @@ public class MainMenuFragment extends Fragment {
         this.viewGroupAll = view.findViewById(R.id.main_menuListAll);
         this.viewGroupCategory = view.findViewById(R.id.main_menuListCategory);
 
-
         //bind onclick to button
         menuTypeAll.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +73,17 @@ public class MainMenuFragment extends Fragment {
             }
         });
 
+        //get search bar
+        View searchButton = view.findViewById(R.id.main_searchView);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SearchActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
+
 }
