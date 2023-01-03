@@ -103,7 +103,6 @@ public class ItemDetails extends AppCompatActivity {
                         SpinnerMenuType.setSelection(array.length - 1);
                     }
                 });
-
         alertDialogBuilder.setNegativeButton("No", null);
         alertDialog = alertDialogBuilder.create();
 
@@ -136,6 +135,7 @@ public class ItemDetails extends AppCompatActivity {
             edittext.setText(type);
             SpinnerMenuType.setSelection(adapterList.size() - 1);
             alertDialog.show();
+            alertDialog.dismiss();
             alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).performClick();
         }
 
