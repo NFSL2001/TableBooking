@@ -7,7 +7,7 @@
     tools:context=".RestaurantMainActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/AppBar"
+        android:id="@+id/restInfo_Toolbar"
         style="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"
         android:background="?attr/colorPrimary"
         app:popupTheme="@style/ThemeOverlay.AppCompat.DayNight"
@@ -23,7 +23,7 @@
         android:layout_height="0dp"
         android:name="wia2007.project.tablebooking.RestaurantInfoFragment"
         tools:layout="@layout/fragment_restaurant_gallery"
-        app:layout_constraintTop_toBottomOf="@id/AppBar"
+        app:layout_constraintTop_toBottomOf="@id/restInfo_Toolbar"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

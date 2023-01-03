@@ -45,5 +45,10 @@ public interface RestaurantDAO {
 
         @ColumnInfo(name = "restaurant_name")
         public String name;
+
+        public RestaurantNameInfoPair(int id, String name) {
+            this.id = id;
+            this.name = name;
+        }
     }
 }

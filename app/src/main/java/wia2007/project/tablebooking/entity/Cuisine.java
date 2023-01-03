@@ -39,14 +39,14 @@ public class Cuisine {
 
     public static List<String> getCuisineNameList(){
         return new ArrayList<String>(Arrays.asList(
-                "MALAYSIAN",
-                "DINNER BUFFET",
-                "JAPANESE",
-                "INDIAN",
-                "HIGH TEA BUFFET",
-                "CHINESE",
-                "WESTERN",
-                "THAI")
+                "Malaysian",
+                "Dinner Buffet",
+                "Japanese",
+                "Indian",
+                "High Tea Buffet",
+                "Chinese",
+                "Western",
+                "Thai")
         );
     }
 
