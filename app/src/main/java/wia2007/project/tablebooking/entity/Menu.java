@@ -30,18 +30,12 @@ public class Menu {
         this.path = path;
     }
 
-    public Menu(String menu_name, Float price,String description, Integer restaurant) {
+    public Menu(String menu_name, Float price,String description, Integer restaurant, String type, String path) {
         this.menu_name = menu_name;
         this.price = price;
         this.description = description;
         this.restaurant = restaurant;
-    }
-
-    public Menu(String menu_name, Float price,String description, Integer restaurant, String path) {
-        this.menu_name = menu_name;
-        this.price = price;
-        this.description = description;
-        this.restaurant = restaurant;
+        this.type = type;
         this.path = path;
     }
 

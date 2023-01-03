@@ -10,8 +10,13 @@
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/TVItemDetailsAct"
@@ -27,6 +32,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/ItemDetailsCL"
                 android:layout_width="match_parent"
+                android:layout_gravity="center"
                 android:layout_height="match_parent">
 
                 <TextView
@@ -82,10 +88,13 @@
                         android:id="@+id/SpinnerMenuType"
                         android:layout_width="356dp"
                         android:layout_height="59dp"
+                        android:dropDownWidth="356dp"
                         android:ems="10"
-                        app:popupTheme="@style/AppTheme.PopupOverlay"
                         android:hint="Item Type"
-                        android:paddingLeft="10dp" />
+                        android:overlapAnchor="false"
+                        android:paddingLeft="10dp"
+                        android:spinnerMode="dropdown"
+                        app:popupTheme="@style/AppTheme.PopupOverlay" />
                 </RelativeLayout>
 
                 <EditText

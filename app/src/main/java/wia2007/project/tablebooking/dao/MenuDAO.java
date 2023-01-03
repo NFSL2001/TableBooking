@@ -40,8 +40,6 @@ public interface MenuDAO {
             "CASE WHEN :sortCondition = 0 THEN menu_id END COLLATE NOCASE ASC," +
             "CASE WHEN :sortCondition = 1 THEN menu_id END COLLATE NOCASE DESC," +
             "CASE WHEN :sortCondition = 2 THEN price END COLLATE NOCASE ASC," +
-            "CASE WHEN :sortCondition = 3 THEN price END COLLATE NOCASE DESC," +
-            "CASE WHEN :sortCondition = 4 THEN type END COLLATE NOCASE ASC," +
-            "CASE WHEN :sortCondition = 5 THEN type END COLLATE NOCASE DESC")
+            "CASE WHEN :sortCondition = 3 THEN price END COLLATE NOCASE DESC")
     public List<Menu> getMenuSortedList(int restaurant_id, int sortCondition);
 }
