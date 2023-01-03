@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:visibility="visible"
     tools:context=".LoginActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -37,6 +38,17 @@
         android:text="Log In"
         android:textSize="34sp"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/TVIncorrect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Incorrect username or password"
+        android:textColor="@color/red_500"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:visibility="invisible" />
 
     <EditText
         android:id="@+id/ETUsername"
@@ -88,7 +100,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="7dp"
-        android:entries="@array/SpinnerForLogIn" />
+        android:entries="@array/SpinnerForLogIn"
+        android:minHeight="48dp" />
 
     <Button
         android:id="@+id/BtnLogin"

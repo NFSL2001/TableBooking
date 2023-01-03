@@ -21,7 +21,9 @@
         android:id="@+id/IVUserProfileImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/default_user_photo" />
+        android:clickable="false"
+        app:srcCompat="@drawable/default_user_photo"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/TVEditProfileName"
@@ -29,18 +31,18 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
         android:text="@string/name"
-        android:textSize="16sp"  />
+        android:textSize="16sp" />
 
     <EditText
         android:id="@+id/ETEditProfileName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:autofillHints="name"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        tools:ignore="SpeakableTextPresentCheck"
-        android:autofillHints="name" />
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/TVEditProfileContactNumber"
@@ -56,11 +58,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:autofillHints="phone"
         android:ems="10"
         android:inputType="phone"
         android:minHeight="48dp"
-        tools:ignore="SpeakableTextPresentCheck"
-        android:autofillHints="phone" />
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/TVEditProfileEmail"
@@ -75,11 +77,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:autofillHints="emailAddress"
         android:ems="10"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
-        tools:ignore="SpeakableTextPresentCheck"
-        android:autofillHints="emailAddress" />
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/TVEditProfileGender"
@@ -87,7 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
         android:text="@string/gender"
-        android:textSize="16sp"  />
+        android:textSize="16sp" />
 
     <RadioGroup
         android:layout_width="match_parent"
@@ -107,11 +109,6 @@
             android:layout_height="wrap_content"
             android:text="@string/female" />
 
-        <RadioButton
-            android:id="@+id/RBtnEditProfileOther"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/other" />
     </RadioGroup>
 
     <TextView
@@ -145,11 +142,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:autofillHints="password"
         android:ems="10"
         android:inputType="textPassword"
-        android:minHeight="48dp"
-        android:text="@string/dots"
-        android:autofillHints="password" />
+        android:minHeight="48dp" />
 
     <TextView
         android:id="@+id/TVEditProfilePasswordExplain"
@@ -175,7 +171,7 @@
         android:autofillHints="password"
         android:ems="10"
         android:inputType="textPassword"
-        android:minHeight="48dp"
+        android:minHeight="32dp"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button

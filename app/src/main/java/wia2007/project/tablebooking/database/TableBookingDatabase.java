@@ -37,13 +37,13 @@ public abstract class TableBookingDatabase extends RoomDatabase {
 
     private static volatile TableBookingDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
-    static final ExecutorService databaseExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+    public static final ExecutorService databaseExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     public static TableBookingDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (TableBookingDatabase.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), TableBookingDatabase.class, "table_booking_database").build();
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), TableBookingDatabase.class, "table_booking_database").allowMainThreadQueries().build();
                 }
             }
         }

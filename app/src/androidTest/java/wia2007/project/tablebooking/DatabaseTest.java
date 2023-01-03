@@ -25,7 +25,7 @@ public class DatabaseTest {
         CustomerDAO customerDAO = database.customerDAO();
         customerDAO.deleteAll();
 
-        Customer customer = new Customer(null, "root", "1234", "01110687471", "root@gmail.com", Customer.GENDER_MALE, new Date(System.currentTimeMillis()));
+        Customer customer = new Customer("root", "1234", "01110687471", "root@gmail.com", Customer.GENDER_MALE, new Date(System.currentTimeMillis()));
         List<Long> list = customerDAO.insertCustomers(customer);
         int id = list.get(0).intValue();
         System.out.println(customerDAO.getCustomerById(id));

@@ -32,11 +32,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:autofillHints="username"
         android:ems="10"
         android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:text="@string/username"
-        android:autofillHints="username" />
+        android:minHeight="48dp" />
+
+    <TextView
+        android:id="@+id/TVSignUpUsernameExist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:text="@string/username_already_exist_try_another"
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/TVSignUpEmail"
@@ -54,8 +61,15 @@
         android:autofillHints="emailAddress"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:minHeight="48dp"
-        android:text="@string/email" />
+        android:minHeight="48dp" />
+
+    <TextView
+        android:id="@+id/TVSignUpEmailExist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:text="@string/email_already_register_try_another_email"
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/TVSignUpName"
@@ -73,8 +87,7 @@
         android:autofillHints="name"
         android:ems="10"
         android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:text="@string/name" />
+        android:minHeight="48dp" />
 
     <TextView
         android:id="@+id/TVSignUpExplainNamePurpose"
@@ -113,6 +126,7 @@
         android:textSize="16sp"  />
 
     <RadioGroup
+        android:id="@+id/RGSignUpGender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -171,8 +185,7 @@
         android:autofillHints="password"
         android:ems="10"
         android:inputType="textPassword"
-        android:minHeight="48dp"
-        android:text="@string/dots" />
+        android:minHeight="48dp" />
 
     <TextView
         android:id="@+id/TVSignUpPasswordExplain"
@@ -198,8 +211,7 @@
         android:autofillHints="password"
         android:ems="10"
         android:inputType="textPassword"
-        android:minHeight="48dp"
-        android:text="@string/dots" />
+        android:minHeight="48dp" />
 
     <Button
         android:id="@+id/BtnSignUp"
