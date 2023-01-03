@@ -10,6 +10,8 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <!-- Action bar colour. -->
+        <item name="actionBarStyle">@style/ThemeOverlay.AppCompat.DayNight.ActionBar</item>
         <!-- Customize your theme here. -->
 
         <!-- Set bottom nav to use brighter highlight colour -->
@@ -21,7 +23,7 @@
         <item name="materialThemeOverlay">@style/ThemeOverlay.App.BottomNavigationView</item>
     </style>
     <style name="ThemeOverlay.App.BottomNavigationView" parent="">
-        <item name="colorPrimary">@color/red_200
-        </item>
+        <item name="colorPrimary">@color/red_200</item>
     </style>
+
 </resources>
