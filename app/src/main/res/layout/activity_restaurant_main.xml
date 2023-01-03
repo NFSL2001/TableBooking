@@ -18,8 +18,10 @@
         android:id="@+id/FCVRestaurant"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:name="wia2007.project.tablebooking.RestaurantInfoFragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         tools:layout="@layout/fragment_restaurant_gallery"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/restaurant_info_navigation"
         app:layout_constraintTop_toBottomOf="@id/restInfo_Toolbar"
         app:layout_constraintBottom_toBottomOf="parent"/>
 

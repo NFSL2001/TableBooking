@@ -40,7 +40,7 @@
                 android:textColor="?attr/colorPrimaryDark"/>
             <!--foreground for click effect-->
             <ImageButton
-                android:id="@+id/restInfo_topGalleryShowMore"
+                android:id="@+id/restInfo_btnShowGallery"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
@@ -50,7 +50,7 @@
                 android:layout_marginBottom="4dp"
                 android:layout_toStartOf="@id/restInfo_topGalleryPageIndicator"
                 android:background="@drawable/bg_white_rounded"
-                android:contentDescription="Show gallery"
+                android:contentDescription="@string/restaurant_info_show_gallery"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:src="@drawable/ic_baseline_photo_library_24"
                 />
@@ -85,7 +85,7 @@
                 android:drawableStart="@drawable/ic_baseline_restaurant_24"
                 android:drawablePadding="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Buffet"
+                android:text="@string/restaurant_sampleText"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/restInfo_stars"
                 app:drawableTint="?attr/colorOnBackground" />
@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:drawablePadding="8dp"
-                android:text="TH02, Menara Kuala Lumpur, 2, Jalan Puncak,\n50250 Kuala Lumpur"
+                android:text="@string/restaurant_sampleText"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/restInfo_topType"
                 app:drawableLeftCompat="@drawable/ic_baseline_map_24"
@@ -108,13 +108,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawablePadding="8dp"
-                android:text="RM 100"
+                android:text="RM 0"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
-            android:id="@+id/restInfo_viewMenu"
+            android:id="@+id/restInfo_btnNewBooking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="4dp"
+            app:icon="@drawable/ic_baseline_book_online_24"
+            app:iconGravity="textStart"
+            app:iconTint="?attr/colorOnPrimary"
+            android:text="@string/restaurant_info_book_now"
+            />
+
+        <Button
+            android:id="@+id/restInfo_btnViewMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
@@ -122,7 +134,7 @@
             app:icon="@drawable/ic_baseline_restaurant_menu_24"
             app:iconGravity="textStart"
             app:iconTint="?attr/colorOnPrimary"
-            android:text="View Menu"
+            android:text="@string/restaurant_info_view_menu"
             />
 
         <com.google.android.material.divider.MaterialDivider
@@ -140,22 +152,26 @@
                 style="@style/TextAppearance.Material3.TitleMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bookings"/>
+                android:text="@string/restaurant_info_bookings_title"/>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/restInfo_btnBooking"
-                android:textAppearance="?attr/textAppearanceBody2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="?attr/colorPrimaryVariant"
-                android:layout_gravity="center"
-                android:text="2 pax · 25/11, Fri, 20:00"
-                android:textAllCaps="false"
-                app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
-                app:icon="@drawable/person"
-                app:iconGravity="textStart"
-                app:iconTint="?attr/colorOnPrimary"
-                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/restInfo_btnBookHistory"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="?attr/colorPrimaryVariant"
+                    android:layout_gravity="center"
+                    android:text="@string/restaurant_sampleText"
+                    android:textAllCaps="false"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
+                    app:icon="@drawable/person"
+                    app:iconGravity="textStart"
+                    app:iconTint="?attr/colorOnPrimary"
+                    />
+            </LinearLayout>
         </LinearLayout>
 
         <com.google.android.material.divider.MaterialDivider
@@ -187,7 +203,7 @@
                     style="@style/TextAppearance.Material3.LabelLarge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Address"/>
+                    android:text="@string/restaurant_info_address"/>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
@@ -204,7 +220,7 @@
                         style="@style/TextAppearance.AppCompat.Body1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TH02, Menara Kuala Lumpur, 2, Jalan Puncak, 50250 Kuala Lumpur"
+                        android:text="@string/restaurant_sampleText"
                         />
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -220,7 +236,7 @@
                     style="@style/TextAppearance.Material3.LabelLarge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Phone"/>
+                    android:text="@string/restaurant_info_phone"/>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
@@ -237,7 +253,7 @@
                         style="@style/TextAppearance.AppCompat.Body1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="03-2020 2020"
+                        android:text="@string/restaurant_sampleText"
                         />
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -253,7 +269,7 @@
                     style="@style/TextAppearance.Material3.LabelLarge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Hour of operation"/>
+                    android:text="@string/restaurant_info_operation_hour"/>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
@@ -270,7 +286,7 @@
                         style="@style/TextAppearance.AppCompat.Body1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/restaurant_workingTimeSample"
+                        android:text="@string/restaurant_sampleText"
                         />
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -286,7 +302,7 @@
                     style="@style/TextAppearance.Material3.LabelLarge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cuisine"/>
+                    android:text="@string/restaurant_info_cuisine"/>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
@@ -303,7 +319,7 @@
                         style="@style/TextAppearance.AppCompat.Body1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="International, Buffet"
+                        android:text="@string/restaurant_sampleText"
                         />
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -319,7 +335,7 @@
                     style="@style/TextAppearance.Material3.LabelLarge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Average Price"/>
+                    android:text="@string/restaurant_info_average_price"/>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
@@ -336,7 +352,7 @@
                         style="@style/TextAppearance.AppCompat.Body1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="RM 100"
+                        android:text="RM 0"
                         />
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -352,7 +368,7 @@
                     style="@style/TextAppearance.Material3.LabelLarge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Payment"/>
+                    android:text="@string/restaurant_info_payment"/>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
@@ -369,7 +385,7 @@
                         style="@style/TextAppearance.AppCompat.Body1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="MasterCard, Visa"
+                        android:text="@string/restaurant_sampleText"
                         />
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -385,7 +401,7 @@
                     style="@style/TextAppearance.Material3.LabelLarge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Parking"/>
+                    android:text="@string/restaurant_info_parking"/>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
@@ -395,14 +411,14 @@
                         android:layout_height="wrap_content"
                         android:padding="2.5dp"
                         android:layout_marginEnd="4dp"
-                        android:src="@drawable/ic_baseline_payment_24"
+                        android:src="@drawable/ic_baseline_local_parking_24"
                         app:tint="?attr/colorOnBackground"/>
                     <TextView
                         android:id="@+id/menuInfo_dataParking"
                         style="@style/TextAppearance.AppCompat.Body1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/restaurant_parkingSample"
+                        android:text="@string/restaurant_sampleText"
                         />
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -418,7 +434,7 @@
                     style="@style/TextAppearance.Material3.LabelLarge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Dress Code"/>
+                    android:text="@string/restaurant_info_dress_code"/>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
@@ -435,7 +451,7 @@
                         style="@style/TextAppearance.AppCompat.Body1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Smart Casual"
+                        android:text="@string/restaurant_sampleText"
                         />
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -451,7 +467,7 @@
                     style="@style/TextAppearance.Material3.LabelLarge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Accessibility"/>
+                    android:text="@string/restaurant_info_accessibility"/>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
@@ -468,7 +484,7 @@
                         style="@style/TextAppearance.AppCompat.Body1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Wheelchair"
+                        android:text="@string/restaurant_sampleText"
                         />
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -484,7 +500,7 @@
                     style="@style/TextAppearance.Material3.LabelLarge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Website"/>
+                    android:text="@string/restaurant_info_website"/>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
@@ -504,7 +520,7 @@
                         android:layout_height="wrap_content"
                         android:autoLink="web"
                         android:linksClickable="true"
-                        android:text="https://atmosphere360.com.my/"
+                        android:text="@string/restaurant_sampleText"
                         tools:ignore="TouchTargetSizeCheck" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -520,7 +536,7 @@
                     style="@style/TextAppearance.Material3.LabelLarge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Description"/>
+                    android:text="@string/restaurant_info_description"/>
 
                 <TextView
                     android:id="@+id/menuInfo_dataDescription"
@@ -530,7 +546,7 @@
                     android:autoLink="web"
                     android:linksClickable="true"
                     android:lineSpacingMultiplier="0.8"
-                    android:text="@string/restaurant_descriptionSample"
+                    android:text="@string/restaurant_sampleDescription"
                     />
             </androidx.appcompat.widget.LinearLayoutCompat>
 

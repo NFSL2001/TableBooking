@@ -29,9 +29,6 @@ public interface RestaurantDAO {
     @Query("SELECT * FROM Restaurant WHERE restaurant_user_name = :restaurantUsername")
     public List<Restaurant> getRestaurantByRestaurantUserName(String restaurantUsername);
 
-    @Query("SELECT * FROM Restaurant WHERE restaurant_name LIKE '%' || :phrase || '%'")
-    public List<Restaurant> searchRestaurant(String phrase);
-
     @Query("SELECT * FROM Restaurant WHERE cuisine_type = :type")
     public List<Restaurant> getRestaurantByCuisine(Integer type);
 

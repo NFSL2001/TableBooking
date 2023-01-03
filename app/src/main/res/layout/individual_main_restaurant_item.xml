@@ -18,7 +18,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_height="match_parent"
             android:layout_columnWeight="1"
             android:scaleType="centerInside"
-            app:srcCompat="@android:drawable/ic_menu_gallery" />
+            app:srcCompat="@android:drawable/ic_menu_gallery"
+            android:layout_gravity="start"/>
 
         <LinearLayout
             android:orientation="vertical"
@@ -32,7 +33,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 style="?attr/textAppearanceSearchResultTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ATMOSPHERE 360"
+                android:text="Restaurant Name"
                 android:textAllCaps="false" />
 
             <TextView
@@ -40,14 +41,14 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Buffet" />
+                android:text="Restaurant Type" />
 
             <Button
                 android:id="@+id/main_all_BtnBook"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/main_btnBooking"
-                android:layout_gravity="right"
+                android:layout_gravity="end"
                 />
         </LinearLayout>
     </GridLayout>

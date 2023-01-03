@@ -11,6 +11,8 @@ import android.view.MenuItem;
 
 public class RestaurantMainActivity extends AppCompatActivity {
 
+    Integer restaurantID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,17 +23,19 @@ public class RestaurantMainActivity extends AppCompatActivity {
         // add back button
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        // get current restaurant
         Intent intent = getIntent();
+        this.restaurantID = intent.getExtras().getInt("ID");
+        //set restaurant name
         getSupportActionBar().setTitle(intent.getStringExtra("name"));
-        Log.d(null, "item = " + Integer.toString(intent.getIntExtra("ID", -1)));
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            // if press back button, return activity back to main menu
+            // map toolbar back button same as system back button
             case android.R.id.home:
-                this.finish();
+                onBackPressed();
                 return true;
         }
         return super.onOptionsItemSelected(item);
