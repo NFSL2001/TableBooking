@@ -70,7 +70,7 @@ public class BookingsAdapter extends ArrayAdapter {
         Integer bookingId = showBookingsList.getBooking_id();
         Time startTime = showBookingsList.getStartTime();
         Time endTime = showBookingsList.getEndTime();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
         String start_time = simpleDateFormat.format(startTime);
         String end_time = simpleDateFormat.format(endTime);

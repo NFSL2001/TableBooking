@@ -9,14 +9,14 @@
 
     <ListView
         android:id="@+id/BookingListView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="411dp"
+        android:layout_height="657dp"
         android:layout_marginTop="15dp"
         android:divider="@android:color/transparent"
         android:dividerHeight="10.0sp"
         android:paddingLeft="25dp"
         android:paddingRight="25dp"
-        android:paddingBottom="133dp"
+        android:paddingBottom="90dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
