@@ -1,14 +1,11 @@
 package wia2007.project.tablebooking.entity;
 
-import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
-public class Menu {
+public class MenuItem extends MenuBaseData {
     @PrimaryKey(autoGenerate = true)
     private Integer menu_id;
     private String menu_name;
@@ -16,26 +13,18 @@ public class Menu {
     private Integer restaurant;
     private String path;
     private String description;
-    private String type;
+    private String category;
 
-    public Menu() {
+    public MenuItem() {
     }
 
     @Ignore
-    public Menu(Integer menu_id, String menu_name, Float price, Integer restaurant, String path) {
-        this.menu_id = menu_id;
-        this.menu_name = menu_name;
-        this.price = price;
-        this.restaurant = restaurant;
-        this.path = path;
-    }
-
-    public Menu(String menu_name, Float price,String description, Integer restaurant, String type, String path) {
+    public MenuItem(String menu_name, Float price, String description, Integer restaurant, String category, String path) {
         this.menu_name = menu_name;
         this.price = price;
         this.description = description;
         this.restaurant = restaurant;
-        this.type = type;
+        this.category = category;
         this.path = path;
     }
 
@@ -87,11 +76,9 @@ public class Menu {
         this.description = description;
     }
 
-    public String getType() {
-        return type;
-    }
+    public String getCategory() { return category; }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

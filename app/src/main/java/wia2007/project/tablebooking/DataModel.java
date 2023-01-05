@@ -2,34 +2,34 @@ package wia2007.project.tablebooking;
 
 import java.util.List;
 
-import wia2007.project.tablebooking.entity.Menu;
+import wia2007.project.tablebooking.entity.MenuItem;
 
 public class DataModel {
 
-    private List<Menu> nestedMenuList;
-    private String menuType;
+    private List<MenuItem> nestedMenuList;
+    private String menuCategory;
     private boolean isExpandable;
 
-    public DataModel(List<Menu> nestedMenuList, String menuType) {
+    public DataModel(List<MenuItem> nestedMenuList, String menuType) {
         this.nestedMenuList = nestedMenuList;
-        this.menuType = menuType;
+        this.menuCategory = menuType;
         this.isExpandable = false;
     }
 
-    public List<Menu> getNestedMenuList() {
+    public List<MenuItem> getNestedMenuList() {
         return nestedMenuList;
     }
 
-    public void setNestedMenuList(List<Menu> nestedMenuList) {
+    public void setNestedMenuList(List<MenuItem> nestedMenuList) {
         this.nestedMenuList = nestedMenuList;
     }
 
-    public String getMenuType() {
-        return menuType;
+    public String getMenuCategory() {
+        return menuCategory;
     }
 
-    public void setMenuType(String menuType) {
-        this.menuType = menuType;
+    public void setMenuCategory(String menuCategory) {
+        this.menuCategory = menuCategory;
     }
 
     public boolean isExpandable() {

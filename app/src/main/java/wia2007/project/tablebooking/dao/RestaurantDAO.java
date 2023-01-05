@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Dao;
 import androidx.room.Delete;
+import androidx.room.Ignore;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
@@ -29,10 +30,10 @@ public interface RestaurantDAO {
     @Query("SELECT * FROM Restaurant WHERE restaurant_user_name = :restaurantUsername")
     public List<Restaurant> getRestaurantByRestaurantUserName(String restaurantUsername);
 
-    @Query("SELECT * FROM Restaurant WHERE cuisine_type = :type")
-    public List<Restaurant> getRestaurantByCuisine(Integer type);
+    @Query("SELECT restaurant_id, restaurant_name, cuisine_type FROM Restaurant WHERE cuisine_type = :type")
+    public List<RestaurantNameInfoPair> getRestaurantByCuisine(Integer type);
 
-    @Query("SELECT restaurant_id, restaurant_name FROM Restaurant")
+    @Query("SELECT restaurant_id, restaurant_name, cuisine_type FROM Restaurant")
     public List<RestaurantNameInfoPair> listAllRestaurantName();
 
     class RestaurantNameInfoPair {
@@ -43,9 +44,13 @@ public interface RestaurantDAO {
         @ColumnInfo(name = "restaurant_name")
         public String name;
 
-        public RestaurantNameInfoPair(int id, String name) {
+        @ColumnInfo(name = "cuisine_type")
+        public int cuisine_type;
+
+        public RestaurantNameInfoPair(int id, String name, int cuisine_type) {
             this.id = id;
             this.name = name;
+            this.cuisine_type = cuisine_type;
         }
     }
 }

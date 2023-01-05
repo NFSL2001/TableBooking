@@ -2,7 +2,6 @@ package wia2007.project.tablebooking;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,16 +15,15 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import wia2007.project.tablebooking.entity.Menu;
+import wia2007.project.tablebooking.entity.MenuItem;
 
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuHolder> {
     Context context;
     List<DataModel> menuItem;
-    List<Menu> itemList = new ArrayList<>();
+    List<MenuItem> itemList = new ArrayList<>();
     private final RecycleViewInterface recycleViewInterface;
     ItemAdapter itemAdapter;
     public MenuAdapter(Context context, List<DataModel> menuItem, RecycleViewInterface recycleViewInterface) {
@@ -51,7 +49,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuHolder> {
     public void onBindViewHolder(@NonNull MenuHolder holder, int position) {
         int pos = position;
         DataModel dataModel = menuItem.get(position);
-        holder.menu_type_title.setText(dataModel.getMenuType());
+        holder.menu_type_title.setText(dataModel.getMenuCategory());
 
         boolean isExpandable = dataModel.isExpandable();
         holder.expandableLayout.setVisibility(isExpandable ? View.VISIBLE : View.GONE);

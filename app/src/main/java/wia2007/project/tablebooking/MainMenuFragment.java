@@ -42,13 +42,24 @@ public class MainMenuFragment extends Fragment {
             //get each cuisine item
             Cuisine.CuisineItem item = Cuisine.getCuisineItem(i);
             //get text, set text
-            TextView temp_categoryName = (TextView) temp.findViewById(R.id.main_category_name);
-            temp_categoryName.setText(item.name);
+            TextView temp_cuisineName = temp.findViewById(R.id.main_category_name);
+            temp_cuisineName.setText(item.name);
             //get image, set image
             ImageView temp_categoryIcon = temp.findViewById(R.id.main_category_picture);
             temp_categoryIcon.setImageResource(item.iconResource);
             //add item to grid
             categoryGridLayout.addView(temp);
+            // launch search by cuisine type
+            int finalI = i;
+            temp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), SearchActivity.class);
+                    intent.setAction(Intent.ACTION_ASSIST);
+                    intent.putExtra("cuisineID", finalI +1);
+                    startActivity(intent);
+                }
+            });
         }
 
         // get the buttons and views

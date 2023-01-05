@@ -25,9 +25,9 @@ public class RestaurantMainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // get current restaurant
         Intent intent = getIntent();
-        this.restaurantID = intent.getExtras().getInt("ID");
+        //this.restaurantID = intent.getExtras().getInt("ID");
         //set restaurant name
-        getSupportActionBar().setTitle(intent.getStringExtra("name"));
+        //getSupportActionBar().setTitle(intent.getStringExtra("name"));
     }
 
     @Override

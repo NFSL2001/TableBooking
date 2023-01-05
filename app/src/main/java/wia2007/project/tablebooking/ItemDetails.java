@@ -1,24 +1,15 @@
 package wia2007.project.tablebooking;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.preference.PreferenceManager;
-import android.util.Base64;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -30,16 +21,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,7 +32,7 @@ import java.util.Date;
 import java.util.List;
 
 import wia2007.project.tablebooking.database.TableBookingDatabase;
-import wia2007.project.tablebooking.entity.Menu;
+import wia2007.project.tablebooking.entity.MenuItem;
 
 public class ItemDetails extends AppCompatActivity {
     int SELECT_PICTURE = 200;
@@ -67,7 +52,7 @@ public class ItemDetails extends AppCompatActivity {
         setContentView(R.layout.activity_item_details);
         Toolbar toolbar = findViewById(R.id.TVItemDetailsAct);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Menu Item Details");
+        getSupportActionBar().setTitle("MenuItem Item Details");
 
         menuName = findViewById(R.id.ETItemName);
         menuDescription = findViewById(R.id.ETItemDescription);
@@ -211,14 +196,14 @@ public class ItemDetails extends AppCompatActivity {
                     if (itemId != null) {
                         TableBookingDatabase.getDatabase(getApplicationContext()).menuDAO().updateMenuItem(name, description, itemType, price, mImageUri.toString(), Integer.parseInt(itemId));
                     } else {
-                        TableBookingDatabase.getDatabase(getApplicationContext()).menuDAO().insertMenus(new Menu(name, price, description, 1, itemType, mImageUri.toString()));
+                        TableBookingDatabase.getDatabase(getApplicationContext()).menuDAO().insertMenus(new MenuItem(name, price, description, 1, itemType, mImageUri.toString()));
 
                     }
                 } else {
                     if (itemId != null) {
                         TableBookingDatabase.getDatabase(getApplicationContext()).menuDAO().updateMenuItem(name, description, itemType, price, null, Integer.parseInt(itemId));
                     } else {
-                        TableBookingDatabase.getDatabase(getApplicationContext()).menuDAO().insertMenus(new Menu(name, price, description, 1, itemType, null));
+                        TableBookingDatabase.getDatabase(getApplicationContext()).menuDAO().insertMenus(new MenuItem(name, price, description, 1, itemType, null));
 
                     }
                 }

@@ -12,36 +12,31 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 import wia2007.project.tablebooking.database.TableBookingDatabase;
-import wia2007.project.tablebooking.entity.Menu;
+import wia2007.project.tablebooking.entity.MenuItem;
 
 public class MenuAdmin extends AppCompatActivity implements RecycleViewInterface {
     ExtendedFloatingActionButton BtnAddItem;
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     AlertDialog alertDialog;
-    Map<String, List<Menu>> menuMap = null;
-    Map<String, List<Menu>> menuByType = null;
+    Map<String, List<MenuItem>> menuMap = null;
+    Map<String, List<MenuItem>> menuByType = null;
     Spinner SpinnerItemSortCondition;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +44,7 @@ public class MenuAdmin extends AppCompatActivity implements RecycleViewInterface
         setContentView(R.layout.activity_menu_admin);
         Toolbar toolbar = findViewById(R.id.TVRestaurantMenuAct);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Restaurant Menu");
+        getSupportActionBar().setTitle("Restaurant MenuItem");
         Spinner SpinnerMenuSortCondition = findViewById(R.id.SpinnerMenuSortCondition);
         ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.SpinnerForMenuAdmin, android.R.layout.simple_spinner_item);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
@@ -61,9 +56,9 @@ public class MenuAdmin extends AppCompatActivity implements RecycleViewInterface
         SpinnerItemSortCondition.setAdapter(spinnerItemAdapter);
 
         List<DataModel> menuTypeList = new ArrayList<>();
-        List<Menu> menuItem = TableBookingDatabase.getDatabase(getApplicationContext()).menuDAO().getMenuSortedList(1, SpinnerItemSortCondition.getSelectedItemPosition());
+        List<MenuItem> menuItem = TableBookingDatabase.getDatabase(getApplicationContext()).menuDAO().getMenuSortedList(1, SpinnerItemSortCondition.getSelectedItemPosition());
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            menuMap = menuItem.stream().collect(Collectors.groupingBy(m -> m.getType() == null ? "Not defined" : m.getType()));
+            menuMap = menuItem.stream().collect(Collectors.groupingBy(m -> m.getCategory() == null ? "Not defined" : m.getCategory()));
         }
 
         recyclerView = findViewById(R.id.RVMenu);
@@ -84,7 +79,7 @@ public class MenuAdmin extends AppCompatActivity implements RecycleViewInterface
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i == 1) {
                     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-//                        menuMap = menuItem.stream().collect(Collectors.groupingBy(Menu::getType));
+//                        menuMap = menuItem.stream().collect(Collectors.groupingBy(MenuItem::getType));
                         menuByType = menuMap
                                 .entrySet()
                                 .stream()
@@ -102,7 +97,7 @@ public class MenuAdmin extends AppCompatActivity implements RecycleViewInterface
                 }
                 List<DataModel> sorted = new ArrayList<>();
                 List<String> typeArr = new ArrayList<>(menuByType.keySet());
-                List<List<Menu>> menuArr = new ArrayList<>(menuByType.values());
+                List<List<MenuItem>> menuArr = new ArrayList<>(menuByType.values());
                 for (int k = 0; k < typeArr.size(); k++) {
                     sorted.add(new DataModel(menuArr.get(k), typeArr.get(k)));
                 }
@@ -120,11 +115,11 @@ public class MenuAdmin extends AppCompatActivity implements RecycleViewInterface
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 List<DataModel> sorted = new ArrayList<>();
-                List<Menu> sortedItem = TableBookingDatabase.getDatabase(getApplicationContext()).menuDAO().getMenuSortedList(1, SpinnerItemSortCondition.getSelectedItemPosition());
+                List<MenuItem> sortedItem = TableBookingDatabase.getDatabase(getApplicationContext()).menuDAO().getMenuSortedList(1, SpinnerItemSortCondition.getSelectedItemPosition());
                 int pos = SpinnerMenuSortCondition.getSelectedItemPosition();
                 if (pos == 1) {
                     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                        menuMap = sortedItem.stream().collect(Collectors.groupingBy(m -> m.getType() == null ? "Not defined" : m.getType()));
+                        menuMap = sortedItem.stream().collect(Collectors.groupingBy(m -> m.getCategory() == null ? "Not defined" : m.getCategory()));
                         menuByType = menuMap
                                 .entrySet()
                                 .stream()
@@ -133,7 +128,7 @@ public class MenuAdmin extends AppCompatActivity implements RecycleViewInterface
                     }
                 } else {
                     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                        menuMap = sortedItem.stream().collect(Collectors.groupingBy(m -> m.getType() == null ? "Not Defined" : m.getType()));
+                        menuMap = sortedItem.stream().collect(Collectors.groupingBy(m -> m.getCategory() == null ? "Not Defined" : m.getCategory()));
                         menuByType = menuMap
                                 .entrySet()
                                 .stream()
@@ -142,7 +137,7 @@ public class MenuAdmin extends AppCompatActivity implements RecycleViewInterface
                     }
                 }
                 List<String> typeArr = new ArrayList<>(menuByType.keySet());
-                List<List<Menu>> menuArr = new ArrayList<>(menuByType.values());
+                List<List<MenuItem>> menuArr = new ArrayList<>(menuByType.values());
                 for (int k = 0; k < typeArr.size(); k++) {
                     sorted.add(new DataModel(menuArr.get(k), typeArr.get(k)));
                 }
@@ -169,7 +164,7 @@ public class MenuAdmin extends AppCompatActivity implements RecycleViewInterface
         String itemPrice = String.format("%.02f", menuAdapter.getMenuItem().get(position).getPrice());
         intent.putExtra("ItemPrice", itemPrice);
         intent.putExtra("ItemImage", menuAdapter.getMenuItem().get(position).getPath());
-        intent.putExtra("ItemType", menuAdapter.getMenuItem().get(position).getType());
+        intent.putExtra("ItemType", menuAdapter.getMenuItem().get(position).getCategory());
         startActivity(intent);
     }
 

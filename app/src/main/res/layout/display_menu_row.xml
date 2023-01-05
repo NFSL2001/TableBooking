@@ -6,61 +6,48 @@
     android:layoutAnimation="@anim/layout_animation"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="8dp">
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/black"
-        android:padding="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+    android:paddingHorizontal="16dp"
+    android:paddingTop="6dp">
 
     <TextView
         android:id="@+id/TVMenuName"
-        style="@style/TextAppearance.Material3.TitleLarge"
-        android:layout_width="369dp"
+        style="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Menu Name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/TVMenuPriceAdmin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:paddingBottom="20dp"
-        android:text="Price"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/MenuImage"
-        app:layout_constraintTop_toBottomOf="@+id/TVDescriptionMenuAdmin" />
-
     <ImageView
         android:id="@+id/MenuImage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:maxHeight="128dp"
+        android:maxHeight="256dp"
         android:layout_marginTop="4dp"
         android:adjustViewBounds="true"
         android:paddingBottom="20dp"
+        android:paddingEnd="16dp"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TVMenuName"
-        app:layout_constraintWidth_percent="0.3"
+        app:layout_constraintWidth_percent="0.28"
         app:srcCompat="@drawable/ic_baseline_image_24" />
+
+    <TextView
+        android:id="@+id/TVDishType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Type of dishes"
+        app:layout_constraintStart_toEndOf="@+id/MenuImage"
+        app:layout_constraintTop_toBottomOf="@+id/TVMenuName" />
 
     <TextView
         android:id="@+id/TVDescriptionMenuAdmin"
         style="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
         android:text="Description of the Menu"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,12 +55,20 @@
         app:layout_constraintTop_toBottomOf="@+id/TVDishType" />
 
     <TextView
-        android:id="@+id/TVDishType"
+        android:id="@+id/TVMenuPriceAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="Type of dishes"
+        android:layout_marginTop="4dp"
+        android:text="Price"
         app:layout_constraintStart_toEndOf="@+id/MenuImage"
-        app:layout_constraintTop_toBottomOf="@+id/TVMenuName" />
+        app:layout_constraintTop_toBottomOf="@+id/TVDescriptionMenuAdmin" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:paddingVertical="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

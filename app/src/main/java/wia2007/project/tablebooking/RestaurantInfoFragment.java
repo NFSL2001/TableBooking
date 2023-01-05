@@ -44,6 +44,7 @@ public class RestaurantInfoFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_restaurant_info, container, false);
 
+        // get current restaurant ID
         RestaurantMainActivity parentActivity = (RestaurantMainActivity) getActivity();
         Integer restaurantID = parentActivity.restaurantID;
 
@@ -126,6 +127,9 @@ public class RestaurantInfoFragment extends Fragment {
                 // TODO: Add navigation to new booking
             }
         });
+
+        // TODO: add booking list by user
+
         return view;
     }
 }

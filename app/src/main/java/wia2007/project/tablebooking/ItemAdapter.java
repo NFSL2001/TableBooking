@@ -13,13 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.io.File;
 import java.util.List;
 
-import wia2007.project.tablebooking.entity.Menu;
+import wia2007.project.tablebooking.entity.MenuItem;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
 
-    private List<Menu> itemList;
+    private List<MenuItem> itemList;
     private final RecycleViewInterface recycleViewInterface;
-    public ItemAdapter(List<Menu> itemList, RecycleViewInterface recycleViewInterface){
+    public ItemAdapter(List<MenuItem> itemList, RecycleViewInterface recycleViewInterface){
         this.itemList = itemList;
         this.recycleViewInterface = recycleViewInterface;
     }
@@ -51,7 +51,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         }else{
             holder.menuImage.setVisibility(View.GONE);
         }
-        holder.menuType.setText(itemList.get(position).getType());
+        holder.menuType.setText(itemList.get(position).getCategory());
     }
 
     @Override
@@ -98,7 +98,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         }
 
     }
-    public List<Menu> getMenuItem() {
+    public List<MenuItem> getMenuItem() {
         return itemList;
     }
 }

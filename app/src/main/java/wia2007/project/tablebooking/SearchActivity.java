@@ -16,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import wia2007.project.tablebooking.database.TableBookingDatabase;
@@ -44,12 +45,24 @@ public class SearchActivity extends AppCompatActivity {
         RestaurantDAO dao = database.restaurantDAO();
         //allList = dao.listAllRestaurantName();
         // TODO: temporary list
-        allList = new ArrayList<RestaurantDAO.RestaurantNameInfoPair>();
-        allList.add(new RestaurantDAO.RestaurantNameInfoPair(1,"Atmosphere 360"));
-        allList.add(new RestaurantDAO.RestaurantNameInfoPair(2,"Cons Transphere"));
-        allList.add(new RestaurantDAO.RestaurantNameInfoPair(3,"KFC Malaysia"));
-        allList.add(new RestaurantDAO.RestaurantNameInfoPair(4,"Malaysia Cuisine"));
-        allList.add(new RestaurantDAO.RestaurantNameInfoPair(5,"Domino's 360"));
+        ArrayList<RestaurantDAO.RestaurantNameInfoPair> tempList = new ArrayList<>();
+        tempList.add(new RestaurantDAO.RestaurantNameInfoPair(1,"Atmosphere 360", 1));
+        tempList.add(new RestaurantDAO.RestaurantNameInfoPair(2,"Cons Transphere", 2));
+        tempList.add(new RestaurantDAO.RestaurantNameInfoPair(3,"KFC Malaysia", 1));
+        tempList.add(new RestaurantDAO.RestaurantNameInfoPair(4,"Malaysia Cuisine", 3));
+        tempList.add(new RestaurantDAO.RestaurantNameInfoPair(5,"Domino's 360", 7));
+
+        //change list if cuisine type
+        if (Intent.ACTION_ASSIST.equals(getIntent().getAction())){
+            Integer cuisineID = getIntent().getIntExtra("cuisineType", 1);
+            allList = new ArrayList<RestaurantDAO.RestaurantNameInfoPair>();
+            for(RestaurantDAO.RestaurantNameInfoPair item: tempList){
+                if (item.cuisine_type == cuisineID)
+                    allList.add(item);
+            }
+        } else {
+            allList = tempList;
+        }
 
         // get recycler view and bind view holder
         recyclerView = findViewById(R.id.search_RVResult);
