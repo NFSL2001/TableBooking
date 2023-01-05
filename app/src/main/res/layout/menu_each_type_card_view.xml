@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_margin="4dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="8dp"
-    android:minHeight="70dp"
+    android:minHeight="32dp"
     app:cardElevation="6dp">
 
     <LinearLayout
@@ -22,15 +22,13 @@
 
             <TextView
                 android:id="@+id/menuTypeTv"
+                style="?attr/textAppearanceHeadline6"
                 android:layout_width="wrap_content"
-                android:layout_height="70dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="16dp"
                 android:gravity="center"
                 android:text="Main Dishes"
-                android:textColor="@color/black"
-                android:textSize="28sp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -38,10 +36,10 @@
 
             <ImageView
                 android:id="@+id/arrow_imageview"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="6dp"
+                android:paddingHorizontal="6dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/restaurant_menu_expand" />
