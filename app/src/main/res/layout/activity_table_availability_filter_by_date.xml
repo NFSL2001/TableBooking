@@ -69,7 +69,7 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+            app:layout_constraintTop_toBottomOf="@+id/datepicker" />
 
         <Button
             android:id="@+id/butConfirm"
@@ -87,25 +87,27 @@
         <TimePicker
             android:id="@+id/timepicker"
             android:layout_width="300dp"
-            android:layout_height="340dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:headerBackground="@drawable/red_rectangle"
             android:numbersBackgroundColor="#FFFFFF"
             android:numbersSelectorColor="#C1121F"
             android:numbersTextColor="@color/black"
+            android:timePickerMode="spinner"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pickTime" />
 
-        <CalendarView
-            android:id="@+id/calendarView"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+        <DatePicker
+            android:id="@+id/datepicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="#FFFFFF"
             android:focusableInTouchMode="false"
             android:focusedMonthDateColor="#C1121F"
             android:foregroundTint="#000000"
+            android:padding="10dp"
             android:selectedWeekBackgroundColor="#C1121F"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

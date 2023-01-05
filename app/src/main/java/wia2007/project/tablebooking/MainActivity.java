@@ -1,4 +1,4 @@
-package wia2007.project.tablebooking;
+package com.example.invitable;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,4 +17,5 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.TVMainAct);
         setSupportActionBar(toolbar);
     }
+
 }
