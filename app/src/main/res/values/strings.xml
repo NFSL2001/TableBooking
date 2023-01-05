@@ -6,6 +6,18 @@
     <string name="sort_by">Sort By</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string-array name="cuisine">
+        <item>Malaysian</item>
+        <item>Dinner Buffet</item>
+        <item>Japanese</item>
+        <item>Indian</item>
+        <item>High Tea Buffet</item>
+        <item>Chinese</item>
+        <item>Western</item>
+        <item>Thai</item>
+    </string-array>
+    <string name="no_table">No table</string>
 
     <!-- main menu -->
     <string name="main_btnByCategory">By category</string>
