@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/TVPrice"
     android:layoutAnimation="@anim/layout_animation"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="8dp">
 
@@ -51,7 +51,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TVMenuName"
-        app:layout_constraintWidth_percent="0.2"
+        app:layout_constraintWidth_percent="0.3"
         app:srcCompat="@drawable/ic_baseline_image_24" />
 
     <TextView
@@ -61,7 +61,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:text="Description of the Menu"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/MenuImage"
         app:layout_constraintTop_toBottomOf="@+id/TVDishType" />
 
