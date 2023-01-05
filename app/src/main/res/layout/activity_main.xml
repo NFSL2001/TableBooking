@@ -8,12 +8,9 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/TVMainAct"
-        style="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"
-        android:background="?attr/colorPrimary"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.DayNight"
+        android:theme="@style/AppTheme.ActionBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:visibility="gone"/>

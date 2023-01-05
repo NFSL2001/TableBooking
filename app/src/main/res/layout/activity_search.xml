@@ -4,25 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RestaurantMainActivity">
+    tools:context=".SearchActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/restInfo_Toolbar"
+        android:id="@+id/search_TVMainAct"
         android:theme="@style/AppTheme.ActionBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:menu="@menu/menu_search_activity"/>
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/FCVRestaurant"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/search_RVResult"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        tools:layout="@layout/fragment_restaurant_gallery"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/restaurant_info_navigation"
-        app:layout_constraintTop_toBottomOf="@id/restInfo_Toolbar"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/search_TVMainAct"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

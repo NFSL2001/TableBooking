@@ -2,41 +2,28 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingHorizontal="8dp"
-    android:paddingVertical="4dp"
+    android:padding="4dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     
-    <!-- header -->
-    <RelativeLayout
-        android:id="@+id/restMenu_sectionHeaderView"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/restMenu_sectionHeader"
+        style="?attr/textAppearanceHeadline6"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingVertical="4dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="2dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
-        <TextView
-            android:id="@+id/restMenu_sectionHeader"
-            style="?attr/textAppearanceHeadline6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingVertical="2dp"
-            android:text="Section 1" />
+        app:drawableStartCompat="@drawable/restaurant_menu_collapse"
+        android:text="Section 1"/>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/restaurant_menu_collapse"
-            />
-    </RelativeLayout>
     
     <!-- foldable section -->
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/restMenu_sectionHeaderView"
+        app:layout_constraintTop_toBottomOf="@+id/restMenu_sectionHeader"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
         
@@ -45,26 +32,15 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="4dp"/>
 
-        <!--category header-->
-        <TextView
-            style="@style/TextAppearance.Material3.BodyLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Category 1"
-            android:textColor="?attr/colorPrimary"/>
-        <TextView
-            style="@style/TextAppearance.AppCompat.Body1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Alfalfa, Broccoli, Cauliflower, Cheery Tomatoes, Herb Croutons, Marinated Olives, Tri-colour Capsicums, Carrot, Corn Kernels, Kidney Beans, Onion Rings\n&amp;\nCaesar Dressings, French Dressings, Thousand Island Dressing, Lemon Dressing, Sesame Dressing, Honey Dressing, Olive Oil, Balsamic Vinegar."/>
-        
         <!-- submenu -->
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/restMenu_LLItemList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingVertical="8dp">
 
+            <!-- one item -->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -74,6 +50,7 @@
                     android:id="@+id/restMenu_itemPicture"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxWidth="64dp"
                     android:adjustViewBounds="true"
                     android:scaleType="centerInside"
                     android:layout_columnWeight="1"
@@ -81,7 +58,7 @@
 
                 <TextView
                     android:id="@+id/restMenu_itemName"
-                    style="@style/TextAppearance.Material3.BodyMedium"
+                    style="@style/TextAppearance.Material3.LabelLarge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/restMenu_itemPicture"

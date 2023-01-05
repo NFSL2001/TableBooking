@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/restaurant_info_navigation"
+    app:startDestination="@id/restaurantInfoFragment">
+
+    <fragment
+        android:id="@+id/restaurantMenuFragment"
+        android:name="wia2007.project.tablebooking.RestaurantMenuFragment"
+        android:label="fragment_restaurant_menu"
+        tools:layout="@layout/fragment_restaurant_menu" />
+    <fragment
+        android:id="@+id/restaurantGalleryFragment"
+        android:name="wia2007.project.tablebooking.RestaurantGalleryFragment"
+        android:label="fragment_restaurant_gallery"
+        tools:layout="@layout/fragment_restaurant_gallery" />
+    <fragment
+        android:id="@+id/restaurantInfoFragment"
+        android:name="wia2007.project.tablebooking.RestaurantInfoFragment"
+        android:label="RestaurantInfoFragment" >
+        <action
+            android:id="@+id/action_restInfo2restGallery"
+            app:destination="@id/restaurantGalleryFragment" />
+        <action
+            android:id="@+id/action_restInfo2restMenu"
+            app:destination="@id/restaurantMenuFragment" />
+    </fragment>
+</navigation>

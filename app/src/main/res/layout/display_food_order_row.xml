@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="10dp"
+    android:paddingTop="4dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="8dp"
         android:text="Qtyx Here will put the food name "
         android:textColor="@color/black"
         android:textSize="18sp"
@@ -23,7 +23,7 @@
         android:id="@+id/TVMenuPrice"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:gravity="right"
         android:text="RMXXX"

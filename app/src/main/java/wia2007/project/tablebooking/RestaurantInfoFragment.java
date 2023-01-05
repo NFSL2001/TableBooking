@@ -4,20 +4,28 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import wia2007.project.tablebooking.dao.RestaurantDAO;
+import wia2007.project.tablebooking.database.TableBookingDatabase;
+import wia2007.project.tablebooking.entity.Restaurant;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,8 +44,28 @@ public class RestaurantInfoFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_restaurant_info, container, false);
 
-        // code to inflate viewPager (image gallery)
+        RestaurantMainActivity parentActivity = (RestaurantMainActivity) getActivity();
+        Integer restaurantID = parentActivity.restaurantID;
 
+        // get current restaurant info
+        TableBookingDatabase database = TableBookingDatabase.getDatabase(getActivity().getApplicationContext());
+        RestaurantDAO dao = database.restaurantDAO();
+        //Restaurant restaurant = dao.getRestaurantById(restaurantID).get(0);
+        // TODO: temporary restaurant info
+        Restaurant restaurant = new Restaurant(
+                1,
+                "Atmosphere360",
+                "12345678",
+                "Atmosphere 360",
+                "012-3456789",
+                new Double(105.3).floatValue(),
+                "TH02, Menara Kuala Lumpur, 2, Jalan Puncak, 50250 Kuala Lumpur",
+                1
+        );
+
+        // TODO: change info based on database
+
+        // code to inflate viewPager (image gallery)
         // TODO: Template list change to dynamic list
         // prepare list for adapter to show
         List<RestaurantImage> restaurantImages = new ArrayList<>();
@@ -76,6 +104,28 @@ public class RestaurantInfoFragment extends Fragment {
         // initialize start page 1/5
         pagerIndicator.setText(Integer.toString(1) + "/" + Integer.toString(viewPager.getAdapter().getItemCount()));
 
+        // set onclick navigation
+        ImageButton btnViewGallery = view.findViewById(R.id.restInfo_btnShowGallery);
+        btnViewGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.action_restInfo2restGallery);
+            }
+        });
+        Button btnMenu = view.findViewById(R.id.restInfo_btnViewMenu);
+        btnMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.action_restInfo2restMenu);
+            }
+        });
+        Button btnNewBooking = view.findViewById(R.id.restInfo_btnNewBooking);
+        btnNewBooking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: Add navigation to new booking
+            }
+        });
         return view;
     }
 }
