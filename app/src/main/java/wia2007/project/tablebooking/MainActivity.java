@@ -1,4 +1,4 @@
-package com.example.invitable;
+package wia2007.project.tablebooking;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
