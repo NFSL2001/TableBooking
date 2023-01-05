@@ -43,7 +43,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuHolder> {
     @NonNull
     @Override
     public MenuAdapter.MenuHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.display_menu_row, parent, false);
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.menu_each_type_card_view, parent, false);
         return new MenuHolder(view, recycleViewInterface);
     }
