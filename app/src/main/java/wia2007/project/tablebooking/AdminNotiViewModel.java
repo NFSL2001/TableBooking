@@ -1,4 +1,4 @@
-package com.example.invitable;
+packagewia2007.project.tablebooking;
 
 import android.app.Application;
 import android.os.AsyncTask;
@@ -6,9 +6,9 @@ import android.os.AsyncTask;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
-import com.example.invitable.dao.BookingDAO;
-import com.example.invitable.database.TableBookingDatabase;
-import com.example.invitable.entity.Booking;
+import wia2007.project.tablebooking.dao.BookingDAO;
+import wia2007.project.tablebooking.database.TableBookingDatabase;
+import wia2007.project.tablebooking.entity.Booking;
 
 import java.util.List;
 
