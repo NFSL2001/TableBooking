@@ -14,13 +14,14 @@ import wia2007.project.tablebooking.entity.Table;
 import java.util.List;
 
 public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableViewHolder> {
-    private LayoutInflater layoutInflater;
+   private LayoutInflater layoutInflater;
     private Context mcontext;
     private List<Table> mTable;
 
-    public TableAdapter(Context context) {
+    public TableAdapter(Context context, List<Table> tableList ) {
         layoutInflater = LayoutInflater.from(context);
         mcontext = context;
+        mTable = tableList;
     }
 
     @NonNull
