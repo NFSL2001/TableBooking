@@ -19,7 +19,14 @@ public class Restaurant {
     private String contact_number;
     private Float average_price;
     private String address;
+    private String working_hour;
+    private String payment;
+    private String parking;
+    private String dresscode;
+    private String accessibility;
+    private String website;
     private Integer cuisine_type;
+    private String description;
     @NonNull
     private String title_image_path;
     @Nullable
@@ -37,7 +44,7 @@ public class Restaurant {
     }
 
     @Ignore
-    public Restaurant(Integer restaurant_id, String restaurant_user_name, String password, String restaurant_name, String contact_number, Float average_price, String address, Integer cuisine_type, String title_image_path) {
+    public Restaurant(Integer restaurant_id, String restaurant_user_name, String password, String restaurant_name, String contact_number, Float average_price, String address, String working_hour, String payment, String parking, String dresscode, String accessibility, String website, Integer cuisine_type, String description, @NonNull String title_image_path) {
         this.restaurant_id = restaurant_id;
         this.restaurant_user_name = restaurant_user_name;
         this.password = password;
@@ -45,7 +52,14 @@ public class Restaurant {
         this.contact_number = contact_number;
         this.average_price = average_price;
         this.address = address;
+        this.working_hour = working_hour;
+        this.payment = payment;
+        this.parking = parking;
+        this.dresscode = dresscode;
+        this.accessibility = accessibility;
+        this.website = website;
         this.cuisine_type = cuisine_type;
+        this.description = description;
         this.title_image_path = title_image_path;
     }
 
@@ -77,9 +91,7 @@ public class Restaurant {
         return restaurant_name;
     }
 
-    public void setRestaurant_name(String restaurant_name) {
-        this.restaurant_name = restaurant_name;
-    }
+    public void setRestaurant_name(String restaurant_name) {this.restaurant_name = restaurant_name;}
 
     public String getContact_number() {
         return contact_number;
@@ -203,6 +215,56 @@ public class Restaurant {
         //add images in order, remove old images
         this.image_path_1 = path1; this.image_path_2 = path2; this.image_path_3 = path3; this.image_path_4 = path4; this.image_path_5 = path5;
     }
+
+    public String getWorking_hour() {
+        return working_hour;
+    }
+
+    public void setWorking_hour(String working_hour) {
+        this.working_hour = working_hour;
+    }
+
+    public String getPayment() {
+        return payment;
+    }
+
+    public void setPayment(String payment) {
+        this.payment = payment;
+    }
+
+    public String getParking() {
+        return parking;
+    }
+
+    public void setParking(String parking) {
+        this.parking = parking;
+    }
+
+    public String getDresscode() {
+        return dresscode;
+    }
+
+    public void setDresscode(String dresscode) {this.dresscode = dresscode;}
+
+    public String getAccessibility() {
+        return accessibility;
+    }
+
+    public void setAccessibility(String accessibility) {
+        this.accessibility = accessibility;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public String getDescription() {return description;}
+
+    public void setDescription(String description) {this.description = description;}
 
     @Override
     public String toString() {

@@ -25,6 +25,7 @@ import java.util.List;
 
 import wia2007.project.tablebooking.dao.RestaurantDAO;
 import wia2007.project.tablebooking.database.TableBookingDatabase;
+import wia2007.project.tablebooking.entity.Cuisine;
 import wia2007.project.tablebooking.entity.Restaurant;
 
 /**
@@ -59,15 +60,23 @@ public class RestaurantInfoFragment extends Fragment {
                 "12345678",
                 "Atmosphere 360",
                 "012-3456789",
-                new Double(105.3).floatValue(),
+                (float) 105.3,
                 "TH02, Menara Kuala Lumpur, 2, Jalan Puncak, 50250 Kuala Lumpur",
+                "",
+                "Cash only",
+                "No parking",
+                null,
+                null,
+                "www.atmosphere360.com",
                 1,
+                getResources().getString(R.string.restaurant_descriptionSample),
                 ""
         );
 
-        // TODO: change info based on database
+        /** populate data **/
+        populateViewData(view, restaurant);
 
-        // code to inflate viewPager (image gallery)
+        /** inflate viewPager (image gallery) **/
         // TODO: Template list change to dynamic list
         // prepare list for adapter to show
         List<RestaurantImage> restaurantImages = new ArrayList<>();
@@ -106,6 +115,7 @@ public class RestaurantInfoFragment extends Fragment {
         // initialize start page 1/5
         pagerIndicator.setText(Integer.toString(1) + "/" + Integer.toString(viewPager.getAdapter().getItemCount()));
 
+        /** set buttons **/
         // set onclick navigation
         ImageButton btnViewGallery = view.findViewById(R.id.restInfo_btnShowGallery);
         btnViewGallery.setOnClickListener(new View.OnClickListener() {
@@ -132,5 +142,52 @@ public class RestaurantInfoFragment extends Fragment {
         // TODO: add booking list by user
 
         return view;
+    }
+
+    void populateViewData(View view, Restaurant restaurant) {
+        // required info
+        {
+            ((TextView) view.findViewById(R.id.restInfo_Name)).setText(restaurant.getRestaurant_name());
+
+            ((TextView) view.findViewById(R.id.restInfo_topAddress)).setText(restaurant.getAddress());
+            ((TextView) view.findViewById(R.id.menuInfo_dataAddress)).setText(restaurant.getAddress());
+            String cuisineType = Cuisine.getCuisineItem(restaurant.getCuisine_type()).name;
+            ((TextView) view.findViewById(R.id.restInfo_topType)).setText(cuisineType);
+            ((TextView) view.findViewById(R.id.menuInfo_dataCuisine)).setText(cuisineType);
+            String price = "RM " + String.format("%.02f", restaurant.getAverage_price());
+            ((TextView) view.findViewById(R.id.restInfo_topPrice)).setText(price);
+            ((TextView) view.findViewById(R.id.menuInfo_dataAveragePrice)).setText(price);
+        }
+        // info might not present
+        if (restaurant.getContact_number() == null || restaurant.getContact_number().trim().isEmpty())
+            view.findViewById(R.id.menuInfo_parentPhone).setVisibility(View.GONE);
+        else
+            ((TextView) view.findViewById(R.id.menuInfo_dataPhone)).setText(restaurant.getContact_number());
+        if (restaurant.getWorking_hour() == null || restaurant.getWorking_hour().trim().isEmpty())
+            view.findViewById(R.id.menuInfo_parentTime).setVisibility(View.GONE);
+        else
+            ((TextView) view.findViewById(R.id.menuInfo_dataTime)).setText(restaurant.getWorking_hour());
+        if (restaurant.getPayment() == null || restaurant.getPayment().trim().isEmpty())
+            view.findViewById(R.id.menuInfo_parentPayment).setVisibility(View.GONE);
+        else
+            ((TextView) view.findViewById(R.id.menuInfo_dataPayment)).setText(restaurant.getPayment());
+        if (restaurant.getParking() == null || restaurant.getParking().trim().isEmpty())
+            view.findViewById(R.id.menuInfo_parentParking).setVisibility(View.GONE);
+        else
+            ((TextView) view.findViewById(R.id.menuInfo_dataParking)).setText(restaurant.getParking());
+        if (restaurant.getDresscode() == null || restaurant.getDresscode().trim().isEmpty())
+            view.findViewById(R.id.menuInfo_parentDressCode).setVisibility(View.GONE);
+        else
+            ((TextView) view.findViewById(R.id.menuInfo_dataDressCode)).setText(restaurant.getDresscode());
+        if (restaurant.getAccessibility() == null || restaurant.getAccessibility().trim().isEmpty())
+            view.findViewById(R.id.menuInfo_parentAccessibility).setVisibility(View.GONE);
+        else
+            ((TextView) view.findViewById(R.id.menuInfo_dataAccessibility)).setText(restaurant.getAccessibility());
+        if (restaurant.getWebsite() == null || restaurant.getWebsite().trim().isEmpty())
+            view.findViewById(R.id.menuInfo_parentWebsite).setVisibility(View.GONE);
+        else
+            ((TextView) view.findViewById(R.id.menuInfo_dataWebsite)).setText(restaurant.getWebsite());
+        if (restaurant.getDescription() != null && !restaurant.getDescription().trim().isEmpty())
+            ((TextView) view.findViewById(R.id.menuInfo_dataDescription)).setText(restaurant.getDescription());
     }
 }
