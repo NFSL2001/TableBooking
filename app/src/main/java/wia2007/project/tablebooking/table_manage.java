@@ -1,20 +1,17 @@
-package com.example.invitable;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+package wia2007.project.tablebooking;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.invitable.dao.TableDAO;
-import com.example.invitable.database.TableBookingDatabase;
-import com.example.invitable.entity.Table;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import wia2007.project.tablebooking.dao.TableDAO;
+import wia2007.project.tablebooking.database.TableBookingDatabase;
+import wia2007.project.tablebooking.entity.Table;
 
 import java.util.List;
 

@@ -1,17 +1,15 @@
-package com.example.invitable;
+package wia2007.project.tablebooking;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.invitable.entity.Table;
+import wia2007.project.tablebooking.entity.Table;
 
 import java.util.List;
 

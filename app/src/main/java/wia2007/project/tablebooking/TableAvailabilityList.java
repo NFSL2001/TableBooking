@@ -1,17 +1,13 @@
-package com.example.invitable;
-
-import androidx.appcompat.app.AppCompatActivity;
+package wia2007.project.tablebooking;
 
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.example.invitable.dao.BookingDAO;
-import com.example.invitable.entity.Booking;
-import com.example.invitable.entity.Table;
-import com.example.invitable.dao.TableDAO;
-import com.example.invitable.database.TableBookingDatabase;
+import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.List;
+import wia2007.project.tablebooking.dao.BookingDAO;
+import wia2007.project.tablebooking.dao.TableDAO;
+import wia2007.project.tablebooking.database.TableBookingDatabase;
 
 public class TableAvailabilityList extends AppCompatActivity {
 

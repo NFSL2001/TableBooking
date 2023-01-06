@@ -1,4 +1,4 @@
-package com.example.invitable;
+package wia2007.project.tablebooking;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,8 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
-
-import java.sql.Time;
 
 public class TableAvailabilityFilterByDate extends AppCompatActivity {
 

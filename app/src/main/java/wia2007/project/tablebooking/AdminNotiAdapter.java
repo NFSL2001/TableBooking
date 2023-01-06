@@ -1,4 +1,4 @@
-package com.example.invitable;
+package wia2007.project.tablebooking;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.invitable.entity.Booking;
+import wia2007.project.tablebooking.entity.Booking;
 
 import java.util.List;
 

@@ -1,24 +1,18 @@
-package com.example.invitable;
+package wia2007.project.tablebooking;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
-import com.example.invitable.entity.Restaurant;
-import com.example.invitable.dao.RestaurantDAO;
-import com.example.invitable.database.TableBookingDatabase;
+import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.List;
+import wia2007.project.tablebooking.dao.RestaurantDAO;
+import wia2007.project.tablebooking.database.TableBookingDatabase;
+import wia2007.project.tablebooking.entity.Restaurant;
 
 public class RestaurantInfo extends AppCompatActivity {
 
