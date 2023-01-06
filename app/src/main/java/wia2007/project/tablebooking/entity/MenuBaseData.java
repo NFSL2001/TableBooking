@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 * */
 // base class for implementing List<MenuBaseData>
 public class MenuBaseData {
+
     @NonNull
     @Override
     public String toString() {
@@ -14,9 +15,14 @@ public class MenuBaseData {
     }
 
     // add buttons for admin side
-    public class MenuAddItemButton extends MenuBaseData{
+    public static class MenuAddItemButton extends MenuBaseData{
         public MenuItem menuItem;
         public Integer restaurantID;
+        public String type;
+
+        public MenuAddItemButton(String type){
+            this.type = type;
+        }
 
         public MenuAddItemButton(MenuItem menuItem, Integer restaurantID) {
             this.menuItem = menuItem;
@@ -24,5 +30,5 @@ public class MenuBaseData {
         }
     }
 
-    public class MenuAddCategoryButton extends MenuBaseData{}
+    public static class MenuAddCategoryButton extends MenuBaseData{}
 }

@@ -111,7 +111,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/SpinnerLinearLayout"
         app:layout_constraintVertical_bias="0.5"
-        tools:listitem="@layout/display_menu_row" />
+        tools:listitem="@layout/individual_restaurant_menu_section" />
+
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/FABAddItem"
@@ -120,7 +121,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:clickable="true"
-        android:text="Add Item"
+        android:text="Add"
         android:textColor="@color/white"
         app:backgroundTint="@color/red"
         app:borderWidth="0dp"

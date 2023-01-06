@@ -3,6 +3,7 @@ package wia2007.project.tablebooking;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -46,6 +47,7 @@ public class ItemDetails extends AppCompatActivity {
     AlertDialog alertDialog;
     EditText edittext;
 
+    @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +77,7 @@ public class ItemDetails extends AppCompatActivity {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ItemDetails.this);
         alertDialogBuilder.setMessage("Add new type of dishes");
         edittext = new EditText(getApplicationContext());
-        alertDialogBuilder.setView(edittext);
+        alertDialogBuilder.setView(edittext,50,0,50,0);
         alertDialogBuilder.setPositiveButton("yes",
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -116,12 +118,14 @@ public class ItemDetails extends AppCompatActivity {
         }
         int selectionPosition = adapter.getPosition(type);
         SpinnerMenuType.setSelection(selectionPosition);
-        if (selectionPosition == -1 && itemId != null) {
-            edittext.setText(type);
-            SpinnerMenuType.setSelection(adapterList.size() - 1);
-            alertDialog.show();
-            alertDialog.dismiss();
-            alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).performClick();
+        if (selectionPosition == -1) {
+            if(itemId != null || type != null){
+                edittext.setText(type);
+                SpinnerMenuType.setSelection(adapterList.size() - 1);
+                alertDialog.show();
+                alertDialog.dismiss();
+                alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).performClick();
+            }
         }
 
         SpinnerMenuType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

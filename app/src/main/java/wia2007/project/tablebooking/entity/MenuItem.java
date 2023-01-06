@@ -28,6 +28,19 @@ public class MenuItem extends MenuBaseData {
         this.path = path;
     }
 
+    @Override
+    public String toString() {
+        return "MenuItem{" +
+                "menu_id=" + menu_id +
+                ", menu_name='" + menu_name + '\'' +
+                ", price=" + price +
+                ", restaurant=" + restaurant +
+                ", path='" + path + '\'' +
+                ", description='" + description + '\'' +
+                ", category='" + category + '\'' +
+                '}';
+    }
+
     public Integer getMenu_id() {
         return menu_id;
     }

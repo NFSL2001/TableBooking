@@ -47,9 +47,9 @@ public class RestaurantMenuFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_restaurant_menu, container, false);
 
         // get current restaurant ID
-        RestaurantMainActivity parentActivity = (RestaurantMainActivity) getActivity();
-        Integer restaurantID = parentActivity.restaurantID;
-        restaurantID = 1;
+//        RestaurantMainActivity parentActivity = (RestaurantMainActivity) getActivity();
+//        Integer restaurantID = parentActivity.restaurantID;
+        int restaurantID = 1;
 
         // get current restaurant menu
         TableBookingDatabase database = TableBookingDatabase.getDatabase(getActivity().getApplicationContext());
@@ -73,7 +73,7 @@ public class RestaurantMenuFragment extends Fragment {
         // set layout manager
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         // set adapter
-        recyclerView.setAdapter(new MenuAdapter2(view.getContext(), fullMenuList));
+        recyclerView.setAdapter(new MenuAdapter2(view.getContext(), fullMenuList,null));
 
 
         return view;
