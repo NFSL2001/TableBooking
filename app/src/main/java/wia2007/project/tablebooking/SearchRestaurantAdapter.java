@@ -3,6 +3,7 @@ package wia2007.project.tablebooking;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,7 @@ public class RestaurantSearchAdapter extends RecyclerView.Adapter<RestaurantSear
     private ArrayList<RestaurantDAO.RestaurantNameInfoPair> pairList;
     private final RecyclerView recyclerView;
 
-    public RestaurantSearchAdapter(Context context, RecyclerView recyclerView, List<RestaurantDAO.RestaurantNameInfoPair> pairList){
+    public SearchRestaurantAdapter(Context context, RecyclerView recyclerView, List<RestaurantDAO.RestaurantNameInfo> pairList){
         this.context = context;
         this.recyclerView = recyclerView;
         this.pairList = new ArrayList<>(pairList);
@@ -30,13 +31,13 @@ public class RestaurantSearchAdapter extends RecyclerView.Adapter<RestaurantSear
 
     @NonNull
     @Override
-    public RestaurantSearchHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public SearchRestaurantHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(
                 android.R.layout.simple_list_item_1,
                 parent,
                 false
         );
-        RestaurantSearchHolder holder = new RestaurantSearchHolder(v);
+        SearchRestaurantHolder holder = new SearchRestaurantHolder(v);
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,10 +53,15 @@ public class RestaurantSearchAdapter extends RecyclerView.Adapter<RestaurantSear
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RestaurantSearchHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SearchRestaurantHolder holder, int position) {
         TextView TVitem = (TextView) holder.itemView;
         String restaurantName = pairList.get(position).name;
         TVitem.setText(restaurantName);
+        // add background ripple
+        TypedValue outValue = new TypedValue();
+        // get ?android/selectableItemBackground
+        context.getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
+        TVitem.setBackgroundResource(outValue.resourceId);
     }
 
     @Override
@@ -72,8 +78,8 @@ public class RestaurantSearchAdapter extends RecyclerView.Adapter<RestaurantSear
 }
 
 // View Holder
-class RestaurantSearchHolder extends RecyclerView.ViewHolder {
-    public RestaurantSearchHolder(@NonNull View itemView) {
+class SearchRestaurantHolder extends RecyclerView.ViewHolder {
+    public SearchRestaurantHolder(@NonNull View itemView) {
         super(itemView);
     }
 }

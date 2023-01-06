@@ -16,7 +16,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import wia2007.project.tablebooking.database.TableBookingDatabase;
@@ -69,7 +68,9 @@ public class SearchActivity extends AppCompatActivity {
         // set layout manager
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         // set adapter
-        arrayAdapter = new RestaurantSearchAdapter(getApplicationContext(), recyclerView, allList);
+        // context use `this` so theming can pass through, don't use getApplicationContext() please!
+        // see https://stackoverflow.com/a/3001546/12919373
+        arrayAdapter = new SearchRestaurantAdapter(this, recyclerView, allList);
         recyclerView.setAdapter(arrayAdapter);
 
         //setup new incoming intent
