@@ -21,7 +21,7 @@ import wia2007.project.tablebooking.entity.MenuItem;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RestaurantMenuFragment extends Fragment {
+public class RestaurantMenuFragment extends Fragment{
 
     ArrayList<MenuBaseData> fullMenuList = new ArrayList<>();
 
@@ -42,9 +42,9 @@ public class RestaurantMenuFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_restaurant_menu, container, false);
 
         // get current restaurant ID
-//        RestaurantMainActivity parentActivity = (RestaurantMainActivity) getActivity();
-//        Integer restaurantID = parentActivity.restaurantID;
-        int restaurantID = 1;
+        RestaurantMainActivity parentActivity = (RestaurantMainActivity) getActivity();
+        Integer restaurantID = parentActivity.restaurantID;
+        restaurantID = 1;
 
         // get current restaurant menu
         TableBookingDatabase database = TableBookingDatabase.getDatabase(getActivity().getApplicationContext());
@@ -68,7 +68,7 @@ public class RestaurantMenuFragment extends Fragment {
         // set layout manager
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         // set adapter
-        recyclerView.setAdapter(new MenuAdapter(view.getContext(), fullMenuList,null));
+        recyclerView.setAdapter(new MenuAdapter(view.getContext(), fullMenuList));
 
 
         return view;

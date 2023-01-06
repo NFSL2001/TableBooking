@@ -40,6 +40,12 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         this.recycleViewInterface = recycleViewInterface;
     }
 
+    public MenuAdapter(Context context, List<MenuBaseData> menuList) {
+        this.context = context;
+        this.menuList = menuList;
+        this.originalMenuList = new ArrayList<MenuBaseData>(menuList);
+    }
+
     public void notifyNewData(List<MenuBaseData> menu) {
         this.menuList.clear();
         this.originalMenuList.clear();
@@ -180,36 +186,37 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             this.menuDescription = itemView.findViewById(R.id.TVDescriptionMenuAdmin);
             this.menuImage = itemView.findViewById(R.id.MenuImage);
             this.menuCategory = itemView.findViewById(R.id.TVDishType);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (recycleViewInterface != null) {
+            if(recycleViewInterface!=null){
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (recycleViewInterface != null) {
+                            int pos = getAdapterPosition();
+
+                            if (pos != RecyclerView.NO_POSITION) {
+                                recycleViewInterface.onItemClick(pos);
+                            }
+                        }
+                    }
+                });
+
+                itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View view) {
                         int pos = getAdapterPosition();
 
                         if (pos != RecyclerView.NO_POSITION) {
-                            recycleViewInterface.onItemClick(pos);
+                            recycleViewInterface.onLongClick(pos);
+                            return true;
                         }
+                        return false;
                     }
-                }
-            });
-
-            itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View view) {
-                    int pos = getAdapterPosition();
-
-                    if (pos != RecyclerView.NO_POSITION) {
-                        recycleViewInterface.onLongClick(pos);
-                        return true;
-                    }
-                    return false;
-                }
-            });
+                });
+            }
         }
 
         public void setViewData(MenuItem item) {
             //set holder display info
-            System.out.println(item.toString());
             this.menuName.setText(item.getMenu_name());
             if (item.getDescription() == null || item.getDescription().equals("")) {
                 this.menuDescription.setVisibility(View.GONE);
