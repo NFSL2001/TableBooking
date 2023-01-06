@@ -41,6 +41,11 @@ public class AdminNotiAdapter extends RecyclerView.Adapter<AdminNotiAdapter.Admi
 
     }
 
+    public void setNoti(List<Booking>bookingList){
+        bookingList = bookingList;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         return bookingList.size();
