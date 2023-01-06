@@ -1,8 +1,13 @@
 package wia2007.project.tablebooking.entity;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Restaurant {
@@ -15,12 +20,24 @@ public class Restaurant {
     private Float average_price;
     private String address;
     private Integer cuisine_type;
+    @NonNull
+    private String title_image_path;
+    @Nullable
+    private String image_path_1;
+    @Nullable
+    private String image_path_2;
+    @Nullable
+    private String image_path_3;
+    @Nullable
+    private String image_path_4;
+    @Nullable
+    private String image_path_5;
 
     public Restaurant() {
     }
 
     @Ignore
-    public Restaurant(Integer restaurant_id, String restaurant_user_name, String password, String restaurant_name, String contact_number, Float average_price, String address, Integer cuisine_type) {
+    public Restaurant(Integer restaurant_id, String restaurant_user_name, String password, String restaurant_name, String contact_number, Float average_price, String address, Integer cuisine_type, String title_image_path) {
         this.restaurant_id = restaurant_id;
         this.restaurant_user_name = restaurant_user_name;
         this.password = password;
@@ -29,6 +46,7 @@ public class Restaurant {
         this.average_price = average_price;
         this.address = address;
         this.cuisine_type = cuisine_type;
+        this.title_image_path = title_image_path;
     }
 
     public Integer getRestaurant_id() {
@@ -93,6 +111,97 @@ public class Restaurant {
 
     public void setCuisine_type(Integer cuisine_type) {
         this.cuisine_type = cuisine_type;
+    }
+
+    @NonNull
+    public String getTitle_image_path() {
+        return title_image_path;
+    }
+
+    public void setTitle_image_path(@NonNull String title_image_path) {
+        this.title_image_path = title_image_path;
+    }
+
+    @Nullable
+    public String getImage_path_1() {
+        return image_path_1;
+    }
+
+    public void setImage_path_1(@Nullable String image_path_1) {
+        this.image_path_1 = image_path_1;
+    }
+
+    @Nullable
+    public String getImage_path_2() {
+        return image_path_2;
+    }
+
+    public void setImage_path_2(@Nullable String image_path_2) {
+        this.image_path_2 = image_path_2;
+    }
+
+    @Nullable
+    public String getImage_path_3() {
+        return image_path_3;
+    }
+
+    public void setImage_path_3(@Nullable String image_path_3) {
+        this.image_path_3 = image_path_3;
+    }
+
+    @Nullable
+    public String getImage_path_4() {
+        return image_path_4;
+    }
+
+    public void setImage_path_4(@Nullable String image_path_4) {
+        this.image_path_4 = image_path_4;
+    }
+
+    @Nullable
+    public String getImage_path_5() {
+        return image_path_5;
+    }
+
+    public void setImage_path_5(@Nullable String image_path_5) {
+        this.image_path_5 = image_path_5;
+    }
+
+    public List<String> getImages(){
+        List<String> returnURI = new ArrayList<>();
+        returnURI.add(this.title_image_path);
+        if(this.image_path_1 == null) return returnURI;
+        returnURI.add(this.image_path_1);
+        if(this.image_path_2 == null) return returnURI;
+        returnURI.add(this.image_path_2);
+        if(this.image_path_3 == null) return returnURI;
+        returnURI.add(this.image_path_3);
+        if(this.image_path_4 == null) return returnURI;
+        returnURI.add(this.image_path_4);
+        if(this.image_path_5 == null) return returnURI;
+        returnURI.add(this.image_path_5);
+        return returnURI;
+    }
+
+    public void setImages(String path1){
+        //add images in order, remove old images
+        this.image_path_1 = path1; this.image_path_2 = null; this.image_path_3 = null; this.image_path_4 = null; this.image_path_5 = null;
+    }
+    public void setImages(String path1, String path2){
+        //add images in order, remove old images
+        this.image_path_1 = path1; this.image_path_2 = path2; this.image_path_3 = null; this.image_path_4 = null; this.image_path_5 = null;
+    }
+    public void setImages(String path1, String path2, String path3){
+        //add images in order, remove old images
+        this.image_path_1 = path1; this.image_path_2 = path2; this.image_path_3 = path3; this.image_path_4 = null; this.image_path_5 = null;
+    }
+    public void setImages(String path1, String path2, String path3, String path4){
+        //add images in order, remove old images
+        this.image_path_1 = path1; this.image_path_2 = path2; this.image_path_3 = path3; this.image_path_4 = path4; this.image_path_5 = null;
+    }
+    public void setImages(String path1, String path2, String path3, String path4, String path5){
+        //add images in order, remove old images
+        this.image_path_1 = path1; this.image_path_2 = path2; this.image_path_3 = path3; this.image_path_4 = path4; this.image_path_5 = path5;
     }
 
     @Override

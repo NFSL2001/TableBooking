@@ -111,6 +111,7 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 MenuCategoryHolder menuCategoryHolder = (MenuCategoryHolder) holder;
                 //set holder display info
                 menuCategoryHolder.setViewData(category);
+                //change folded icon
                 if (category.isFolded) {
                     menuCategoryHolder.menuCategoryTitle.setCompoundDrawablesWithIntrinsicBounds(
                             R.drawable.restaurant_menu_expand, 0, 0, 0);
@@ -153,6 +154,7 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void refreshView() {
         this.menuList.clear();
 
+        /** Folding category code **/
         MenuCategory lastSeenMenuCategory = new MenuCategory();
         //loop through original list
         for (MenuBaseData item : originalMenuList) {
@@ -175,7 +177,7 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public class MenuItemHolder extends RecyclerView.ViewHolder {
 
-        TextView menuName, menuPrice, menuDescription, menuCategory;
+        TextView menuName, menuPrice, menuDescription;
         ImageView menuImage;
         String internalMenuCategory;
 
@@ -185,7 +187,7 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             this.menuPrice = itemView.findViewById(R.id.TVMenuPriceAdmin);
             this.menuDescription = itemView.findViewById(R.id.TVDescriptionMenuAdmin);
             this.menuImage = itemView.findViewById(R.id.MenuImage);
-            this.menuCategory = itemView.findViewById(R.id.TVDishType);
+
             if(recycleViewInterface!=null){
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -239,8 +241,6 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             } else {
                 this.menuImage.setVisibility(View.GONE);
             }
-            this.menuCategory.setText(item.getCategory());
-            this.menuCategory.setVisibility(View.GONE);
 
             this.internalMenuCategory = item.getCategory();
         }

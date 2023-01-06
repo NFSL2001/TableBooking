@@ -44,15 +44,14 @@ public class RestaurantMenuFragment extends Fragment{
         // get current restaurant ID
         RestaurantMainActivity parentActivity = (RestaurantMainActivity) getActivity();
         Integer restaurantID = parentActivity.restaurantID;
-        restaurantID = 1;
 
         // get current restaurant menu
-        TableBookingDatabase database = TableBookingDatabase.getDatabase(getActivity().getApplicationContext());
+        TableBookingDatabase database = TableBookingDatabase.getDatabase(getActivity());
         MenuDAO dao = database.menuDAO();
         ArrayList<MenuItem> daoMenuList = new ArrayList<>(dao.getDefaultMenuByRestaurant(restaurantID));
 
         String lastSeenMenuCategory = "";
-        // loop through menu and insert MenuType header
+        // loop through menu and insert MenuCategory header
         for (MenuItem item: daoMenuList){
             //if new menu type category (not seen before)
             if (! item.getCategory().equals(lastSeenMenuCategory)){

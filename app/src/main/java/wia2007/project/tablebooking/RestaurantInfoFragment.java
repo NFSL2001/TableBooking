@@ -49,7 +49,7 @@ public class RestaurantInfoFragment extends Fragment {
         Integer restaurantID = parentActivity.restaurantID;
 
         // get current restaurant info
-        TableBookingDatabase database = TableBookingDatabase.getDatabase(getActivity().getApplicationContext());
+        TableBookingDatabase database = TableBookingDatabase.getDatabase(getActivity());
         RestaurantDAO dao = database.restaurantDAO();
         //Restaurant restaurant = dao.getRestaurantById(restaurantID).get(0);
         // TODO: temporary restaurant info
@@ -61,7 +61,8 @@ public class RestaurantInfoFragment extends Fragment {
                 "012-3456789",
                 new Double(105.3).floatValue(),
                 "TH02, Menara Kuala Lumpur, 2, Jalan Puncak, 50250 Kuala Lumpur",
-                1
+                1,
+                ""
         );
 
         // TODO: change info based on database

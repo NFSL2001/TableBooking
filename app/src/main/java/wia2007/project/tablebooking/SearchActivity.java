@@ -23,9 +23,8 @@ import wia2007.project.tablebooking.dao.RestaurantDAO;
 
 public class SearchActivity extends AppCompatActivity {
 
-    RecyclerView recyclerView;
-    List<RestaurantDAO.RestaurantNameInfoPair> allList;
-    RestaurantSearchAdapter arrayAdapter;
+    List<RestaurantDAO.RestaurantNameInfo> allList;
+    SearchRestaurantAdapter arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,22 +39,23 @@ public class SearchActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //initiate list of restaurants
-        TableBookingDatabase database = TableBookingDatabase.getDatabase(getApplicationContext());
+        TableBookingDatabase database = TableBookingDatabase.getDatabase(this);
         RestaurantDAO dao = database.restaurantDAO();
-        //allList = dao.listAllRestaurantName();
+        //allList = dao.listAllRestaurantInfo();
         // TODO: temporary list
-        ArrayList<RestaurantDAO.RestaurantNameInfoPair> tempList = new ArrayList<>();
-        tempList.add(new RestaurantDAO.RestaurantNameInfoPair(1,"Atmosphere 360", 1));
-        tempList.add(new RestaurantDAO.RestaurantNameInfoPair(2,"Cons Transphere", 2));
-        tempList.add(new RestaurantDAO.RestaurantNameInfoPair(3,"KFC Malaysia", 1));
-        tempList.add(new RestaurantDAO.RestaurantNameInfoPair(4,"Malaysia Cuisine", 3));
-        tempList.add(new RestaurantDAO.RestaurantNameInfoPair(5,"Domino's 360", 7));
+        ArrayList<RestaurantDAO.RestaurantNameInfo> tempList = new ArrayList<>();
+        tempList.add(new RestaurantDAO.RestaurantNameInfo(1,"Atmosphere 360", 1, ""));
+        tempList.add(new RestaurantDAO.RestaurantNameInfo(2,"Cons Transphere", 2, ""));
+        tempList.add(new RestaurantDAO.RestaurantNameInfo(3,"KFC Malaysia", 1, ""));
+        tempList.add(new RestaurantDAO.RestaurantNameInfo(4,"Malaysia Cuisine", 3, ""));
+        tempList.add(new RestaurantDAO.RestaurantNameInfo(5,"Domino's 360", 7, ""));
 
         //change list if cuisine type
         if (Intent.ACTION_ASSIST.equals(getIntent().getAction())){
             Integer cuisineID = getIntent().getIntExtra("cuisineType", 1);
-            allList = new ArrayList<RestaurantDAO.RestaurantNameInfoPair>();
-            for(RestaurantDAO.RestaurantNameInfoPair item: tempList){
+            // TODO: remove temporary list filter, use DAO
+            allList = new ArrayList<RestaurantDAO.RestaurantNameInfo>();
+            for(RestaurantDAO.RestaurantNameInfo item: tempList){
                 if (item.cuisine_type == cuisineID)
                     allList.add(item);
             }
@@ -64,7 +64,7 @@ public class SearchActivity extends AppCompatActivity {
         }
 
         // get recycler view and bind view holder
-        recyclerView = findViewById(R.id.search_RVResult);
+        RecyclerView recyclerView = findViewById(R.id.search_RVResult);
         // set layout manager
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         // set adapter
@@ -97,7 +97,7 @@ public class SearchActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                List<RestaurantDAO.RestaurantNameInfoPair> newList = getFilteredRestaurantList(query);
+                List<RestaurantDAO.RestaurantNameInfo> newList = getFilteredRestaurantList(query);
                 arrayAdapter.setData(newList);
                 return false;
             }
@@ -108,7 +108,7 @@ public class SearchActivity extends AppCompatActivity {
                     arrayAdapter.setData(allList);
                     return true;
                 }
-                List<RestaurantDAO.RestaurantNameInfoPair> newList = getFilteredRestaurantList(newText);
+                List<RestaurantDAO.RestaurantNameInfo> newList = getFilteredRestaurantList(newText);
                 arrayAdapter.setData(newList);
                 return false;
             }
@@ -140,19 +140,19 @@ public class SearchActivity extends AppCompatActivity {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             //use the query to search your data somehow
-            List<RestaurantDAO.RestaurantNameInfoPair> newList = getFilteredRestaurantList(query);
+            List<RestaurantDAO.RestaurantNameInfo> newList = getFilteredRestaurantList(query);
             arrayAdapter.setData(newList);
         }
     }
 
-    public List<RestaurantDAO.RestaurantNameInfoPair> getFilteredRestaurantList(String text) {
-        List<RestaurantDAO.RestaurantNameInfoPair> newList = new ArrayList<>();
-        for(RestaurantDAO.RestaurantNameInfoPair item : this.allList) {
+    public List<RestaurantDAO.RestaurantNameInfo> getFilteredRestaurantList(String text) {
+        List<RestaurantDAO.RestaurantNameInfo> newList = new ArrayList<>();
+        for(RestaurantDAO.RestaurantNameInfo item : this.allList) {
             if(containsIgnoreCase(item.name, text)) {
                 newList.add(item);
             }
         }
-        return (List<RestaurantDAO.RestaurantNameInfoPair>) newList;
+        return (List<RestaurantDAO.RestaurantNameInfo>) newList;
     }
 
     public static boolean containsIgnoreCase(String src, String what) {

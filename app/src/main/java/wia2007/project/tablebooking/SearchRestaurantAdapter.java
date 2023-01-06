@@ -17,10 +17,10 @@ import java.util.List;
 
 import wia2007.project.tablebooking.dao.RestaurantDAO;
 
-public class RestaurantSearchAdapter extends RecyclerView.Adapter<RestaurantSearchHolder> {
+public class SearchRestaurantAdapter extends RecyclerView.Adapter<SearchRestaurantHolder> {
 
     private Context context;
-    private ArrayList<RestaurantDAO.RestaurantNameInfoPair> pairList;
+    private ArrayList<RestaurantDAO.RestaurantNameInfo> pairList;
     private final RecyclerView recyclerView;
 
     public SearchRestaurantAdapter(Context context, RecyclerView recyclerView, List<RestaurantDAO.RestaurantNameInfo> pairList){
@@ -42,10 +42,9 @@ public class RestaurantSearchAdapter extends RecyclerView.Adapter<RestaurantSear
             @Override
             public void onClick(View v) {
                 int position = recyclerView.getChildAdapterPosition(v);
-                Intent restaurantMenuIntent = new Intent(recyclerView.getContext(), RestaurantMainActivity.class);
+                Intent restaurantMenuIntent = new Intent(context, RestaurantMainActivity.class);
                 restaurantMenuIntent.putExtra("ID", pairList.get(position).id);
                 restaurantMenuIntent.putExtra("name", pairList.get(position).name);
-                restaurantMenuIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(restaurantMenuIntent);
             }
         });
@@ -70,7 +69,7 @@ public class RestaurantSearchAdapter extends RecyclerView.Adapter<RestaurantSear
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void setData(List<RestaurantDAO.RestaurantNameInfoPair> newList){
+    public void setData(List<RestaurantDAO.RestaurantNameInfo> newList){
         this.pairList = new ArrayList<>(newList);
         this.notifyDataSetChanged();
     }
