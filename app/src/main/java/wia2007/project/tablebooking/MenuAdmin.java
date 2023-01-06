@@ -5,7 +5,6 @@ import static java.util.stream.Collectors.toMap;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.menu.MenuAdapter;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,7 +36,7 @@ import wia2007.project.tablebooking.entity.MenuItem;
 public class MenuAdmin extends AppCompatActivity implements RecycleViewInterface {
     ExtendedFloatingActionButton BtnAddItem;
     RecyclerView recyclerView;
-    MenuAdapter2 adapter;
+    MenuAdapter adapter;
     AlertDialog alertDialog;
     Map<String, List<MenuItem>> menuMap = null;
     Map<String, List<MenuItem>> menuByType = null;
@@ -66,7 +65,7 @@ public class MenuAdmin extends AppCompatActivity implements RecycleViewInterface
             menuMap = menuItem.stream().collect(Collectors.groupingBy(m -> m.getCategory() == null ? "Not defined" : m.getCategory()));
         }
         recyclerView = findViewById(R.id.RVMenu);
-        adapter = new MenuAdapter2(this, fullMenuList, this);
+        adapter = new MenuAdapter(this, fullMenuList, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 

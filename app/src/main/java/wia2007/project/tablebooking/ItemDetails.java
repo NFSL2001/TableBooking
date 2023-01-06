@@ -54,7 +54,7 @@ public class ItemDetails extends AppCompatActivity {
         setContentView(R.layout.activity_item_details);
         Toolbar toolbar = findViewById(R.id.TVItemDetailsAct);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("MenuItem Item Details");
+        getSupportActionBar().setTitle("Menu Item Details");
 
         menuName = findViewById(R.id.ETItemName);
         menuDescription = findViewById(R.id.ETItemDescription);

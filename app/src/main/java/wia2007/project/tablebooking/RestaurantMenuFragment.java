@@ -1,21 +1,16 @@
 package wia2007.project.tablebooking;
 
-import static java.util.Objects.isNull;
-
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import wia2007.project.tablebooking.dao.MenuDAO;
 import wia2007.project.tablebooking.database.TableBookingDatabase;
@@ -73,7 +68,7 @@ public class RestaurantMenuFragment extends Fragment {
         // set layout manager
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         // set adapter
-        recyclerView.setAdapter(new MenuAdapter2(view.getContext(), fullMenuList,null));
+        recyclerView.setAdapter(new MenuAdapter(view.getContext(), fullMenuList,null));
 
 
         return view;
