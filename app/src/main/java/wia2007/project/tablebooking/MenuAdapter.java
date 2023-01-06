@@ -59,7 +59,7 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                         parent,
                         false
                 );
-                return new MenuItemHolder2(v);
+                return new MenuItemHolder(v);
             case R.layout.individual_menu_add_item_button: // item button
                 v = LayoutInflater.from(parent.getContext()).inflate(
                         R.layout.individual_menu_add_item_button,
@@ -73,7 +73,7 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                         parent,
                         false
                 );
-                return new MenuCategoryHolder2(v);
+                return new MenuCategoryHolder(v);
             case R.layout.individual_menu_add_category_button: // category button
                 v = LayoutInflater.from(parent.getContext()).inflate(
                         R.layout.individual_menu_add_category_button,
@@ -93,7 +93,7 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 // get the associate object and cast to class
                 MenuItem item = (MenuItem) menuList.get(position);
                 // get the associate holder
-                MenuItemHolder2 menuItemHolder = (MenuItemHolder2) holder;
+                MenuItemHolder menuItemHolder = (MenuItemHolder) holder;
                 //set holder display info
                 menuItemHolder.setViewData(item);
 
@@ -102,7 +102,7 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 // get the associate object and cast to class
                 MenuCategory category = (MenuCategory) menuList.get(position);
                 // get the associate holder
-                MenuCategoryHolder2 menuCategoryHolder = (MenuCategoryHolder2) holder;
+                MenuCategoryHolder menuCategoryHolder = (MenuCategoryHolder) holder;
                 //set holder display info
                 menuCategoryHolder.setViewData(category);
                 if (category.isFolded) {
@@ -167,13 +167,13 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         notifyDataSetChanged();
     }
 
-    public class MenuItemHolder2 extends RecyclerView.ViewHolder {
+    public class MenuItemHolder extends RecyclerView.ViewHolder {
 
         TextView menuName, menuPrice, menuDescription, menuCategory;
         ImageView menuImage;
         String internalMenuCategory;
 
-        public MenuItemHolder2(@NonNull View itemView) {
+        public MenuItemHolder(@NonNull View itemView) {
             super(itemView);
             this.menuName = itemView.findViewById(R.id.TVMenuName);
             this.menuPrice = itemView.findViewById(R.id.TVMenuPriceAdmin);
@@ -239,12 +239,12 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
     }
 
-    public class MenuCategoryHolder2 extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class MenuCategoryHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView menuCategoryTitle;
         MenuCategory internalMenuCategory;
 
-        public MenuCategoryHolder2(@NonNull View itemView) {
+        public MenuCategoryHolder(@NonNull View itemView) {
             super(itemView);
             this.menuCategoryTitle = itemView.findViewById(R.id.restMenu_sectionHeader);
             itemView.setOnClickListener(this);
