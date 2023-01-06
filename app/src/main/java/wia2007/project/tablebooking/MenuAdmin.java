@@ -3,12 +3,6 @@ package wia2007.project.tablebooking;
 import static java.util.Map.Entry.comparingByKey;
 import static java.util.stream.Collectors.toMap;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
@@ -18,6 +12,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
@@ -97,19 +97,7 @@ public class MenuAdmin extends AppCompatActivity implements RecycleViewInterface
                                 .collect(toMap(e -> e.getKey(), e -> e.getValue(), (e1, e2) -> e2, LinkedHashMap::new));
                     }
                 }
-
-                ArrayList<MenuBaseData> sorted = new ArrayList<>();
-                List<String> typeArr = new ArrayList<>(menuByType.keySet());
-                List<List<MenuItem>> menuArr = new ArrayList<>(menuByType.values());
-                for(int j = 0; j<typeArr.size(); j++){
-                    sorted.add(new MenuCategory(typeArr.get(j)));
-                    List<MenuItem> menuItems = menuArr.get(j);
-                    for(int k = 0; k<menuItems.size(); k++){
-                        sorted.add(menuItems.get(k));
-                    }
-                    sorted.add(new MenuBaseData.MenuAddItemButton(typeArr.get(j)));
-                }
-                sorted.add(new MenuBaseData.MenuAddCategoryButton());
+                List<MenuBaseData> sorted = addToMenuBaseData(menuByType);
                 adapter.notifyNewData(sorted);
             }
 
@@ -123,40 +111,26 @@ public class MenuAdmin extends AppCompatActivity implements RecycleViewInterface
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 List<MenuItem> sortedItem = TableBookingDatabase.getDatabase(getApplicationContext()).menuDAO().getMenuSortedList(1, SpinnerItemSortCondition.getSelectedItemPosition());
-                int pos = SpinnerMenuSortCondition.getSelectedItemPosition();
-                if (pos == 1) {
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                        menuMap = sortedItem.stream().collect(Collectors.groupingBy(m -> m.getCategory() == null ? "Not defined" : m.getCategory()));
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                    menuMap = sortedItem.stream().collect(Collectors.groupingBy(m -> m.getCategory() == null ? "Not Defined" : m.getCategory()));
+                    int pos = SpinnerMenuSortCondition.getSelectedItemPosition();
+                    if (pos == 1) {
                         menuByType = menuMap
                                 .entrySet()
                                 .stream()
                                 .sorted(Collections.reverseOrder(Map.Entry.comparingByKey()))
                                 .collect(toMap(e -> e.getKey(), e -> e.getValue(), (e1, e2) -> e2, LinkedHashMap::new));
-                    }
-                } else {
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                        menuMap = sortedItem.stream().collect(Collectors.groupingBy(m -> m.getCategory() == null ? "Not Defined" : m.getCategory()));
+
+                    } else {
                         menuByType = menuMap
                                 .entrySet()
                                 .stream()
                                 .sorted(comparingByKey())
                                 .collect(toMap(e -> e.getKey(), e -> e.getValue(), (e1, e2) -> e2, LinkedHashMap::new));
                     }
+                    List<MenuBaseData> sorted = addToMenuBaseData(menuByType);
+                    adapter.notifyNewData(sorted);
                 }
-                ArrayList<MenuBaseData> sorted = new ArrayList<>();
-                List<String> typeArr = new ArrayList<>(menuByType.keySet());
-                List<List<MenuItem>> menuArr = new ArrayList<>(menuByType.values());
-                for(int j = 0; j<typeArr.size(); j++){
-                    sorted.add(new MenuCategory(typeArr.get(j)));
-                    List<MenuItem> menuItems = menuArr.get(j);
-                    for(int k = 0; k<menuItems.size(); k++){
-                        sorted.add(menuItems.get(k));
-                    }
-                    sorted.add(new MenuBaseData.MenuAddItemButton(typeArr.get(j)));
-                }
-                sorted.add(new MenuBaseData.MenuAddCategoryButton());
-                adapter.notifyNewData(sorted);
-
             }
 
             @Override
@@ -166,6 +140,22 @@ public class MenuAdmin extends AppCompatActivity implements RecycleViewInterface
         });
 
 
+    }
+
+    public List<MenuBaseData> addToMenuBaseData(Map<String, List<MenuItem>> menuByType) {
+        ArrayList<MenuBaseData> sorted = new ArrayList<>();
+        List<String> typeArr = new ArrayList<>(menuByType.keySet());
+        List<List<MenuItem>> menuArr = new ArrayList<>(menuByType.values());
+        for (int j = 0; j < typeArr.size(); j++) {
+            sorted.add(new MenuCategory(typeArr.get(j)));
+            List<MenuItem> menuItems = menuArr.get(j);
+            for (int k = 0; k < menuItems.size(); k++) {
+                sorted.add(menuItems.get(k));
+            }
+            sorted.add(new MenuBaseData.MenuAddItemButton(typeArr.get(j)));
+        }
+        sorted.add(new MenuBaseData.MenuAddCategoryButton());
+        return sorted;
     }
 
     @Override
