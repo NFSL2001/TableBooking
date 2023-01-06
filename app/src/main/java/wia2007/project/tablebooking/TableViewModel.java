@@ -17,7 +17,7 @@ public class TableViewModel extends AndroidViewModel {
 
     private TableDAO tableDAO;
     private TableBookingDatabase tableBookingDatabase;
-    private LiveData<List<Table>> mallTable;
+    private List<Table> mallTable;
 
     public TableViewModel(@NonNull Application application) {
         super(application);
@@ -28,20 +28,53 @@ public class TableViewModel extends AndroidViewModel {
     }
 
     public void insert(Table table){
-        TableBookingDatabase.databaseExecutor.execute(() ->{
-            tableDAO.insertTables(table);
-        });
+        new InsertAsyncTask(tableDAO).execute(table);
     }
 
-    LiveData<List<Table>> getAllTable(){
+    public void delete(Table table) {
+        new DeleteAsyncTask(tableDAO).execute(table);
+    }
+
+    List<Table> getAllTable(){
         return mallTable;
     }
 
-    private class InsertAsyncTask {
-        public InsertAsyncTask(TableDAO tableDAO) {
+    private class OperationsAsyncTask extends AsyncTask<Table, Void, Void> {
+
+        TableDAO mAsyncTaskDao;
+
+        OperationsAsyncTask(TableDAO dao) {
+            this.mAsyncTaskDao = dao;
         }
 
-        public void execute(Table table) {
+        @Override
+        protected Void doInBackground(Table... tables) {
+            return null;
+        }
+    }
+
+    private class InsertAsyncTask extends OperationsAsyncTask {
+        InsertAsyncTask(TableDAO mtableDAO) {
+            super(mtableDAO);
+        }
+
+        @Override
+        protected Void doInBackground(Table...table) {
+            mAsyncTaskDao.insertTables(table[0]);
+            return null;
+        }
+    }
+
+    private class DeleteAsyncTask extends OperationsAsyncTask {
+
+        public DeleteAsyncTask(TableDAO tableDao) {
+            super(tableDao);
+        }
+
+        @Override
+        protected Void doInBackground(Table... table) {
+            mAsyncTaskDao.deleteTables(table[0]);
+            return null;
         }
     }
 }
