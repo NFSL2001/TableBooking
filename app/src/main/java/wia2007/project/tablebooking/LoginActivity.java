@@ -26,7 +26,6 @@ import wia2007.project.tablebooking.entity.Restaurant;
 import wia2007.project.tablebooking.entity.UserStatus;
 
 public class LoginActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                TableBookingDatabase database = TableBookingDatabase.getDatabase(getApplicationContext());
                 EditText ETUsername = findViewById(R.id.ETUsername);
                 String username = ETUsername.getText().toString();
                 EditText ETPassword = findViewById(R.id.ETPassword);
@@ -43,22 +43,21 @@ public class LoginActivity extends AppCompatActivity {
                 Spinner SPStatus = findViewById(R.id.SPStatus);
 
                 if (SPStatus.getSelectedItem().toString().equals("Customer")) {
-                    TableBookingDatabase database = TableBookingDatabase.getDatabase(getApplicationContext());
                     CustomerDAO customerDAO = database.customerDAO();
                     List<Customer> customerList = customerDAO.getCustomerByUsername(username);
+
                     if(customerList.size() > 0 && password.equals(customerList.get(0).getPassword())){
-                        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+                        SharedPreferences sharedPref = getSharedPreferences("user", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPref.edit();
-                        editor.putString("user", username); // false on logout
+                        editor.putString("user", username);
                         editor.putBoolean(UserStatus.IS_ADMIN, false);
-                        editor.apply();
+                        editor.commit();
 
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                     } else
                         findViewById(R.id.TVIncorrect).setVisibility(View.VISIBLE);
                 } else {
-                    TableBookingDatabase database = TableBookingDatabase.getDatabase(getApplicationContext());
                     RestaurantDAO restaurantDAO = database.restaurantDAO();
                     List<Restaurant> restaurantList = restaurantDAO.getRestaurantByRestaurantUserName(username);
 

@@ -28,4 +28,11 @@
     <string name="sign_up">Sign Up</string>
     <string name="username_already_exist_try_another">Username already exist. Try another.</string>
     <string name="email_already_register_try_another_email">Email already register. Try another email.</string>
+    <string name="invitable">Invitable</string>
+    <string name="log_in"> Log In </string>
+    <string name="incorrect_username_or_password">Incorrect username or password</string>
+    <string name="choose_you_status">Choose you status</string>
+    <string name="input_date_in_yyyy_mm_dd">Input date in yyyy-mm-dd</string>
+    <string name="incorrect_password">Incorrect password</string>
+    <string name="save">SAVE</string>
 </resources>

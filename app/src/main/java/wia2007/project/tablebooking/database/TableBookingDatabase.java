@@ -16,6 +16,7 @@ import wia2007.project.tablebooking.dao.BookingContainMenuDAO;
 import wia2007.project.tablebooking.dao.BookingDAO;
 import wia2007.project.tablebooking.dao.CustomerDAO;
 import wia2007.project.tablebooking.dao.MenuDAO;
+import wia2007.project.tablebooking.dao.NotificationDAO;
 import wia2007.project.tablebooking.dao.RestaurantDAO;
 import wia2007.project.tablebooking.dao.TableDAO;
 import wia2007.project.tablebooking.entity.Booking;
@@ -34,6 +35,7 @@ public abstract class TableBookingDatabase extends RoomDatabase {
     public abstract MenuDAO menuDAO();
     public abstract RestaurantDAO restaurantDAO();
     public abstract TableDAO tableDAO();
+    public abstract NotificationDAO notificationDAO;
 
     private static volatile TableBookingDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;

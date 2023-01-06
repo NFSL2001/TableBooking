@@ -6,10 +6,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import java.sql.Date;
 import java.util.List;
@@ -20,13 +22,12 @@ import wia2007.project.tablebooking.entity.Customer;
 import wia2007.project.tablebooking.entity.PasswordChecker;
 
 public class EditProfileActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getSharedPreferences("user", Context.MODE_PRIVATE);
         String username = sharedPref.getString("user", null);
         if(username == null){
             throw new RuntimeException("User don't login");
@@ -59,26 +60,33 @@ public class EditProfileActivity extends AppCompatActivity {
                 int gender = (((RadioButton) findViewById(R.id.RBtnEditProfileMale)).isChecked())? Customer.GENDER_MALE:(((RadioButton) findViewById(R.id.RBtnEditProfileFemale)).isChecked())?Customer.GENDER_FEMALE:-1;
                 String birthDate = ((EditText) findViewById(R.id.ETEditProfileBirthDate)).getText().toString();
                 String password = ((EditText) findViewById(R.id.ETEditProfilePassword)).getText().toString();
-                String confirmPassword = ((EditText) findViewById(R.id.ETEditProfileConfirmPassword)).getText().toString();
 
-                if (!password.equals(confirmPassword) || !PasswordChecker.validPassword(password) ||
-                        email.equals("") || name.equals("") || phone.equals("") ||
-                        birthDate.equals("") || gender == -1
-                ) {
+
+                if (email.equals("") || name.equals("") || phone.equals("") || birthDate.equals("") || gender == -1) {
+                    return;
+                }
+                if (!customer.getPassword().equals(password)) {
+                    findViewById(R.id.TVEditProfileIncorrectPassword).setVisibility(View.VISIBLE);
                     return;
                 }
 
-                customer.setName(name);
-                customer.setMobile_number(phone);
-                customer.setEmail(email);
-                customer.setGender(gender);
-                customer.setBirth_date(Date.valueOf(birthDate));
-                customer.setPassword(password);
+                try{
+                    customer.setName(name);
+                    customer.setMobile_number(phone);
+                    customer.setEmail(email);
+                    customer.setGender(gender);
+                    customer.setBirth_date(Date.valueOf(birthDate));
 
-                customerDAO.updateCustomers(customer);
+                    customerDAO.updateCustomers(customer);
 
-                Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
-                startActivity(intent);
+                    Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
+                    startActivity(intent);
+                } catch (IllegalArgumentException e) {
+                    TypedValue typedValue = new TypedValue();
+                    getTheme().resolveAttribute(androidx.appcompat.R.attr.colorPrimary, typedValue, true);
+                    int color = typedValue.data;
+                    ((TextView) findViewById(R.id.TVEditProfileDateFormatExplain)).setTextColor(color);
+                }
             }
         });
     }
