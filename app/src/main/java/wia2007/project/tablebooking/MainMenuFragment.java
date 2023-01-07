@@ -48,9 +48,9 @@ public class MainMenuFragment extends Fragment {
         //allList = dao.listAllRestaurantInfo();
         // TODO: temporary list
         ArrayList<RestaurantDAO.RestaurantNameInfo> allList = new ArrayList<>();
-        allList.add(new RestaurantDAO.RestaurantNameInfo(1,"Atmosphere 360", 1, ""));
+        allList.add(new RestaurantDAO.RestaurantNameInfo(1,"Atmosphere 360", 1, "https://formfacade.com/itemembed/1FAIpQLSdrvYn-kBK2Afy94R__AdiF3G7PpxTv7tISQFkk-EvCryANTw/item/1151574515/image/1pUZ6fLyXnch5NUqZtwoFGuiXtG9tJRuMw4GHplxLJoeZPWU"));
         allList.add(new RestaurantDAO.RestaurantNameInfo(2,"Cons Transphere", 2, ""));
-        allList.add(new RestaurantDAO.RestaurantNameInfo(3,"KFC Malaysia", 1, ""));
+        allList.add(new RestaurantDAO.RestaurantNameInfo(3,"KFC Malaysia", 1, "https://play-lh.googleusercontent.com/MQDfTBh4VBrD4MQt5hX4b26OnGb9l57_pBWaBFw-mvfrfwOY9aHcwgF2mtDKvE0W-Bw=w240-h480-rw"));
         allList.add(new RestaurantDAO.RestaurantNameInfo(4,"Malaysia Cuisine", 3, ""));
         allList.add(new RestaurantDAO.RestaurantNameInfo(5,"Domino's 360", 7, ""));
 
