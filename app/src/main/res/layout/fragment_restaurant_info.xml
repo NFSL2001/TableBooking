@@ -68,14 +68,14 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="8dp">
 
-            <RatingBar
-                android:id="@+id/restInfo_stars"
-                style="?android:attr/ratingBarStyleIndicator"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/restInfo_Name"
+                style="@style/TextAppearance.Material3.HeadlineMedium"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:isIndicator="true"
-                android:rating="4.5"
+                android:text="Restaurant Name"
                 app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/restInfo_topPrice"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -87,7 +87,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/restaurant_sampleText"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/restInfo_stars"
+                app:layout_constraintTop_toBottomOf="@id/restInfo_Name"
                 app:drawableTint="?attr/colorOnBackground" />
 
             <TextView
@@ -104,11 +104,10 @@
 
             <TextView
                 android:id="@+id/restInfo_topPrice"
-                style="@style/TextAppearance.Material3.HeadlineSmall"
+                style="@style/TextAppearance.Material3.TitleMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawablePadding="8dp"
-                android:text="RM 0"
+                android:text="RM 0.00"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -194,7 +193,6 @@
 
             <!--One item one LinearLayout in LinearLayout to align icon-->
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/menuInfo_parentAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -293,7 +291,6 @@
 
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/menuInfo_parentCuisine"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -326,7 +323,6 @@
 
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/menuInfo_parentAveragePrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -527,7 +523,6 @@
 
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/menuInfo_parentDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"

@@ -12,11 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:visibility="gone"/>
+    <!-- temporary hide visibility as main menu and profile dont need it-->
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/NHFMain"
-        android:name="wia2007.project.tablebooking.RestaurantMenuFragment"
+        android:name="wia2007.project.tablebooking.MainMenuFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         tools:layout="@layout/fragment_restaurant_menu"

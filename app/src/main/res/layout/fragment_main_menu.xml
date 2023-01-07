@@ -91,7 +91,6 @@
         > <!-- default visible -->
 
         <LinearLayout
-            android:id="@+id/main_menuListAllLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -106,7 +105,11 @@
                 android:text="@string/main_AllCuisineSubtitle"/>
 
             <!-- insert restaurant here -->
-
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/main_menuListAllRV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
         </LinearLayout>
     </ScrollView>
 

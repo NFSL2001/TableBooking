@@ -24,10 +24,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:maxHeight="256dp"
-        android:layout_marginTop="4dp"
         android:adjustViewBounds="true"
-        android:paddingBottom="20dp"
-        android:paddingEnd="16dp"
+        android:paddingBottom="6dp"
+        android:paddingEnd="4dp"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TVMenuName"
@@ -35,25 +34,15 @@
         app:srcCompat="@drawable/ic_baseline_image_24" />
 
     <TextView
-        android:id="@+id/TVDishType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="Type of dishes"
-        app:layout_constraintStart_toEndOf="@+id/MenuImage"
-        app:layout_constraintTop_toBottomOf="@+id/TVMenuName" />
-
-    <TextView
         android:id="@+id/TVDescriptionMenuAdmin"
         style="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
         android:text="Description of the Menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/MenuImage"
-        app:layout_constraintTop_toBottomOf="@+id/TVDishType" />
+        app:layout_constraintTop_toBottomOf="@+id/TVMenuName" />
 
     <TextView
         android:id="@+id/TVMenuPriceAdmin"
@@ -61,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="Price"
-        android:paddingBottom="20dp"
+        android:paddingBottom="8dp"
         app:layout_constraintStart_toEndOf="@+id/MenuImage"
         app:layout_constraintTop_toBottomOf="@+id/TVDescriptionMenuAdmin" />
 

@@ -16,6 +16,6 @@
         android:layout_marginLeft="16dp"
         android:textColor="@color/red"
         android:gravity="center_vertical"
-        android:text="＋  New Item" />
+        android:text="＋  Add Item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
