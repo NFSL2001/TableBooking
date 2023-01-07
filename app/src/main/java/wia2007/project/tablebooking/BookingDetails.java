@@ -49,6 +49,7 @@ public class BookingDetails extends AppCompatActivity {
             String tableId = extras.getString("TableName");
             String date = extras.getString("Date");
             String time = extras.getString("Time");
+            Boolean bookingOver = extras.getBoolean("BookingOver");
 
             BCustName.setText(custName);
             TVBPhone.setText(custPhone);
@@ -62,7 +63,10 @@ public class BookingDetails extends AppCompatActivity {
                 TVBRemark.setText(remark);
             }
             TVBookingId.setText(Integer.toString(booking_id));
-
+            if(bookingOver)
+                BtnRejectBooking.setVisibility(View.GONE);
+            else
+                BtnRejectBooking.setVisibility(View.VISIBLE);
 
         }
 

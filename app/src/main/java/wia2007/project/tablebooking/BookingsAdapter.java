@@ -19,8 +19,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import java.sql.Time;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import wia2007.project.tablebooking.database.TableBookingDatabase;
@@ -61,6 +64,7 @@ public class BookingsAdapter extends ArrayAdapter {
             bookingsHolder.TVBookedCustName = row.findViewById(R.id.TVBookedCustName);
             bookingsHolder.TVBookingDate = row.findViewById(R.id.TVBookingDate);
             bookingsHolder.TVBookingTime = row.findViewById(R.id.TVBookingTime);
+            bookingsHolder.TVShowCompleted = row.findViewById(R.id.TVShowCompleted);
             row.setTag(bookingsHolder);
         }else{
             bookingsHolder = (BookingsHolder) row.getTag();
@@ -80,12 +84,30 @@ public class BookingsAdapter extends ArrayAdapter {
         String time_interval = start_time.substring(11)+" - "+end_time.substring(11);
         String date = start_time.substring(0,10);
 
+        boolean bookingOver = false;
+        Date compareDate = null;
+        try {
+            Calendar calendar = Calendar.getInstance();
+            compareDate = simpleDateFormat.parse(start_time);
+            if (compareDate.before(calendar.getTime())) {
+                bookingOver = true;
+                bookingsHolder.TVShowCompleted.setVisibility(View.VISIBLE);
+            } else {
+                bookingOver = false;
+                bookingsHolder.TVShowCompleted.setVisibility(View.INVISIBLE);
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
         bookingsHolder.TVTableID.setText(tableName);
         bookingsHolder.TVBookedCustName.setText(customerName);
         bookingsHolder.TVBookingDate.setText(date);
         bookingsHolder.TVBookingTime.setText(time_interval);
 
         Button BtnViewBooking = row.findViewById(R.id.BtnViewBooking);
+        boolean finalBookingOver = bookingOver;
         BtnViewBooking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,6 +123,7 @@ public class BookingsAdapter extends ArrayAdapter {
                 intent.putExtra("Date",date);
                 intent.putExtra("Time",time_interval);
                 intent.putExtra("BookingId",bookingId);
+                intent.putExtra("BookingOver", finalBookingOver);
                 ((Activity)getContext()).startActivityForResult(intent,1);
 
             }
@@ -110,6 +133,6 @@ public class BookingsAdapter extends ArrayAdapter {
     }
 
     static class BookingsHolder{
-        TextView TVTableID, TVBookedCustName, TVBookingDate, TVBookingTime;
+        TextView TVTableID, TVBookedCustName, TVBookingDate, TVBookingTime,TVShowCompleted;
     }
 }

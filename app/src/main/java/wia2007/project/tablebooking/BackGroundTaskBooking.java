@@ -45,7 +45,7 @@ public class BackGroundTaskBooking extends AsyncTask<String, ShowBookingsList, S
             Integer booking_id;
             String startTime, endTime;
             String remark, custName, custEmail, custMobile,tableName;
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 
             while (cursor.moveToNext()) {
                 booking_id = cursor.getInt(cursor.getColumnIndex("booking_id"));

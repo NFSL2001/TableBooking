@@ -2,22 +2,16 @@ package wia2007.project.tablebooking;
 
 import static android.content.Context.MODE_PRIVATE;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Spinner;
 
 /**
@@ -67,7 +61,7 @@ public class BookingList extends Fragment {
         }
     }
     int iCurrentSelection;
-    String sortcondition;
+    String sortCondition;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -88,7 +82,7 @@ public class BookingList extends Fragment {
             // set the selected value of the spinner
             SpinnerSortCondition.setSelection(spinnerValue);
         }
-        sortcondition = Integer.toString(SpinnerSortCondition.getSelectedItemPosition());
+        sortCondition = Integer.toString(SpinnerSortCondition.getSelectedItemPosition());
         iCurrentSelection = SpinnerSortCondition.getSelectedItemPosition();
         SpinnerSortCondition.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -99,7 +93,7 @@ public class BookingList extends Fragment {
                     prefEditor.putInt("userChoiceSpinner",userChoice);
                     prefEditor.commit();
                     SpinnerSortCondition.setSelection(spinnerValue);
-                    sortcondition = Integer.toString(SpinnerSortCondition.getSelectedItemPosition());
+                    sortCondition = Integer.toString(SpinnerSortCondition.getSelectedItemPosition());
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.NHFMain,BookingList.class,null).commit();
                 }
             }
@@ -116,7 +110,7 @@ public class BookingList extends Fragment {
         }
 
         BackGroundTaskBooking backGroundTaskBooking = new BackGroundTaskBooking(this.getContext());
-        backGroundTaskBooking.execute("get_info", sortcondition,restaurant_id);
+        backGroundTaskBooking.execute("get_info", sortCondition,restaurant_id);
 
         return view;
     }

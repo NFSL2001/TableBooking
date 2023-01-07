@@ -12,16 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:visibility="gone"/>
-    <!-- temporary hide visibility as main menu and profile dont need it-->
+        app:layout_constraintLeft_toLeftOf="parent"/>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/NHFMain"
-        android:name="wia2007.project.tablebooking.MainMenuFragment"
+        android:name="wia2007.project.tablebooking.BookingList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        tools:layout="@layout/fragment_main_menu"
+        tools:layout="@layout/fragment_booking_list"
         app:layout_constraintTop_toBottomOf="@id/TVMainAct"
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav_view"
         app:layout_constraintStart_toStartOf="parent"
