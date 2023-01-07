@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/pre_order_food_mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="wia2007.project.tablebooking.preOrderFood">
+
+    <ScrollView
+        android:id="@+id/pre_order_food_scrollView"
+        android:layout_width="0dp"
+        android:layout_height="729dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/pre_order_food_menuLayoutLinear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/pre_order_food_foodSelectText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/stixtwo"
+                android:paddingStart="15dp"
+                android:paddingTop="15dp"
+                android:text="Select Your Food"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/pre_order_food_listMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                tools:itemCount="23" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/pre_order_food_buttonSkipNow"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/stix"
+        android:text="Skip now"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:typeface="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pre_order_food_scrollView" />
+
+    <LinearLayout
+        android:id="@+id/pre_order_food_feesLayout"
+        android:layout_width="291dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/pre_order_food_bottomNavLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pre_order_food_buttonSkipNow">
+
+        <TextView
+            android:id="@+id/pre_order_food_feesText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/stixtwo"
+            android:text="Total Fees (SST included):"
+            android:textAlignment="textEnd"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/pre_order_food_fees"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/stixtwo"
+            android:text="RM349"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/pre_order_food_bottomNavLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/pre_order_food_backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8"
+            android:background="#000000"
+            android:fontFamily="@font/stixtwo"
+            android:text="Back"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/pre_order_food_nextButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="243dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8"
+            android:background="#C1121F"
+            android:fontFamily="@font/stixtwo"
+            android:text="Next"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/pre_order_food_cancelButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="99dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:background="#000000"
+            android:fontFamily="@font/stixtwo"
+            android:text="Cancel"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

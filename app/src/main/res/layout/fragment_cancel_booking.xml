@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="wia2007.project.tablebooking.cancelBooking">
+
+    <TextView
+        android:id="@+id/select_time_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/stixtwo"
+        android:text="No. of customer"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <NumberPicker
+        android:id="@+id/select_time_childrenNumberPicker"
+        android:layout_width="67dp"
+        android:layout_height="85dp"
+        android:layout_marginEnd="64dp"
+        app:layout_constraintBottom_toBottomOf="@+id/select_time_adultNumberPicker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/select_time_textChildren"
+        app:layout_constraintTop_toBottomOf="@+id/select_time_textChildren"
+        app:layout_constraintVertical_bias="1.0"></NumberPicker>
+
+    <CalendarView
+        android:id="@+id/select_time_dateView"
+        style="@android:style/Widget.DeviceDefault.CalendarView"
+        android:layout_width="235dp"
+        android:layout_height="267dp"
+        android:layout_marginTop="4dp"
+        android:dateTextAppearance="@style/TextAppearance.AppCompat.Small"
+        android:focusedMonthDateColor="#AA1C1C"
+        android:selectedWeekBackgroundColor="#680E0E"
+        android:unfocusedMonthDateColor="#FA0000"
+        android:weekNumberColor="#F11818"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.181"
+        app:layout_constraintStart_toStartOf="@+id/select_time_textDate"
+        app:layout_constraintTop_toBottomOf="@+id/select_time_textDate" />
+
+    <TextView
+        android:id="@+id/select_time_textAdult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/stixtwo"
+        android:text="Adults"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/select_time_title" />
+
+    <NumberPicker
+        android:id="@+id/select_time_adultNumberPicker"
+        android:layout_width="67dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/select_time_textAdult"></NumberPicker>
+
+    <NumberPicker
+        android:id="@+id/select_time_durationNumberPicker"
+        android:layout_width="61dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="@+id/select_time_textDuration"
+        app:layout_constraintTop_toBottomOf="@+id/select_time_textDuration"></NumberPicker>
+
+    <TextView
+        android:id="@+id/select_time_textChildren"
+        android:layout_width="63dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="156dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/stixtwo"
+        android:text="Children"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/select_time_textAdult"
+        app:layout_constraintTop_toBottomOf="@+id/select_time_title" />
+
+    <TextView
+        android:id="@+id/select_time_textDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="584dp"
+        android:fontFamily="@font/stixtwo"
+        android:text="Duration (hour)"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="@+id/select_time_textTime"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/select_time_textDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="188dp"
+        android:fontFamily="@font/stixtwo"
+        android:text="Date"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/select_time_layoutButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/select_time_nextButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="243dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8"
+            android:background="#C1121F"
+            android:fontFamily="@font/stixtwo"
+            android:text="Next"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/select_time_cancelButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="99dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:background="#000000"
+            android:fontFamily="@font/stixtwo"
+            android:text="Cancel"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/select_time_textTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/stixtwo"
+        android:text="Time"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/select_time_dateView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/select_time_recyclerView"
+        android:layout_width="379dp"
+        android:layout_height="59dp"
+        android:scrollbars="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/select_time_textDuration"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/select_time_textTime"
+        app:layout_constraintTop_toBottomOf="@+id/select_time_textTime"
+        app:layout_constraintVertical_bias="0.476"
+        tools:layoutManager="GridLayoutManager"
+        tools:spanCount="5" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
