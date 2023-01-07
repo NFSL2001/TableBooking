@@ -32,19 +32,20 @@ public class BackGroundTaskBooking extends AsyncTask<String, ShowBookingsList, S
     @Override
     protected String doInBackground(String... strings) {
         String method = strings[0];
-//        DatabaseHelper dbHelper = new DatabaseHelper(context);
         if (method.equals("get_info")) {
             listView = (ListView) activity.findViewById(R.id.BookingListView);
             bookingsAdapter = new BookingsAdapter(context, R.layout.display_booking_list_row);
             String sortCondition = strings[1];
             int sortInt = 0;
             sortInt = Integer.parseInt(sortCondition);
-            Cursor cursor = TableBookingDatabase.getDatabase(this.context).bookingDAO().getBookingsList(1,sortInt);
+
+            int restaurant_id = Integer.parseInt(strings[2]);
+            Cursor cursor = TableBookingDatabase.getDatabase(context).bookingDAO().getBookingsList(restaurant_id,sortInt);
 
             Integer booking_id;
             String startTime, endTime;
             String remark, custName, custEmail, custMobile,tableName;
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
             while (cursor.moveToNext()) {
                 booking_id = cursor.getInt(cursor.getColumnIndex("booking_id"));

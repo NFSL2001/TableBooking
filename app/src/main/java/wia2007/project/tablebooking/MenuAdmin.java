@@ -60,6 +60,7 @@ public class MenuAdmin extends AppCompatActivity implements RecycleViewInterface
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         SpinnerItemSortCondition.setAdapter(spinnerItemAdapter);
 
+        //Change the restaurant ID to:                                                                       getIntent().getExtras().getInt("RestaurantID");
         List<MenuItem> menuItem = TableBookingDatabase.getDatabase(getApplicationContext()).menuDAO().getMenuSortedList(1, SpinnerItemSortCondition.getSelectedItemPosition());
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             menuMap = menuItem.stream().collect(Collectors.groupingBy(m -> m.getCategory() == null ? "Not defined" : m.getCategory()));

@@ -109,8 +109,14 @@ public class BookingList extends Fragment {
             }
         });
 
+        String restaurant_id = "1";
+        Bundle bundle = this.getArguments();
+        if(bundle != null){
+            restaurant_id = bundle.getString("Restaurant_Id");
+        }
+
         BackGroundTaskBooking backGroundTaskBooking = new BackGroundTaskBooking(this.getContext());
-        backGroundTaskBooking.execute("get_info", sortcondition);
+        backGroundTaskBooking.execute("get_info", sortcondition,restaurant_id);
 
         return view;
     }

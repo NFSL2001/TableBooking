@@ -23,6 +23,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import wia2007.project.tablebooking.database.TableBookingDatabase;
+
 public class BookingsAdapter extends ArrayAdapter {
     List list = new ArrayList();
     Intent intent = new Intent(getContext(), BookingDetails.class);
@@ -70,8 +72,9 @@ public class BookingsAdapter extends ArrayAdapter {
         Integer bookingId = showBookingsList.getBooking_id();
         Time startTime = showBookingsList.getStartTime();
         Time endTime = showBookingsList.getEndTime();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
+        //Time to String
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         String start_time = simpleDateFormat.format(startTime);
         String end_time = simpleDateFormat.format(endTime);
         String time_interval = start_time.substring(11)+" - "+end_time.substring(11);
