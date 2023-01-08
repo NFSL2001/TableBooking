@@ -1,10 +1,13 @@
 package wia2007.project.tablebooking;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.pdf.PdfDocument;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +19,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.FileProvider;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -61,7 +65,7 @@ public class DownloadPDF extends AppCompatActivity {
                 try {
                     yearSelected = SpinnerSelectYear.getSelectedItem().toString();
                     monthSelected = SpinnerSelectMonth.getSelectedItem().toString();
-                    restaurant_id = getIntent().getExtras().getInt("Restaurant_id");
+//                    restaurant_id = getIntent().getExtras().getInt("Restaurant_id");
                     if ("All".equals(monthSelected))
                         monthSelected = "";
                     printPDF();
@@ -83,22 +87,21 @@ public class DownloadPDF extends AppCompatActivity {
         String name;
         if ("".equals(monthSelected)) {
             name = yearSelected + "_All_" + restaurant + ".pdf";
-        }else {
+        } else {
             name = yearSelected + "_" + monthSelected + "_" + restaurant + ".pdf";
         }
         file = new File(this.getExternalFilesDir("/"), name);
-        Toast.makeText(this,name+" is successfully saved",Toast.LENGTH_LONG).show();
+        Toast.makeText(this, name + " is successfully saved", Toast.LENGTH_LONG).show();
         pdfDocument.writeTo(new FileOutputStream(file));
 
         pdfDocument.close();
-
 
     }
 
     private void createTablePage(PdfDocument pdfDocument, Paint paint) {
         List<saveTableData> list = null;
         if ("".equals(monthSelected)) {
-            list = TableBookingDatabase.getDatabase(this).tableDAO().calculateTableBooking(restaurant_id,yearSelected);
+            list = TableBookingDatabase.getDatabase(this).tableDAO().calculateTableBooking(restaurant_id, yearSelected);
         } else {
             String tempMonth = "";
             switch (monthSelected) {

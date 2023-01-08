@@ -34,11 +34,14 @@
             android:id="@+id/TVSelectGraphData"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="7dp"
             android:gravity="center_vertical"
             android:paddingStart="10dp"
             android:text="Select the type of Data:"
             android:textColor="@color/black" />
+
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -46,7 +49,7 @@
             android:layout_marginTop="7dp"
             android:layout_marginEnd="10dp"
             android:background="@drawable/edit_text_layout"
-            android:gravity="right">
+            android:layout_gravity="right">
 
             <Spinner
                 android:id="@+id/SpinnerGraphData"
@@ -55,6 +58,7 @@
                 android:contentDescription="Data"
                 android:dropDownWidth="130dp"
                 android:overlapAnchor="false"
+                android:gravity="right"
                 android:spinnerMode="dropdown"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
                 tools:ignore="DuplicateSpeakableTextCheck" />
@@ -63,6 +67,8 @@
         <Button
             android:id="@+id/BtnSubmit"
             android:layout_width="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="10dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
