@@ -49,7 +49,7 @@ public class table_manage extends AppCompatActivity {
                     String  tableno = addtableNo.toString();
                     int tablepax = Integer.parseInt(addtablePax.toString());
                     String[] split =tableno.split("T");
-                    int tableid = Integer.parseInt(split[0]);
+                    int tableid = Integer.parseInt(split[1]);
 
                     //update table in database
                     table.setTable_id(tableid);
@@ -63,7 +63,7 @@ public class table_manage extends AppCompatActivity {
                 }else if(addtableNo == null && deletetableNo != null){
                     String deleteTable = deletetableNo.toString();
                     String[] split =deleteTable.split("T");
-                    int tableid = Integer.parseInt(split[0]);
+                    int tableid = Integer.parseInt(split[1]);
 
                     //update table in database
                     List<Table> tableList = tableDAO.getTableById(tableid);
