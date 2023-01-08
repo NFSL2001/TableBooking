@@ -23,10 +23,11 @@ import wia2007.project.tablebooking.entity.Booking;
 import wia2007.project.tablebooking.entity.BookingContainMenu;
 import wia2007.project.tablebooking.entity.Customer;
 import wia2007.project.tablebooking.entity.Menu;
+import wia2007.project.tablebooking.entity.Notification;
 import wia2007.project.tablebooking.entity.Restaurant;
 import wia2007.project.tablebooking.entity.Table;
 
-@Database(entities = {Booking.class, BookingContainMenu.class, Customer.class, Menu.class, Restaurant.class, Table.class}, version = 1, exportSchema = false)
+@Database(entities = {Booking.class, BookingContainMenu.class, Customer.class, Menu.class, Restaurant.class, Table.class, Notification.class}, version = 1, exportSchema = false)
 @TypeConverters({TimeConverter.class, DateConverter.class})
 public abstract class TableBookingDatabase extends RoomDatabase {
     public abstract BookingContainMenuDAO bookingContainMenuDAO();
@@ -35,7 +36,7 @@ public abstract class TableBookingDatabase extends RoomDatabase {
     public abstract MenuDAO menuDAO();
     public abstract RestaurantDAO restaurantDAO();
     public abstract TableDAO tableDAO();
-    public abstract NotificationDAO notificationDAO;
+    public abstract NotificationDAO notificationDAO();
 
     private static volatile TableBookingDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;

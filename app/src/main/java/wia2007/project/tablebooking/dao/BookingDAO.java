@@ -29,10 +29,10 @@ public interface BookingDAO {
     @Query("SELECT * FROM Booking WHERE customer_id = :customerId")
     public List<Booking> getBookingByCustomer(Integer customerId);
 
-    @Query("SELECT Restaurant.*, start_time FROM Booking JOIN `Table` USING (table_id) JOIN Restaurant USING (restaurant_id) WHERE customer_id = :customerId ORDER BY start_time DESC")
+    @Query("SELECT Restaurant.*, start_time, booking_id FROM Booking JOIN `Table` USING (table_id) JOIN Restaurant USING (restaurant_id) WHERE customer_id = :customerId ORDER BY start_time DESC")
     public LiveData<List<BookingRestaurant>> getBookingRestaurantByCustomer(Integer customerId);
 
-    @Query("SELECT Restaurant.*, start_time FROM Booking JOIN `Table` USING (table_id) JOIN Restaurant USING (restaurant_id) WHERE customer_id = :customerId ORDER BY restaurant_name")
+    @Query("SELECT Restaurant.*, start_time, booking_id FROM Booking JOIN `Table` USING (table_id) JOIN Restaurant USING (restaurant_id) WHERE customer_id = :customerId ORDER BY restaurant_name")
     public LiveData<List<BookingRestaurant>> getBookingRestaurantByCustomerOrderByName(Integer customerId);
 
     @Query("SELECT * FROM Booking WHERE customer_id = :restaurantId")

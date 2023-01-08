@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import wia2007.project.tablebooking.dao.BookingDAO;
@@ -23,7 +24,7 @@ public class DatabaseTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         TableBookingDatabase database = TableBookingDatabase.getDatabase(appContext);
-        BookingDAO bookingDAO = database.bookingDAO();
+        CustomerDAO customerDAO = database.customerDAO();
 
     }
 }

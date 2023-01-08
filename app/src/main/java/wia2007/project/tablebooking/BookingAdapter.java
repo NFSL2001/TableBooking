@@ -1,5 +1,10 @@
 package wia2007.project.tablebooking;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
+import android.content.Intent;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -30,6 +35,15 @@ public class BookingAdapter extends ListAdapter<BookingRestaurant, BookingViewHo
     public void onBindViewHolder(@NonNull BookingViewHolder holder, int position) {
         BookingRestaurant booking = getItem(position);
         holder.bind(booking.getRestaurant().getRestaurant_name(), dateFormat.format(booking.getStart_time().getTime()));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Todo: add activity class
+                Intent intent = new Intent(view.getContext(), );
+                intent.putExtra("bookingId", booking.getBooking_id());
+                view.getContext().startActivity(intent);
+            }
+        });
     }
 
     public static class bookDiff extends DiffUtil.ItemCallback<BookingRestaurant> {
