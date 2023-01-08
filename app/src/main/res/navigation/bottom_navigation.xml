@@ -3,16 +3,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottom_navigation"
-    app:startDestination="@id/mainActivity">
+    app:startDestination="@id/DeskHome">
 
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="wia2007.project.tablebooking.MainActivity"
-        android:label="activity_main"
-        tools:layout="@layout/activity_main" />
     <fragment
-        android:id="@+id/profileFragment"
-        android:name="wia2007.project.tablebooking.ProfileFragment"
+        android:id="@+id/DeskProfile"
+        android:name="wia2007.project.tablebooking.fragment.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_signUpActivity"
+            app:destination="@id/signUpActivity" />
+        <action
+            android:id="@+id/action_profileFragment_to_loginActivity"
+            app:destination="@id/loginActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="wia2007.project.tablebooking.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
+    <activity
+        android:id="@+id/signUpActivity"
+        android:name="wia2007.project.tablebooking.SignUpActivity"
+        android:label="activity_sign_up"
+        tools:layout="@layout/activity_sign_up" />
+    <fragment
+        android:id="@+id/DeskHome"
+        android:name="wia2007.project.tablebooking.MainMenu"
+        android:label="fragment_main_menu"
+        tools:layout="@layout/fragment_main_menu" >
+        <action
+            android:id="@+id/action_mainMenu_to_DeskProfile"
+            app:destination="@id/DeskProfile" />
+        <action
+            android:id="@+id/action_DeskHome_to_bookingFragment"
+            app:destination="@id/DeskBooking" />
+    </fragment>
+    <fragment
+        android:id="@+id/DeskBooking"
+        android:name="wia2007.project.tablebooking.fragment.BookingFragment"
+        android:label="fragment_booking"
+        tools:layout="@layout/fragment_booking" />
 </navigation>

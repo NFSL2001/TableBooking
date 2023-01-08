@@ -6,4 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".NotificationFragment"/>
+    tools:context=".fragment.NotificationFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RVNotification"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/individual_notification_item" />
+</LinearLayout>

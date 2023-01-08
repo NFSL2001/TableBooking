@@ -2,10 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".LoginActivity">
+    android:visibility="visible"
+    tools:context=".LoginActivity"
+    tools:menu="@menu/menu_bottom">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/TBLogInAct"
@@ -14,94 +17,86 @@
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:menu="@menu/menu_bottom"
-        app:title="Log In" />
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24" />
 
     <TextView
         android:id="@+id/TVLoginTitle"
-        android:layout_width="match_parent"
+        android:layout_width="411dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="75dp"
         android:gravity="center_horizontal"
-        android:paddingBottom="10dp"
-        android:text="Invitable"
+        android:text="@string/invitable"
         android:textColor="@color/red_500"
         android:textSize="34sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/TVLoginSubtitle"
-        android:layout_width="match_parent"
+        android:layout_width="411dp"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Log In"
+        android:text="@string/log_in"
         android:textSize="34sp"
         android:textStyle="bold" />
 
+    <TextView
+        android:id="@+id/TVIncorrect"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75dp"
+        android:text="@string/incorrect_username_or_password"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:visibility="invisible" />
+
     <EditText
         android:id="@+id/ETUsername"
-        style="@android:style/Widget.EditText"
-        android:layout_width="match_parent"
+        android:layout_width="411dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
         android:ems="10"
         android:gravity="center"
+        android:hint="@string/username"
         android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:text="Username" />
+        android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/ETPassword"
-        android:layout_width="match_parent"
+        android:layout_width="411dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
         android:ems="10"
         android:gravity="center"
+        android:hint="@string/password"
         android:inputType="textPassword"
-        android:minHeight="48dp"
-        android:text="Password" />
-
-    <TextView
-        android:id="@+id/TVForgotPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:autoLink="all"
-        android:clickable="true"
-        android:minHeight="48dp"
-        android:text="Forgot Password?"
-        android:textAlignment="viewEnd"
-        android:textColor="@color/red_500"
-        android:textSize="20sp"
-        android:textStyle="italic" />
+        android:minHeight="48dp" />
 
     <TextView
         android:id="@+id/TVStatusTitle"
-        android:layout_width="match_parent"
+        android:layout_width="411dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:text="Choose you status"
+        android:gravity="end"
+        android:text="@string/choose_you_status"
         android:textSize="16sp" />
 
     <Spinner
         android:id="@+id/SPStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="7dp"
-        android:entries="@array/SpinnerForLogIn" />
+        android:layout_gravity="end"
+        android:entries="@array/SpinnerForLogIn"
+        android:minHeight="48dp" />
 
     <Button
         android:id="@+id/BtnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:text="Log In" />
+        android:text="@string/log_in" />
 
     <Button
         android:id="@+id/BtnGoSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Sign Up" />
+        android:text="@string/sign_up" />
 </LinearLayout>

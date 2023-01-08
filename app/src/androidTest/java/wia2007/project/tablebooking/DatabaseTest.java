@@ -9,8 +9,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
+import wia2007.project.tablebooking.dao.BookingDAO;
 import wia2007.project.tablebooking.dao.CustomerDAO;
 import wia2007.project.tablebooking.database.TableBookingDatabase;
 import wia2007.project.tablebooking.entity.Customer;
@@ -23,11 +25,6 @@ public class DatabaseTest {
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         TableBookingDatabase database = TableBookingDatabase.getDatabase(appContext);
         CustomerDAO customerDAO = database.customerDAO();
-        customerDAO.deleteAll();
 
-        Customer customer = new Customer(null, "root", "1234", "01110687471", "root@gmail.com", Customer.GENDER_MALE, new Date(System.currentTimeMillis()));
-        List<Long> list = customerDAO.insertCustomers(customer);
-        int id = list.get(0).intValue();
-        System.out.println(customerDAO.getCustomerById(id));
     }
 }

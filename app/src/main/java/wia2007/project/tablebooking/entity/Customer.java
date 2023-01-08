@@ -10,12 +10,12 @@ import java.sql.Date;
 public class Customer {
     public static final int GENDER_MALE = 0;
     public static final int GENDER_FEMALE = 1;
-    public static final int GENDER_OTHER = 2;
 
     @PrimaryKey(autoGenerate = true)
     private Integer customer_id;
     private String user_name;
     private String password;
+    private String name;
     private String mobile_number;
     private String email;
     private Integer gender;
@@ -25,10 +25,10 @@ public class Customer {
     }
 
     @Ignore
-    public Customer(Integer customer_id, String user_name, String password, String mobile_number, String email, Integer gender, Date birth_date) {
-        this.customer_id = customer_id;
+    public Customer(String user_name, String password, String name, String mobile_number, String email, Integer gender, Date birth_date) {
         this.user_name = user_name;
         this.password = password;
+        this.name = name;
         this.mobile_number = mobile_number;
         this.email = email;
         this.gender = gender;
@@ -89,6 +89,14 @@ public class Customer {
 
     public void setBirth_date(Date birth_date) {
         this.birth_date = birth_date;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
