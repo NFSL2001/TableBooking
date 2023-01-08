@@ -15,9 +15,9 @@ import java.util.List;
 public class RestaurantImagePagerAdapter extends RecyclerView.Adapter<RestaurantImageViewHolder> {
 
     private Context context;
-    private List<RestaurantImage> imageList;
+    private List<String> imageList;
 
-    public RestaurantImagePagerAdapter(Context context, List<RestaurantImage> imageList) {
+    public RestaurantImagePagerAdapter(Context context, List<String> imageList) {
         this.context = context;
         this.imageList = imageList;
     }
@@ -36,9 +36,7 @@ public class RestaurantImagePagerAdapter extends RecyclerView.Adapter<Restaurant
 
     @Override
     public void onBindViewHolder(@NonNull RestaurantImageViewHolder holder, int position) {
-        holder.imageView.setImageResource(
-                imageList.get(position).getImage()
-        );
+        holder.setImageView(holder.imageView, imageList.get(position));
     }
 
     @Override

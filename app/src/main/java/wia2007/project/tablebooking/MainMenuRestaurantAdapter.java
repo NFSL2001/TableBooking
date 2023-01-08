@@ -58,23 +58,7 @@ public class MainMenuRestaurantAdapter extends RecyclerView.Adapter<MainMenuRest
         ImageView titleImage = holder.IVTitle;
         if (item.title_image_path != null) {
             titleImage.setVisibility(View.VISIBLE);
-            URI u = null;
-            try {
-                // convert path to URI
-                u = new URI(item.title_image_path);
-                boolean isWeb = "http".equalsIgnoreCase(u.getScheme())
-                        || "https".equalsIgnoreCase(u.getScheme());
-                if (isWeb) {
-                    //change thread policy then get image
-                    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-                    StrictMode.setThreadPolicy(policy);
-                    titleImage.setImageBitmap(BitmapFactory.decodeStream((InputStream)u.toURL().getContent()));
-                } else throw new MalformedURLException("Not web URI"); //share throw exception
-            } catch (IOException | URISyntaxException e) {
-                // set image using local File Uri
-                File img = new File(item.title_image_path);
-                titleImage.setImageURI(Uri.fromFile(img));
-            }
+            holder.setImageView(titleImage, item.title_image_path);
         } else {
             titleImage.setVisibility(View.GONE);
         }
@@ -89,7 +73,38 @@ public class MainMenuRestaurantAdapter extends RecyclerView.Adapter<MainMenuRest
 
 }
 
-class MainMenuRestaurantHolder extends RecyclerView.ViewHolder {
+
+class BaseImageHolder extends RecyclerView.ViewHolder {
+    public BaseImageHolder(@NonNull View itemView) {
+        super(itemView);
+    }
+    public boolean setImageView(ImageView imageView, String uriString){
+        /** Input: uriString, may be web address or File path address
+         *  Output: boolean, true for web address, false for File address
+         * **/
+        URI u = null;
+        try {
+            // convert path to URI
+            u = new URI(uriString);
+            boolean isWeb = "http".equalsIgnoreCase(u.getScheme())
+                    || "https".equalsIgnoreCase(u.getScheme());
+            if (isWeb) {
+                //change thread policy then get image
+                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                StrictMode.setThreadPolicy(policy);
+                imageView.setImageBitmap(BitmapFactory.decodeStream((InputStream)u.toURL().getContent()));
+                return true;
+            } else throw new MalformedURLException("Not web URI"); //share throw exception
+        } catch (IOException | URISyntaxException e) {
+            // set image using local File Uri
+            File img = new File(uriString);
+            imageView.setImageURI(Uri.fromFile(img));
+            return false;
+        }
+    }
+}
+
+class MainMenuRestaurantHolder extends BaseImageHolder {
     Integer restaurantID;
     String name;
     TextView TVName, TVCategory;
