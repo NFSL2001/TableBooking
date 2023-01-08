@@ -42,12 +42,13 @@ public class table_manage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                TableDAO tableDAO = database.tableDAO();
                 Table table = new Table();
+                String  tableno = addtableNo.getText().toString();
+                String deleteTable = deletetableNo.getText().toString();
+                
+                if(!tableno.isEmpty() && deleteTable.isEmpty()){
 
-                if(addtableNo != null && deletetableNo == null){
-                    String  tableno = addtableNo.toString();
-                    int tablepax = Integer.parseInt(addtablePax.toString());
+                    int tablepax = Integer.parseInt(addtablePax.getText().toString());
                     String[] split =tableno.split("T");
                     int tableid = Integer.parseInt(split[1]);
 
@@ -55,13 +56,12 @@ public class table_manage extends AppCompatActivity {
                     table.setTable_id(tableid);
                     table.setName(tableno);
                     table.setSize(tablepax);
-                    List<Table> tableList = tableDAO.getTableById(tableid);
                     table.setRestaurant_id(0);
                     tableDAO.insertTables(table);
 
 
-                }else if(addtableNo == null && deletetableNo != null){
-                    String deleteTable = deletetableNo.toString();
+                }else if(tableno.isEmpty() && !deleteTable.isEmpty()){
+
                     String[] split =deleteTable.split("T");
                     int tableid = Integer.parseInt(split[1]);
 
