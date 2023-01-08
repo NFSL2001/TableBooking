@@ -27,10 +27,16 @@ public class TableAvailabilityList extends AppCompatActivity {
         totalTable = findViewById(R.id.showTotalTable);
 
         String DATE = getIntent().getStringExtra("keydate");
-        String TIME = getIntent().getStringExtra("keytime");
-        String[]splitTime = TIME.split(":");
-        Time startTime = new Time(Integer.parseInt(splitTime[0]),Integer.parseInt(splitTime[1]),00);
-        Time endTime = new Time(Integer.parseInt(splitTime[0])+1,Integer.parseInt(splitTime[1]),00);
+        String TIME = getIntent().getStringExtra("keyTime");
+        String sTime = getIntent().getStringExtra("keystartdateNTime");
+        String eTime = getIntent().getStringExtra("keyenddateNTime");
+        Timestamp ts1= Timestamp.valueOf(sTime);
+        Long val1 = ts1.getTime();
+        Timestamp ts2= Timestamp.valueOf(eTime);
+        Long val2 = ts2.getTime();
+
+        Time startTime = new Time(val1);
+        Time endTime = new Time(val2);
 
         TableBookingDatabase database = TableBookingDatabase.getDatabase(getApplicationContext());
         TableDAO tableDAO = database.tableDAO();
@@ -43,10 +49,10 @@ public class TableAvailabilityList extends AppCompatActivity {
         numOfTableAvailable.setText(availableTableList.size());
         totalTable.setText(total.size());
 
-        numOfTableBooked.setText("10");
-        numOfTableAvailable.setText("20");
-        totalTable.setText("30");
-
+        tableList2 = new ArrayList<Table>();
+        tableList4 = new ArrayList<Table>();
+        tableList6 = new ArrayList<Table>();
+        tableList8 = new ArrayList<Table>();
         for(int i=0;i<availableTableList.size();i++){
             if(availableTableList.get(i).getSize() == 2){
                 tableList2.add(availableTableList.get(i));
@@ -80,4 +86,3 @@ public class TableAvailabilityList extends AppCompatActivity {
         tableAdapter4 = new TableAdapter(this,tableList8);
         recyclerView4.setAdapter(tableAdapter4);
         recyclerView4.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-}
