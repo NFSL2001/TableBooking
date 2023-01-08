@@ -130,7 +130,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/stylish"
             android:text="2 people table"
             android:textColor="@color/black"
             android:textSize="20sp"
