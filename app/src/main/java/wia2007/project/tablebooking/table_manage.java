@@ -17,7 +17,7 @@ import java.util.List;
 
 public class table_manage extends AppCompatActivity {
 
-    TableAdapter tableAdapter1, tableAdapter2, tableAdapter3, tableAdapter4;
+    TableAdapter tableAdapter, tableAdapter1, tableAdapter2, tableAdapter3, tableAdapter4;
     TableViewModel tableViewModel, tableViewModel1, tableViewModel2, tableViewModel3, tableViewModel4;
     EditText addtableNo, addtablePax, deletetableNo;
     Button save, cancel;
@@ -30,20 +30,12 @@ public class table_manage extends AppCompatActivity {
 
         TableBookingDatabase database = TableBookingDatabase.getDatabase(getApplicationContext());
         TableDAO tableDAO = database.tableDAO();
-        /*Table T1 = new Table(1, 0, "T1", 2);
-        Table T2 = new Table(2, 0, "T2", 2);
-        Table T3 = new Table(3, 0, "T3", 4);
-        Table T4 = new Table(4, 0, "T4", 2);
-        Table T5 = new Table(5, 0, "T5", 4);
-        Table T6 = new Table(6, 0, "T6", 6);
-        Table T7 = new Table(7, 0, "T7", 8);*/
+
         addtableNo = findViewById(R.id.addTableNo);
         addtablePax = findViewById(R.id.editTablePax);
         deletetableNo = findViewById(R.id.deleteTableNo);
         save = findViewById(R.id.btnSave);
         cancel = findViewById(R.id.btnCancel);
-
-
 
         save.setOnClickListener(new View.OnClickListener(){
 
@@ -66,7 +58,7 @@ public class table_manage extends AppCompatActivity {
                     List<Table> tableList = tableDAO.getTableById(tableid);
                     table.setRestaurant_id(0);
                     tableDAO.insertTables(table);
-                    tableViewModel.insert(table);
+
 
                 }else if(addtableNo == null && deletetableNo != null){
                     String deleteTable = deletetableNo.toString();
@@ -77,11 +69,8 @@ public class table_manage extends AppCompatActivity {
                     List<Table> tableList = tableDAO.getTableById(tableid);
                     table = tableList.get(0);
                     tableDAO.deleteTables(table);
-                    tableViewModel.delete(table);
-                }
 
-                Intent intent = new Intent(table_manage.this, fragment_AdminHome.class);
-                startActivity(intent);
+                }
             }
         });
 
@@ -92,19 +81,33 @@ public class table_manage extends AppCompatActivity {
             }
         });
 
+        //to separate into table category
         tableList = tableDAO.getTableByRestaurant(0);
+        tableList2 = new ArrayList<Table>();
+        tableList4 = new ArrayList<Table>();
+        tableList6 = new ArrayList<Table>();
+        tableList8 = new ArrayList<Table>();
 
         for(int i=0;i<tableList.size();i++){
-            if(tableList.get(i).getSize() == 2){
-                tableList2.add(tableList.get(i));
-            }else if(tableList.get(i).getSize() == 4){
-                tableList4.add(tableList.get(i));
-            }else if(tableList.get(i).getSize() == 6){
-                tableList6.add(tableList.get(i));
-            }else if(tableList.get(i).getSize() == 8){
-                tableList8.add(tableList.get(i));
+            switch(tableList.get(i).getSize()) {
+                case 2:
+                    tableList2.add(tableList.get(i));
+                    break;
+                case 4:
+                    tableList4.add(tableList.get(i));
+                    break;
+                case 6:
+                    tableList6.add(tableList.get(i));
+                    break;
+                case 8:
+                    tableList8.add(tableList.get(i));
+                    break;
+                default:
+                    new RuntimeException("No Table");
             }
         }
+
+
 
         RecyclerView recyclerView1 = findViewById(R.id.RC2Table);
         tableAdapter1 = new TableAdapter(this,tableList2);
@@ -126,5 +129,15 @@ public class table_manage extends AppCompatActivity {
         recyclerView4.setAdapter(tableAdapter4);
         recyclerView4.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
+//        tableViewModel = new ViewModelProvider(this).get(TableViewModel.class);
+//        tableViewModel.getAllTable().observe(this, new Observer<List<Table>>() {
+//            @Override
+//            public void onChanged(List<Table> tables) {
+//                tableAdapter.setTable(tables);
+//            }
+//        });
+
     }
+
+
 }
