@@ -11,20 +11,19 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.NumberPicker;
 
-import com.example.invitable.R;
+import wia2007.project.tablebooking.R;
+import wia2007.project.tablebooking.dao.RestaurantDAO;
+import wia2007.project.tablebooking.dao.TableDAO;
+import wia2007.project.tablebooking.database.TableBookingDatabase;
+
 
 public class SelectTimeActivity extends AppCompatActivity {
     public static final String EXTRA_NUMBER = "wia2007.project.tablebooking.EXTRA_NUMBER";
-    public static final String DATE_STRING = "wia2007.project.tablebooking.DATE_STRING";
-    public static final String DATE_VALUE = "wia2007.project.tablebooking.DATE_VALUE";
 
     NumberPicker AdultNumberPicker, ChildrenNumberPicker, DurationNumberPicker;
     CalendarView DateSelector;
-    SelectTimeButtonAdapter TimeButtonAdapter;
     Button NextButton, CancelButton;
-    int AdultVal, ChildrenVal;
-    Integer Person, Duration;
-    String Date;
+    int AdultVal, ChildrenVal, Person, StartTime, EndTime;
     long DateValue;
 
     @Override
@@ -49,13 +48,13 @@ public class SelectTimeActivity extends AppCompatActivity {
         ChildrenNumberPicker.setMaxValue(8);
         DurationNumberPicker.setMaxValue(4);
 
-        Date = "1 January 2022";
-        DateValue = DateSelector.getDate();
+        TableBookingDatabase db = TableBookingDatabase.getDatabase(getApplicationContext());
+        RestaurantDAO restaurantDAO = db.restaurantDAO();
 
         DateSelector.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
-                Date = dateFormatChanger(i, i1, i2);
+                DateValue = DateSelector.getDate();
             }
         });
 
@@ -78,7 +77,7 @@ public class SelectTimeActivity extends AppCompatActivity {
         DurationNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker numberPicker, int i, int i1) {
-                Duration = i1;
+                EndTime = i1;
             }
         });
 
@@ -89,7 +88,7 @@ public class SelectTimeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Person = ChildrenVal + AdultVal;
-                openNextActivity(Person, Duration, Date, DateValue);
+                openNextActivity(Person, StartTime, EndTime, DateValue);
             }
         });
 
@@ -102,58 +101,14 @@ public class SelectTimeActivity extends AppCompatActivity {
 
     }
 
-    public void openNextActivity(int person, int duration, String date, long dateVal) {
-        getIntent().putExtra(EXTRA_NUMBER, person);
-        getIntent().putExtra(EXTRA_NUMBER, duration);
-        getIntent().putExtra(DATE_STRING, date);
-        getIntent().putExtra(DATE_VALUE, dateVal);
+    public void openNextActivity(int tableSize, int startTime, int endTime, long dateVal) {
+            getIntent().putExtra(EXTRA_NUMBER, tableSize);
+            getIntent().putExtra(EXTRA_NUMBER, startTime);
+            getIntent().putExtra(EXTRA_NUMBER, endTime);
+            getIntent().putExtra(EXTRA_NUMBER, dateVal);
 
         Intent intent = new Intent(this, SelectTableActivity.class);
         startActivity(intent);
-    }
-
-    public String dateFormatChanger(int year, int month, int day) {
-        String b = "January";
-        switch (month) {
-            case 1 :
-                b = "January";
-                break;
-            case 2 :
-                b = "February";
-                break;
-            case 3 :
-                b = "March";
-                break;
-            case 4 :
-                b = "April";
-                break;
-            case 5 :
-                b = "May";
-                break;
-            case 6 :
-                b = "June";
-                break;
-            case 7 :
-                b = "July";
-                break;
-            case 8 :
-                b = "August";
-                break;
-            case 9 :
-                b = "September";
-                break;
-            case 10 :
-                b = "October";
-                break;
-            case 11 :
-                b = "November";
-                break;
-            case 12 :
-                b = "December";
-                break;
-        }
-        String a = day + " " + b + " " + year;
-        return a;
     }
 
 

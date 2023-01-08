@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.invitable.R;
+import wia2007.project.tablebooking.R;
 
 import wia2007.project.tablebooking.entity.Menu;
 
@@ -21,9 +21,9 @@ public class PreOrderFoodSelectAdapter extends RecyclerView.Adapter<PreOrderFood
     private final LayoutInflater layoutInflater;
     private List<Menu> Menus;
 
-    public PreOrderFoodSelectAdapter(Context context, List<Menu> menuList) {
+    public PreOrderFoodSelectAdapter(Context context, List<Menu> Menus) {
         layoutInflater = LayoutInflater.from(context);
-        Menus = menuList;
+        this.Menus = Menus;
     }
 
     @NonNull
@@ -31,7 +31,7 @@ public class PreOrderFoodSelectAdapter extends RecyclerView.Adapter<PreOrderFood
     public PreOrderFoodSelectAdapter.preOrderFoodSelectViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = layoutInflater.inflate(R.layout.preorder_foodselect_recyclerview, parent, false);
         preOrderFoodSelectViewHolder viewHolder = new preOrderFoodSelectViewHolder(itemView);
-        return null;
+        return viewHolder;
     }
 
     @Override
@@ -45,7 +45,7 @@ public class PreOrderFoodSelectAdapter extends RecyclerView.Adapter<PreOrderFood
 
     @Override
     public int getItemCount() {
-        return 0;
+        return Menus.size();
     }
 
     public static class preOrderFoodSelectViewHolder extends RecyclerView.ViewHolder {
@@ -61,6 +61,20 @@ public class PreOrderFoodSelectAdapter extends RecyclerView.Adapter<PreOrderFood
             DecrementValue = itemView.findViewById(R.id.preorder_food_decrementButton);
             Price = itemView.findViewById(R.id.preorder_food_price);
             FoodAmount = itemView.findViewById(R.id.preorder_food_amount);
+
+            itemView.findViewById(R.id.preorder_food_increment).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
+
+            itemView.findViewById(R.id.preorder_food_decrementButton).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
         }
     }
 }

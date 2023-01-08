@@ -1,12 +1,14 @@
 package wia2007.project.tablebooking;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.invitable.R;
 
 import wia2007.project.tablebooking.dao.TableDAO;
 import wia2007.project.tablebooking.database.TableBookingDatabase;
@@ -15,56 +17,60 @@ import wia2007.project.tablebooking.entity.Table;
 import java.util.List;
 
 
-public class SelectTableActivity extends AppCompatActivity implements ItemClickListenerInterface {
+public class SelectTableActivity extends AppCompatActivity {
 
-    public static final String TABLE_ID = "com.example.invitable.TABLE_ID";
+    public static final String TABLE_ID = "wia2007.project.tablebooking.TABLE_ID";
 
     TextView TableSelected;
-    List<Table> tableList2, tableList4, tableList6, tableList8;
-    SelectTableAdapter tableAdapter1, tableAdapter2, tableAdapter3, tableAdapter4;
+    Button NextButton, CancelButton, BackButton;
+    int tableID;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_select_table);
 
+        TableSelected = findViewById(R.id.select_table_tableSelected);
+
+        NextButton = findViewById(R.id.select_table_nextButton);
+        CancelButton = findViewById(R.id.select_table_cancelButton);
+        BackButton = findViewById(R.id.select_table_backButton);
+
         TableBookingDatabase db = TableBookingDatabase.getDatabase(getApplicationContext());
         TableDAO tableDAO = db.tableDAO();
-//        List<Table> availableTableList = tableDAO.getAvailableTable(0,startTime, endTime);
-//
-//        for(int i=0;i<availableTableList.size();i++){
-//            if(availableTableList.get(i).getSize() == 2){
-//                tableList2.add(availableTableList.get(i));
-//            }else if(availableTableList.get(i).getSize() == 4){
-//                tableList4.add(availableTableList.get(i));
-//            }else if(availableTableList.get(i).getSize() == 6){
-//                tableList6.add(availableTableList.get(i));
-//            }else if(availableTableList.get(i).getSize() == 8){
-//                tableList8.add(availableTableList.get(i));
-//            }else{
-//                throw new RuntimeException("No Table");
-//            }
-//        }
-//
-//        RecyclerView recyclerView1 = findViewById(R.id.select_table_2people_recylerview);
-//        tableAdapter1 = new selectTableAdapter(this,tableList2, this);
-//        recyclerView1.setAdapter(tableAdapter1);
-//
-//        RecyclerView recyclerView2 = findViewById(R.id.select_table_4people_recylerview);
-//        tableAdapter2 = new selectTableAdapter(this,tableList4, this);
-//        recyclerView2.setAdapter(tableAdapter2);
-//
-//        RecyclerView recyclerView3 = findViewById(R.id.select_table_6people_recylerview);
-//        tableAdapter3 = new selectTableAdapter(this,tableList6 , this);
-//        recyclerView3.setAdapter(tableAdapter3);
-//
-//        RecyclerView recyclerView4 = findViewById(R.id.select_table_8people_recylerview);
-//        tableAdapter4 = new selectTableAdapter(this,tableList8, this);
-//        recyclerView4.setAdapter(tableAdapter4);
+
+        NextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openNextActivity(tableID, 0);
+            }
+        });
+
+        CancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        BackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openPreviousActivity();
+            }
+        });
     }
 
-    @Override
-    public void onClick(int position) {
-        TableSelected.setText(tableList2.get(position).getTable_id().toString());
+
+    public void openPreviousActivity() {
+        Intent backIntent = new Intent(this, SelectTimeActivity.class);
+        startActivity(backIntent);
+    }
+
+    public void openNextActivity(int tID, int back) {
+            getIntent().putExtra(TABLE_ID, tID);
+
+        Intent intent = new Intent(this, PreOrderFoodActivity.class);
+        startActivity(intent);
     }
 }

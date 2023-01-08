@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.invitable.R;
+import wia2007.project.tablebooking.R;
 
 
 public class CancelBookingActivity extends AppCompatActivity {

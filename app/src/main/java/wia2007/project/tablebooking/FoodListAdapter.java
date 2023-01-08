@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.invitable.R;
+import wia2007.project.tablebooking.R;
 
 import wia2007.project.tablebooking.entity.BookingContainMenu;
 import wia2007.project.tablebooking.entity.Menu;
@@ -22,10 +22,10 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodLi
     private List<Menu> Menus;
     private List<BookingContainMenu> BCM;
 
-    public FoodListAdapter(Context context, List<Menu> menuList, List<BookingContainMenu> BCMList) {
+    public FoodListAdapter(Context context, List<Menu> Menus, List<BookingContainMenu> BCM) {
         layoutInflater = LayoutInflater.from(context);
-        Menus = menuList;
-        BCM = BCMList;
+        this.Menus = Menus;
+        this.BCM = BCM;
     }
 
     @NonNull
@@ -45,7 +45,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodLi
 
     @Override
     public int getItemCount() {
-            return 0;
+            return Menus.size();
     }
 
     public static class FoodListViewHolder extends RecyclerView.ViewHolder {

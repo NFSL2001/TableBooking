@@ -13,7 +13,7 @@ import wia2007.project.tablebooking.entity.Customer;
 @Dao
 public interface CustomerDAO {
     @Update
-    public void updateCustomers(Customer...customers);
+    public void updateCustomers(Customer ...customers);
 
     @Insert
     public List<Long> insertCustomers(Customer ...customers);

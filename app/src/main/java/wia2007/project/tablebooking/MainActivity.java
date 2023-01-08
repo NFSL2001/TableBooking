@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.invitable.R;
+import wia2007.project.tablebooking.R;
 
 public class MainActivity extends AppCompatActivity {
 
