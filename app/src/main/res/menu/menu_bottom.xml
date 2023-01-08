@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/DeskHome"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Home" />
+    <item
+        android:id="@+id/DeskBooking"
+        android:icon="@drawable/ic_baseline_menu_book_24"
+        android:title="Booking" />
+    <item
+        android:id="@+id/DeskNotification"
+        android:icon="@drawable/ic_baseline_notifications_24"
+        android:title="Notification" />
+    <item
+        android:id="@+id/DeskProfile"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="Profile" />
+</menu>

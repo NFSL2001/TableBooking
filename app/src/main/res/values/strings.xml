@@ -20,14 +20,12 @@
     <string name="other">Other</string>
     <string name="date_of_birth">Date of Birth</string>
     <string name="password">Password</string>
-    <string name="must_include_at_least_1_uppercase_letter_lowercase_letter_numeric_character_and_special_character">Must include at least 1 uppercase letter, lowercase letter, numeric character and special character</string>
-    <string name="dots">.....</string>
+    <string name="must_include_at_least_1_uppercase_letter_lowercase_letter_numeric_character_and_special_character">Must include at least 1 uppercase letter, lowercase letter and numeric character</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="username">Username</string>
     <string name="for_table_ordering_purpose">For table ordering purpose</string>
     <string name="sign_up">Sign Up</string>
-
     <string-array name="cuisine">
         <item>Malaysian</item>
         <item>Dinner Buffet</item>
@@ -39,4 +37,13 @@
         <item>Thai</item>
     </string-array>
     <string name="no_table">No table</string>
+    <string name="username_already_exist_try_another">Username already exist. Try another.</string>
+    <string name="email_already_register_try_another_email">Email already register. Try another email.</string>
+    <string name="invitable">Invitable</string>
+    <string name="log_in"> Log In </string>
+    <string name="incorrect_username_or_password">Incorrect username or password</string>
+    <string name="choose_you_status">Choose you status</string>
+    <string name="input_date_in_yyyy_mm_dd">Input date in yyyy-mm-dd</string>
+    <string name="incorrect_password">Incorrect password</string>
+    <string name="save">SAVE</string>
 </resources>

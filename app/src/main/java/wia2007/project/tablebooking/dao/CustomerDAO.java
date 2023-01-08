@@ -27,6 +27,9 @@ public interface CustomerDAO {
     @Query("SELECT * FROM Customer WHERE user_name = :username")
     public List<Customer> getCustomerByUsername(String username);
 
+    @Query("SELECT * FROM Customer WHERE email = :email")
+    public List<Customer> getCustomerByEmail(String email);
+
     @Query("DELETE FROM Customer")
     public void deleteAll();
 }
