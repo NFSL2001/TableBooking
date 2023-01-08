@@ -35,6 +35,9 @@ public interface RestaurantDAO {
     @Query("SELECT restaurant_id, restaurant_name, cuisine_type, title_image_path FROM Restaurant")
     public List<RestaurantNameInfo> listAllRestaurantInfo();
 
+    @Query("SELECT restaurant_name,address,contact_number,title_image_path FROM Restaurant WHERE restaurant_id = :id")
+    public List<Restaurant> getRestaurantInfoById(Integer id);
+
     class RestaurantNameInfo {
         @ColumnInfo(name = "restaurant_id")
         @NonNull

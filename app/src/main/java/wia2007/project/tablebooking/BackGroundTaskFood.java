@@ -33,7 +33,9 @@ public class BackGroundTaskFood extends AsyncTask<String, ShowFoodOrderList, Str
             listView = (ListView) activity.findViewById(R.id.FoodOrderListView);
             TextView tv = activity.findViewById(R.id.TVID);
             int BNum = Integer.parseInt(tv.getText().toString());
+
             Cursor cursor = TableBookingDatabase.getDatabase(context).bookingContainMenuDAO().getFoodOrder(BNum);
+
             foodOrderAdapter = new FoodOrderAdapter(context, R.layout.display_food_order_row);
             String menuName;
             int booking_id, quantity;
@@ -45,7 +47,6 @@ public class BackGroundTaskFood extends AsyncTask<String, ShowFoodOrderList, Str
                 menuName = cursor.getString(cursor.getColumnIndex("menu_name"));
 
                 ShowFoodOrderList showFoodOrderList = new ShowFoodOrderList(booking_id, menuName, quantity, totalPrice);
-
                 publishProgress(showFoodOrderList);
             }
             return "get_food_order";

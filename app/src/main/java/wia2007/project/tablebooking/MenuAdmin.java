@@ -64,6 +64,7 @@ public class MenuAdmin extends AppCompatActivity implements RecycleViewInterface
         List<MenuItem> menuItem = TableBookingDatabase.getDatabase(getApplicationContext()).menuDAO().getMenuSortedList(1, SpinnerItemSortCondition.getSelectedItemPosition());
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             menuMap = menuItem.stream().collect(Collectors.groupingBy(m -> m.getCategory() == null ? "Not defined" : m.getCategory()));
+            System.out.println(menuMap.toString());
         }
         recyclerView = findViewById(R.id.RVMenu);
         adapter = new MenuAdapter(this, fullMenuList, this);
