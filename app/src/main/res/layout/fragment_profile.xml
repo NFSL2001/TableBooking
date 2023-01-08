@@ -5,7 +5,7 @@
     android:id="@+id/FragmentProfile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileFragment">
+    tools:context=".fragment.ProfileFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -48,14 +48,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
+            android:focusable="true"
             android:gravity="center_vertical"
             android:minHeight="48dp"
-            android:text="Log In"
-            android:textSize="34sp"
-            app:drawableRightCompat="@android:drawable/ic_media_play"
             android:paddingStart="20dp"
             android:paddingEnd="10dp"
-            android:focusable="true" />
+            android:text="Log In"
+            android:textSize="34sp"
+            app:drawableRightCompat="@drawable/ic_baseline_arrow_forward_ios_24" />
 
         <View
             android:layout_width="match_parent"
@@ -67,54 +67,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
+            android:focusable="true"
             android:minHeight="48dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="10dp"
             android:text="Sign Up"
             android:textSize="34sp"
-            app:drawableRightCompat="@android:drawable/ic_media_play"
-            android:paddingStart="20dp"
-            android:paddingEnd="10dp"
-            android:focusable="true" />
+            app:drawableRightCompat="@drawable/ic_baseline_arrow_forward_ios_24" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/black" />
 
-        <TextView
-            android:id="@+id/TVPreference"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:minHeight="48dp"
-            android:text="Preferences"
-            android:textSize="34sp"
-            app:drawableRightCompat="@android:drawable/ic_media_play"
-            android:paddingStart="20dp"
-            android:paddingEnd="10dp"
-            android:focusable="true" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/black" />
-
-        <TextView
-            android:id="@+id/TVAboutApp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:minHeight="48dp"
-            android:text="About App"
-            android:textSize="34sp"
-            app:drawableRightCompat="@android:drawable/ic_media_play"
-            android:paddingStart="20dp"
-            android:paddingEnd="10dp"
-            android:focusable="true" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/black" />
     </LinearLayout>
 
     <ImageView

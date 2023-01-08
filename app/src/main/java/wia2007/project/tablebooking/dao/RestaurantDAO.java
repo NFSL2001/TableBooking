@@ -1,7 +1,5 @@
 package wia2007.project.tablebooking.dao;
 
-import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -29,34 +27,9 @@ public interface RestaurantDAO {
     @Query("SELECT * FROM Restaurant WHERE restaurant_user_name = :restaurantUsername")
     public List<Restaurant> getRestaurantByRestaurantUserName(String restaurantUsername);
 
-    @Query("SELECT restaurant_id, restaurant_name, cuisine_type, title_image_path FROM Restaurant WHERE cuisine_type = :type")
-    public List<RestaurantNameInfo> getRestaurantByCuisine(Integer type);
+    @Query("SELECT * FROM Restaurant WHERE restaurant_name LIKE '%' || :phrase || '%'")
+    public List<Restaurant> searchRestaurant(String phrase);
 
-    @Query("SELECT restaurant_id, restaurant_name, cuisine_type, title_image_path FROM Restaurant")
-    public List<RestaurantNameInfo> listAllRestaurantInfo();
-
-    @Query("SELECT restaurant_name,address,contact_number,title_image_path FROM Restaurant WHERE restaurant_id = :id")
-    public List<Restaurant> getRestaurantInfoById(Integer id);
-
-    class RestaurantNameInfo {
-        @ColumnInfo(name = "restaurant_id")
-        @NonNull
-        public int id;
-
-        @ColumnInfo(name = "restaurant_name")
-        public String name;
-
-        @ColumnInfo(name = "cuisine_type")
-        public int cuisine_type;
-
-        @ColumnInfo(name = "title_image_path")
-        public String title_image_path;
-
-        public RestaurantNameInfo(int id, String name, int cuisine_type, String title_image_path) {
-            this.id = id;
-            this.name = name;
-            this.cuisine_type = cuisine_type;
-            this.title_image_path = title_image_path;
-        }
-    }
+    @Query("SELECT * FROM Restaurant WHERE cuisine_type = :type")
+    public List<Restaurant> getRestaurantByCuisine(Integer type);
 }

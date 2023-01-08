@@ -6,14 +6,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".BookingFragment">
+    tools:context=".fragment.BookingFragment">
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/SPBookingSort"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
+        android:layout_gravity="end"
         android:entries="@array/SpinnerForBooking"
-        android:minHeight="48dp"/>
+        android:minHeight="48dp"
+        android:textAlignment="viewEnd"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RVBooking"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/individual_booking_item" />
 
 </LinearLayout>
