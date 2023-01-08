@@ -59,11 +59,10 @@ public class FoodOrderAdapter extends ArrayAdapter {
         ShowFoodOrderList showFoodOrderList = (ShowFoodOrderList) getItem(position);
         int booking_id = showFoodOrderList.getBooking_id();
 
-
         String qty = Integer.toString(showFoodOrderList.getQuantity());
         String menuName = showFoodOrderList.getMenuName();
         double totalPrice = showFoodOrderList.getTotalcost();
-
+        System.out.println("MenuName"+menuName);
         foodOrderHolder.TVQtyName.setText(qty + "x " + menuName);
 
         foodOrderHolder.TVPrice.setText("RM"+String.format("%,.2f", totalPrice));

@@ -12,7 +12,6 @@ public class ShowBookingsList {
     private String custEmail;
     private String custMobile;
     private String tableName;
-    //    private String status;
     public static String SHOW_BOOKINGS_LIST =  "Show Bookings List";
 
     public ShowBookingsList(Integer booking_id, Time startTime,Time endTime, String tableName, String custName, String remark, String custEmail, String custMobile) {
@@ -24,7 +23,6 @@ public class ShowBookingsList {
         this.setEndTime(endTime);
         this.setTableName(tableName);
         this.setCustName(custName);
-//        this.setStatus(status);
     }
 
     public Integer getBooking_id() {

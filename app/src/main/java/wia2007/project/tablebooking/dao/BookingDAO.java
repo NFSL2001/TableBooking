@@ -6,8 +6,11 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.RawQuery;
 import androidx.room.Update;
+import androidx.sqlite.db.SimpleSQLiteQuery;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import wia2007.project.tablebooking.entity.Booking;
@@ -44,4 +47,9 @@ public interface BookingDAO {
     @Query("DELETE FROM Booking WHERE booking_id = :booking_id;")
     public void rejectBooking(int booking_id);
 
+    @Query("Select Distinct substr(start_time,0,5) FROM Booking")
+    public String[] selectYear();
+
+    @RawQuery
+    Object rawQuery(SimpleSQLiteQuery query);
 }

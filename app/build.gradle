@@ -35,6 +35,7 @@ allprojects {
         options.deprecation = true
     }
 }
+
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.5.1'
@@ -47,6 +48,7 @@ dependencies {
     implementation 'androidx.room:room-common:2.4.3'
     implementation 'androidx.databinding:library:3.2.0-alpha11'
     annotationProcessor 'androidx.room:room-compiler:2.4.0-beta01'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     implementation 'androidx.room:room-runtime:2.4.3'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'

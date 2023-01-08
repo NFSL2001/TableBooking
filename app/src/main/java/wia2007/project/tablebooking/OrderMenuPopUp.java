@@ -64,7 +64,6 @@ public class OrderMenuPopUp extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_order_menu_pop_up, container, false);
-//        myDb = new DatabaseHelper(this.getContext());
         BackGroundTaskFood backGroundTaskFood = new BackGroundTaskFood(this.getContext());
         backGroundTaskFood.execute("get_food_order");
 
