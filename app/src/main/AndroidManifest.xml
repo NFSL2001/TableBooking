@@ -13,6 +13,13 @@
         android:theme="@style/Theme.TableBooking"
         tools:targetApi="31">
         <activity
+            android:name=".table_manage"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".EditProfileActivity"
             android:exported="false">
             <meta-data
@@ -20,6 +27,20 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".TableAvailabilityFilterByDate"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".TableAvailabilityList"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity>
             android:name=".SignUpActivity"
             android:exported="false">
             <meta-data
@@ -34,14 +55,19 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".RestaurantInfo"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value=""

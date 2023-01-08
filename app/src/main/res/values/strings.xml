@@ -26,6 +26,17 @@
     <string name="username">Username</string>
     <string name="for_table_ordering_purpose">For table ordering purpose</string>
     <string name="sign_up">Sign Up</string>
+    <string-array name="cuisine">
+        <item>Malaysian</item>
+        <item>Dinner Buffet</item>
+        <item>Japanese</item>
+        <item>Indian</item>
+        <item>High Tea Buffet</item>
+        <item>Chinese</item>
+        <item>Western</item>
+        <item>Thai</item>
+    </string-array>
+    <string name="no_table">No table</string>
     <string name="username_already_exist_try_another">Username already exist. Try another.</string>
     <string name="email_already_register_try_another_email">Email already register. Try another email.</string>
     <string name="invitable">Invitable</string>
