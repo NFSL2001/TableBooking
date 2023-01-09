@@ -124,6 +124,8 @@ public class CancelBookingActivity extends AppCompatActivity {
         CancelBookingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                List<Booking> bookingList2 = bookingDAO.getBookingById(bookingID);
+                bookingDAO.deleteBookings((Booking) bookingList2);
                 cancelActivity();
             }
         });
