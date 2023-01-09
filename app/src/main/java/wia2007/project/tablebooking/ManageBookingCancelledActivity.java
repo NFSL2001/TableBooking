@@ -8,36 +8,39 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import wia2007.project.tablebooking.R;
-
+import java.sql.Timestamp;
 import java.util.List;
 
+import wia2007.project.tablebooking.converter.TimeConverter;
 import wia2007.project.tablebooking.dao.BookingDAO;
 import wia2007.project.tablebooking.dao.CustomerDAO;
+import wia2007.project.tablebooking.dao.RestaurantDAO;
 import wia2007.project.tablebooking.dao.TableDAO;
 import wia2007.project.tablebooking.database.TableBookingDatabase;
 import wia2007.project.tablebooking.entity.Booking;
 import wia2007.project.tablebooking.entity.Customer;
+import wia2007.project.tablebooking.entity.Restaurant;
 import wia2007.project.tablebooking.entity.Table;
 
 
 public class ManageBookingCancelledActivity extends AppCompatActivity {
 
-    TextView RestaurantName, Name, Date, Time, Request, TableID, TableSize;
+    TextView RestaurantName, Name, DateText, TimeText, Request, TableID, TableSize;
     RecyclerView FoodList;
     FoodListAdapter foodListAdapter;
     Button BackButton;
 
     int bookingID, customerID;
+    long startTime, endTime;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_manage_booking__cancelled);
+        setContentView(R.layout.activity_manage_booking__cancelled);
 
         Name = findViewById(R.id.manageBooking_Cancelled_name);
-        Date = findViewById(R.id.manageBooking_Cancelled_date);
-        Time = findViewById(R.id.manageBooking_Cancelled_time);
+        DateText = findViewById(R.id.manageBooking_Cancelled_date);
+        TimeText = findViewById(R.id.manageBooking_Cancelled_time);
         TableID = findViewById(R.id.manageBooking_Cancelled_table);
         TableSize = findViewById(R.id.manageBooking_Cancelled_person);
         Request = findViewById(R.id.manageBooking_Cancelled_request);
@@ -47,29 +50,41 @@ public class ManageBookingCancelledActivity extends AppCompatActivity {
 
         FoodList = findViewById(R.id.manageBooking_Cancelled_foodList);
 
-        foodListAdapter = new FoodListAdapter();
-        FoodList.setAdapter(foodListAdapter);
+//        foodListAdapter = new FoodListAdapter();
+//        FoodList.setAdapter(foodListAdapter);
 
         TableBookingDatabase database = TableBookingDatabase.getDatabase(getApplicationContext());
         BookingDAO bookingDAO = database.bookingDAO();
         CustomerDAO customerDAO = database.customerDAO();
         TableDAO tableDAO = database.tableDAO();
+        RestaurantDAO restaurantDAO = database.restaurantDAO();
+
         List<Booking> bookingList = bookingDAO.getBookingById(bookingID);
-        List<Customer> customerList = customerDAO.getCustomerById(customerID);
+        List<Customer> customerList = customerDAO.getCustomerById(bookingList.get(0).getCustomer_id());
         List<Table> tableList = tableDAO.getTableById(bookingList.get(0).getTable_id());
+        List<Restaurant> restaurantList = restaurantDAO.getRestaurantById(tableList.get(0).getRestaurant_id());
+
+        startTime = TimeConverter.timeToTimestamp(bookingList.get(0).getStart_time());
+        endTime = TimeConverter.timeToTimestamp(bookingList.get(0).getEnd_time());
+
+        Timestamp startTS = new Timestamp(startTime);
+        Timestamp endTS = new Timestamp(endTime);
+
+        String[] Date = startTS.toString().split(" ");
+        String[] Date2 = endTS.toString().split(" ");
 
         Name.setText(customerList.get(0).getUser_name());
         TableID.setText(bookingList.get(0).getTable_id());
         TableSize.setText(tableList.get(0).getSize());
         Request.setText(bookingList.get(0).getRemark());
-        RestaurantName.setText(tableList.get(0).getRestaurant_id());
-        Date.setText();
-        Time.setText();
+        RestaurantName.setText(restaurantList.get(0).getRestaurant_name());
+        DateText.setText(Date[0]);
+        TimeText.setText(Date[1] + " " + Date2[1]);
 
         BackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //go back
             }
         });
 

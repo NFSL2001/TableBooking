@@ -10,38 +10,41 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import wia2007.project.tablebooking.R;
-
+import java.sql.Timestamp;
 import java.util.List;
 
+import wia2007.project.tablebooking.converter.TimeConverter;
 import wia2007.project.tablebooking.dao.BookingDAO;
 import wia2007.project.tablebooking.dao.CustomerDAO;
+import wia2007.project.tablebooking.dao.RestaurantDAO;
 import wia2007.project.tablebooking.dao.TableDAO;
 import wia2007.project.tablebooking.database.TableBookingDatabase;
 import wia2007.project.tablebooking.entity.Booking;
 import wia2007.project.tablebooking.entity.Customer;
+import wia2007.project.tablebooking.entity.Restaurant;
 import wia2007.project.tablebooking.entity.Table;
 
 
 public class ManageBookingFutureActivity extends AppCompatActivity {
 
-    TextView Name, Date, TableID, TableSize, RestaurantName, Time, Request;
+    TextView Name, DateText, TableID, TableSize, RestaurantName, TimeText, Request;
     RecyclerView FoodList;
     FoodListAdapter foodListAdapter;
     Button EditBookingButton, CancelBookingButton, UpBackButton;
     int bookingID, customerID;
+    long startTime, endTime;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_manage_booking__future);
+        setContentView(R.layout.activity_manage_booking__future);
 
         Name = findViewById(R.id.manageBooking_Future_name);
-        Date = findViewById(R.id.manageBooking_Future_date);
+        DateText = findViewById(R.id.manageBooking_Future_date);
         TableID = findViewById(R.id.manageBooking_Future_table);
         TableSize = findViewById(R.id.manageBooking_Future_person);
         RestaurantName = findViewById(R.id.manageBooking_Future_restaurantName);
-        Time = findViewById(R.id.manageBooking_Future_time);
+        TimeText = findViewById(R.id.manageBooking_Future_time);
         Request = findViewById(R.id.manageBooking_Future_request);
 
         EditBookingButton = findViewById(R.id.manageBooking_Future_editBookingButton);
@@ -53,25 +56,34 @@ public class ManageBookingFutureActivity extends AppCompatActivity {
         BookingDAO bookingDAO = database.bookingDAO();
         CustomerDAO customerDAO = database.customerDAO();
         TableDAO tableDAO = database.tableDAO();
+        RestaurantDAO restaurantDAO = database.restaurantDAO();
 
         List<Booking> bookingList = bookingDAO.getBookingById(bookingID);
         List<Customer> customerList = customerDAO.getCustomerById(customerID);
         List<Table> tableList = tableDAO.getTableById(bookingList.get(0).getTable_id());
+        List<Restaurant> restaurantList = restaurantDAO.getRestaurantById(tableList.get(0).getRestaurant_id());
+
+        startTime = TimeConverter.timeToTimestamp(bookingList.get(0).getStart_time());
+        endTime = TimeConverter.timeToTimestamp(bookingList.get(0).getEnd_time());
+
+        Timestamp startTS = new Timestamp(startTime);
+        Timestamp endTS = new Timestamp(endTime);
+
+        String[] Date = startTS.toString().split(" ");
+        String[] Date2 = endTS.toString().split(" ");
 
         Name.setText(customerList.get(0).getUser_name());
         TableID.setText(bookingList.get(0).getTable_id());
         TableSize.setText(tableList.get(0).getSize());
         Request.setText(bookingList.get(0).getRemark());
-        RestaurantName.setText(tableList.get(0).getRestaurant_id());
-//        Date.setText();
-//        Time.setText();
+        RestaurantName.setText(restaurantList.get(0).getRestaurant_name());
+        DateText.setText(Date[0]);
+        TimeText.setText(Date[1] + " " + Date2[1]);
 
         FoodList = findViewById(R.id.manageBooking_Future_foodList);
 
-
-
-        foodListAdapter = new FoodListAdapter();
-        FoodList.setAdapter(foodListAdapter);
+//        foodListAdapter = new FoodListAdapter();
+//        FoodList.setAdapter(foodListAdapter);
 
         EditBookingButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +95,7 @@ public class ManageBookingFutureActivity extends AppCompatActivity {
         CancelBookingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                cancelBooking(bookingID);
             }
         });
 
@@ -97,10 +109,11 @@ public class ManageBookingFutureActivity extends AppCompatActivity {
 
     }
 
-    public void openNextActivity() {
-        getIntent().putExtra(MENU_ID, bID);
 
-        Intent intent = new Intent(this, ManageBookingFutureActivity.class);
+    public void cancelBooking(int bookingID) {
+        getIntent().putExtra("bookingID", bookingID);
+
+        Intent intent = new Intent(this, CancelBookingActivity.class);
         startActivity(intent);
     }
 

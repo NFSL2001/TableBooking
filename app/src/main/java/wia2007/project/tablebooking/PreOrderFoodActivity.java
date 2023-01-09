@@ -11,25 +11,28 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
 
-import wia2007.project.tablebooking.dao.BookingContainMenuDAO;
 import wia2007.project.tablebooking.dao.MenuDAO;
 import wia2007.project.tablebooking.database.TableBookingDatabase;
-import wia2007.project.tablebooking.entity.BookingContainMenu;
 import wia2007.project.tablebooking.entity.Menu;
 
 
 public class PreOrderFoodActivity extends AppCompatActivity {
 
-    public static final String MENU_ID = "wia2007.project.tablebooking.MENU_ID";
 
     Button SkipButton, NextButton, BackButton, CancelButton;
     TextView Price;
-    int sum, MenuID;
+    int menuID;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_pre_order_food);
+        setContentView(R.layout.activity_pre_order_food);
+
+        int restaurantID = getIntent().getIntExtra("resID", 0);
+        int tableSize = getIntent().getIntExtra("tSize", 0);
+        long startTime = getIntent().getIntExtra("sTime", 0);
+        long endTime = getIntent().getIntExtra("eTime", 0);
+        int tID = getIntent().getIntExtra("tableID", 0);
 
         SkipButton = findViewById(R.id.pre_order_food_buttonSkipNow);
         NextButton = findViewById(R.id.pre_order_food_nextButton);
@@ -40,6 +43,7 @@ public class PreOrderFoodActivity extends AppCompatActivity {
 
         TableBookingDatabase db = TableBookingDatabase.getDatabase(getApplicationContext());
         MenuDAO MenuDAO = db.menuDAO();
+        List<Menu> menuList = MenuDAO.getMenuByRestaurant(restaurantID);
 
         SkipButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +55,7 @@ public class PreOrderFoodActivity extends AppCompatActivity {
        NextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openNextActivity(MenuID);
+                openNextActivity(restaurantID, tableSize, startTime, endTime, tID, menuID);
             }
         });
 
@@ -74,8 +78,13 @@ public class PreOrderFoodActivity extends AppCompatActivity {
 
 
 
-    public void openNextActivity(int mID) {
-        getIntent().putExtra(MENU_ID, mID);
+    public void openNextActivity(int restaurantID, int tableSize, long startTime, long endTime, int tID, int mID) {
+        getIntent().putExtra("resID", restaurantID);
+        getIntent().putExtra("tSize", tableSize);
+        getIntent().putExtra("sTime", startTime);
+        getIntent().putExtra("eTime", endTime);
+        getIntent().putExtra("tableID", tID);
+        getIntent().putExtra("menuID", mID);
 
         Intent intent = new Intent(this, CheckBookingActivity.class);
         startActivity(intent);

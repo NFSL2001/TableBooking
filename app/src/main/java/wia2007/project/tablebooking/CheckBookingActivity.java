@@ -15,15 +15,22 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+
+import wia2007.project.tablebooking.converter.TimeConverter;
 import wia2007.project.tablebooking.dao.BookingContainMenuDAO;
-import wia2007.project.tablebooking.dao.BookingDAO;
 import wia2007.project.tablebooking.dao.CustomerDAO;
 import wia2007.project.tablebooking.database.TableBookingDatabase;
+import wia2007.project.tablebooking.entity.Booking;
+import wia2007.project.tablebooking.entity.BookingContainMenu;
+import wia2007.project.tablebooking.entity.Customer;
 
 
 public class CheckBookingActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    TextView Name, Date, TableID, TableSize, RestaurantName, Time, Price;
+    TextView Name, DateText, TableID, TableSize, RestaurantName, Time, Price;
     RecyclerView FoodList;
     FoodListAdapter foodListAdapter;
     EditText Request, PhoneNum2, Email;
@@ -34,15 +41,33 @@ public class CheckBookingActivity extends AppCompatActivity implements AdapterVi
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_check_booking);
+        setContentView(R.layout.activity_check_booking);
+
+        int restaurantID = getIntent().getIntExtra("resID", 0);
+        int tableSize = getIntent().getIntExtra("tSize", 0);
+        long startTime = getIntent().getIntExtra("sTime", 0);
+        long endTime = getIntent().getIntExtra("eTime", 0);
+        int tID = getIntent().getIntExtra("tableID", 0);
+        int mID = getIntent().getIntExtra("menuID", 0);
 
         TableBookingDatabase db = TableBookingDatabase.getDatabase(getApplicationContext());
         CustomerDAO customerDAO = db.customerDAO();
         BookingContainMenuDAO BCMDAO = db.bookingContainMenuDAO();
 
+        List<Customer> customerList;
+        List<BookingContainMenu> BCMList;
+
+        List<Booking> bookingInsert = new ArrayList<Booking>();
+
+        Timestamp startTS = new Timestamp(startTime);
+        Timestamp endTS = new Timestamp(endTime);
+
+        String[] Date = startTS.toString().split(" ");
+        String[] Date2 = endTS.toString().split(" ");
+
 
         Name = findViewById(R.id.check_booking_name);
-        Date = findViewById(R.id.check_booking_date);
+        DateText = findViewById(R.id.check_booking_date);
         TableID = findViewById(R.id.check_booking_table);
         TableSize = findViewById(R.id.check_booking_people);
         RestaurantName = findViewById(R.id.check_booking_textTitle);

@@ -1,5 +1,7 @@
 package wia2007.project.tablebooking;
 
+import static java.lang.String.valueOf;
+
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -11,25 +13,28 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.NumberPicker;
 
-import wia2007.project.tablebooking.R;
+import java.sql.Timestamp;
+import java.util.List;
+
 import wia2007.project.tablebooking.dao.RestaurantDAO;
-import wia2007.project.tablebooking.dao.TableDAO;
 import wia2007.project.tablebooking.database.TableBookingDatabase;
+import wia2007.project.tablebooking.entity.Restaurant;
 
 
 public class SelectTimeActivity extends AppCompatActivity {
-    public static final String EXTRA_NUMBER = "wia2007.project.tablebooking.EXTRA_NUMBER";
 
-    NumberPicker AdultNumberPicker, ChildrenNumberPicker, DurationNumberPicker;
+    NumberPicker AdultNumberPicker, ChildrenNumberPicker, DurationNumberPicker, StartTimeSelector1, StartTimeSelector2;
     CalendarView DateSelector;
     Button NextButton, CancelButton;
-    int AdultVal, ChildrenVal, Person, StartTime, EndTime;
-    long DateValue;
+    int AdultVal, ChildrenVal, Person, restaurantID, hour;
+    long StartTime, EndTime;
+
+    String Date, StartHour, StartMinute, EndHour;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_select_time);
+        setContentView(R.layout.activity_select_time);
 
         AdultNumberPicker = findViewById(R.id.select_time_adultNumberPicker);
         ChildrenNumberPicker = findViewById(R.id.select_time_childrenNumberPicker);
@@ -42,7 +47,7 @@ public class SelectTimeActivity extends AppCompatActivity {
 
         AdultNumberPicker.setMinValue(0);
         ChildrenNumberPicker.setMinValue(0);
-        DurationNumberPicker.setMinValue(0);
+        DurationNumberPicker.setMinValue(1);
 
         AdultNumberPicker.setMaxValue(8);
         ChildrenNumberPicker.setMaxValue(8);
@@ -50,11 +55,39 @@ public class SelectTimeActivity extends AppCompatActivity {
 
         TableBookingDatabase db = TableBookingDatabase.getDatabase(getApplicationContext());
         RestaurantDAO restaurantDAO = db.restaurantDAO();
+        List<Restaurant> restaurantList = restaurantDAO.getRestaurantById(restaurantID);
+
+        StartTimeSelector1.setMinValue(0);
+        StartTimeSelector1.setMaxValue(23);
+
+        StartTimeSelector2.setMinValue(0);
+        StartTimeSelector2.setMaxValue(59);
 
         DateSelector.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
-                DateValue = DateSelector.getDate();
+                String Date = i + "-" + i1 + "-" + i2 + " ";
+            }
+        });
+
+        StartTimeSelector1.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker numberPicker, int i, int i1) {
+                hour = i1;
+                if (i1 < 10)
+                    StartHour = "0" + i1;
+                else
+                    StartHour = valueOf(i1);
+            }
+        });
+
+        StartTimeSelector2.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker numberPicker, int i, int i1) {
+                if (i1 < 10)
+                    StartMinute = "0" + i1;
+                else
+                    StartMinute = valueOf(i1);
             }
         });
 
@@ -77,35 +110,41 @@ public class SelectTimeActivity extends AppCompatActivity {
         DurationNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker numberPicker, int i, int i1) {
-                EndTime = i1;
+                EndHour = valueOf(hour + i1);
             }
         });
-
-//        AdultNumberPicker.setMaxValue(8-ChildrenVal);
-//        ChildrenNumberPicker.setMaxValue(8-AdultVal);
 
         NextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                String startString = Date + StartHour + ":" + StartMinute;
+                String endString = Date + EndHour + ":" + StartMinute;
+
+                Timestamp startTS = Timestamp.valueOf(startString);
+                Timestamp endTS = Timestamp.valueOf(endString);
+
+                StartTime = startTS.getTime();
+                EndTime = endTS.getTime();
                 Person = ChildrenVal + AdultVal;
-                openNextActivity(Person, StartTime, EndTime, DateValue);
+                openNextActivity(restaurantID, Person, StartTime, EndTime);
             }
         });
 
         CancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //go home
             }
         });
 
     }
 
-    public void openNextActivity(int tableSize, int startTime, int endTime, long dateVal) {
-            getIntent().putExtra(EXTRA_NUMBER, tableSize);
-            getIntent().putExtra(EXTRA_NUMBER, startTime);
-            getIntent().putExtra(EXTRA_NUMBER, endTime);
-            getIntent().putExtra(EXTRA_NUMBER, dateVal);
+    public void openNextActivity(int restaurantID, int tableSize, long startTime, long endTime) {
+            getIntent().putExtra("resID", restaurantID);
+            getIntent().putExtra("tSize", tableSize);
+            getIntent().putExtra("sTime", startTime);
+            getIntent().putExtra("eTime", endTime);
 
         Intent intent = new Intent(this, SelectTableActivity.class);
         startActivity(intent);

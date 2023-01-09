@@ -9,8 +9,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import wia2007.project.tablebooking.R;
-
 import wia2007.project.tablebooking.entity.BookingContainMenu;
 import wia2007.project.tablebooking.entity.Menu;
 
@@ -44,9 +42,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodLi
     }
 
     @Override
-    public int getItemCount() {
-            return Menus.size();
-    }
+    public int getItemCount() { return BCM.size(); }
 
     public static class FoodListViewHolder extends RecyclerView.ViewHolder {
 
