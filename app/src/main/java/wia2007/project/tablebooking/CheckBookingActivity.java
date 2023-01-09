@@ -140,7 +140,7 @@ public class CheckBookingActivity extends AppCompatActivity {
                 for(int i = 0; i<menuId.size();i++){
                    db.bookingContainMenuDAO().insertContains(new BookingContainMenu(booking_id,menuId.get(i),quantity.get(i)));
                 }
-//                openNextActivity();
+                openNextActivity();
             }
         });
 
