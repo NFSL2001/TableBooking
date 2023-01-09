@@ -3,6 +3,7 @@ package wia2007.project.tablebooking;
 import static java.lang.String.valueOf;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +38,7 @@ public class SelectTableActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_table);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         int restaurantID = getIntent().getIntExtra("resID", 0);
         int tableSize = getIntent().getIntExtra("tSize", 0);
@@ -190,7 +192,7 @@ public class SelectTableActivity extends AppCompatActivity {
         CancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //go to home page
+                cancelActivity();
             }
         });
 
@@ -216,5 +218,10 @@ public class SelectTableActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, PreOrderFoodActivity.class);
         startActivity(intent);
+    }
+
+    public void cancelActivity() {
+        Intent backIntent = new Intent(this, MainMenuFragment.class);
+        startActivity(backIntent);
     }
 }

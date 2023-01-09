@@ -3,6 +3,7 @@ package wia2007.project.tablebooking;
 import static java.lang.String.valueOf;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -26,7 +27,7 @@ public class SelectTimeActivity extends AppCompatActivity {
     NumberPicker AdultNumberPicker, ChildrenNumberPicker, DurationNumberPicker, StartTimeSelector1, StartTimeSelector2;
     CalendarView DateSelector;
     Button NextButton, CancelButton;
-    int AdultVal, ChildrenVal, Person, restaurantID, hour;
+    int AdultVal, ChildrenVal, Person, restaurantID = 0, hour;
     long StartTime, EndTime;
 
     String Date, StartHour, StartMinute, EndHour;
@@ -35,6 +36,7 @@ public class SelectTimeActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_time);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         AdultNumberPicker = findViewById(R.id.select_time_adultNumberPicker);
         ChildrenNumberPicker = findViewById(R.id.select_time_childrenNumberPicker);
@@ -134,7 +136,7 @@ public class SelectTimeActivity extends AppCompatActivity {
         CancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //go home
+                cancelActivity();
             }
         });
 
@@ -148,6 +150,11 @@ public class SelectTimeActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, SelectTableActivity.class);
         startActivity(intent);
+    }
+
+    public void cancelActivity() {
+        Intent backIntent = new Intent(this, MainMenuFragment.class);
+        startActivity(backIntent);
     }
 
 

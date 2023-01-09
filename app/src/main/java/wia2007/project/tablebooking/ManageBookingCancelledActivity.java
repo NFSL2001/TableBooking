@@ -1,5 +1,7 @@
 package wia2007.project.tablebooking;
 
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,16 +11,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import wia2007.project.tablebooking.converter.TimeConverter;
+import wia2007.project.tablebooking.dao.BookingContainMenuDAO;
 import wia2007.project.tablebooking.dao.BookingDAO;
 import wia2007.project.tablebooking.dao.CustomerDAO;
+import wia2007.project.tablebooking.dao.MenuDAO;
 import wia2007.project.tablebooking.dao.RestaurantDAO;
 import wia2007.project.tablebooking.dao.TableDAO;
 import wia2007.project.tablebooking.database.TableBookingDatabase;
 import wia2007.project.tablebooking.entity.Booking;
+import wia2007.project.tablebooking.entity.BookingContainMenu;
 import wia2007.project.tablebooking.entity.Customer;
+import wia2007.project.tablebooking.entity.Menu;
+import wia2007.project.tablebooking.entity.MenuItem;
 import wia2007.project.tablebooking.entity.Restaurant;
 import wia2007.project.tablebooking.entity.Table;
 
@@ -37,6 +45,7 @@ public class ManageBookingCancelledActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_booking__cancelled);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         Name = findViewById(R.id.manageBooking_Cancelled_name);
         DateText = findViewById(R.id.manageBooking_Cancelled_date);
@@ -50,19 +59,37 @@ public class ManageBookingCancelledActivity extends AppCompatActivity {
 
         FoodList = findViewById(R.id.manageBooking_Cancelled_foodList);
 
-//        foodListAdapter = new FoodListAdapter();
-//        FoodList.setAdapter(foodListAdapter);
 
         TableBookingDatabase database = TableBookingDatabase.getDatabase(getApplicationContext());
         BookingDAO bookingDAO = database.bookingDAO();
         CustomerDAO customerDAO = database.customerDAO();
         TableDAO tableDAO = database.tableDAO();
         RestaurantDAO restaurantDAO = database.restaurantDAO();
+        MenuDAO menuDAO = database.menuDAO();
+        BookingContainMenuDAO BCMDAO = database.bookingContainMenuDAO();
 
         List<Booking> bookingList = bookingDAO.getBookingById(bookingID);
         List<Customer> customerList = customerDAO.getCustomerById(bookingList.get(0).getCustomer_id());
         List<Table> tableList = tableDAO.getTableById(bookingList.get(0).getTable_id());
         List<Restaurant> restaurantList = restaurantDAO.getRestaurantById(tableList.get(0).getRestaurant_id());
+        List<BookingContainMenu> BCMList = BCMDAO.getContainsByBookingId(bookingID);
+        List<MenuItem> menuList = menuDAO.getMenuByRestaurant(tableList.get(0).getRestaurant_id());
+
+        List<Integer> MenuIDList= new ArrayList<>();
+        List<String> MenuNameList = new ArrayList<>();
+        List<Integer> MenuPriceList = new ArrayList<>();
+
+        for(int i = 0; i < BCMList.size(); i++) {
+            MenuIDList.add(BCMList.get(i).getMenu_id());
+        }
+
+        for(int i = 0; i < menuList.size(); i++) {
+            if (MenuIDList.get(i) == menuList.get(i).getMenu_id()) {
+                MenuNameList.add(menuList.get(i).getMenu_name());
+                MenuPriceList.add(Math.round(menuList.get(i).getPrice()));
+            }
+        }
+
 
         startTime = TimeConverter.timeToTimestamp(bookingList.get(0).getStart_time());
         endTime = TimeConverter.timeToTimestamp(bookingList.get(0).getEnd_time());
@@ -72,6 +99,9 @@ public class ManageBookingCancelledActivity extends AppCompatActivity {
 
         String[] Date = startTS.toString().split(" ");
         String[] Date2 = endTS.toString().split(" ");
+
+        foodListAdapter = new FoodListAdapter(this, BCMList, MenuNameList, MenuPriceList);
+        FoodList.setAdapter(foodListAdapter);
 
         Name.setText(customerList.get(0).getUser_name());
         TableID.setText(bookingList.get(0).getTable_id());
@@ -84,10 +114,15 @@ public class ManageBookingCancelledActivity extends AppCompatActivity {
         BackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //go back
+
             }
         });
 
+    }
+
+    public void cancelActivity() {
+        Intent backIntent = new Intent(this, MainMenuFragment.class);
+        startActivity(backIntent);
     }
 
 }

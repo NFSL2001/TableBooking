@@ -1,6 +1,7 @@
 package wia2007.project.tablebooking;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,10 +23,14 @@ import java.util.List;
 import wia2007.project.tablebooking.converter.TimeConverter;
 import wia2007.project.tablebooking.dao.BookingContainMenuDAO;
 import wia2007.project.tablebooking.dao.CustomerDAO;
+import wia2007.project.tablebooking.dao.RestaurantDAO;
+import wia2007.project.tablebooking.dao.TableDAO;
 import wia2007.project.tablebooking.database.TableBookingDatabase;
 import wia2007.project.tablebooking.entity.Booking;
 import wia2007.project.tablebooking.entity.BookingContainMenu;
 import wia2007.project.tablebooking.entity.Customer;
+import wia2007.project.tablebooking.entity.Restaurant;
+import wia2007.project.tablebooking.entity.Table;
 
 
 public class CheckBookingActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -42,6 +47,7 @@ public class CheckBookingActivity extends AppCompatActivity implements AdapterVi
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_booking);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         int restaurantID = getIntent().getIntExtra("resID", 0);
         int tableSize = getIntent().getIntExtra("tSize", 0);
@@ -53,9 +59,14 @@ public class CheckBookingActivity extends AppCompatActivity implements AdapterVi
         TableBookingDatabase db = TableBookingDatabase.getDatabase(getApplicationContext());
         CustomerDAO customerDAO = db.customerDAO();
         BookingContainMenuDAO BCMDAO = db.bookingContainMenuDAO();
+        RestaurantDAO restaurantDAO = db.restaurantDAO();
+        TableDAO tableDAO = db.tableDAO();
 
         List<Customer> customerList;
         List<BookingContainMenu> BCMList;
+        List<Restaurant> restaurantList = restaurantDAO.getRestaurantById(restaurantID);
+        List<Table> tableList = tableDAO.getTableById(tID);
+
 
         List<Booking> bookingInsert = new ArrayList<Booking>();
 
@@ -90,11 +101,11 @@ public class CheckBookingActivity extends AppCompatActivity implements AdapterVi
 //        FoodList.setAdapter(foodListAdapter);
 
 //        Name.setText();
-//        Date.setText();
-//        Time.setText();
-//        RestaurantName.setText();
-//        TableID.setText();
-//        TableSize.setText();
+        DateText.setText(Date[0]);
+        Time.setText(Date[1] + " " + Date2[1]);
+        RestaurantName.setText(restaurantList.get(0).getRestaurant_name());
+        TableID.setText(tableList.get(0).getName());
+        TableSize.setText(tableSize + " People");
 
         ArrayAdapter<CharSequence> phoneNumAdapter = ArrayAdapter.createFromResource(this, R.array.phoneNumbers, android.R.layout.simple_spinner_item);
         phoneNumAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -104,7 +115,7 @@ public class CheckBookingActivity extends AppCompatActivity implements AdapterVi
         ConfirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                openNextActivity();
             }
         });
 
@@ -118,7 +129,7 @@ public class CheckBookingActivity extends AppCompatActivity implements AdapterVi
         CancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                cancelActivity();
             }
         });
 
@@ -142,6 +153,11 @@ public class CheckBookingActivity extends AppCompatActivity implements AdapterVi
 
     public void openPreviousActivity() {
         Intent backIntent = new Intent(this, PreOrderFoodActivity.class);
+        startActivity(backIntent);
+    }
+
+    public void cancelActivity() {
+        Intent backIntent = new Intent(this, MainMenuFragment.class);
         startActivity(backIntent);
     }
 }

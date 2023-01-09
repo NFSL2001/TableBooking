@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import wia2007.project.tablebooking.database.TableBookingDatabase;
 import wia2007.project.tablebooking.entity.BookingContainMenu;
 import wia2007.project.tablebooking.entity.Menu;
 
@@ -17,13 +18,16 @@ import java.util.List;
 public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodListViewHolder> {
 
     private final LayoutInflater layoutInflater;
-    private List<Menu> Menus;
     private List<BookingContainMenu> BCM;
+    private List<String> NameList;
+    private List<Integer> PriceList;
 
-    public FoodListAdapter(Context context, List<Menu> Menus, List<BookingContainMenu> BCM) {
+
+    public FoodListAdapter(Context context, List<BookingContainMenu> BCM, List<String> NameList, List<Integer> PriceList) {
         layoutInflater = LayoutInflater.from(context);
-        this.Menus = Menus;
         this.BCM = BCM;
+        this.NameList = NameList;
+        this.PriceList = PriceList;
     }
 
     @NonNull
@@ -36,8 +40,9 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodLi
 
     @Override
     public void onBindViewHolder(@NonNull FoodListAdapter.FoodListViewHolder holder, int position) {
-        holder.FoodName.setText(Menus.get(position).getMenu_name());
-        holder.Price.setText(Menus.get(position).getPrice().toString());
+
+        holder.FoodName.setText(NameList.get(position));
+        holder.Price.setText(PriceList.get(position).toString());
         holder.Quantity.setText(BCM.get(position).getQuantity());
     }
 

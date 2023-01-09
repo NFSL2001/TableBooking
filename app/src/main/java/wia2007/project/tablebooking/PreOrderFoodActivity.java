@@ -1,6 +1,7 @@
 package wia2007.project.tablebooking;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import java.util.List;
 import wia2007.project.tablebooking.dao.MenuDAO;
 import wia2007.project.tablebooking.database.TableBookingDatabase;
 import wia2007.project.tablebooking.entity.Menu;
+import wia2007.project.tablebooking.entity.MenuItem;
 
 
 public class PreOrderFoodActivity extends AppCompatActivity {
@@ -27,6 +29,7 @@ public class PreOrderFoodActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_order_food);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         int restaurantID = getIntent().getIntExtra("resID", 0);
         int tableSize = getIntent().getIntExtra("tSize", 0);
@@ -43,7 +46,7 @@ public class PreOrderFoodActivity extends AppCompatActivity {
 
         TableBookingDatabase db = TableBookingDatabase.getDatabase(getApplicationContext());
         MenuDAO MenuDAO = db.menuDAO();
-        List<Menu> menuList = MenuDAO.getMenuByRestaurant(restaurantID);
+        List<MenuItem> menuList = MenuDAO.getMenuByRestaurant(restaurantID);
 
         SkipButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +72,7 @@ public class PreOrderFoodActivity extends AppCompatActivity {
         CancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                cancelActivity();
             }
         });
 
@@ -97,6 +100,11 @@ public class PreOrderFoodActivity extends AppCompatActivity {
 
     public void openPreviousActivity() {
         Intent backIntent = new Intent(this, SelectTableActivity.class);
+        startActivity(backIntent);
+    }
+
+    public void cancelActivity() {
+        Intent backIntent = new Intent(this, MainMenuFragment.class);
         startActivity(backIntent);
     }
 }
