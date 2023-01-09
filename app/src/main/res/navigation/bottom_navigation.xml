@@ -29,7 +29,7 @@
         tools:layout="@layout/activity_sign_up" />
     <fragment
         android:id="@+id/DeskHome"
-        android:name="wia2007.project.tablebooking.MainMenu"
+        android:name="wia2007.project.tablebooking.MainMenuFragment"
         android:label="fragment_main_menu"
         tools:layout="@layout/fragment_main_menu" >
         <action

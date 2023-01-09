@@ -1,4 +1,4 @@
-packagewia2007.project.tablebooking;
+package wia2007.project.tablebooking;
 
 import android.app.Application;
 import android.os.AsyncTask;

@@ -22,12 +22,12 @@ import wia2007.project.tablebooking.dao.TableDAO;
 import wia2007.project.tablebooking.entity.Booking;
 import wia2007.project.tablebooking.entity.BookingContainMenu;
 import wia2007.project.tablebooking.entity.Customer;
-import wia2007.project.tablebooking.entity.Menu;
+import wia2007.project.tablebooking.entity.MenuItem;
 import wia2007.project.tablebooking.entity.Notification;
 import wia2007.project.tablebooking.entity.Restaurant;
 import wia2007.project.tablebooking.entity.Table;
 
-@Database(entities = {Booking.class, BookingContainMenu.class, Customer.class, Menu.class, Restaurant.class, Table.class, Notification.class}, version = 1, exportSchema = false)
+@Database(entities = {Booking.class, BookingContainMenu.class, Customer.class, MenuItem.class, Restaurant.class, Table.class, Notification.class}, version = 1, exportSchema = false)
 @TypeConverters({TimeConverter.class, DateConverter.class})
 public abstract class TableBookingDatabase extends RoomDatabase {
     public abstract BookingContainMenuDAO bookingContainMenuDAO();
