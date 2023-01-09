@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import wia2007.project.tablebooking.database.TableBookingDatabase;
 import wia2007.project.tablebooking.entity.MenuBaseData;
 import wia2007.project.tablebooking.entity.MenuCategory;
 import wia2007.project.tablebooking.entity.MenuItem;
@@ -172,6 +173,15 @@ public class MenuAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     if(!OrderQuantity.getText().toString().equals("")){
                         MenuItem menuItem = (MenuItem) menuList.get(getAdapterPosition());
                         map.put(menuItem.getMenu_id(),Integer.parseInt(OrderQuantity.getText().toString()));
+                        List<Integer> key = new ArrayList<>(map.keySet());
+                        List<Integer> values = new ArrayList<>(map.values());
+                        double price = 0;
+                        for(int i = 0; i<map.size();i++){
+                            if(values.get(i) != 0){
+                                price += TableBookingDatabase.getDatabase(context).menuDAO().getMenuById(key.get(i)).get(0).getPrice() * values.get(i);
+                            }
+                        }
+                        PreOrderFoodActivity.Price.setText("RM"+String.format("%.2f",price));
                     }
                 }
             });

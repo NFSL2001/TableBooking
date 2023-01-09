@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +34,7 @@ public class PreOrderFoodActivity extends AppCompatActivity {
 
 
     Button SkipButton, NextButton, BackButton, CancelButton;
-    TextView Price;
+    static TextView Price;
     int menuID;
     MenuAdapter2 adapter;
     Map<String, List<MenuItem>> menuMap = null;
@@ -82,10 +83,10 @@ public class PreOrderFoodActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
-        TableBookingDatabase db = TableBookingDatabase.getDatabase(getApplicationContext());
-        MenuDAO MenuDAO = db.menuDAO();
-        List<MenuItem> menuList = MenuDAO.getMenuByRestaurant(restaurantID);
+        double price = 0;
 
+        Price = findViewById(R.id.pre_order_food_fees);
+        Price.setText(String.format("%.2f",price));
         SkipButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -127,11 +128,13 @@ public class PreOrderFoodActivity extends AppCompatActivity {
         getIntent().putExtra("menuID", mID);
 
         Intent intent = new Intent(this, CheckBookingActivity.class);
+        intent.putExtra("Skip","No");
         startActivity(intent);
     }
 
     public void skipToActivity() {
         Intent intent = new Intent(this, CheckBookingActivity.class);
+        intent.putExtra("Skip","Yes");
         startActivity(intent);
     }
 

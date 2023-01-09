@@ -49,7 +49,7 @@ public class CheckBookingActivity extends AppCompatActivity implements AdapterVi
     EditText Request, PhoneNum2, Email;
     Button ConfirmButton, BackButton, CancelButton;
     Spinner PhoneNum1;
-    Map<MenuItem,Integer> food = new LinkedHashMap<>();
+    Map<MenuItem,Integer> food = new HashMap<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,19 +57,21 @@ public class CheckBookingActivity extends AppCompatActivity implements AdapterVi
         setContentView(R.layout.activity_check_booking);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        Map<Integer,Integer> map = MenuAdapter2.getMap();
-        System.out.println(map.toString());
-
-        List<Integer> key = new ArrayList<>(map.keySet());
-        List<Integer> values = new ArrayList<>(map.values());
-        for(int i = 0; i<map.size();i++){
-            if(values.get(i) != 0){
-                food.put(TableBookingDatabase.getDatabase(this).menuDAO().getMenuById(key.get(i)).get(0),values.get(i));
+        if(!"Yes".equals(getIntent().getExtras().getString("Skip"))){
+            Map<Integer,Integer> map = MenuAdapter2.getMap();
+            List<Integer> key = new ArrayList<>(map.keySet());
+            List<Integer> values = new ArrayList<>(map.values());
+            for(int i = 0; i<map.size();i++){
+                if(values.get(i) != 0){
+                    food.put(TableBookingDatabase.getDatabase(this).menuDAO().getMenuById(key.get(i)).get(0),values.get(i));
+                }
             }
+
+            foodListAdapter = new FoodListAdapter(this,food);
+            FoodList = findViewById(R.id.check_booking_foodList);
+            FoodList.setLayoutManager(new LinearLayoutManager(this));
+            FoodList.setAdapter(foodListAdapter);
         }
-
-        foodListAdapter = new FoodListAdapter(this,food);
-
 
         int customerID = getIntent().getIntExtra("cusID", 0);
         int restaurantID = getIntent().getIntExtra("resID", 0);
@@ -120,10 +122,6 @@ public class CheckBookingActivity extends AppCompatActivity implements AdapterVi
         CancelButton = findViewById(R.id.check_booking_cancelButton);
 
         PhoneNum1 = findViewById(R.id.check_booking_spinnerPhoneNumber);
-
-        FoodList = findViewById(R.id.check_booking_foodList);
-        FoodList.setLayoutManager(new LinearLayoutManager(this));
-        FoodList.setAdapter(foodListAdapter);
 //
 ////        foodListAdapter = new FoodListAdapter();
 ////        FoodList.setAdapter(foodListAdapter);
