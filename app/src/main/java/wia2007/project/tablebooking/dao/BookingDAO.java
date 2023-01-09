@@ -59,5 +59,5 @@ public interface BookingDAO {
     public String[] selectYear();
 
     @RawQuery
-    Object rawQuery(SimpleSQLiteQuery query);
+    List<Booking> rawQuery(SimpleSQLiteQuery query);
 }

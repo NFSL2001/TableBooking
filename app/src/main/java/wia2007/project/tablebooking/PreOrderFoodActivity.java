@@ -125,10 +125,10 @@ public class PreOrderFoodActivity extends AppCompatActivity {
         getIntent().putExtra("sTime", startTime);
         getIntent().putExtra("eTime", endTime);
         getIntent().putExtra("tableID", tID);
-        getIntent().putExtra("menuID", mID);
 
         Intent intent = new Intent(this, CheckBookingActivity.class);
         intent.putExtra("Skip","No");
+        intent.putExtra("Price",Price.getText().toString());
         startActivity(intent);
     }
 

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.sqlite.db.SimpleSQLiteQuery;
 
 import android.view.View;
 import android.widget.AdapterView;
@@ -41,15 +42,16 @@ import wia2007.project.tablebooking.entity.Restaurant;
 import wia2007.project.tablebooking.entity.Table;
 
 
-public class CheckBookingActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class CheckBookingActivity extends AppCompatActivity {
 
     TextView Name, DateText, TableID, TableSize, RestaurantName, Time, Price;
     RecyclerView FoodList;
     FoodListAdapter foodListAdapter;
-    EditText Request, PhoneNum2, Email;
+    EditText Request, PhoneNum2, Email,PhoneNum1;
     Button ConfirmButton, BackButton, CancelButton;
-    Spinner PhoneNum1;
     Map<MenuItem,Integer> food = new HashMap<>();
+    List<Integer> menuId = new ArrayList<>();
+    List<Integer> quantity = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,8 @@ public class CheckBookingActivity extends AppCompatActivity implements AdapterVi
             for(int i = 0; i<map.size();i++){
                 if(values.get(i) != 0){
                     food.put(TableBookingDatabase.getDatabase(this).menuDAO().getMenuById(key.get(i)).get(0),values.get(i));
+                    menuId.add(key.get(i));
+                    quantity.add(values.get(i));
                 }
             }
 
@@ -79,8 +83,6 @@ public class CheckBookingActivity extends AppCompatActivity implements AdapterVi
         long startTime = getIntent().getIntExtra("sTime", 0);
         long endTime = getIntent().getIntExtra("eTime", 0);
         int tID = getIntent().getIntExtra("tableID", 0);
-        int mID = getIntent().getIntExtra("menuID", 0);
-        PreOrderFoodActivity p = new PreOrderFoodActivity();
 
 
         TableBookingDatabase db = TableBookingDatabase.getDatabase(getApplicationContext());
@@ -89,8 +91,6 @@ public class CheckBookingActivity extends AppCompatActivity implements AdapterVi
         RestaurantDAO restaurantDAO = db.restaurantDAO();
         TableDAO tableDAO = db.tableDAO();
 
-        List<Customer> customerList;
-        List<BookingContainMenu> BCMList;
         List<Restaurant> restaurantList = restaurantDAO.getRestaurantById(restaurantID);
         List<Table> tableList = tableDAO.getTableById(tID);
 
@@ -102,8 +102,6 @@ public class CheckBookingActivity extends AppCompatActivity implements AdapterVi
 
         String[] Date = startTS.toString().split(" ");
         String[] Date2 = endTS.toString().split(" ");
-
-        List<Booking> bookingResult = new ArrayList<>();
 
         Name = findViewById(R.id.check_booking_name);
         DateText = findViewById(R.id.check_booking_date);
@@ -122,60 +120,44 @@ public class CheckBookingActivity extends AppCompatActivity implements AdapterVi
         CancelButton = findViewById(R.id.check_booking_cancelButton);
 
         PhoneNum1 = findViewById(R.id.check_booking_spinnerPhoneNumber);
-//
-////        foodListAdapter = new FoodListAdapter();
-////        FoodList.setAdapter(foodListAdapter);
-//
-////        Name.setText();
-//        DateText.setText(Date[0]);
-//        Time.setText(Date[1] + " " + Date2[1]);
-//        RestaurantName.setText(restaurantList.get(0).getRestaurant_name());
-//        TableID.setText(tableList.get(0).getName());
-//        TableSize.setText(tableSize + " People");
-//
-//        ArrayAdapter<CharSequence> phoneNumAdapter = ArrayAdapter.createFromResource(this, R.array.phoneNumbers, android.R.layout.simple_spinner_item);
-//        phoneNumAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        PhoneNum1.setAdapter(phoneNumAdapter);
-//        PhoneNum1.setOnItemSelectedListener(this);
-//
-//        ConfirmButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                bookingResult.get(0).setTable_id(tID);
-//                bookingResult.get(0).setCustomer_id(customerID);
-//                bookingResult.get(0).setStart_time(startT);
-//                bookingResult.get(0).setEnd_time(endT);
-//                bookingResult.get(0).setRemark(Request.toString());
-//
-//                db.bookingDAO().insertBookings((Booking) bookingResult);
+        PhoneNum1.setText("+60");
+        PhoneNum2.setText(customerDAO.getCustomerById(customerID).get(0).getMobile_number());
+        Email.setText(customerDAO.getCustomerById(customerID).get(0).getEmail());
+        Price.setText(getIntent().getExtras().getString("Price","RM 0.00"));
+        Name.setText(customerDAO.getCustomerById(customerID).get(0).getName());
+        DateText.setText(Date[0]);
+        Time.setText(Date[1] + " - " + Date2[1]);
+        RestaurantName.setText(restaurantList.get(0).getRestaurant_name());
+        TableID.setText(tableList.get(0).getName());
+        TableSize.setText(tableSize + " People");
+
+
+        ConfirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                db.bookingDAO().insertBookings(new Booking(tID,customerID,startT,endT,Request.getText().toString()));
+                int booking_id = db.bookingDAO().rawQuery(new SimpleSQLiteQuery("SELECT * FROM booking ORDER BY booking_id DESC LIMIT 1;")).get(0).getBooking_id();
+                for(int i = 0; i<menuId.size();i++){
+                   db.bookingContainMenuDAO().insertContains(new BookingContainMenu(booking_id,menuId.get(i),quantity.get(i)));
+                }
 //                openNextActivity();
-//            }
-//        });
-//
-//        BackButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                openPreviousActivity();
-//            }
-//        });
-//
-//        CancelButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                cancelActivity();
-//            }
-//        });
+            }
+        });
 
+        BackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openPreviousActivity();
+            }
+        });
 
-    }
+        CancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cancelActivity();
+            }
+        });
 
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
 
