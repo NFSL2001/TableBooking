@@ -1,11 +1,13 @@
 package wia2007.project.tablebooking;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +33,7 @@ public class SignUpActivity extends AppCompatActivity {
         // add back button
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(R.string.sign_up);
 
         Button btnSignUp = findViewById(R.id.BtnSignUp);
         btnSignUp.setOnClickListener(new View.OnClickListener() {
@@ -84,5 +87,17 @@ public class SignUpActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            // map toolbar back button same as system back button
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -16,12 +16,11 @@
             android:id="@+id/toolbarResInfo"
             android:layout_width="409dp"
             android:layout_height="wrap_content"
-            android:background="#C1121F"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
+            android:theme="@style/AppTheme.ActionBar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24"  />
 
         <TextView
             android:id="@+id/resinfoTitle"

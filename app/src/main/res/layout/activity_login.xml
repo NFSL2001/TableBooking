@@ -20,7 +20,7 @@
 
     <TextView
         android:id="@+id/TVLoginTitle"
-        android:layout_width="411dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="75dp"
         android:gravity="center_horizontal"
@@ -31,7 +31,7 @@
 
     <TextView
         android:id="@+id/TVLoginSubtitle"
-        android:layout_width="411dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="@string/log_in"
@@ -40,7 +40,7 @@
 
     <TextView
         android:id="@+id/TVIncorrect"
-        android:layout_width="411dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="75dp"
         android:text="@string/incorrect_username_or_password"
@@ -51,7 +51,7 @@
 
     <EditText
         android:id="@+id/ETUsername"
-        android:layout_width="411dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:gravity="center"
@@ -61,7 +61,7 @@
 
     <EditText
         android:id="@+id/ETPassword"
-        android:layout_width="411dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:gravity="center"
@@ -71,8 +71,9 @@
 
     <TextView
         android:id="@+id/TVStatusTitle"
-        android:layout_width="411dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
         android:gravity="end"
         android:text="@string/choose_you_status"
         android:textSize="16sp" />
