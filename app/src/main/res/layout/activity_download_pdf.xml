@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DownloadPDF">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/AppBarLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/TVDownloadPDFAct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/red"
+            app:titleTextColor="@color/white" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/TVDownload"
+        android:layout_width="333dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:text="Download the pdf of the analysis of the sales"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AppBarLayout2" />
+
+    <RelativeLayout
+        android:id="@+id/SpinnerRelativeLayoutYear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/edit_text_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVYear">
+
+        <Spinner
+            android:id="@+id/SpinnerSelectYear"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="4dp"
+            android:contentDescription="@string/sort_by"
+            android:dropDownWidth="130dp"
+            android:overlapAnchor="false"
+            android:spinnerMode="dropdown"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            tools:ignore="DuplicateSpeakableTextCheck" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/TVYear"
+        android:layout_width="333dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:text="Select Year"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVDownload" />
+
+    <RelativeLayout
+        android:id="@+id/SpinnerRelativeLayoutMonth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/edit_text_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVMonth">
+
+        <Spinner
+            android:id="@+id/SpinnerSelectMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="4dp"
+            android:contentDescription="@string/sort_by"
+            android:dropDownWidth="130dp"
+            android:overlapAnchor="false"
+            android:spinnerMode="dropdown"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            tools:ignore="DuplicateSpeakableTextCheck" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/TVMonth"
+        android:layout_width="333dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="Select Month"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SpinnerRelativeLayoutYear" />
+
+    <Button
+        android:id="@+id/Download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:text="Download"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SpinnerRelativeLayoutMonth" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
