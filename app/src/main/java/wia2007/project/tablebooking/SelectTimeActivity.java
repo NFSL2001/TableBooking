@@ -41,6 +41,8 @@ public class SelectTimeActivity extends AppCompatActivity {
         AdultNumberPicker = findViewById(R.id.select_time_adultNumberPicker);
         ChildrenNumberPicker = findViewById(R.id.select_time_childrenNumberPicker);
         DurationNumberPicker = findViewById(R.id.select_time_durationNumberPicker);
+        StartTimeSelector1 = findViewById(R.id.select_time_numberPicker1);
+        StartTimeSelector2 = findViewById(R.id.select_time_numberPicker2);
 
         DateSelector = findViewById(R.id.select_time_dateView);
 
