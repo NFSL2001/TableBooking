@@ -59,8 +59,8 @@ public class SelectTimeActivity extends AppCompatActivity {
         RestaurantDAO restaurantDAO = db.restaurantDAO();
         List<Restaurant> restaurantList = restaurantDAO.getRestaurantById(restaurantID);
 
-        StartTimeSelector1.setMinValue(0);
-        StartTimeSelector1.setMaxValue(23);
+        StartTimeSelector1.setMinValue(8);
+        StartTimeSelector1.setMaxValue(20);
 
         StartTimeSelector2.setMinValue(0);
         StartTimeSelector2.setMaxValue(59);
