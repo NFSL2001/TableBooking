@@ -15,9 +15,9 @@ import java.util.List;
 public class RestaurantImageGalleryAdapter extends RecyclerView.Adapter<RestaurantImageViewHolder> {
 
     private Context context;
-    private List<RestaurantImage> imageList;
+    private List<String> imageList;
 
-    public RestaurantImageGalleryAdapter(Context context, List<RestaurantImage> imageList) {
+    public RestaurantImageGalleryAdapter(Context context, List<String> imageList) {
         this.context = context;
         this.imageList = imageList;
     }
@@ -34,9 +34,7 @@ public class RestaurantImageGalleryAdapter extends RecyclerView.Adapter<Restaura
 
     @Override
     public void onBindViewHolder(@NonNull RestaurantImageViewHolder holder, int position) {
-        holder.imageView.setImageResource(
-                imageList.get(position).getImage()
-        );
+        holder.setImageView(holder.imageView, imageList.get(position));
     }
 
     @Override
@@ -46,15 +44,9 @@ public class RestaurantImageGalleryAdapter extends RecyclerView.Adapter<Restaura
 }
 
 
-/*
-    ====================
-    supporting class
-    ====================
-*/
-
 
 // View Holder
-class RestaurantImageViewHolder extends RecyclerView.ViewHolder {
+class RestaurantImageViewHolder extends BaseImageHolder {
 
     ImageView imageView;
 
@@ -63,21 +55,4 @@ class RestaurantImageViewHolder extends RecyclerView.ViewHolder {
         imageView = itemView.findViewById(R.id.restInfo_IVImage);
     }
 
-}
-
-// Image object class
-class RestaurantImage {
-    Integer image;
-
-    public Integer getImage() {
-        return image;
-    }
-
-    public void setImage(Integer image) {
-        this.image = image;
-    }
-
-    public RestaurantImage(Integer image) {
-        this.image = image;
-    }
 }

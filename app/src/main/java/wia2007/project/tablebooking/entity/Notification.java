@@ -1,7 +1,9 @@
 package wia2007.project.tablebooking.entity;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import java.util.List;
 
@@ -9,10 +11,12 @@ import wia2007.project.tablebooking.entity.Customer;
 
 @Entity
 public class Notification {
+    @PrimaryKey
+    @NonNull
     private String notification;
     private Integer customer_id;
 
-    private Notification(){}
+    public Notification(){}
 
     public String getNotification() {
         return notification;

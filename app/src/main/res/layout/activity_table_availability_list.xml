@@ -38,7 +38,7 @@
             android:id="@+id/ViewAvalability"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/stylish"
+            
             android:text="View Availability"
             android:textColor="@color/white"
             android:textSize="34sp"
@@ -53,7 +53,7 @@
             android:layout_height="48dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="45dp"
-            android:fontFamily="@font/stylish"
+            
             android:text="Date:"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -66,7 +66,7 @@
             android:layout_height="48dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/stylish"
+            
             android:text="Time:"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -79,7 +79,7 @@
             android:layout_height="48dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/stylish"
+            
             android:text="Table Booked:"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -92,7 +92,7 @@
             android:layout_height="48dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/stylish"
+            
             android:text="Table Available:"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -105,7 +105,7 @@
             android:layout_height="48dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/stylish"
+            
             android:text="Total Table:"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -154,7 +154,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
-        android:fontFamily="@font/stylish"
+        
         android:text="4 people table"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -179,7 +179,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
-            android:fontFamily="@font/stylish"
+            
             android:text="6 people table"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -204,7 +204,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
-            android:fontFamily="@font/stylish"
+            
             android:text="8 people table"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -229,7 +229,7 @@
             android:layout_height="48dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="45dp"
-            android:fontFamily="@font/stylish"
+            
             android:text="Show Date"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -242,7 +242,7 @@
             android:layout_height="48dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/stylish"
+            
             android:text="Show Table Available"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -255,7 +255,7 @@
             android:layout_height="48dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/stylish"
+            
             android:text="Show Total Table"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -268,7 +268,7 @@
             android:layout_height="48dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/stylish"
+            
             android:text="Show Table Booked"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -281,7 +281,7 @@
             android:layout_height="48dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/stylish"
+            
             android:text="Show Time"
             android:textColor="@color/black"
             android:textSize="20sp"

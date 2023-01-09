@@ -1,4 +1,4 @@
-package com.example.invitable;
+package wia2007.project.tablebooking;
 
 import android.app.Application;
 
@@ -7,11 +7,11 @@ import androidx.lifecycle.AndroidViewModel;
 import android.os.AsyncTask;
 import androidx.lifecycle.LiveData;
 
-import com.example.invitable.dao.TableDAO;
-import com.example.invitable.database.TableBookingDatabase;
-import com.example.invitable.entity.Table;
-
 import java.util.List;
+
+import wia2007.project.tablebooking.dao.TableDAO;
+import wia2007.project.tablebooking.database.TableBookingDatabase;
+import wia2007.project.tablebooking.entity.Table;
 
 public class TableViewModel extends AndroidViewModel {
 

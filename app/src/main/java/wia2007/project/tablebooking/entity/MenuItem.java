@@ -1,31 +1,44 @@
 package wia2007.project.tablebooking.entity;
 
-import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
-public class Menu {
+public class MenuItem extends MenuBaseData {
     @PrimaryKey(autoGenerate = true)
     private Integer menu_id;
     private String menu_name;
     private Float price;
     private Integer restaurant;
     private String path;
+    private String description;
+    private String category;
 
-    public Menu() {
+    public MenuItem() {
     }
 
     @Ignore
-    public Menu(Integer menu_id, String menu_name, Float price, Integer restaurant, String path) {
-        this.menu_id = menu_id;
+    public MenuItem(String menu_name, Float price, String description, Integer restaurant, String category, String path) {
         this.menu_name = menu_name;
         this.price = price;
+        this.description = description;
         this.restaurant = restaurant;
+        this.category = category;
         this.path = path;
+    }
+
+    @Override
+    public String toString() {
+        return "MenuItem{" +
+                "menu_id=" + menu_id +
+                ", menu_name='" + menu_name + '\'' +
+                ", price=" + price +
+                ", restaurant=" + restaurant +
+                ", path='" + path + '\'' +
+                ", description='" + description + '\'' +
+                ", category='" + category + '\'' +
+                '}';
     }
 
     public Integer getMenu_id() {
@@ -66,5 +79,19 @@ public class Menu {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getCategory() { return category; }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -12,8 +11,6 @@ import android.widget.Toast;
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Iterator;
-import java.util.List;
 
 import wia2007.project.tablebooking.database.TableBookingDatabase;
 

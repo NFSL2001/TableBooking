@@ -41,26 +41,27 @@ public class SearchActivity extends AppCompatActivity {
         //initiate list of restaurants
         TableBookingDatabase database = TableBookingDatabase.getDatabase(this);
         RestaurantDAO dao = database.restaurantDAO();
-        //allList = dao.listAllRestaurantInfo();
-        // TODO: temporary list
-        ArrayList<RestaurantDAO.RestaurantNameInfo> tempList = new ArrayList<>();
+
+        //
+        /*ArrayList<RestaurantDAO.RestaurantNameInfo> tempList = new ArrayList<>();
         tempList.add(new RestaurantDAO.RestaurantNameInfo(1,"Atmosphere 360", 1, ""));
         tempList.add(new RestaurantDAO.RestaurantNameInfo(2,"Cons Transphere", 2, ""));
         tempList.add(new RestaurantDAO.RestaurantNameInfo(3,"KFC Malaysia", 1, ""));
         tempList.add(new RestaurantDAO.RestaurantNameInfo(4,"Malaysia Cuisine", 3, ""));
         tempList.add(new RestaurantDAO.RestaurantNameInfo(5,"Domino's 360", 7, ""));
-
+*/
         //change list if cuisine type
         if (Intent.ACTION_ASSIST.equals(getIntent().getAction())){
             Integer cuisineID = getIntent().getIntExtra("cuisineType", 1);
-            // TODO: remove temporary list filter, use DAO
-            allList = new ArrayList<RestaurantDAO.RestaurantNameInfo>();
+            //
+            /*allList = new ArrayList<RestaurantDAO.RestaurantNameInfo>();
             for(RestaurantDAO.RestaurantNameInfo item: tempList){
                 if (item.cuisine_type == cuisineID)
                     allList.add(item);
-            }
+            }*/
+            allList = dao.getRestaurantByCuisine(cuisineID);
         } else {
-            allList = tempList;
+            allList = dao.listAllRestaurantInfo();
         }
 
         // get recycler view and bind view holder

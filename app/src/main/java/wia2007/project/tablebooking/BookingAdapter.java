@@ -39,7 +39,7 @@ public class BookingAdapter extends ListAdapter<BookingRestaurant, BookingViewHo
             @Override
             public void onClick(View view) {
                 //Todo: add activity class
-                Intent intent = new Intent(view.getContext(), );
+                Intent intent = new Intent(view.getContext(), BookingDetails.class);
                 intent.putExtra("bookingId", booking.getBooking_id());
                 view.getContext().startActivity(intent);
             }

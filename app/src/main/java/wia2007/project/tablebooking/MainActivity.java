@@ -1,4 +1,4 @@
-package com.example.invitable;
+package wia2007.project.tablebooking;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,6 +7,9 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.WindowManager;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -20,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = host.getNavController();
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav_view);
         NavigationUI.setupWithNavController(bottomNav, navController, false);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.TVMainAct);
+        setSupportActionBar(toolbar);
     }
 
 }

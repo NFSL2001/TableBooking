@@ -16,8 +16,7 @@ public class Table {
     }
 
     @Ignore
-    public Table(Integer table_id, Integer restaurant_id, String name, Integer size) {
-        this.table_id = table_id;
+    public Table(Integer restaurant_id, String name, Integer size) {
         this.restaurant_id = restaurant_id;
         this.name = name;
         this.size = size;
