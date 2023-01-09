@@ -27,7 +27,7 @@ public class SelectTimeActivity extends AppCompatActivity {
     NumberPicker AdultNumberPicker, ChildrenNumberPicker, DurationNumberPicker, StartTimeSelector1, StartTimeSelector2;
     CalendarView DateSelector;
     Button NextButton, CancelButton;
-    int AdultVal, ChildrenVal, Person, restaurantID = 0, hour;
+    int AdultVal, ChildrenVal, Person, restaurantID = 0, customerID, hour;
     long StartTime, EndTime;
 
     String Date, StartHour, StartMinute, EndHour;
@@ -129,7 +129,7 @@ public class SelectTimeActivity extends AppCompatActivity {
                 StartTime = startTS.getTime();
                 EndTime = endTS.getTime();
                 Person = ChildrenVal + AdultVal;
-                openNextActivity(restaurantID, Person, StartTime, EndTime);
+                openNextActivity(customerID, restaurantID, Person, StartTime, EndTime);
             }
         });
 
@@ -142,7 +142,8 @@ public class SelectTimeActivity extends AppCompatActivity {
 
     }
 
-    public void openNextActivity(int restaurantID, int tableSize, long startTime, long endTime) {
+    public void openNextActivity(int customerID, int restaurantID, int tableSize, long startTime, long endTime) {
+            getIntent().putExtra("cusID", customerID);
             getIntent().putExtra("resID", restaurantID);
             getIntent().putExtra("tSize", tableSize);
             getIntent().putExtra("sTime", startTime);

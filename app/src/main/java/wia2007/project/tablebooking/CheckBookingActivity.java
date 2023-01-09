@@ -19,6 +19,7 @@ import android.widget.TextView;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Time;
 
 import wia2007.project.tablebooking.converter.TimeConverter;
 import wia2007.project.tablebooking.dao.BookingContainMenuDAO;
@@ -49,6 +50,7 @@ public class CheckBookingActivity extends AppCompatActivity implements AdapterVi
         setContentView(R.layout.activity_check_booking);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        int customerID = getIntent().getIntExtra("cusID", 0);
         int restaurantID = getIntent().getIntExtra("resID", 0);
         int tableSize = getIntent().getIntExtra("tSize", 0);
         long startTime = getIntent().getIntExtra("sTime", 0);
@@ -67,15 +69,16 @@ public class CheckBookingActivity extends AppCompatActivity implements AdapterVi
         List<Restaurant> restaurantList = restaurantDAO.getRestaurantById(restaurantID);
         List<Table> tableList = tableDAO.getTableById(tID);
 
-
-        List<Booking> bookingInsert = new ArrayList<Booking>();
-
         Timestamp startTS = new Timestamp(startTime);
         Timestamp endTS = new Timestamp(endTime);
+
+        Time startT = new Time(startTime);
+        Time endT = new Time(endTime);
 
         String[] Date = startTS.toString().split(" ");
         String[] Date2 = endTS.toString().split(" ");
 
+        List<Booking> bookingResult = new ArrayList<>();
 
         Name = findViewById(R.id.check_booking_name);
         DateText = findViewById(R.id.check_booking_date);
@@ -115,6 +118,13 @@ public class CheckBookingActivity extends AppCompatActivity implements AdapterVi
         ConfirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                bookingResult.get(0).setTable_id(tID);
+                bookingResult.get(0).setCustomer_id(customerID);
+                bookingResult.get(0).setStart_time(startT);
+                bookingResult.get(0).setEnd_time(endT);
+                bookingResult.get(0).setRemark(Request.toString());
+
+                db.bookingDAO().insertBookings((Booking) bookingResult);
                 openNextActivity();
             }
         });

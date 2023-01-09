@@ -14,7 +14,6 @@ import java.util.List;
 
 import wia2007.project.tablebooking.dao.MenuDAO;
 import wia2007.project.tablebooking.database.TableBookingDatabase;
-import wia2007.project.tablebooking.entity.Menu;
 import wia2007.project.tablebooking.entity.MenuItem;
 
 
@@ -31,6 +30,7 @@ public class PreOrderFoodActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pre_order_food);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        int customerID = getIntent().getIntExtra("cusID", 0);
         int restaurantID = getIntent().getIntExtra("resID", 0);
         int tableSize = getIntent().getIntExtra("tSize", 0);
         long startTime = getIntent().getIntExtra("sTime", 0);
@@ -55,10 +55,10 @@ public class PreOrderFoodActivity extends AppCompatActivity {
             }
         });
 
-       NextButton.setOnClickListener(new View.OnClickListener() {
+        NextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openNextActivity(restaurantID, tableSize, startTime, endTime, tID, menuID);
+                openNextActivity(customerID, restaurantID, tableSize, startTime, endTime, tID, menuID);
             }
         });
 
@@ -79,9 +79,8 @@ public class PreOrderFoodActivity extends AppCompatActivity {
 
     }
 
-
-
-    public void openNextActivity(int restaurantID, int tableSize, long startTime, long endTime, int tID, int mID) {
+    public void openNextActivity(int customerID, int restaurantID, int tableSize, long startTime, long endTime, int tID, int mID) {
+        getIntent().putExtra("cusID", customerID);
         getIntent().putExtra("resID", restaurantID);
         getIntent().putExtra("tSize", tableSize);
         getIntent().putExtra("sTime", startTime);
