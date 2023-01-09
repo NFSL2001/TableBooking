@@ -8,10 +8,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light"
+        android:theme="@style/Theme.Design.Light.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name="wia2007.project.tablebooking.SelectTableActivity"
+            android:name="wia2007.project.tablebooking.SelectTimeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,6 +23,15 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+        <activity android:name=".SelectTableActivity"></activity>
+        <activity android:name=".PreOrderFoodActivity"></activity>
+        <activity android:name=".ManageBookingFutureActivity"></activity>
+        <activity android:name=".ManageBookingCancelledActivity"></activity>
+        <activity android:name=".ManageBookingPastActivity"></activity>
+        <activity android:name=".CancelBookingActivity"></activity>
+        <activity android:name=".CheckBookingActivity"></activity>
+
     </application>
 
 </manifest>
