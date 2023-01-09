@@ -1,6 +1,7 @@
 package wia2007.project.tablebooking;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,6 +25,13 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.TBSignUpAct);
+        setSupportActionBar(toolbar);
+        // add back button
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Button btnSignUp = findViewById(R.id.BtnSignUp);
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override

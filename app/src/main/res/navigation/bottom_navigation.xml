@@ -38,10 +38,18 @@
         <action
             android:id="@+id/action_DeskHome_to_bookingFragment"
             app:destination="@id/DeskBooking" />
+        <action
+            android:id="@+id/action_DeskHome_to_notificationFragment"
+            app:destination="@id/DeskNotification" />
     </fragment>
     <fragment
         android:id="@+id/DeskBooking"
         android:name="wia2007.project.tablebooking.fragment.BookingFragment"
         android:label="fragment_booking"
         tools:layout="@layout/fragment_booking" />
+    <fragment
+        android:id="@+id/DeskNotification"
+        android:name="wia2007.project.tablebooking.fragment.NotificationFragment"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification" />
 </navigation>
