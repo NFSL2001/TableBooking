@@ -175,7 +175,7 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         notifyDataSetChanged();
     }
 
-    public class MenuItemHolder extends RecyclerView.ViewHolder {
+    public class MenuItemHolder extends BaseImageHolder {
 
         TextView menuName, menuPrice, menuDescription;
         ImageView menuImage;
@@ -235,9 +235,10 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             }
             String path = item.getPath();
             if (path != null) {
-                File img = new File(path);
+                //File img = new File(path);
                 this.menuImage.setVisibility(View.VISIBLE);
-                this.menuImage.setImageURI(Uri.fromFile(img));
+                this.setImageView(this.menuImage, path);
+                //this.menuImage.setImageURI(Uri.fromFile(img));
             } else {
                 this.menuImage.setVisibility(View.GONE);
             }
