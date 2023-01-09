@@ -78,10 +78,13 @@ class BaseImageHolder extends RecyclerView.ViewHolder {
     public BaseImageHolder(@NonNull View itemView) {
         super(itemView);
     }
+
     public boolean setImageView(ImageView imageView, String uriString){
         /** Input: uriString, may be web address or File path address
-         *  Output: boolean, true for web address, false for File address
+         *  Output: boolean, true for image is set, false if not
          * **/
+        if(uriString.isEmpty()) return false;
+
         URI u = null;
         try {
             // convert path to URI
@@ -96,10 +99,14 @@ class BaseImageHolder extends RecyclerView.ViewHolder {
                 return true;
             } else throw new MalformedURLException("Not web URI"); //share throw exception
         } catch (IOException | URISyntaxException e) {
-            // set image using local File Uri
-            File img = new File(uriString);
-            imageView.setImageURI(Uri.fromFile(img));
-            return false;
+            try {
+                // set image using local File Uri
+                File img = new File(uriString);
+                imageView.setImageURI(Uri.fromFile(img));
+                return true;
+            } catch (Throwable f) {
+                return false;
+            }
         }
     }
 }
