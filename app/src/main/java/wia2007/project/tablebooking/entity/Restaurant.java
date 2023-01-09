@@ -44,8 +44,7 @@ public class Restaurant {
     }
 
     @Ignore
-    public Restaurant(Integer restaurant_id, String restaurant_user_name, String password, String restaurant_name, String contact_number, Float average_price, String address, String working_hour, String payment, String parking, String dresscode, String accessibility, String website, Integer cuisine_type, String description, @NonNull String title_image_path) {
-        this.restaurant_id = restaurant_id;
+    public Restaurant(String restaurant_user_name, String password, String restaurant_name, String contact_number, Float average_price, String address, String working_hour, String payment, String parking, String dresscode, String accessibility, String website, Integer cuisine_type, String description, @NonNull String title_image_path) {
         this.restaurant_user_name = restaurant_user_name;
         this.password = password;
         this.restaurant_name = restaurant_name;
