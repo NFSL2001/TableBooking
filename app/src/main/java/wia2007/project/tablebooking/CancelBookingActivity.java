@@ -97,7 +97,6 @@ public class CancelBookingActivity extends AppCompatActivity {
             }
         }
 
-        foodListAdapter = new FoodListAdapter(this, BCMList, MenuNameList, MenuPriceList);
         foodList.setAdapter(foodListAdapter);
 
 

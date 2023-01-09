@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">TableBooking</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="order_menu">Order Menu</string>
     <string name="food_order">Food Order</string>
@@ -18,6 +17,55 @@
         <item>Thai</item>
     </string-array>
     <string name="no_table">No table</string>
+
+    <string name="app_name">Invitable</string>
+    <string name="number_of_customer">No. of customer</string>
+    <string name="next_button">Next</string>
+    <string name="back_button">Back</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="confirm_button">Confirm</string>
+    <string name="customer_name">Name</string>
+    <string name="adult">Adults</string>
+    <string name="children">Childrens</string>
+    <string name="booking_date">Date</string>
+    <string name="booking_time">Time</string>
+    <string name="booking_duration">Duration (hour)</string>
+    <string name="two_people">2 people table</string>
+    <string name="four_people">4 people table</string>
+    <string name="six_people">6 people table</string>
+    <string name="eight_people">8 people table</string>
+    <string name="select_booking_table">Select your table(s)</string>
+    <string name="table_selected">Table Selected:</string>
+    <string name="select_food">Select your food</string>
+    <string name="skip_now">Skip now</string>
+    <string name="total_fees">Total Fees(SST Included)</string>
+    <string name="food">Food</string>
+    <string name="any_request">Any Request?</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="email">Email</string>
+    <string name="request">Request : </string>
+    <string name="edit_booking_button">Edit Booking</string>
+    <string name="cancel_booking_button">Cancel Booking</string>
+    <string name="book_again_button">Book Again</string>
+    <string name="why_cancel">Why do you want to cancel booking?</string>
+    <string name="other">Other:</string>
+    <string name="booking_details">Booking Details</string>
+
+
+    <string-array name="phoneNumbers">
+        <item>+60</item>
+        <item>+62</item>
+        <item>+1</item>
+        <item>+32</item>
+        <item>+599</item>
+
+    </string-array>
+
+    <string-array name="cancel_reason">
+        <item>Change of plans</item>
+        <item>Wrong Date/Time</item>
+        <item>Rather not say</item>
+    </string-array>
 
     <!-- main menu -->
     <string name="main_btnByCategory">By category</string>
@@ -62,12 +110,10 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="gender">Gender</string>
-    <string name="email">Email</string>
     <string name="contact_number">Contact Number</string>
     <string name="name">Name</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
-    <string name="other">Other</string>
     <string name="date_of_birth">Date of Birth</string>
     <string name="password">Password</string>
     <string name="must_include_at_least_1_uppercase_letter_lowercase_letter_numeric_character_and_special_character">Must include at least 1 uppercase letter, lowercase letter and numeric character</string>

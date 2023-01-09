@@ -8,7 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import wia2007.project.tablebooking.dao.RestaurantDAO;
 import wia2007.project.tablebooking.database.TableBookingDatabase;
@@ -24,6 +26,10 @@ public class RestaurantInfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_info);
+
+        Toolbar toolbar = findViewById(R.id.toolbarResInfo);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Restaurant Info");
 
         name = findViewById(R.id.FillName);
         address = findViewById(R.id.fillAdd);

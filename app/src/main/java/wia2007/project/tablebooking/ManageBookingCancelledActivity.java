@@ -100,7 +100,6 @@ public class ManageBookingCancelledActivity extends AppCompatActivity {
         String[] Date = startTS.toString().split(" ");
         String[] Date2 = endTS.toString().split(" ");
 
-        foodListAdapter = new FoodListAdapter(this, BCMList, MenuNameList, MenuPriceList);
         FoodList.setAdapter(foodListAdapter);
 
         Name.setText(customerList.get(0).getUser_name());

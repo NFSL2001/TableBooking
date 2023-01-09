@@ -1,6 +1,7 @@
 package wia2007.project.tablebooking;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +20,10 @@ public class TableAvailabilityFilterByDate extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_table_availability_filter_by_date);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("View Availability");
 
         datePicker = findViewById(R.id.datepicker);
         timePicker = findViewById(R.id.timepicker);

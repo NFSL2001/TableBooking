@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,6 +28,10 @@ public class TableAvailabilityList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_table_availability_list);
+
+        Toolbar toolbar = findViewById(R.id.toolbarViewAbilityList);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("View Availability");
 
         date = findViewById(R.id.showDate);
         time = findViewById(R.id.showTime2);

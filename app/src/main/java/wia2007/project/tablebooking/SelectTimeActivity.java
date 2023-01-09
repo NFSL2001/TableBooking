@@ -41,6 +41,8 @@ public class SelectTimeActivity extends AppCompatActivity {
         AdultNumberPicker = findViewById(R.id.select_time_adultNumberPicker);
         ChildrenNumberPicker = findViewById(R.id.select_time_childrenNumberPicker);
         DurationNumberPicker = findViewById(R.id.select_time_durationNumberPicker);
+        StartTimeSelector1 = findViewById(R.id.select_time_numberPicker1);
+        StartTimeSelector2 = findViewById(R.id.select_time_numberPicker2);
 
         DateSelector = findViewById(R.id.select_time_dateView);
 
@@ -119,10 +121,12 @@ public class SelectTimeActivity extends AppCompatActivity {
         NextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                String startString = Date + StartHour + ":" + StartMinute;
-                String endString = Date + EndHour + ":" + StartMinute;
-
+//                Date = DateSelector.getDate().
+                StartHour  = Integer.toString(StartTimeSelector1.getValue());
+                StartMinute  = Integer.toString(StartTimeSelector2.getValue());
+                String startString = Date + StartHour + ":" + StartMinute+":00.0";
+                String endString = Date + EndHour + ":" + StartMinute+":00.0";
+                System.out.println(startString);
                 Timestamp startTS = Timestamp.valueOf(startString);
                 Timestamp endTS = Timestamp.valueOf(endString);
 

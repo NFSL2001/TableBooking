@@ -109,7 +109,6 @@ public class ManageBookingFutureActivity extends AppCompatActivity {
 
         FoodList = findViewById(R.id.manageBooking_Future_foodList);
 
-        foodListAdapter = new FoodListAdapter(this, BCMList, MenuNameList, MenuPriceList);
         FoodList.setAdapter(foodListAdapter);
 
         EditBookingButton.setOnClickListener(new View.OnClickListener() {

@@ -106,7 +106,6 @@ public class ManageBookingPastActivity extends AppCompatActivity {
         DateText.setText(Date[0]);
         TimeText.setText(Date[1] + " " + Date2[1]);
 
-        foodListAdapter = new FoodListAdapter(this, BCMList, MenuNameList, MenuPriceList);
         FoodList.setAdapter(foodListAdapter);
 
         BookAgainButton.setOnClickListener(new View.OnClickListener() {
