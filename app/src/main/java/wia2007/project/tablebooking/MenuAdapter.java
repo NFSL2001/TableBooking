@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -234,14 +233,14 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 this.menuPrice.setVisibility(View.GONE);
             }
             String path = item.getPath();
-            if (path != null) {
-                //File img = new File(path);
-                this.menuImage.setVisibility(View.VISIBLE);
-                this.setImageView(this.menuImage, path);
-                //this.menuImage.setImageURI(Uri.fromFile(img));
-            } else {
+            if (path == null) {
                 this.menuImage.setVisibility(View.GONE);
             }
+            boolean isSet = this.setImageView(this.menuImage, path);
+            if (!isSet)
+                this.menuImage.setVisibility(View.GONE);
+            else
+                this.menuImage.setVisibility(View.VISIBLE);
 
             this.internalMenuCategory = item.getCategory();
         }
