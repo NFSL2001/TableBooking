@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".ItemDetails">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/AppBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/TVItemDetailsAct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.ActionBar"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24"  />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/AppBarLayout">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ItemDetailsCL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/TVItemPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="32dp"
+                    android:text="Price (RM)"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ETItemDescription" />
+
+                <TextView
+                    android:id="@+id/TVItemName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="41dp"
+                    android:text="Name"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/TVItemType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="41dp"
+                    android:text="Type of dishes"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ETItemPrice" />
+
+                <RelativeLayout
+                    android:id="@+id/SpinnerLayout3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/edit_text_layout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TVItemType">
+
+                    <Spinner
+                        android:id="@+id/SpinnerMenuType"
+                        android:layout_width="356dp"
+                        android:layout_height="59dp"
+                        android:dropDownWidth="356dp"
+                        android:ems="10"
+                        android:hint="Item Type"
+                        android:overlapAnchor="false"
+                        android:paddingStart="10dp"
+                        android:spinnerMode="dropdown"
+                        app:popupTheme="@style/AppTheme.PopupOverlay" />
+                </RelativeLayout>
+
+                <EditText
+                    android:id="@+id/ETItemName"
+                    android:layout_width="356dp"
+                    android:layout_height="59dp"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/edit_text_layout"
+                    android:ems="10"
+                    android:hint="Item Name"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TVItemName" />
+
+                <TextView
+                    android:id="@+id/TVInsertItemPic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="32dp"
+                    android:text="Pictures/Images"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/SpinnerLayout3" />
+
+                <Button
+                    android:id="@+id/btnInsertItemPic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="Upload Image"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TVInsertItemPic" />
+
+
+                <Button
+                    android:id="@+id/btnDeleteItemPic"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/ic_baseline_delete_24"
+                    app:layout_constraintStart_toEndOf="@+id/btnInsertItemPic"
+                    app:layout_constraintTop_toBottomOf="@+id/TVInsertItemPic" />
+
+                <ImageView
+                    android:id="@+id/IVItemPic"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:adjustViewBounds="true"
+                    android:paddingBottom="120dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnInsertItemPic"
+                    app:layout_constraintWidth_percent="0.90" />
+
+                <EditText
+                    android:id="@+id/ETItemPrice"
+                    android:layout_width="356dp"
+                    android:layout_height="59dp"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/edit_text_layout"
+                    android:ems="10"
+                    android:hint="Price"
+                    android:inputType="numberDecimal"
+                    android:paddingLeft="10sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TVItemPrice" />
+
+                <EditText
+
+                    android:id="@+id/ETItemDescription"
+                    android:layout_width="356dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/edit_text_layout"
+                    android:ems="10"
+                    android:hint="Description(Ingredients, Specials)"
+                    android:inputType="textMultiLine"
+                    android:minHeight="59dp"
+                    android:paddingLeft="10sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TVItemDescription" />
+
+                <TextView
+                    android:id="@+id/TVItemDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="32dp"
+                    android:text="Description"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ETItemName" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/BtnCancelItemDetails"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-8dp"
+        android:backgroundTint="@color/black"
+        android:text="Cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.3" />
+
+    <Button
+        android:id="@+id/BtnSaveItemDetails"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-8dp"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.7" />
+</androidx.constraintlayout.widget.ConstraintLayout>

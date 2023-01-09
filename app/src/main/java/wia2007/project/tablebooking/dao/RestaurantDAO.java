@@ -18,7 +18,7 @@ public interface RestaurantDAO {
     public void updateRestaurants(Restaurant ...restaurants);
 
     @Insert
-    public void insertRestaurants(Restaurant ...restaurants);
+    public long[] insertRestaurants(Restaurant ...restaurants);
 
     @Delete
     public void deleteRestaurants(Restaurant ...restaurants);

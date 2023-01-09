@@ -16,16 +16,18 @@ import wia2007.project.tablebooking.dao.BookingContainMenuDAO;
 import wia2007.project.tablebooking.dao.BookingDAO;
 import wia2007.project.tablebooking.dao.CustomerDAO;
 import wia2007.project.tablebooking.dao.MenuDAO;
+import wia2007.project.tablebooking.dao.NotificationDAO;
 import wia2007.project.tablebooking.dao.RestaurantDAO;
 import wia2007.project.tablebooking.dao.TableDAO;
 import wia2007.project.tablebooking.entity.Booking;
 import wia2007.project.tablebooking.entity.BookingContainMenu;
 import wia2007.project.tablebooking.entity.Customer;
-import wia2007.project.tablebooking.entity.Menu;
+import wia2007.project.tablebooking.entity.MenuItem;
+import wia2007.project.tablebooking.entity.Notification;
 import wia2007.project.tablebooking.entity.Restaurant;
 import wia2007.project.tablebooking.entity.Table;
 
-@Database(entities = {Booking.class, BookingContainMenu.class, Customer.class, Menu.class, Restaurant.class, Table.class}, version = 1, exportSchema = false)
+@Database(entities = {Booking.class, BookingContainMenu.class, Customer.class, MenuItem.class, Restaurant.class, Table.class, Notification.class}, version = 7, exportSchema = false)
 @TypeConverters({TimeConverter.class, DateConverter.class})
 public abstract class TableBookingDatabase extends RoomDatabase {
     public abstract BookingContainMenuDAO bookingContainMenuDAO();
@@ -34,16 +36,17 @@ public abstract class TableBookingDatabase extends RoomDatabase {
     public abstract MenuDAO menuDAO();
     public abstract RestaurantDAO restaurantDAO();
     public abstract TableDAO tableDAO();
+    public abstract NotificationDAO notificationDAO();
 
     private static volatile TableBookingDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
-    static final ExecutorService databaseExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+    public static final ExecutorService databaseExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     public static TableBookingDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (TableBookingDatabase.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), TableBookingDatabase.class, "table_booking_database").build();
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), TableBookingDatabase.class, "table_booking_database").allowMainThreadQueries().fallbackToDestructiveMigration().build();
                 }
             }
         }

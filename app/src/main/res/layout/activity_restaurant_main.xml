@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RestaurantMainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/restInfo_Toolbar"
+        android:theme="@style/AppTheme.ActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/FCVRestaurant"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        tools:layout="@layout/fragment_restaurant_info"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/restaurant_info_navigation"
+        app:layout_constraintTop_toBottomOf="@id/restInfo_Toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

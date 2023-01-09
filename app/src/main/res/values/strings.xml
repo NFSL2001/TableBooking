@@ -1,4 +1,23 @@
 <resources>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="order_menu">Order Menu</string>
+    <string name="food_order">Food Order</string>
+    <string name="sort_by">Sort By</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string-array name="cuisine">
+        <item>Malaysian</item>
+        <item>Dinner Buffet</item>
+        <item>Japanese</item>
+        <item>Indian</item>
+        <item>High Tea Buffet</item>
+        <item>Chinese</item>
+        <item>Western</item>
+        <item>Thai</item>
+    </string-array>
+    <string name="no_table">No table</string>
+
     <string name="app_name">Invitable</string>
     <string name="number_of_customer">No. of customer</string>
     <string name="next_button">Next</string>
@@ -48,4 +67,69 @@
     </string-array>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="check_booking_ask_reminder">Do you need a reminder a day before the booking?</string>
+
+    <!-- main menu -->
+    <string name="main_btnByCategory">By category</string>
+    <string name="main_btnAllCuisine">All cuisine</string>
+    <string name="main_AllCuisineSubtitle">Thought you would like to book…</string>
+    <string name="main_btnBooking">Book a table</string>
+    <!-- searching -->
+    <string name="search_title">Search</string>
+    <string name="search_hint">Search restaurants</string>
+    <!-- restaurant information -->
+    <string name="restaurant_info_show_gallery">Show gallery</string>
+    <string name="restaurant_info_book_now">Book Now</string>
+    <string name="restaurant_info_view_menu">View Menu</string>
+    <string name="restaurant_info_bookings_title">Bookings</string>
+    <string name="restaurant_info_address">Address</string>
+    <string name="restaurant_info_phone">Phone</string>
+    <string name="restaurant_info_operation_hour">Hour of operation</string>
+    <string name="restaurant_info_cuisine">Cuisine</string>
+    <string name="restaurant_info_average_price">Average Price</string>
+    <string name="restaurant_info_payment">Payment</string>
+    <string name="restaurant_info_parking">Parking</string>
+    <string name="restaurant_info_dress_code">Dress Code</string>
+    <string name="restaurant_info_accessibility">Accessibility</string>
+    <string name="restaurant_info_website">Website</string>
+    <string name="restaurant_info_description">Description</string>
+    <string name="restaurant_sampleText">No information available currently</string>
+    <string name="restaurant_sampleDescription">The owner did not put any descriptions here~</string>
+    <!-- old sample
+    <string name="restaurant_workingTimeSample"><b>Lunch</b>\n12:00-14:30\n<b>Hi-Tea</b>\n15:30-17:30\n<b>Dinner</b>\n17:00-22:00</string>
+    <string name="restaurant_parkingSample">TNG card and Credit Card Payment only\n<b>Car</b>\n1st hour or part thereof   : RM 4.00\n2nd hour or part thereof  : RM 3.00\nFlat rate (after 6pm)         : RM 6.00 / entry\n<b>Motorcycle Parking</b>: Free\n<b>Lost ticket penalty</b>: RM 50.00</string>
+    -->
+    <string name="restaurant_descriptionSample">Atmosphere 360 is a modern and elegant revolving restaurant situated 282m above ground level located at the tallest tower at the tallest tower in Southeast Asia - KL Tower.\n\nIndulge in modern authentic Malaysian and International cuisine at Atmosphere 360. Housed in the world’s 7th tallest tower - the KL Tower, its splendid atmosphere and impeccable service offer you one of a king luxurious fine dining experience that will leave a lasting mark in your heart.</string>
+
+
+    <string name="title_activity_login">Login Activity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="gender">Gender</string>
+    <string name="contact_number">Contact Number</string>
+    <string name="name">Name</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="date_of_birth">Date of Birth</string>
+    <string name="password">Password</string>
+    <string name="must_include_at_least_1_uppercase_letter_lowercase_letter_numeric_character_and_special_character">Must include at least 1 uppercase letter, lowercase letter and numeric character</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="username">Username</string>
+    <string name="for_table_ordering_purpose">For table ordering purpose</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="username_already_exist_try_another">Username already exist. Try another.</string>
+    <string name="email_already_register_try_another_email">Email already register. Try another email.</string>
+    <string name="invitable">Invitable</string>
+    <string name="log_in"> Log In </string>
+    <string name="incorrect_username_or_password">Incorrect username or password</string>
+    <string name="choose_you_status">Choose you status</string>
+    <string name="input_date_in_yyyy_mm_dd">Input date in yyyy-mm-dd</string>
+    <string name="incorrect_password">Incorrect password</string>
+    <string name="save">SAVE</string>
 </resources>
