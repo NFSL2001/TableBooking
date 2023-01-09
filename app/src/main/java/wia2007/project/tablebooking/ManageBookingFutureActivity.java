@@ -38,7 +38,6 @@ public class ManageBookingFutureActivity extends AppCompatActivity {
     RecyclerView FoodList;
     FoodListAdapter foodListAdapter;
     Button EditBookingButton, CancelBookingButton, UpBackButton;
-    int bookingID, customerID;
     long startTime, endTime;
 
     @Override
@@ -46,6 +45,10 @@ public class ManageBookingFutureActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_booking__future);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        int customerID = getIntent().getIntExtra("cusID", 0);
+        int restaurantID = getIntent().getIntExtra("resID", 0);
+        int bookingID = getIntent().getIntExtra("bookID", 0);
 
         Name = findViewById(R.id.manageBooking_Future_name);
         DateText = findViewById(R.id.manageBooking_Future_date);
@@ -71,9 +74,9 @@ public class ManageBookingFutureActivity extends AppCompatActivity {
         List<Booking> bookingList = bookingDAO.getBookingById(bookingID);
         List<Customer> customerList = customerDAO.getCustomerById(customerID);
         List<Table> tableList = tableDAO.getTableById(bookingList.get(0).getTable_id());
-        List<Restaurant> restaurantList = restaurantDAO.getRestaurantById(tableList.get(0).getRestaurant_id());
+        List<Restaurant> restaurantList = restaurantDAO.getRestaurantById(restaurantID);
         List<BookingContainMenu> BCMList = BCMDAO.getContainsByBookingId(bookingID);
-        List<MenuItem> menuList = menuDAO.getMenuByRestaurant(tableList.get(0).getRestaurant_id());
+        List<MenuItem> menuList = menuDAO.getMenuByRestaurant(restaurantID);
 
         List<Integer> MenuIDList= new ArrayList<>();
         List<String> MenuNameList = new ArrayList<>();
@@ -114,14 +117,14 @@ public class ManageBookingFutureActivity extends AppCompatActivity {
         EditBookingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                openEditActivity();
             }
         });
 
         CancelBookingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cancelBooking(bookingID);
+                cancelBooking(bookingID, customerID, restaurantID);
             }
         });
 
@@ -136,8 +139,10 @@ public class ManageBookingFutureActivity extends AppCompatActivity {
     }
 
 
-    public void cancelBooking(int bookingID) {
+    public void cancelBooking(int bookingID, int customerID, int restaurantID) {
         getIntent().putExtra("bookingID", bookingID);
+        getIntent().putExtra("cusID", customerID);
+        getIntent().putExtra("resID", restaurantID);
 
         Intent intent = new Intent(this, CancelBookingActivity.class);
         startActivity(intent);
@@ -150,6 +155,11 @@ public class ManageBookingFutureActivity extends AppCompatActivity {
 
     public void cancelActivity() {
         Intent backIntent = new Intent(this, MainMenuFragment.class);
+        startActivity(backIntent);
+    }
+
+    public void openEditActivity() {
+        Intent backIntent = new Intent(this, SelectTimeActivity.class);
         startActivity(backIntent);
     }
 

@@ -38,7 +38,6 @@ public class ManageBookingPastActivity extends AppCompatActivity {
     RecyclerView FoodList;
     FoodListAdapter foodListAdapter;
     Button BookAgainButton, UpBackButton;
-    int bookingID, customerID, restaurantID;
     long startTime, endTime;
 
     @Override
@@ -46,6 +45,10 @@ public class ManageBookingPastActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_booking__past);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        int customerID = getIntent().getIntExtra("cusID", 0);
+        int restaurantID = getIntent().getIntExtra("resID", 0);
+        int bookingID = getIntent().getIntExtra("bookID", 0);
 
         Name = findViewById(R.id.manageBooking_Past_name);
         DateText = findViewById(R.id.manageBooking_Past_date);
@@ -70,9 +73,9 @@ public class ManageBookingPastActivity extends AppCompatActivity {
         List<Booking> bookingList = bookingDAO.getBookingById(bookingID);
         List<Customer> customerList = customerDAO.getCustomerById(customerID);
         List<Table> tableList = tableDAO.getTableById(bookingList.get(0).getTable_id());
-        List<Restaurant> restaurantList = restaurantDAO.getRestaurantById(tableList.get(0).getRestaurant_id());
+        List<Restaurant> restaurantList = restaurantDAO.getRestaurantById(restaurantID);
         List<BookingContainMenu> BCMList = BCMDAO.getContainsByBookingId(bookingID);
-        List<MenuItem> menuList = menuDAO.getMenuByRestaurant(tableList.get(0).getRestaurant_id());
+        List<MenuItem> menuList = menuDAO.getMenuByRestaurant(restaurantID);
 
         List<Integer> MenuIDList= new ArrayList<>();
         List<String> MenuNameList = new ArrayList<>();
@@ -111,7 +114,7 @@ public class ManageBookingPastActivity extends AppCompatActivity {
         BookAgainButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openNextActivity(restaurantID);
+                openNextActivity(restaurantID, customerID);
             }
         });
 
@@ -124,8 +127,9 @@ public class ManageBookingPastActivity extends AppCompatActivity {
         });
     }
 
-    public void openNextActivity(int restaurantID) {
+    public void openNextActivity(int restaurantID, int customerID) {
         getIntent().putExtra("resID", restaurantID);
+        getIntent().putExtra("cusID", customerID);
 
         Intent intent = new Intent(this, SelectTimeActivity.class);
         startActivity(intent);

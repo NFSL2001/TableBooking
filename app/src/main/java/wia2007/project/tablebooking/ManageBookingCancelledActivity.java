@@ -38,7 +38,6 @@ public class ManageBookingCancelledActivity extends AppCompatActivity {
     FoodListAdapter foodListAdapter;
     Button BackButton;
 
-    int bookingID, customerID;
     long startTime, endTime;
 
     @Override
@@ -46,6 +45,10 @@ public class ManageBookingCancelledActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_booking__cancelled);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        int bookingID = getIntent().getIntExtra("bookID", 0);
+        int customerID = getIntent().getIntExtra("cusID", 0);
+        int restaurantID = getIntent().getIntExtra("resID", 0);
 
         Name = findViewById(R.id.manageBooking_Cancelled_name);
         DateText = findViewById(R.id.manageBooking_Cancelled_date);
@@ -69,11 +72,11 @@ public class ManageBookingCancelledActivity extends AppCompatActivity {
         BookingContainMenuDAO BCMDAO = database.bookingContainMenuDAO();
 
         List<Booking> bookingList = bookingDAO.getBookingById(bookingID);
-        List<Customer> customerList = customerDAO.getCustomerById(bookingList.get(0).getCustomer_id());
+        List<Customer> customerList = customerDAO.getCustomerById(customerID);
         List<Table> tableList = tableDAO.getTableById(bookingList.get(0).getTable_id());
-        List<Restaurant> restaurantList = restaurantDAO.getRestaurantById(tableList.get(0).getRestaurant_id());
+        List<Restaurant> restaurantList = restaurantDAO.getRestaurantById(restaurantID);
         List<BookingContainMenu> BCMList = BCMDAO.getContainsByBookingId(bookingID);
-        List<MenuItem> menuList = menuDAO.getMenuByRestaurant(tableList.get(0).getRestaurant_id());
+        List<MenuItem> menuList = menuDAO.getMenuByRestaurant(restaurantID);
 
         List<Integer> MenuIDList= new ArrayList<>();
         List<String> MenuNameList = new ArrayList<>();
@@ -113,7 +116,7 @@ public class ManageBookingCancelledActivity extends AppCompatActivity {
         BackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                cancelActivity();
             }
         });
 
