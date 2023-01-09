@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,6 +41,9 @@ public class MainMenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main_menu, container, false);
+
+        Toolbar toolbar = getActivity().findViewById(R.id.TVMainAct);
+        toolbar.setVisibility(View.GONE);
 
         /** ALL RESTAURANT **/
         Context context = requireActivity();

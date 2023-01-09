@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -84,6 +85,9 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        Toolbar toolbar = getActivity().findViewById(R.id.TVMainAct);
+        toolbar.setVisibility(View.GONE);
 
         TableBookingDatabase database = TableBookingDatabase.getDatabase(getActivity().getApplicationContext());
         CustomerDAO customerDAO = database.customerDAO();
