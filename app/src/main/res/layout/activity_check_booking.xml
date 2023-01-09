@@ -2,14 +2,207 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/check_booking_mainLinearLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    tools:context="wia2007.project.tablebooking.CheckBookingActivity">
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/pre_order_food_feesLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/check_booking_textTitle"
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Restaurant Name"
+                android:textColor="?attr/colorPrimary"
+                android:textStyle="bold"/>
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="12dp"
+                android:text="@string/customer_name"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/check_booking_name"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:paddingVertical="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/check_booking_people"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:padding="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/person"/>
+
+            <TextView
+                android:id="@+id/check_booking_date"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:padding="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/vector"/>
+
+            <TextView
+                android:id="@+id/check_booking_time"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:padding="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/access_time"/>
+
+            <TextView
+                android:id="@+id/check_booking_table"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:padding="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_baseline_table_restaurant_24" />
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/any_request"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/check_booking_requestEdit"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/rounded_rectangle"
+                android:gravity="start|top"
+                android:hint="(ex: More sauce)"
+                android:inputType="textMultiLine"
+                android:lineSpacingExtra="10sp"
+                android:padding="8dp"/>
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/phone_number"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:id="@+id/check_booking_phoneNumberLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/check_booking_spinnerPhoneNumber"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/halfleft_rounded_rectangle"
+                    android:foreground=""
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <EditText
+                    android:id="@+id/check_booking_phoneNumberEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:background="@drawable/halfright_rounded_rectangle"
+
+                    android:hint="Number"
+                    android:inputType="textPersonName"
+                    android:paddingStart="5dp"
+                    tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/email"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/check_booking_emailEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_rectangle"
+                android:hint="(ex: adamwiseman@gmail.com)"
+                android:inputType="textEmailAddress"
+                android:padding="8dp" />
+
+            <Switch
+                android:id="@+id/check_booking_textReminder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/check_booking_ask_reminder"/>
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:text="Food"
+                android:textStyle="bold"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/check_booking_foodList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/foodlist_recyclerview" />
+        </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
-        android:id="@+id/pre_order_food_bottomNavLayout"
+        android:id="@+id/pre_order_food_feesLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="6dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/check_booking_bottomNavLayout"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/pre_order_food_feesText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:text="@string/total_fees"
+            android:textAlignment="textEnd"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/check_booking_price"
+            style="@style/TextAppearance.Material3.HeadlineSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="RM 0.00"
+            android:textAlignment="center"
+            android:textColor="?attr/colorPrimary"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/check_booking_bottomNavLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -17,375 +210,40 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/check_booking_backButton"
-            android:layout_width="wrap_content"
+            style="@style/TextAppearance.Material3.LabelLarge"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.8"
-            android:background="#000000"
-            android:fontFamily="@font/stixtwo"
+            android:layout_weight="0.2"
+            android:background="@color/black"
+            android:textColor="@color/white"
             android:text="@string/back_button"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textAllCaps="false" />
 
         <Button
             android:id="@+id/check_booking_nextButton"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="243dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.8"
-            android:background="#C1121F"
-            android:fontFamily="@font/stixtwo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:background="?attr/colorPrimary"
             android:text="@string/confirm_button"
             android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="20dp"
+            android:textColor="?attr/colorOnPrimary" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/check_booking_cancelButton"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="99dp"
-            android:layout_height="wrap_content"
+            style="@style/TextAppearance.Material3.LabelLarge"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="0.2"
-            android:background="#000000"
-            android:fontFamily="@font/stixtwo"
+            android:background="@color/black"
+            android:textColor="@color/white"
             android:text="@string/cancel_button"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textAllCaps="false" />
     </LinearLayout>
-
-    <ScrollView
-        android:id="@+id/check_booking_mainScrollLayout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/pre_order_food_bottomNavLayout"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        tools:layout_editor_absoluteX="16dp">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/check_booking_mainLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/check_booking_textTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/stixtwo"
-                android:text="Atmosphere 360"
-                android:textColor="#C50F0F"
-                android:textSize="34sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/check_booking_textName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/stixtwo"
-                android:text="@string/customer_name"
-                android:textColor="#000000"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/check_booking_textTitle" />
-
-            <TextView
-                android:id="@+id/check_booking_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/stixtwo"
-                android:text="Muthu"
-                android:textColor="#000000"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/check_booking_textName" />
-
-            <TextView
-                android:id="@+id/check_booking_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/stixtwo"
-                android:text="Fri, 25 November 2022"
-                android:textColor="#000000"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-                app:layout_constraintStart_toStartOf="@+id/check_booking_people"
-                app:layout_constraintTop_toTopOf="@+id/imageView3" />
-
-            <TextView
-                android:id="@+id/check_booking_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/stixtwo"
-                android:text="20:00 - 21:00"
-                android:textColor="#000000"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-                app:layout_constraintStart_toStartOf="@+id/check_booking_date"
-                app:layout_constraintTop_toTopOf="@+id/imageView4" />
-
-            <TextView
-                android:id="@+id/check_booking_people"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:fontFamily="@font/stixtwo"
-                android:text="2 people"
-                android:textColor="#000000"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toTopOf="@+id/imageView" />
-
-            <TextView
-                android:id="@+id/check_booking_table"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/stixtwo"
-                android:text="N6"
-                android:textColor="#000000"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView5"
-                app:layout_constraintStart_toStartOf="@+id/check_booking_time"
-                app:layout_constraintTop_toTopOf="@+id/imageView5" />
-
-            <TextView
-                android:id="@+id/check_booking_textFood"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="12dp"
-                android:fontFamily="@font/stixtwo"
-                android:text="@string/food"
-                android:textColor="#000000"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView5" />
-
-            <EditText
-                android:id="@+id/check_booking_requestEdit"
-                android:layout_width="378dp"
-                android:layout_height="70dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/rounded_rectangle"
-                android:ems="10"
-                android:fontFamily="@font/stix"
-                android:gravity="start|top"
-                android:hint="(ex: More sauce)"
-                android:inputType="textMultiLine"
-                android:lineSpacingExtra="10sp"
-                android:paddingStart="10dp"
-                android:paddingTop="5dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.454"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/check_booking_textRequest" />
-
-            <TextView
-                android:id="@+id/check_booking_textRequest"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="12dp"
-                android:fontFamily="@font/stixtwo"
-                android:text="@string/any_request"
-                android:textColor="#000000"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/check_booking_foodList" />
-
-            <EditText
-                android:id="@+id/check_booking_emailEdit"
-                android:layout_width="380dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="4dp"
-                android:background="@drawable/rounded_rectangle"
-                android:elevation="5dp"
-                android:ems="10"
-                android:fontFamily="@font/stixtwo"
-                android:hint="(ex: adamwiseman@gmail.com)"
-                android:inputType="textPersonName"
-                android:paddingStart="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/check_booking_textEmail" />
-
-            <TextView
-                android:id="@+id/check_booking_textPhoneNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/stixtwo"
-                android:text="@string/phone_number"
-                android:textColor="#000000"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/check_booking_requestEdit" />
-
-            <TextView
-                android:id="@+id/check_booking_textEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:fontFamily="@font/stixtwo"
-                android:text="@string/email"
-                android:textColor="#000000"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/check_booking_phoneNumberLayout" />
-
-            <Switch
-                android:id="@+id/check_booking_textReminder"
-                android:layout_width="374dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/stixtwo"
-                android:text="Do you need a reminder a day before the booking?"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/check_booking_emailEdit" />
-
-            <TextView
-                android:id="@+id/check_booking_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="22dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:fontFamily="@font/stixtwo"
-                android:text="RM 349"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.928"
-                app:layout_constraintStart_toEndOf="@+id/check_booking_textTotalFees"
-                app:layout_constraintTop_toBottomOf="@+id/check_booking_textReminder"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <TextView
-                android:id="@+id/check_booking_textTotalFees"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="160dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/stixtwo"
-                android:text="@string/total_fees"
-                android:textColor="#000000"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/check_booking_textReminder" />
-
-            <LinearLayout
-                android:id="@+id/check_booking_phoneNumberLayout"
-                android:layout_width="match_parent"
-                android:layout_height="42dp"
-                android:layout_marginTop="12dp"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/check_booking_textPhoneNumber">
-
-                <Spinner
-                    android:id="@+id/check_booking_spinnerPhoneNumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="15dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/halfleft_rounded_rectangle"
-                    tools:ignore="TouchTargetSizeCheck" />
-
-                <EditText
-                    android:id="@+id/check_booking_phoneNumberEdit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="20dp"
-                    android:layout_weight="9"
-                    android:background="@drawable/halfright_rounded_rectangle"
-                    android:ems="10"
-                    android:fontFamily="@font/stixtwo"
-                    android:hint="Number"
-                    android:inputType="textPersonName"
-                    android:paddingStart="5dp"
-                    tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
-            </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/check_booking_foodList"
-                android:layout_width="369dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/check_booking_textFood"
-                tools:itemCount="0">
-
-            </androidx.recyclerview.widget.RecyclerView>
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="24dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:src="@drawable/person"
-                app:layout_constraintStart_toStartOf="@+id/check_booking_name"
-                app:layout_constraintTop_toBottomOf="@+id/check_booking_name" />
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="0dp"
-                android:layout_height="27dp"
-                android:layout_marginTop="4dp"
-                android:src="@drawable/person"
-                app:layout_constraintEnd_toEndOf="@+id/imageView"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/imageView"
-                app:layout_constraintTop_toBottomOf="@+id/imageView"
-                app:srcCompat="@drawable/vector" />
-
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:src="@drawable/person"
-                app:layout_constraintEnd_toEndOf="@+id/imageView3"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/imageView3"
-                app:layout_constraintTop_toBottomOf="@+id/imageView3"
-                app:srcCompat="@drawable/access_time" />
-
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:src="@drawable/ic_baseline_table_restaurant_24"
-                app:layout_constraintEnd_toEndOf="@+id/imageView4"
-                app:layout_constraintStart_toStartOf="@+id/imageView4"
-                app:layout_constraintTop_toBottomOf="@+id/imageView4" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

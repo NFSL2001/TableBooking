@@ -26,15 +26,13 @@
     <string name="confirm_button">Confirm</string>
     <string name="customer_name">Name</string>
     <string name="adult">Adults</string>
-    <string name="children">Childrens</string>
+    <string name="children">Children</string>
     <string name="booking_date">Date</string>
     <string name="booking_time">Time</string>
     <string name="booking_duration">Duration (hour)</string>
-    <string name="two_people">2 people table</string>
-    <string name="four_people">4 people table</string>
-    <string name="six_people">6 people table</string>
-    <string name="eight_people">8 people table</string>
     <string name="select_booking_table">Select your table(s)</string>
+    <string name="table_size_text">Table Size</string>
+    <string name="table_choice_text">Table Choice</string>
     <string name="table_selected">Table Selected:</string>
     <string name="select_food">Select your food</string>
     <string name="skip_now">Skip now</string>
@@ -65,7 +63,10 @@
         <item>Change of plans</item>
         <item>Wrong Date/Time</item>
         <item>Rather not say</item>
+
     </string-array>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="check_booking_ask_reminder">Do you need a reminder a day before the booking?</string>
 
     <!-- main menu -->
     <string name="main_btnByCategory">By category</string>
