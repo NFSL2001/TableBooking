@@ -93,18 +93,18 @@ public class CheckBookingActivity extends AppCompatActivity implements AdapterVi
         List<BookingContainMenu> BCMList;
         List<Restaurant> restaurantList = restaurantDAO.getRestaurantById(restaurantID);
         List<Table> tableList = tableDAO.getTableById(tID);
-//
-//        Timestamp startTS = new Timestamp(startTime);
-//        Timestamp endTS = new Timestamp(endTime);
-//
-//        Time startT = new Time(startTime);
-//        Time endT = new Time(endTime);
-//
-//        String[] Date = startTS.toString().split(" ");
-//        String[] Date2 = endTS.toString().split(" ");
-//
-//        List<Booking> bookingResult = new ArrayList<>();
-//
+
+        Timestamp startTS = new Timestamp(startTime);
+        Timestamp endTS = new Timestamp(endTime);
+
+        Time startT = new Time(startTime);
+        Time endT = new Time(endTime);
+
+        String[] Date = startTS.toString().split(" ");
+        String[] Date2 = endTS.toString().split(" ");
+
+        List<Booking> bookingResult = new ArrayList<>();
+
         Name = findViewById(R.id.check_booking_name);
         DateText = findViewById(R.id.check_booking_date);
         TableID = findViewById(R.id.check_booking_table);
