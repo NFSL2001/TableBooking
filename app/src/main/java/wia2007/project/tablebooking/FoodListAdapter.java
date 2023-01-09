@@ -9,9 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import wia2007.project.tablebooking.database.TableBookingDatabase;
 import wia2007.project.tablebooking.entity.BookingContainMenu;
-import wia2007.project.tablebooking.entity.Menu;
 
 import java.util.List;
 

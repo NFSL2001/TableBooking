@@ -27,7 +27,7 @@ public class SelectTimeActivity extends AppCompatActivity {
     NumberPicker AdultNumberPicker, ChildrenNumberPicker, DurationNumberPicker, StartTimeSelector1, StartTimeSelector2;
     CalendarView DateSelector;
     Button NextButton, CancelButton;
-    int AdultVal, ChildrenVal, Person, restaurantID = 0, hour;
+    int AdultVal, ChildrenVal, Person, restaurantID = 0, customerID, hour;
     long StartTime, EndTime;
 
     String Date, StartHour, StartMinute, EndHour;
@@ -41,6 +41,8 @@ public class SelectTimeActivity extends AppCompatActivity {
         AdultNumberPicker = findViewById(R.id.select_time_adultNumberPicker);
         ChildrenNumberPicker = findViewById(R.id.select_time_childrenNumberPicker);
         DurationNumberPicker = findViewById(R.id.select_time_durationNumberPicker);
+        StartTimeSelector1 = findViewById(R.id.select_time_numberPicker1);
+        StartTimeSelector2 = findViewById(R.id.select_time_numberPicker2);
 
         DateSelector = findViewById(R.id.select_time_dateView);
 
@@ -59,8 +61,8 @@ public class SelectTimeActivity extends AppCompatActivity {
         RestaurantDAO restaurantDAO = db.restaurantDAO();
         List<Restaurant> restaurantList = restaurantDAO.getRestaurantById(restaurantID);
 
-        StartTimeSelector1.setMinValue(0);
-        StartTimeSelector1.setMaxValue(23);
+        StartTimeSelector1.setMinValue(8);
+        StartTimeSelector1.setMaxValue(20);
 
         StartTimeSelector2.setMinValue(0);
         StartTimeSelector2.setMaxValue(59);
@@ -129,7 +131,7 @@ public class SelectTimeActivity extends AppCompatActivity {
                 StartTime = startTS.getTime();
                 EndTime = endTS.getTime();
                 Person = ChildrenVal + AdultVal;
-                openNextActivity(restaurantID, Person, StartTime, EndTime);
+                openNextActivity(customerID, restaurantID, Person, StartTime, EndTime);
             }
         });
 
@@ -142,7 +144,8 @@ public class SelectTimeActivity extends AppCompatActivity {
 
     }
 
-    public void openNextActivity(int restaurantID, int tableSize, long startTime, long endTime) {
+    public void openNextActivity(int customerID, int restaurantID, int tableSize, long startTime, long endTime) {
+            getIntent().putExtra("cusID", customerID);
             getIntent().putExtra("resID", restaurantID);
             getIntent().putExtra("tSize", tableSize);
             getIntent().putExtra("sTime", startTime);

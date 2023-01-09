@@ -20,7 +20,6 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-import wia2007.project.tablebooking.converter.TimeConverter;
 import wia2007.project.tablebooking.dao.TableDAO;
 import wia2007.project.tablebooking.database.TableBookingDatabase;
 import wia2007.project.tablebooking.entity.Table;
@@ -40,6 +39,7 @@ public class SelectTableActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select_table);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        int customerID = getIntent().getIntExtra("cusID", 0);
         int restaurantID = getIntent().getIntExtra("resID", 0);
         int tableSize = getIntent().getIntExtra("tSize", 0);
         long startTime = getIntent().getLongExtra("sTime", 0);
@@ -185,7 +185,7 @@ public class SelectTableActivity extends AppCompatActivity {
         NextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openNextActivity(restaurantID, tableSize, startTime, endTime, tableID);
+                openNextActivity(customerID, restaurantID, tableSize, startTime, endTime, tableID);
             }
         });
 
@@ -210,7 +210,8 @@ public class SelectTableActivity extends AppCompatActivity {
         startActivity(backIntent);
     }
 
-    public void openNextActivity(int restaurantID, int tableSize, long startTime, long endTime, int tID) {
+    public void openNextActivity(int customerID, int restaurantID, int tableSize, long startTime, long endTime, int tID) {
+        getIntent().putExtra("cusID", customerID);
         getIntent().putExtra("resID", restaurantID);
         getIntent().putExtra("tSize", tableSize);
         getIntent().putExtra("sTime", startTime);
