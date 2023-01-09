@@ -15,6 +15,7 @@ import android.widget.CalendarView;
 import android.widget.NumberPicker;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import wia2007.project.tablebooking.dao.RestaurantDAO;
@@ -121,11 +122,27 @@ public class SelectTimeActivity extends AppCompatActivity {
         NextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Date = DateSelector.getDate().
-                StartHour  = Integer.toString(StartTimeSelector1.getValue());
-                StartMinute  = Integer.toString(StartTimeSelector2.getValue());
-                String startString = Date + StartHour + ":" + StartMinute+":00.0";
-                String endString = Date + EndHour + ":" + StartMinute+":00.0";
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date = sdf.format(new java.util.Date(DateSelector.getDate()));
+
+                if (StartTimeSelector1.getValue() < 10)
+                    StartHour = "0" + StartTimeSelector1.getValue();
+                else
+                    StartHour = valueOf(StartTimeSelector1.getValue());
+
+                if (StartTimeSelector2.getValue() < 10)
+                    StartMinute = "0" + StartTimeSelector2.getValue();
+                else
+                    StartMinute = valueOf(StartTimeSelector2.getValue());
+
+                int temp = StartTimeSelector1.getValue() + DurationNumberPicker.getValue();
+                if (temp < 10)
+                    EndHour = "0" + StartTimeSelector1.getValue();
+                else
+                    EndHour = valueOf(StartTimeSelector1.getValue());
+
+                String startString = Date +" "+ StartHour + ":" + StartMinute+":00";
+                String endString = Date +" "+ EndHour + ":" + StartMinute+":00";
                 System.out.println(startString);
                 Timestamp startTS = Timestamp.valueOf(startString);
                 Timestamp endTS = Timestamp.valueOf(endString);
