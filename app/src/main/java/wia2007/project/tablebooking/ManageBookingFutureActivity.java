@@ -140,8 +140,7 @@ public class ManageBookingFutureActivity extends AppCompatActivity {
     public void cancelBooking(int bookingID) {
         getIntent().putExtra("bookingID", bookingID);
 
-        Intent intent = new Intent(this, CancelBookingActivity.class);
-        startActivity(intent);
+        // TODO: cancel booking delete record
     }
 
     public void openPreviousActivity() {
