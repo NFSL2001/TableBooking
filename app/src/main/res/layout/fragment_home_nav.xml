@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="wia2007.project.tablebooking.HomeNav">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="98dp"
+        tools:layout_editor_absoluteY="68dp">
+
+        <Button
+            android:id="@+id/fragmentOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fragment 1" />
+
+        <Button
+            android:id="@+id/fragmentTwo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fragment 2" />
+
+        <Button
+            android:id="@+id/fragmentThree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fragment 3" />
+
+        <Button
+            android:id="@+id/fragmentFour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fragment 4" />
+
+        <Button
+            android:id="@+id/fragmentFive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fragment 5" />
+
+        <Button
+            android:id="@+id/fragmentSix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fragment 6" />
+
+        <Button
+            android:id="@+id/fragmentSeven"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fragment 7" />
+
+        <Button
+            android:id="@+id/fragmentEight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fragment 8" />
+
+        <Button
+            android:id="@+id/fragmentNine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fragment 9" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
