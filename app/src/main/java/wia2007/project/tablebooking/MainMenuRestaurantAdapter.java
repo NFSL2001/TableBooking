@@ -54,7 +54,7 @@ public class MainMenuRestaurantAdapter extends RecyclerView.Adapter<MainMenuRest
     public void onBindViewHolder(@NonNull MainMenuRestaurantHolder holder, int position) {
         RestaurantDAO.RestaurantNameInfo item = allList.get(position);
         ((TextView) holder.TVName).setText(item.name);
-        ((TextView) holder.TVCategory).setText(Cuisine.getCuisineItem(item.cuisine_type).name);
+        ((TextView) holder.TVCategory).setText(Cuisine.getCuisineItem(item.cuisine_type-1).name);
         ImageView titleImage = holder.IVTitle;
         if (item.title_image_path != null) {
             titleImage.setVisibility(View.VISIBLE);

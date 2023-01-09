@@ -151,7 +151,7 @@ public class RestaurantInfoFragment extends Fragment {
 
             ((TextView) view.findViewById(R.id.restInfo_topAddress)).setText(restaurant.getAddress());
             ((TextView) view.findViewById(R.id.menuInfo_dataAddress)).setText(restaurant.getAddress());
-            String cuisineType = Cuisine.getCuisineItem(restaurant.getCuisine_type()).name;
+            String cuisineType = Cuisine.getCuisineItem(restaurant.getCuisine_type()-1).name;
             ((TextView) view.findViewById(R.id.restInfo_topType)).setText(cuisineType);
             ((TextView) view.findViewById(R.id.menuInfo_dataCuisine)).setText(cuisineType);
             String price = "RM " + String.format("%.02f", restaurant.getAverage_price());
