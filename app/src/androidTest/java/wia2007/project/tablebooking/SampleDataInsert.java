@@ -82,7 +82,7 @@ public class SampleDataInsert {
                     null,
                     null,
                     "www.atmosphere360.com",
-                    1,
+                    Cuisine.DINNER_BUFFET,
                     "Atmosphere 360 is a modern and elegant revolving restaurant situated 282m above ground level located at the tallest tower at the tallest tower in Southeast Asia - KL Tower.\\n\\nIndulge in modern authentic Malaysian and International cuisine at Atmosphere 360. Housed in the world’s 7th tallest tower - the KL Tower, its splendid atmosphere and impeccable service offer you one of a king luxurious fine dining experience that will leave a lasting mark in your heart.",
                     "https://cdn.myfunnow.com/imgs/branch/cover%2Fatmosphere%20(2)_6861e3.jpg"
             );
