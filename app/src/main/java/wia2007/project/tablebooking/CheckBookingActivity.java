@@ -1,5 +1,6 @@
 package wia2007.project.tablebooking;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -144,7 +145,7 @@ public class CheckBookingActivity extends AppCompatActivity {
                 for(int i = 0; i<menuId.size();i++){
                    db.bookingContainMenuDAO().insertContains(new BookingContainMenu(booking_id,menuId.get(i),quantity.get(i)));
                 }
-//                openNextActivity();
+                openNextActivity();
             }
         });
 
@@ -166,7 +167,7 @@ public class CheckBookingActivity extends AppCompatActivity {
     }
 
     public void openNextActivity() {
-        Intent intent = new Intent(this, ManageBookingFutureActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
