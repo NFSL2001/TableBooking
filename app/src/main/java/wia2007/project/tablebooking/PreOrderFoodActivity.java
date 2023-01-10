@@ -46,7 +46,6 @@ public class PreOrderFoodActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_order_food);
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         int customerID = getIntent().getIntExtra("cusID", 0);
         int restaurantID = getIntent().getIntExtra("resID", 1);

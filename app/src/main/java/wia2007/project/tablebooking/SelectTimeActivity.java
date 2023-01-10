@@ -37,7 +37,9 @@ public class SelectTimeActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_time);
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        Intent intent = getIntent();
+        restaurantID = intent.getExtras().getInt("resID");
 
         AdultNumberPicker = findViewById(R.id.select_time_adultNumberPicker);
         ChildrenNumberPicker = findViewById(R.id.select_time_childrenNumberPicker);

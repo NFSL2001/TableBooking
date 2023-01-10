@@ -1,13 +1,11 @@
 package wia2007.project.tablebooking;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentContainerView;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.util.Log;
@@ -136,6 +134,10 @@ public class RestaurantInfoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // TODO: Add navigation to new booking
+                Context context = v.getContext();
+                Intent intent = new Intent(context, SelectTimeActivity.class);
+                intent.putExtra("resID", restaurantID);
+                context.startActivity(intent);
             }
         });
 
