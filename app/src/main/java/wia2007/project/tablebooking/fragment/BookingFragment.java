@@ -106,7 +106,6 @@ public class BookingFragment extends Fragment {
         if (customerList.size() != 1)
             throw new RuntimeException("More than one user with the same username found");
 
-
         ((Spinner) view.findViewById(R.id.SPBookingSort)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
