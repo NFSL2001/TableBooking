@@ -143,10 +143,9 @@ public class SelectTimeActivity extends AppCompatActivity {
 
                 String startString = Date +" "+ StartHour + ":" + StartMinute+":00";
                 String endString = Date +" "+ EndHour + ":" + StartMinute+":00";
-                System.out.println(startString);
+
                 Timestamp startTS = Timestamp.valueOf(startString);
                 Timestamp endTS = Timestamp.valueOf(endString);
-
                 StartTime = startTS.getTime();
                 EndTime = endTS.getTime();
                 Person = ChildrenVal + AdultVal;
@@ -164,13 +163,12 @@ public class SelectTimeActivity extends AppCompatActivity {
     }
 
     public void openNextActivity(int customerID, int restaurantID, int tableSize, long startTime, long endTime) {
-            getIntent().putExtra("cusID", customerID);
-            getIntent().putExtra("resID", restaurantID);
-            getIntent().putExtra("tSize", tableSize);
-            getIntent().putExtra("sTime", startTime);
-            getIntent().putExtra("eTime", endTime);
-
         Intent intent = new Intent(this, SelectTableActivity.class);
+        intent.putExtra("cusID", customerID);
+        intent.putExtra("resID", restaurantID);
+        intent.putExtra("tSize", tableSize);
+        intent.putExtra("sTime", startTime);
+        intent.putExtra("eTime", endTime);
         startActivity(intent);
     }
 

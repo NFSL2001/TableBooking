@@ -18,7 +18,9 @@ import android.widget.TextView;
 
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import wia2007.project.tablebooking.dao.TableDAO;
 import wia2007.project.tablebooking.database.TableBookingDatabase;
@@ -30,7 +32,7 @@ public class SelectTableActivity extends AppCompatActivity {
 
     TextView TableSelected;
     Button NextButton, CancelButton, BackButton;
-    Spinner TwoPeopleSpinner, FourPeopleSpinner, SixPeopleSpinner, EightPeopleSpinner;
+    Spinner TableSize, TableChoice;
     int tableID = 0;
 
     @Override
@@ -51,82 +53,47 @@ public class SelectTableActivity extends AppCompatActivity {
         CancelButton = findViewById(R.id.select_table_cancelButton);
         BackButton = findViewById(R.id.select_table_backButton);
 
-        TwoPeopleSpinner = findViewById(R.id.select_table_2peopleSpinner);
-        FourPeopleSpinner = findViewById(R.id.select_table_4peopleSpinner);
-        SixPeopleSpinner = findViewById(R.id.select_table_6peopleSpinner);
-        EightPeopleSpinner = findViewById(R.id.select_table_8peopleSpinner);
+        TableSize = findViewById(R.id.select_table_sizeSpinner);
+        TableChoice = findViewById(R.id.select_table_choice);
 
         Time startT = new Time(startTime);
         Time endT = new Time(endTime);
 
         TableBookingDatabase db = TableBookingDatabase.getDatabase(getApplicationContext());
         TableDAO tableDAO = db.tableDAO();
-        List<Table> tableList = tableDAO.getAvailableTable(restaurantID, startT, endT);
-
-        List<String> table2 = new ArrayList<String>();
-        List<String> table4 = new ArrayList<String>();
-        List<String> table6 = new ArrayList<String>();
-        List<String> table8 = new ArrayList<String>();
-
-        List<Integer> table2id = new ArrayList<Integer>();
-        List<Integer> table4id = new ArrayList<Integer>();
-        List<Integer> table6id = new ArrayList<Integer>();
-        List<Integer> table8id = new ArrayList<Integer>();
-
-        String chooseOne = "Choose Only One";
-
-        table2.add(chooseOne);
-        table4.add(chooseOne);
-        table6.add(chooseOne);
-        table8.add(chooseOne);
-
-        table2id.add(0);
-        table4id.add(0);
-        table6id.add(0);
-        table8id.add(0);
-
-        for(int i=0;i< tableList.size();i++){
-            if(tableList.get(i).getSize() == 2){
-                table2.add(tableList.get(i).getName());
-                table2id.add(tableList.get(i).getTable_id());
-            }else if(tableList.get(i).getSize() == 4){
-                table4.add(tableList.get(i).getName());
-                table4id.add(tableList.get(i).getTable_id());
-            }else if(tableList.get(i).getSize() == 6){
-                table6.add(tableList.get(i).getName());
-                table6id.add(tableList.get(i).getTable_id());
-            }else if(tableList.get(i).getSize() == 8){
-                table8.add(tableList.get(i).getName());
-                table8id.add(tableList.get(i).getTable_id());
-            }else{
-                throw new RuntimeException("No Table");
-            }
+        List<Table> tableList = tableDAO.getTableById(restaurantID);
+        Set<Integer> size = new HashSet<>();
+        for(int i = 0; i<tableList.size();i++){
+            size.add(tableList.get(i).getSize());
         }
-
-        ArrayAdapter<String> spinner2Adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, table2);
-        ArrayAdapter<String> spinner4Adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, table4);
-        ArrayAdapter<String> spinner6Adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, table6);
-        ArrayAdapter<String> spinner8Adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, table8);
-
-        spinner2Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner4Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner6Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner8Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        TwoPeopleSpinner.setAdapter(spinner2Adapter);
-        FourPeopleSpinner.setAdapter(spinner4Adapter);
-        SixPeopleSpinner.setAdapter(spinner6Adapter);
-        EightPeopleSpinner.setAdapter(spinner8Adapter);
-
-
-        TwoPeopleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        int n = size.size();
+        Integer arr[] = new Integer[n];
+        int i = 0;
+        for (Integer x : size)
+            arr[i++] = x;
+        ArrayAdapter<Integer> spinnerAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, arr);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        TableSize.setAdapter(spinnerAdapter);
+        TableSize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                FourPeopleSpinner.setSelection(0);
-                SixPeopleSpinner.setSelection(0);
-                EightPeopleSpinner.setSelection(0);
-                TableSelected.setText(adapterView.getItemAtPosition(i).toString());
-                tableID = table2id.get(i);
+                int size = Integer.parseInt(TableSize.getSelectedItem().toString());
+                List<Table> tables = db.tableDAO().getAvailableTable(restaurantID,startT,endT);
+                List<String> tableName = new ArrayList<>();
+                for(int j = 0; j<tables.size();j++){
+                    if(tables.get(i).getSize() == size){
+                        tableName.add(tables.get(i).getName());
+                    }
+                }
+                String[] name = new String[tableName.size()];
+                int k =0;
+                for(String s:tableName){
+                    name[k++] = s;
+                }
+                ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, name);
+                spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                TableChoice.setAdapter(spinnerAdapter);
+
             }
 
             @Override
@@ -135,52 +102,17 @@ public class SelectTableActivity extends AppCompatActivity {
             }
         });
 
-        FourPeopleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        TableChoice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                TwoPeopleSpinner.setSelection(0);
-                SixPeopleSpinner.setSelection(0);
-                EightPeopleSpinner.setSelection(0);
-                TableSelected.setText(adapterView.getItemAtPosition(i).toString());
-                tableID = table4id.get(i);
+                TableSelected.setText(TableChoice.getSelectedItem().toString());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
-
-        SixPeopleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                TwoPeopleSpinner.setSelection(0);
-                FourPeopleSpinner.setSelection(0);
-                EightPeopleSpinner.setSelection(0);
-                TableSelected.setText(adapterView.getItemAtPosition(i).toString());
-                tableID = table6id.get(i);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
-
-        EightPeopleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                TwoPeopleSpinner.setSelection(0);
-                FourPeopleSpinner.setSelection(0);
-                SixPeopleSpinner.setSelection(0);
-                TableSelected.setText(adapterView.getItemAtPosition(i).toString());
-                tableID = table8id.get(i);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
-
-
 
         NextButton.setOnClickListener(new View.OnClickListener() {
             @Override
