@@ -9,7 +9,7 @@
         android:id="@+id/DeskProfile"
         android:name="wia2007.project.tablebooking.fragment.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profileFragment_to_signUpActivity"
             app:destination="@id/signUpActivity" />
@@ -31,7 +31,7 @@
         android:id="@+id/DeskHome"
         android:name="wia2007.project.tablebooking.MainMenuFragment"
         android:label="fragment_main_menu"
-        tools:layout="@layout/fragment_main_menu" >
+        tools:layout="@layout/fragment_main_menu">
         <action
             android:id="@+id/action_mainMenu_to_DeskProfile"
             app:destination="@id/DeskProfile" />

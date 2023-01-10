@@ -11,6 +11,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 /**
@@ -54,6 +57,7 @@ public class AdminBookingList extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -68,7 +72,9 @@ public class AdminBookingList extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_booking_list, container, false);
-        getActivity().setTitle("Booking List");
+        Toolbar toolbar = view.findViewById(R.id.TVBookingListAct);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity)getActivity()).setTitle("Booking List");
 
         Spinner SpinnerSortCondition = (Spinner) view.findViewById(R.id.SpinnerSortCondition);
 
@@ -104,15 +110,26 @@ public class AdminBookingList extends Fragment {
             }
         });
 
-        String restaurant_id = "1";
+        String restaurant_id = null;
         Bundle bundle = this.getArguments();
         if (bundle != null) {
-            restaurant_id = bundle.getString("Restaurant_Id");
+            restaurant_id = Integer.toString(bundle.getInt("Restaurant_Id"));
         }
+        System.out.println(bundle.getInt("Restaurant_Id"));
 
         BackGroundTaskBooking backGroundTaskBooking = new BackGroundTaskBooking(this.getContext());
         backGroundTaskBooking.execute("get_info", sortCondition, restaurant_id);
 
         return view;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull android.view.MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                getActivity().getSupportFragmentManager().popBackStackImmediate();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

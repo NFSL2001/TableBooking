@@ -42,14 +42,14 @@ public class BackGroundTaskBooking extends AsyncTask<String, ShowBookingsList, S
             Integer booking_id;
             String startTime, endTime;
             String remark, custName, custEmail, custMobile,tableName;
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
             while (cursor.moveToNext()) {
                 booking_id = cursor.getInt(cursor.getColumnIndex("booking_id"));
-                tableName = cursor.getString(cursor.getColumnIndex("name"));
+                tableName = cursor.getString(cursor.getColumnIndex("TableName"));
                 startTime = cursor.getString(cursor.getColumnIndex("start_time"));
                 endTime = cursor.getString(cursor.getColumnIndex("end_time"));
-                custName = cursor.getString(cursor.getColumnIndex("user_name"));
+                custName = cursor.getString(cursor.getColumnIndex("CustName"));
                 remark = cursor.getString(cursor.getColumnIndex("remark"));
                 custEmail = cursor.getString(cursor.getColumnIndex("email"));
                 custMobile = cursor.getString(cursor.getColumnIndex("mobile_number"));

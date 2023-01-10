@@ -74,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                     if(restaurantList.size() > 0 && password.equals(restaurantList.get(0).getPassword())){
                         SharedPreferences sharedPref = getSharedPreferences("admin", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPref.edit();
+                        editor.putInt("userID",restaurantList.get(0).getRestaurant_id());
                         editor.putString("user", username); // false on logout
                         editor.putBoolean(UserStatus.IS_ADMIN, true);
                         editor.apply();

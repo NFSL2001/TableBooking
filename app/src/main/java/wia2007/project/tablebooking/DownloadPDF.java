@@ -65,7 +65,7 @@ public class DownloadPDF extends AppCompatActivity {
                 try {
                     yearSelected = SpinnerSelectYear.getSelectedItem().toString();
                     monthSelected = SpinnerSelectMonth.getSelectedItem().toString();
-                    restaurant_id = getIntent().getExtras().getInt("Restaurant_id");
+                    restaurant_id = getIntent().getExtras().getInt("RestaurantID");
                     if ("All".equals(monthSelected))
                         monthSelected = "";
                     printPDF();

@@ -81,7 +81,7 @@ public class Graph extends AppCompatActivity {
         BtnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                restaurant_id = getIntent().getExtras().getInt("Restaurant_id");
+                restaurant_id = getIntent().getExtras().getInt("RestaurantID");
                 year1 = SpinnerGraph1.getSelectedItem().toString();
                 year2 = SpinnerGraph2.getSelectedItem().toString();
                 month1 = SpinnerGraphM1.getSelectedItem().toString();
