@@ -22,8 +22,8 @@
         android:layout_height="1dp"
         android:background="@color/black"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/RVBooking"
+    <ListView
+        android:id="@+id/LVBooking"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/individual_booking_item" />

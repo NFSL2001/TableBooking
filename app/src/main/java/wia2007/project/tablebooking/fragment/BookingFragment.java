@@ -11,10 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.Spinner;
 
 import java.util.List;
@@ -85,15 +85,9 @@ public class BookingFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        RecyclerView recyclerView = getActivity().findViewById(R.id.RVBooking);
-        final BookingAdapter adapter = new BookingAdapter(new BookingAdapter.bookDiff());
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-
         TableBookingDatabase database = TableBookingDatabase.getDatabase(getActivity().getApplicationContext());
-        BookingDAO bookingDAO = database.bookingDAO();
-        CustomerDAO customerDAO = database.customerDAO();
 
+        CustomerDAO customerDAO = database.customerDAO();
         SharedPreferences sharedPref = this.getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
         String username = sharedPref.getString("user", null);
         if (username == null)
@@ -101,16 +95,22 @@ public class BookingFragment extends Fragment {
         List<Customer> customerList = customerDAO.getCustomerByUsername(username);
         if (customerList.size() != 1)
             throw new RuntimeException("More than one user with the same username found");
+        Integer customer_id = customerList.get(0).getCustomer_id();
 
+
+        BookingDAO bookingDAO = database.bookingDAO();
+        ListView listView = getActivity().findViewById(R.id.LVBooking);
+        final BookingAdapter adapter = new BookingAdapter(getContext(), bookingDAO.getBookingRestaurantByCustomer(customer_id), false);
+        listView.setAdapter(adapter);
 
         ((Spinner) view.findViewById(R.id.SPBookingSort)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Object item = adapterView.getItemIdAtPosition(i);
                 if (item.equals("Sort by date"))
-                    bookingDAO.getBookingRestaurantByCustomer(customerList.get(0).getCustomer_id()).observe(getViewLifecycleOwner(), bookingRestaurants -> {adapter.submitList(bookingRestaurants);});
+                    adapter.changeCursor(bookingDAO.getBookingRestaurantByCustomer(customer_id));
                 else
-                    bookingDAO.getBookingRestaurantByCustomerOrderByName(customerList.get(0).getCustomer_id()).observe(getViewLifecycleOwner(), bookingRestaurants -> {adapter.submitList(bookingRestaurants);});
+                    adapter.changeCursor(bookingDAO.getBookingRestaurantByCustomerOrderByName(customer_id));
             }
 
             @Override
