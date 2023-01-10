@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
@@ -34,17 +36,23 @@ import wia2007.project.tablebooking.entity.Table;
 
 public class ManageBookingFutureActivity extends AppCompatActivity {
 
-    TextView Name, DateText, TableID, TableSize, RestaurantName, TimeText, Request;
+    TextView Name, DateText, TableID, TableSize, TimeText, Request;
     RecyclerView FoodList;
     FoodListAdapter foodListAdapter;
-    Button EditBookingButton, CancelBookingButton, UpBackButton;
+    Button EditBookingButton, CancelBookingButton;
     long startTime, endTime;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_booking__future);
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        //get action bar
+        Toolbar toolbar = findViewById(R.id.manageBooking_TB);
+        setSupportActionBar(toolbar);
+        // add back button
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         int customerID = getIntent().getIntExtra("cusID", 0);
         int restaurantID = getIntent().getIntExtra("resID", 0);
@@ -54,13 +62,11 @@ public class ManageBookingFutureActivity extends AppCompatActivity {
         DateText = findViewById(R.id.manageBooking_Future_date);
         TableID = findViewById(R.id.manageBooking_Future_table);
         TableSize = findViewById(R.id.manageBooking_Future_person);
-//        RestaurantName = findViewById(R.id.manageBooking_Future_restaurantName);
         TimeText = findViewById(R.id.manageBooking_Future_time);
         Request = findViewById(R.id.manageBooking_Future_request);
 
         EditBookingButton = findViewById(R.id.manageBooking_Future_editBookingButton);
         CancelBookingButton = findViewById(R.id.manageBooking_Future_cancelBookingButton);
-//        UpBackButton = findViewById(R.id.manageBooking_Future_backButton);
 
         TableBookingDatabase database = TableBookingDatabase.getDatabase(getApplicationContext());
 
@@ -106,9 +112,11 @@ public class ManageBookingFutureActivity extends AppCompatActivity {
         TableID.setText(bookingList.get(0).getTable_id());
         TableSize.setText(tableList.get(0).getSize());
         Request.setText(bookingList.get(0).getRemark());
-        RestaurantName.setText(restaurantList.get(0).getRestaurant_name());
         DateText.setText(Date[0]);
         TimeText.setText(Date[1] + " " + Date2[1]);
+
+        // set appbar title
+        getSupportActionBar().setTitle(restaurantList.get(0).getRestaurant_name());
 
         FoodList = findViewById(R.id.manageBooking_Future_foodList);
 
@@ -128,12 +136,6 @@ public class ManageBookingFutureActivity extends AppCompatActivity {
             }
         });
 
-        UpBackButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cancelActivity();
-            }
-        });
 
 
     }
@@ -152,14 +154,19 @@ public class ManageBookingFutureActivity extends AppCompatActivity {
         startActivity(backIntent);
     }
 
-    public void cancelActivity() {
-        Intent backIntent = new Intent(this, MainMenuFragment.class);
-        startActivity(backIntent);
-    }
-
     public void openEditActivity() {
         Intent backIntent = new Intent(this, SelectTimeActivity.class);
         startActivity(backIntent);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull android.view.MenuItem item) {
+        switch (item.getItemId()) {
+            // map toolbar back button same as system back button
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

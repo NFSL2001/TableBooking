@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/admin_navigation"
+    app:startDestination="@id/DeskProfile">
+
+    <fragment
+        android:id="@+id/DeskProfile"
+        android:name="wia2007.project.tablebooking.fragment_AdminHome"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_admin_home" />
+    <fragment
+        android:id="@+id/DeskHome"
+        android:name="wia2007.project.tablebooking.MainMenuFragment"
+        android:label="fragment_main_menu"
+        tools:layout="@layout/fragment_main_menu">
+        <action
+            android:id="@+id/action_mainMenu_to_DeskProfile"
+            app:destination="@id/DeskProfile" />
+        <action
+            android:id="@+id/action_DeskHome_to_bookingFragment"
+            app:destination="@id/DeskBooking" />
+        <action
+            android:id="@+id/action_DeskHome_to_notificationFragment"
+            app:destination="@id/DeskNotification" />
+    </fragment>
+    <fragment
+        android:id="@+id/DeskBooking"
+        android:name="wia2007.project.tablebooking.AdminBookingList"
+        android:label="fragment_booking"
+        tools:layout="@layout/fragment_booking_list" />
+    <fragment
+        android:id="@+id/DeskNotification"
+        android:name="wia2007.project.tablebooking.fragment_AdminNoti"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_admin_noti" />
+</navigation>

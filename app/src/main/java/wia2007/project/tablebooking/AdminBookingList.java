@@ -12,16 +12,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import androidx.fragment.app.Fragment;
-import androidx.sqlite.db.SimpleSQLiteQuery;
-
-import wia2007.project.tablebooking.database.TableBookingDatabase;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link BookingList#newInstance} factory method to
+ * Use the {@link AdminBookingList#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BookingList extends Fragment {
+public class AdminBookingList extends Fragment {
     //    DatabaseHelper myDb;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,7 +29,7 @@ public class BookingList extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public BookingList() {
+    public AdminBookingList() {
         // Required empty public constructor
     }
 
@@ -42,11 +39,11 @@ public class BookingList extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment BookingList.
+     * @return A new instance of fragment AdminBookingList.
      */
     // TODO: Rename and change types and number of parameters
-    public static BookingList newInstance(String param1, String param2) {
-        BookingList fragment = new BookingList();
+    public static AdminBookingList newInstance(String param1, String param2) {
+        AdminBookingList fragment = new AdminBookingList();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -98,7 +95,7 @@ public class BookingList extends Fragment {
                     prefEditor.commit();
                     SpinnerSortCondition.setSelection(spinnerValue);
                     sortCondition = Integer.toString(SpinnerSortCondition.getSelectedItemPosition());
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.NHFMain, BookingList.class, null).commit();
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.NHFMain, AdminBookingList.class, null).commit();
                 }
             }
 

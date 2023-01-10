@@ -142,42 +142,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginVertical="4dp">
-            <TextView
-                style="@style/TextAppearance.Material3.TitleMedium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/restaurant_info_bookings_title"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/restInfo_btnBookHistory"
-                    android:textAppearance="?attr/textAppearanceBody2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="?attr/colorPrimaryVariant"
-                    android:layout_gravity="center"
-                    android:text="@string/restaurant_sampleText"
-                    android:textAllCaps="false"
-                    app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
-                    app:icon="@drawable/ic_baseline_person_24"
-                    app:iconGravity="textStart"
-                    app:iconTint="?attr/colorOnPrimary"
-                    />
-            </LinearLayout>
-        </LinearLayout>
-
-        <com.google.android.material.divider.MaterialDivider
-            android:layout_marginHorizontal="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
 
         <LinearLayout
             android:layout_width="match_parent"

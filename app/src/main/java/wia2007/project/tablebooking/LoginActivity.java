@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                     List<Restaurant> restaurantList = restaurantDAO.getRestaurantByRestaurantUserName(username);
 
                     if(restaurantList.size() > 0 && password.equals(restaurantList.get(0).getPassword())){
-                        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+                        SharedPreferences sharedPref = getSharedPreferences("admin", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPref.edit();
                         editor.putString("user", username); // false on logout
                         editor.putBoolean(UserStatus.IS_ADMIN, true);

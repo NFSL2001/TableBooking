@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
@@ -34,17 +36,24 @@ import wia2007.project.tablebooking.entity.Table;
 
 public class ManageBookingPastActivity extends AppCompatActivity {
 
-    TextView Name, DateText, TableID, TableSize, RestaurantName, TimeText, Request;
+    TextView Name, DateText, TableID, TableSize, TimeText, Request;
     RecyclerView FoodList;
     FoodListAdapter foodListAdapter;
-    Button BookAgainButton, UpBackButton;
+    Button BookAgainButton;
     long startTime, endTime;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_booking__past);
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        //get action bar
+        Toolbar toolbar = findViewById(R.id.manageBooking_TB);
+        setSupportActionBar(toolbar);
+        // add back button
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         int customerID = getIntent().getIntExtra("cusID", 0);
         int restaurantID = getIntent().getIntExtra("resID", 0);
@@ -54,12 +63,10 @@ public class ManageBookingPastActivity extends AppCompatActivity {
         DateText = findViewById(R.id.manageBooking_Past_date);
         TableID = findViewById(R.id.manageBooking_Past_table);
         TableSize = findViewById(R.id.manageBooking_Past_person);
-//        RestaurantName = findViewById(R.id.manageBooking_Past_restaurantName);
         TimeText = findViewById(R.id.manageBooking_Past_time);
         Request = findViewById(R.id.manageBooking_Past_request);
 
         BookAgainButton = findViewById(R.id.manageBooking_Past_bookButton);
-//        UpBackButton = findViewById(R.id.manageBooking_Past_backButton);
 
         TableBookingDatabase database = TableBookingDatabase.getDatabase(getApplicationContext());
 
@@ -105,9 +112,11 @@ public class ManageBookingPastActivity extends AppCompatActivity {
         TableID.setText(bookingList.get(0).getTable_id());
         TableSize.setText(tableList.get(0).getSize());
         Request.setText(bookingList.get(0).getRemark());
-        RestaurantName.setText(restaurantList.get(0).getRestaurant_name());
         DateText.setText(Date[0]);
         TimeText.setText(Date[1] + " " + Date2[1]);
+
+        // set appbar title
+        getSupportActionBar().setTitle(restaurantList.get(0).getRestaurant_name());
 
         FoodList.setAdapter(foodListAdapter);
 
@@ -119,12 +128,7 @@ public class ManageBookingPastActivity extends AppCompatActivity {
         });
 
 
-        UpBackButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cancelActivity();
-            }
-        });
+
     }
 
     public void openNextActivity(int restaurantID, int customerID) {
@@ -135,9 +139,14 @@ public class ManageBookingPastActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void cancelActivity() {
-        Intent backIntent = new Intent(this, MainMenuFragment.class);
-        startActivity(backIntent);
+    @Override
+    public boolean onOptionsItemSelected(@NonNull android.view.MenuItem item) {
+        switch (item.getItemId()) {
+            // map toolbar back button same as system back button
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
-
 }

@@ -58,7 +58,6 @@ public class CheckBookingActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_booking);
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         if(!"Yes".equals(getIntent().getExtras().getString("Skip"))){
             Map<Integer,Integer> map = MenuAdapter2.getMap();

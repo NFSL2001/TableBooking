@@ -15,6 +15,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import org.w3c.dom.Text;
 
 import java.io.File;
@@ -78,11 +80,14 @@ class BaseImageHolder extends RecyclerView.ViewHolder {
     public BaseImageHolder(@NonNull View itemView) {
         super(itemView);
     }
+
     public boolean setImageView(ImageView imageView, String uriString){
         /** Input: uriString, may be web address or File path address
-         *  Output: boolean, true for web address, false for File address
+         *  Output: boolean, true for image is set, false if not
          * **/
-        URI u = null;
+        if(uriString.isEmpty()) return false;
+
+        URI u = null;/*
         try {
             // convert path to URI
             u = new URI(uriString);
@@ -92,15 +97,25 @@ class BaseImageHolder extends RecyclerView.ViewHolder {
                 //change thread policy then get image
                 StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
                 StrictMode.setThreadPolicy(policy);
-                imageView.setImageBitmap(BitmapFactory.decodeStream((InputStream)u.toURL().getContent()));
+                imageView.setImageBitmap(BitmapFactory.decodeStream((InputStream)u.toURL().openConnection().getInputStream()));
                 return true;
             } else throw new MalformedURLException("Not web URI"); //share throw exception
+            */
+        Picasso.get().load(uriString)
+                .placeholder(android.R.drawable.ic_menu_gallery)
+                .into(imageView);
+        return true;
+            /*
         } catch (IOException | URISyntaxException e) {
-            // set image using local File Uri
-            File img = new File(uriString);
-            imageView.setImageURI(Uri.fromFile(img));
-            return false;
-        }
+            try {
+                // set image using local File Uri
+                File img = new File(uriString);
+                imageView.setImageURI(Uri.fromFile(img));
+                return true;
+            } catch (Throwable f) {
+                return false;
+            }
+        }*/
     }
 }
 

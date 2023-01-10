@@ -1,17 +1,13 @@
 package wia2007.project.tablebooking;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import wia2007.project.tablebooking.database.TableBookingDatabase;
 
@@ -82,7 +78,7 @@ public class RejectBookingPopUp extends Fragment {
                 view.setVisibility(View.INVISIBLE);
                 TableBookingDatabase.getDatabase(view.getContext()).bookingDAO().rejectBooking(bookingId);
                 TableBookingDatabase.getDatabase(view.getContext()).bookingContainMenuDAO().rejectBooking(bookingId);
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.NHFMain,BookingList.class,null).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.NHFMain, AdminBookingList.class,null).commit();
                 getActivity().overridePendingTransition(0,0);
                 getActivity().finish();
             }
