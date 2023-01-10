@@ -156,7 +156,8 @@ public class SelectTableActivity extends AppCompatActivity {
     }
 
     public void cancelActivity() {
-        Intent backIntent = new Intent(this, MainMenuFragment.class);
-        startActivity(backIntent);
+//        Intent backIntent = new Intent(this, MainMenuFragment.class);
+//        startActivity(backIntent);
+        finish();
     }
 }

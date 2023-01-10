@@ -168,8 +168,9 @@ public class CheckBookingActivity extends AppCompatActivity {
     }
 
     public void openPreviousActivity() {
-        Intent backIntent = new Intent(this, PreOrderFoodActivity.class);
-        startActivity(backIntent);
+        finish();
+//        Intent backIntent = new Intent(this, PreOrderFoodActivity.class);
+//        startActivity(backIntent);
     }
 
     public void cancelActivity() {

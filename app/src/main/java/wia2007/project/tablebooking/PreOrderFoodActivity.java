@@ -155,8 +155,9 @@ public class PreOrderFoodActivity extends AppCompatActivity {
     }
 
     public void openPreviousActivity() {
-        Intent backIntent = new Intent(this, SelectTableActivity.class);
-        startActivity(backIntent);
+//        Intent backIntent = new Intent(this, SelectTableActivity.class);
+//        startActivity(backIntent);
+        finish();
     }
 
     public void cancelActivity() {
