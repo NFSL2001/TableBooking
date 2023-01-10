@@ -54,13 +54,13 @@ public class ManageBookingFutureActivity extends AppCompatActivity {
         DateText = findViewById(R.id.manageBooking_Future_date);
         TableID = findViewById(R.id.manageBooking_Future_table);
         TableSize = findViewById(R.id.manageBooking_Future_person);
-        RestaurantName = findViewById(R.id.manageBooking_Future_restaurantName);
+//        RestaurantName = findViewById(R.id.manageBooking_Future_restaurantName);
         TimeText = findViewById(R.id.manageBooking_Future_time);
         Request = findViewById(R.id.manageBooking_Future_request);
 
         EditBookingButton = findViewById(R.id.manageBooking_Future_editBookingButton);
         CancelBookingButton = findViewById(R.id.manageBooking_Future_cancelBookingButton);
-        UpBackButton = findViewById(R.id.manageBooking_Future_backButton);
+//        UpBackButton = findViewById(R.id.manageBooking_Future_backButton);
 
         TableBookingDatabase database = TableBookingDatabase.getDatabase(getApplicationContext());
 

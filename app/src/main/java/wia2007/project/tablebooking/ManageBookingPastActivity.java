@@ -54,12 +54,12 @@ public class ManageBookingPastActivity extends AppCompatActivity {
         DateText = findViewById(R.id.manageBooking_Past_date);
         TableID = findViewById(R.id.manageBooking_Past_table);
         TableSize = findViewById(R.id.manageBooking_Past_person);
-        RestaurantName = findViewById(R.id.manageBooking_Past_restaurantName);
+//        RestaurantName = findViewById(R.id.manageBooking_Past_restaurantName);
         TimeText = findViewById(R.id.manageBooking_Past_time);
         Request = findViewById(R.id.manageBooking_Past_request);
 
         BookAgainButton = findViewById(R.id.manageBooking_Past_bookButton);
-        UpBackButton = findViewById(R.id.manageBooking_Past_backButton);
+//        UpBackButton = findViewById(R.id.manageBooking_Past_backButton);
 
         TableBookingDatabase database = TableBookingDatabase.getDatabase(getApplicationContext());
 
