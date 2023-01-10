@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.ListAdapter;
 import java.sql.Date;
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import wia2007.project.tablebooking.database.TableBookingDatabase;
 import wia2007.project.tablebooking.entity.Booking;
@@ -35,15 +37,14 @@ public class BookingAdapter extends ListAdapter<BookingRestaurant, BookingViewHo
     public void onBindViewHolder(@NonNull BookingViewHolder holder, int position) {
         BookingRestaurant booking = getItem(position);
         holder.bind(booking.getRestaurant().getRestaurant_name(), dateFormat.format(booking.getStart_time().getTime()));
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Todo: add activity class
-                Intent intent = new Intent(view.getContext(), BookingDetails.class);
-                intent.putExtra("bookingId", booking.getBooking_id());
-                view.getContext().startActivity(intent);
-            }
-        });
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(view.getContext(), BookingDetails.class);
+//                intent.putExtra("bookingId", booking.getBooking_id());
+//                view.getContext().startActivity(intent);
+//            }
+//        });
     }
 
     public static class bookDiff extends DiffUtil.ItemCallback<BookingRestaurant> {

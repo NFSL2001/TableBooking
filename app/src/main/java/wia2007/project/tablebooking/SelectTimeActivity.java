@@ -2,7 +2,9 @@ package wia2007.project.tablebooking;
 
 import static java.lang.String.valueOf;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
@@ -28,7 +30,7 @@ public class SelectTimeActivity extends AppCompatActivity {
     NumberPicker AdultNumberPicker, ChildrenNumberPicker, DurationNumberPicker, StartTimeSelector1, StartTimeSelector2;
     CalendarView DateSelector;
     Button NextButton, CancelButton;
-    int AdultVal, ChildrenVal, Person, restaurantID = 0, customerID, hour;
+    int AdultVal, ChildrenVal, Person, restaurantID, customerID, hour;
     long StartTime, EndTime;
 
     String Date, StartHour, StartMinute, EndHour;
@@ -40,6 +42,9 @@ public class SelectTimeActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         restaurantID = intent.getExtras().getInt("resID");
+        SharedPreferences sharedPreferences = this.getSharedPreferences("user", Context.MODE_PRIVATE);
+        customerID = sharedPreferences.getInt("userID",-1);
+        System.out.println(customerID);
 
         AdultNumberPicker = findViewById(R.id.select_time_adultNumberPicker);
         ChildrenNumberPicker = findViewById(R.id.select_time_childrenNumberPicker);
@@ -169,6 +174,7 @@ public class SelectTimeActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SelectTableActivity.class);
         intent.putExtra("numPeople",numPeople);
         intent.putExtra("cusID", customerID);
+        System.out.println(customerID);
         intent.putExtra("resID", restaurantID);
         intent.putExtra("tSize", tableSize);
         intent.putExtra("sTime", startTime);

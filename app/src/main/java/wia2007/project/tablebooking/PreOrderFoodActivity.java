@@ -56,7 +56,7 @@ public class PreOrderFoodActivity extends AppCompatActivity {
         String startString = getIntent().getStringExtra("startString");
         String endString = getIntent().getStringExtra("endString");
         int numPeople = getIntent().getIntExtra("numPeople",1);
-
+        System.out.println("tid:"+tID);
         SkipButton = findViewById(R.id.pre_order_food_buttonSkipNow);
         NextButton = findViewById(R.id.pre_order_food_nextButton);
         BackButton = findViewById(R.id.pre_order_food_backButton);
