@@ -87,35 +87,10 @@ class BaseImageHolder extends RecyclerView.ViewHolder {
          * **/
         if(uriString.isEmpty()) return false;
 
-        URI u = null;/*
-        try {
-            // convert path to URI
-            u = new URI(uriString);
-            boolean isWeb = "http".equalsIgnoreCase(u.getScheme())
-                    || "https".equalsIgnoreCase(u.getScheme());
-            if (isWeb) {
-                //change thread policy then get image
-                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-                StrictMode.setThreadPolicy(policy);
-                imageView.setImageBitmap(BitmapFactory.decodeStream((InputStream)u.toURL().openConnection().getInputStream()));
-                return true;
-            } else throw new MalformedURLException("Not web URI"); //share throw exception
-            */
         Picasso.get().load(uriString)
                 .placeholder(android.R.drawable.ic_menu_gallery)
                 .into(imageView);
         return true;
-            /*
-        } catch (IOException | URISyntaxException e) {
-            try {
-                // set image using local File Uri
-                File img = new File(uriString);
-                imageView.setImageURI(Uri.fromFile(img));
-                return true;
-            } catch (Throwable f) {
-                return false;
-            }
-        }*/
     }
 }
 
