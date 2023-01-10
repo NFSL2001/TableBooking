@@ -32,6 +32,14 @@ public class Booking {
         this.remark = remark;
     }
 
+    public Booking(Integer table_id, Integer customer_id, Time start_time, Time end_time, String remark) {
+        this.table_id = table_id;
+        this.customer_id = customer_id;
+        this.start_time = start_time;
+        this.end_time = end_time;
+        this.remark = remark;
+    }
+
     public Integer getBooking_id() {
         return booking_id;
     }

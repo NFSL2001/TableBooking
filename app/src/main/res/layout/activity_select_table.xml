@@ -43,7 +43,7 @@
             android:text="@string/table_choice_text"/>
 
         <Spinner
-            android:id="@+id/select_table_4peopleSpinner"
+            android:id="@+id/select_table_choice"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
             android:layout_marginTop="16dp"

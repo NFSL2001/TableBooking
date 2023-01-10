@@ -112,7 +112,6 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/halfleft_rounded_rectangle"
-                    android:foreground=""
                     tools:ignore="TouchTargetSizeCheck" />
 
                 <EditText
