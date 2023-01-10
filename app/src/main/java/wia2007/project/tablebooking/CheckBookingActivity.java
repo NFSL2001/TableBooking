@@ -83,11 +83,12 @@ public class CheckBookingActivity extends AppCompatActivity {
         long startTime = getIntent().getIntExtra("sTime", 0);
         long endTime = getIntent().getIntExtra("eTime", 0);
         int tID = getIntent().getIntExtra("tableID", 0);
-
+        int numPeople = getIntent().getIntExtra("numPeople",1);
+        String startString = getIntent().getStringExtra("startString");
+        String endString = getIntent().getStringExtra("endString");
 
         TableBookingDatabase db = TableBookingDatabase.getDatabase(getApplicationContext());
         CustomerDAO customerDAO = db.customerDAO();
-        BookingContainMenuDAO BCMDAO = db.bookingContainMenuDAO();
         RestaurantDAO restaurantDAO = db.restaurantDAO();
         TableDAO tableDAO = db.tableDAO();
 
@@ -125,11 +126,11 @@ public class CheckBookingActivity extends AppCompatActivity {
         Email.setText(customerDAO.getCustomerById(customerID).get(0).getEmail());
         Price.setText(getIntent().getExtras().getString("Price","RM 0.00"));
         Name.setText(customerDAO.getCustomerById(customerID).get(0).getName());
-        DateText.setText(Date[0]);
-        Time.setText(Date[1] + " - " + Date2[1]);
+        DateText.setText(startString.substring(0,11));
+        Time.setText(startString.substring(11) + " - " +endString.substring(11));
         RestaurantName.setText(restaurantList.get(0).getRestaurant_name());
         TableID.setText(tableList.get(0).getName());
-        TableSize.setText(tableSize + " People");
+        TableSize.setText(numPeople+ " People");
 
 
         ConfirmButton.setOnClickListener(new View.OnClickListener() {

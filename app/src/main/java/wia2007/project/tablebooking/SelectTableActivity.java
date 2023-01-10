@@ -1,13 +1,8 @@
 package wia2007.project.tablebooking;
 
-import static java.lang.String.valueOf;
-
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,6 +10,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.sql.Time;
 import java.util.ArrayList;
@@ -46,7 +42,9 @@ public class SelectTableActivity extends AppCompatActivity {
         int tableSize = getIntent().getIntExtra("tSize", 0);
         long startTime = getIntent().getLongExtra("sTime", 0);
         long endTime = getIntent().getLongExtra("eTime", 0);
-
+        String startString = getIntent().getStringExtra("startString");
+        String endString = getIntent().getStringExtra("endString");
+        int numPeople = getIntent().getIntExtra("numPeople",1);
         TableSelected = findViewById(R.id.select_table_tableSelected);
 
         NextButton = findViewById(R.id.select_table_nextButton);
@@ -63,7 +61,7 @@ public class SelectTableActivity extends AppCompatActivity {
         TableDAO tableDAO = db.tableDAO();
         List<Table> tableList = tableDAO.getTableById(restaurantID);
         Set<Integer> size = new HashSet<>();
-        for(int i = 0; i<tableList.size();i++){
+        for (int i = 0; i < tableList.size(); i++) {
             size.add(tableList.get(i).getSize());
         }
         int n = size.size();
@@ -78,16 +76,16 @@ public class SelectTableActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 int size = Integer.parseInt(TableSize.getSelectedItem().toString());
-                List<Table> tables = db.tableDAO().getAvailableTable(restaurantID,startT,endT);
+                List<Table> tables = db.tableDAO().getAvailableTable(restaurantID, startT, endT);
                 List<String> tableName = new ArrayList<>();
-                for(int j = 0; j<tables.size();j++){
-                    if(tables.get(i).getSize() == size){
+                for (int j = 0; j < tables.size(); j++) {
+                    if (tables.get(i).getSize() == size) {
                         tableName.add(tables.get(i).getName());
                     }
                 }
                 String[] name = new String[tableName.size()];
-                int k =0;
-                for(String s:tableName){
+                int k = 0;
+                for (String s : tableName) {
                     name[k++] = s;
                 }
                 ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, name);
@@ -117,7 +115,7 @@ public class SelectTableActivity extends AppCompatActivity {
         NextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openNextActivity(customerID, restaurantID, tableSize, startTime, endTime, tableID);
+                openNextActivity(customerID, restaurantID, tableSize, startTime, endTime, tableID,startString,endString,numPeople);
             }
         });
 
@@ -142,14 +140,18 @@ public class SelectTableActivity extends AppCompatActivity {
         startActivity(backIntent);
     }
 
-    public void openNextActivity(int customerID, int restaurantID, int tableSize, long startTime, long endTime, int tID) {
-        getIntent().putExtra("cusID", customerID);
-        getIntent().putExtra("resID", restaurantID);
-        getIntent().putExtra("tSize", tableSize);
-        getIntent().putExtra("sTime", startTime);
-        getIntent().putExtra("eTime", endTime);
+    public void openNextActivity(int customerID, int restaurantID, int tableSize, long startTime, long endTime, int tID, String startString, String endString,int numPeople) {
+
 
         Intent intent = new Intent(this, PreOrderFoodActivity.class);
+        intent.putExtra("cusID", customerID);
+        intent.putExtra("resID", restaurantID);
+        intent.putExtra("numPeople",numPeople);
+        intent.putExtra("tSize", tableSize);
+        intent.putExtra("sTime", startTime);
+        intent.putExtra("eTime", endTime);
+        intent.putExtra("startString", startString);
+        intent.putExtra("endString", endString);
         startActivity(intent);
     }
 

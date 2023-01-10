@@ -125,6 +125,8 @@ public class SelectTimeActivity extends AppCompatActivity {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 Date = sdf.format(new java.util.Date(DateSelector.getDate()));
 
+                int numPeople = AdultNumberPicker.getValue() + ChildrenNumberPicker.getValue();
+
                 if (StartTimeSelector1.getValue() < 10)
                     StartHour = "0" + StartTimeSelector1.getValue();
                 else
@@ -137,19 +139,18 @@ public class SelectTimeActivity extends AppCompatActivity {
 
                 int temp = StartTimeSelector1.getValue() + DurationNumberPicker.getValue();
                 if (temp < 10)
-                    EndHour = "0" + StartTimeSelector1.getValue();
+                    EndHour = "0" + temp;
                 else
-                    EndHour = valueOf(StartTimeSelector1.getValue());
+                    EndHour = valueOf(temp);
 
                 String startString = Date +" "+ StartHour + ":" + StartMinute+":00";
                 String endString = Date +" "+ EndHour + ":" + StartMinute+":00";
-
                 Timestamp startTS = Timestamp.valueOf(startString);
                 Timestamp endTS = Timestamp.valueOf(endString);
                 StartTime = startTS.getTime();
                 EndTime = endTS.getTime();
                 Person = ChildrenVal + AdultVal;
-                openNextActivity(customerID, restaurantID, Person, StartTime, EndTime);
+                openNextActivity(customerID, restaurantID, Person, StartTime, EndTime,startString,endString,numPeople);
             }
         });
 
@@ -162,13 +163,16 @@ public class SelectTimeActivity extends AppCompatActivity {
 
     }
 
-    public void openNextActivity(int customerID, int restaurantID, int tableSize, long startTime, long endTime) {
+    public void openNextActivity(int customerID, int restaurantID, int tableSize, long startTime, long endTime, String startString, String endString,int numPeople) {
         Intent intent = new Intent(this, SelectTableActivity.class);
+        intent.putExtra("numPeople",numPeople);
         intent.putExtra("cusID", customerID);
         intent.putExtra("resID", restaurantID);
         intent.putExtra("tSize", tableSize);
         intent.putExtra("sTime", startTime);
         intent.putExtra("eTime", endTime);
+        intent.putExtra("startString",startString);
+        intent.putExtra("endString",endString);
         startActivity(intent);
     }
 
