@@ -3,8 +3,6 @@
     <string name="order_menu">Order Menu</string>
     <string name="food_order">Food Order</string>
     <string name="sort_by">Sort By</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <!-- TODO: Remove or change this placeholder text -->
     <string-array name="cuisine">
         <item>Malaysian</item>
         <item>Dinner Buffet</item>
