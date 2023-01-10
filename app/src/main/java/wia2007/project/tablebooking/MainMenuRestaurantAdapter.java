@@ -15,6 +15,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import org.w3c.dom.Text;
 
 import java.io.File;
@@ -85,7 +87,7 @@ class BaseImageHolder extends RecyclerView.ViewHolder {
          * **/
         if(uriString.isEmpty()) return false;
 
-        URI u = null;
+        URI u = null;/*
         try {
             // convert path to URI
             u = new URI(uriString);
@@ -95,9 +97,15 @@ class BaseImageHolder extends RecyclerView.ViewHolder {
                 //change thread policy then get image
                 StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
                 StrictMode.setThreadPolicy(policy);
-                imageView.setImageBitmap(BitmapFactory.decodeStream((InputStream)u.toURL().getContent()));
+                imageView.setImageBitmap(BitmapFactory.decodeStream((InputStream)u.toURL().openConnection().getInputStream()));
                 return true;
             } else throw new MalformedURLException("Not web URI"); //share throw exception
+            */
+        Picasso.get().load(uriString)
+                .placeholder(android.R.drawable.ic_menu_gallery)
+                .into(imageView);
+        return true;
+            /*
         } catch (IOException | URISyntaxException e) {
             try {
                 // set image using local File Uri
@@ -107,7 +115,7 @@ class BaseImageHolder extends RecyclerView.ViewHolder {
             } catch (Throwable f) {
                 return false;
             }
-        }
+        }*/
     }
 }
 
