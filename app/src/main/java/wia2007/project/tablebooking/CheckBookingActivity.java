@@ -1,5 +1,6 @@
 package wia2007.project.tablebooking;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -135,7 +136,10 @@ public class CheckBookingActivity extends AppCompatActivity {
         ConfirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                db.bookingDAO().insertBookings(new Booking(tID,customerID,startT,endT,Request.getText().toString()));
+                System.out.println(startString);
+                String query= "INSERT INTO Booking (Table_id,Customer_id,start_time,end_time,Remark)VALUES('"+tID+"','"+customerID+"','"+startString.substring(0,16)+"','"+endString.substring(0,16)+"','"+Request.getText().toString()+"');";
+                db.bookingDAO().insert(new SimpleSQLiteQuery(query));
+//                db.bookingDAO().insertBookings(new Booking(tID,customerID,java.sql.Time.valueOf(startString.substring(11)),java.sql.Time.valueOf(endString.substring(11)),Request.getText().toString()));
                 int booking_id = db.bookingDAO().rawQuery(new SimpleSQLiteQuery("SELECT * FROM booking ORDER BY booking_id DESC LIMIT 1;")).get(0).getBooking_id();
                 for(int i = 0; i<menuId.size();i++){
                    db.bookingContainMenuDAO().insertContains(new BookingContainMenu(booking_id,menuId.get(i),quantity.get(i)));
@@ -162,7 +166,7 @@ public class CheckBookingActivity extends AppCompatActivity {
     }
 
     public void openNextActivity() {
-        Intent intent = new Intent(this, ManageBookingFutureActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
