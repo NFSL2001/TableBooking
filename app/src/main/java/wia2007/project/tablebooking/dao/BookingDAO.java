@@ -60,4 +60,7 @@ public interface BookingDAO {
 
     @RawQuery
     List<Booking> rawQuery(SimpleSQLiteQuery query);
+
+    @RawQuery
+    Booking insert(SimpleSQLiteQuery query);
 }
