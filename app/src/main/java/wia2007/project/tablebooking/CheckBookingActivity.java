@@ -136,7 +136,6 @@ public class CheckBookingActivity extends AppCompatActivity {
         ConfirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println(startString);
                 String query= "INSERT INTO Booking (Table_id,Customer_id,start_time,end_time,Remark)VALUES('"+tID+"','"+customerID+"','"+startString.substring(0,16)+"','"+endString.substring(0,16)+"','"+Request.getText().toString()+"');";
                 db.bookingDAO().insert(new SimpleSQLiteQuery(query));
 //                db.bookingDAO().insertBookings(new Booking(tID,customerID,java.sql.Time.valueOf(startString.substring(11)),java.sql.Time.valueOf(endString.substring(11)),Request.getText().toString()));

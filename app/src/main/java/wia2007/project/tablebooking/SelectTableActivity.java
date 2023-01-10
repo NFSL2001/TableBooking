@@ -14,8 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import wia2007.project.tablebooking.dao.TableDAO;
@@ -30,7 +32,7 @@ public class SelectTableActivity extends AppCompatActivity {
     Button NextButton, CancelButton, BackButton;
     Spinner TableSize, TableChoice;
     int tableID = 0;
-
+    Map<Integer,String> map;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,12 +78,15 @@ public class SelectTableActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 int size = Integer.parseInt(TableSize.getSelectedItem().toString());
                 List<Table> tables = db.tableDAO().getAvailableTable(restaurantID, startT, endT);
-                List<String> tableName = new ArrayList<>();
+                Set<String> tableName = new HashSet<>();
+                map = new HashMap<>();
                 for (int j = 0; j < tables.size(); j++) {
                     if (tables.get(i).getSize() == size) {
                         tableName.add(tables.get(i).getName());
+                        map.put(tables.get(i).getTable_id(),tables.get(i).getName());
                     }
                 }
+
                 String[] name = new String[tableName.size()];
                 int k = 0;
                 for (String s : tableName) {
@@ -114,6 +119,16 @@ public class SelectTableActivity extends AppCompatActivity {
         NextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                tableID=-1;
+                List<Integer> key = new ArrayList<>(map.keySet());
+                List<String> value = new ArrayList<>(map.values());
+                for(int i = 0;i<key.size();i++){
+                    if(TableChoice.getSelectedItem().toString().equals(value.get(i))){
+                        tableID = key.get(i);
+                        break;
+                    }
+                }
+                System.out.println("TableID:"+tableID);
                 openNextActivity(customerID, restaurantID, tableSize, startTime, endTime, tableID,startString,endString,numPeople);
             }
         });
@@ -147,6 +162,7 @@ public class SelectTableActivity extends AppCompatActivity {
         intent.putExtra("resID", restaurantID);
         intent.putExtra("numPeople",numPeople);
         intent.putExtra("tSize", tableSize);
+        intent.putExtra("tableID",tID);
         intent.putExtra("sTime", startTime);
         intent.putExtra("eTime", endTime);
         intent.putExtra("startString", startString);
