@@ -37,11 +37,11 @@ public interface BookingDAO {
     @Query("SELECT * FROM Booking WHERE customer_id = :restaurantId")
     public List<Booking> getBookingByRestaurant(Integer restaurantId);
 
-    @Query("SELECT Restaurant.*, start_time, booking_id FROM Booking JOIN `Table` USING (table_id) JOIN Restaurant USING (restaurant_id) WHERE customer_id = :customerId ORDER BY start_time DESC")
-    public LiveData<List<BookingRestaurant>> getBookingRestaurantByCustomer(Integer customerId);
+    @Query("SELECT restaurant_name, start_time, booking_id FROM Booking JOIN `Table` USING (table_id) JOIN Restaurant USING (restaurant_id) WHERE customer_id = :customerId ORDER BY start_time DESC")
+    public Cursor getBookingRestaurantByCustomer(Integer customerId);
 
-    @Query("SELECT Restaurant.*, start_time, booking_id FROM Booking JOIN `Table` USING (table_id) JOIN Restaurant USING (restaurant_id) WHERE customer_id = :customerId ORDER BY restaurant_name")
-    public LiveData<List<BookingRestaurant>> getBookingRestaurantByCustomerOrderByName(Integer customerId);
+    @Query("SELECT restaurant_name, start_time, booking_id FROM Booking JOIN `Table` USING (table_id) JOIN Restaurant USING (restaurant_id) WHERE customer_id = :customerId ORDER BY restaurant_name")
+    public Cursor getBookingRestaurantByCustomerOrderByName(Integer customerId);
 
     @Query("SELECT Booking_id,start_time,End_time,Remark,T.Name AS TableName, C.name AS CustName,Mobile_number,Email FROM Booking B INNER JOIN Customer C, `Table` T ON B.Customer_id = C.Customer_id AND B.Table_id=T.Table_id WHERE Restaurant_id=:restaurant_id ORDER BY " +
             "CASE WHEN :sortCondition = 0 THEN C.name END COLLATE NOCASE ASC, " +
