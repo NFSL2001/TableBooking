@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.util.Objects;
+
 import wia2007.project.tablebooking.dao.RestaurantDAO;
 import wia2007.project.tablebooking.database.TableBookingDatabase;
 import wia2007.project.tablebooking.entity.Restaurant;
@@ -30,7 +32,7 @@ public class RestaurantInfo extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbarResInfo);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Restaurant Info");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Restaurant Info");
 
         name = findViewById(R.id.FillName);
         address = findViewById(R.id.fillAdd);
