@@ -1,28 +1,39 @@
 package wia2007.project.tablebooking;
 
+import static java.util.Map.Entry.comparingByKey;
+import static java.util.stream.Collectors.toMap;
+
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.sql.Time;
-import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
-import wia2007.project.tablebooking.dao.BookingDAO;
 import wia2007.project.tablebooking.dao.TableDAO;
 import wia2007.project.tablebooking.database.TableBookingDatabase;
 import wia2007.project.tablebooking.entity.Table;
 
-public class TableAvailabilityList extends AppCompatActivity {
+public class TableAvailabilityList extends AppCompatActivity implements RecycleViewInterface{
 
     TextView date, time, numOfTableBooked, numOfTableAvailable, totalTable;
-    List<Table> tableList2, tableList4, tableList6, tableList8;
-    TableAdapter tableAdapter1, tableAdapter2, tableAdapter3, tableAdapter4;
+    TableAdapter tableAdapter;
+    Map<Integer, List<Table>> tableMap = new HashMap<>();
+    Map<Integer, List<Table>> tableBySize = new HashMap();
+    List<TableViewModel> tableList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,73 +42,82 @@ public class TableAvailabilityList extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbarViewAbilityList);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("View Availability");
+        getSupportActionBar().setTitle("Check Table Availability");
 
         date = findViewById(R.id.showDate);
         time = findViewById(R.id.showTime2);
         numOfTableBooked = findViewById(R.id.showTableBooked2);
-        numOfTableAvailable = findViewById(R.id.showTableAvaialable);
+        numOfTableAvailable = findViewById(R.id.showTableAvailable);
         totalTable = findViewById(R.id.showTotalTable);
 
-        String DATE = getIntent().getStringExtra("keydate");
-        String TIME = getIntent().getStringExtra("keyTime");
-        String sTime = getIntent().getStringExtra("keystartdateNTime");
-        String eTime = getIntent().getStringExtra("keyenddateNTime");
-        Timestamp ts1 = Timestamp.valueOf(sTime);
-        Long val1 = ts1.getTime();
-        Timestamp ts2 = Timestamp.valueOf(eTime);
-        Long val2 = ts2.getTime();
-
-        Time startTime = new Time(val1);
-        Time endTime = new Time(val2);
+        int restaurant_id = getIntent().getExtras().getInt("RestaurantID");
+        String DATE = getIntent().getStringExtra("keyDate");
+        String startTime = getIntent().getStringExtra("startTime");
+        String endTime = getIntent().getStringExtra("endTime");
 
         TableBookingDatabase database = TableBookingDatabase.getDatabase(getApplicationContext());
         TableDAO tableDAO = database.tableDAO();
-        List<Table> total = tableDAO.getTableByRestaurant(0);
-        List<Table> availableTableList = tableDAO.getAvailableTable(0, startTime, endTime);
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat dfOri = new SimpleDateFormat("yyyy-MM-dd");
 
-        date.setText(DATE);
-        time.setText(TIME);
-        numOfTableBooked.setText((total.size() - availableTableList.size()));
-        numOfTableAvailable.setText(availableTableList.size());
-        totalTable.setText(total.size());
-
-        tableList2 = new ArrayList<Table>();
-        tableList4 = new ArrayList<Table>();
-        tableList6 = new ArrayList<Table>();
-        tableList8 = new ArrayList<Table>();
-        for (int i = 0; i < availableTableList.size(); i++) {
-            if (availableTableList.get(i).getSize() == 2) {
-                tableList2.add(availableTableList.get(i));
-            } else if (availableTableList.get(i).getSize() == 4) {
-                tableList4.add(availableTableList.get(i));
-            } else if (availableTableList.get(i).getSize() == 6) {
-                tableList6.add(availableTableList.get(i));
-            } else if (availableTableList.get(i).getSize() == 8) {
-                tableList8.add(availableTableList.get(i));
-            } else {
-                throw new RuntimeException("No Table");
-            }
+        try {
+            date.setText(df.format(dfOri.parse(DATE)));
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
+        List<Table> total = tableDAO.getTableByRestaurant(restaurant_id);
+        List<Table> availableTableList = tableDAO.getAvailableTable(restaurant_id,DATE+" "+startTime,DATE+" "+endTime);
 
-        RecyclerView recyclerView1 = findViewById(R.id.RCtwopeopleTable);
-        tableAdapter1 = new TableAdapter(this, tableList2);
-        recyclerView1.setAdapter(tableAdapter1);
-        recyclerView1.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        time.setText(startTime+" - "+endTime);
+        numOfTableBooked.setText(Integer.toString(total.size() - availableTableList.size()));
+        numOfTableAvailable.setText(Integer.toString(availableTableList.size()));
+        totalTable.setText(Integer.toString(total.size()));
 
-        RecyclerView recyclerView2 = findViewById(R.id.RCfourpeopleTable);
-        tableAdapter2 = new TableAdapter(this, tableList4);
-        recyclerView2.setAdapter(tableAdapter2);
-        recyclerView2.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        RecyclerView recyclerView = findViewById(R.id.RVTableAvailability);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            tableMap = total.stream().collect(Collectors.groupingBy(m -> m.getSize() == -1 ? -1 : m.getSize()));
+            tableBySize = tableMap
+                    .entrySet()
+                    .stream()
+                    .sorted(Collections.reverseOrder(comparingByKey()))
+                    .collect(toMap(e -> e.getKey(), e -> e.getValue(), (e1, e2) -> e2, LinkedHashMap::new));
+        }
+        tableList = addToTableBaseData(tableBySize);
+        List<Table> NotAvailable = new ArrayList<>(total);
+        NotAvailable.removeAll(availableTableList);
+        tableAdapter = new TableAdapter(this, tableList,NotAvailable,this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(tableAdapter);
+//        tableAdapter.notifyNewData(tableList);
+    }
 
-        RecyclerView recyclerView3 = findViewById(R.id.RCsixpeopleTable);
-        tableAdapter3 = new TableAdapter(this, tableList6);
-        recyclerView3.setAdapter(tableAdapter3);
-        recyclerView3.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+    @Override
+    public boolean onOptionsItemSelected(@NonNull android.view.MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
-        RecyclerView recyclerView4 = findViewById(R.id.RCeightpeopleTable);
-        tableAdapter4 = new TableAdapter(this, tableList8);
-        recyclerView4.setAdapter(tableAdapter4);
-        recyclerView4.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+    @Override
+    public void onItemClick(int position) {
+
+    }
+
+    @Override
+    public void onLongClick(int position) {
+
+    }
+
+    public List<TableViewModel> addToTableBaseData(Map<Integer, List<Table>> tableBySize) {
+        ArrayList<TableViewModel> list = new ArrayList<>();
+        List<Integer> sizeArr = new ArrayList<>(tableBySize.keySet());
+        List<List<Table>> tableArr = new ArrayList<>(tableBySize.values());
+        for (int j = 0; j < sizeArr.size(); j++) {
+            list.add(new TableViewModel(tableArr.get(j),sizeArr.get(j)));
+        }
+        return list;
     }
 }

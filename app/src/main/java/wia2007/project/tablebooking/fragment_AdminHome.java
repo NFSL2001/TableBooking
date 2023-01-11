@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import wia2007.project.tablebooking.database.TableBookingDatabase;
 import wia2007.project.tablebooking.entity.UserStatus;
 
 /**
@@ -40,6 +41,8 @@ public class fragment_AdminHome extends Fragment {
         View view = inflater.inflate(R.layout.fragment_admin_home, container, false);
         SharedPreferences sharedPref = this.getActivity().getSharedPreferences("admin", Context.MODE_PRIVATE);
         restaurant_id = sharedPref.getInt("userID",-1);
+        TextView ResName = view.findViewById(R.id.ResName);
+        ResName.setText(TableBookingDatabase.getDatabase(getContext()).restaurantDAO().getRestaurantById(restaurant_id).get(0).getRestaurant_name());
 
         Button BtnRestaurantInfo,BtnRestaurantMenu,BtnTableArrangement,BtnTableAvailability,BtnBookingList,BtnNotification,BtnViewReport,BtnViewStatistic;
         BtnRestaurantMenu = view.findViewById(R.id.ResMenu);
@@ -47,6 +50,8 @@ public class fragment_AdminHome extends Fragment {
         BtnViewReport = view.findViewById(R.id.viewReport);
         BtnViewStatistic = view.findViewById(R.id.viewStats);
         BtnRestaurantInfo = view.findViewById(R.id.ResInfo);
+        BtnTableArrangement = view.findViewById(R.id.TableArrangement);
+        BtnTableAvailability = view.findViewById(R.id.TableAvai);
 
         BtnRestaurantMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +90,22 @@ public class fragment_AdminHome extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(),RestaurantInfo.class);
+                intent.putExtra("RestaurantID",restaurant_id);
+                startActivity(intent);
+            }
+        });
+        BtnTableArrangement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(),table_manage.class);
+                intent.putExtra("RestaurantID",restaurant_id);
+                startActivity(intent);
+            }
+        });
+        BtnTableAvailability.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(),TableAvailabilityFilterByDate.class);
                 intent.putExtra("RestaurantID",restaurant_id);
                 startActivity(intent);
             }

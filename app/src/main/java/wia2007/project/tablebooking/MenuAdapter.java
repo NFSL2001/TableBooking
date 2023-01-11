@@ -16,7 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -167,7 +166,7 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     //add item into viewing list
                     menuList.add(item);
                 }
-            }else if(item instanceof MenuBaseData.MenuAddCategoryButton){
+            } else if (item instanceof MenuBaseData.MenuAddCategoryButton) {
                 menuList.add(item);
             }
         }
@@ -187,18 +186,17 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             this.menuDescription = itemView.findViewById(R.id.TVDescriptionMenuAdmin);
             this.menuImage = itemView.findViewById(R.id.MenuImage);
 
-            if(recycleViewInterface!=null){
+            if (recycleViewInterface != null) {
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (recycleViewInterface != null) {
-                            int pos = getAdapterPosition();
+                        int pos = getAdapterPosition();
 
-                            if (pos != RecyclerView.NO_POSITION) {
-                                recycleViewInterface.onItemClick(pos);
-                            }
+                        if (pos != RecyclerView.NO_POSITION) {
+                            recycleViewInterface.onItemClick(pos);
                         }
                     }
+
                 });
 
                 itemView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -288,14 +286,14 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             alertDialogBuilder.setMessage("Add New Category");
             EditText edittext;
             edittext = new EditText(context);
-            alertDialogBuilder.setView(edittext,50,0,50,0);
+            alertDialogBuilder.setView(edittext, 50, 0, 50, 0);
             alertDialogBuilder.setPositiveButton("yes",
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface arg0, int arg1) {
                             String category = edittext.getText().toString();
-                            menuList.add(menuList.size()-1, new MenuCategory(category));
-                            menuList.add(menuList.size()-1,new MenuBaseData.MenuAddItemButton(category));
+                            menuList.add(menuList.size() - 1, new MenuCategory(category));
+                            menuList.add(menuList.size() - 1, new MenuBaseData.MenuAddItemButton(category));
                         }
                     });
             alertDialogBuilder.setNegativeButton("No", null);
@@ -313,7 +311,7 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 public void onClick(View view) {
                     Intent intent = new Intent(context, ItemDetails.class);
                     MenuBaseData.MenuAddItemButton menuAddItem = (MenuBaseData.MenuAddItemButton) menuList.get(getAbsoluteAdapterPosition());
-                    intent.putExtra("ItemType",menuAddItem.type);
+                    intent.putExtra("ItemType", menuAddItem.type);
                     ((Activity) itemView.getContext()).startActivity(intent);
                 }
             });

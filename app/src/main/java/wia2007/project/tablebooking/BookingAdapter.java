@@ -1,7 +1,6 @@
 package wia2007.project.tablebooking;
 
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,10 +8,6 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DiffUtil;
-
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 public class BookingAdapter extends CursorAdapter {
@@ -20,6 +15,7 @@ public class BookingAdapter extends CursorAdapter {
 
     public BookingAdapter(Context context, Cursor c, boolean autoRequery) {
         super(context, c, autoRequery);
+        System.out.println(c.getColumnIndex("booking_id"));
     }
 
     @Override
@@ -33,6 +29,6 @@ public class BookingAdapter extends CursorAdapter {
         restaurantName.setText(cursor.getString(cursor.getColumnIndexOrThrow("restaurant_name")));
 
         TextView date = view.findViewById(R.id.TVBookingListBookingDate);
-        date.setText(dateFormat.format(new Date(cursor.getLong(cursor.getColumnIndexOrThrow("start_time")))));
+        date.setText(cursor.getString(cursor.getColumnIndexOrThrow("start_time")));
     }
 }

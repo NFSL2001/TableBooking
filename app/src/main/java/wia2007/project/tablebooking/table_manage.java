@@ -5,6 +5,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,7 +22,6 @@ import java.util.List;
 public class table_manage extends AppCompatActivity {
 
     TableAdapter tableAdapter, tableAdapter1, tableAdapter2, tableAdapter3, tableAdapter4;
-    TableViewModel tableViewModel, tableViewModel1, tableViewModel2, tableViewModel3, tableViewModel4;
     EditText addtableNo, addtablePax, deletetableNo;
     Button save, cancel;
     List<Table> tableList, tableList2, tableList4, tableList6, tableList8;
@@ -29,9 +31,13 @@ public class table_manage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_table_manage);
 
-        TableBookingDatabase database = TableBookingDatabase.getDatabase(getApplicationContext());
-        TableDAO tableDAO = database.tableDAO();
+        Toolbar toolbar = findViewById(R.id.TVTableManageAct);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Manage Table");
 
+        TableBookingDatabase database = TableBookingDatabase.getDatabase(this);
+        TableDAO tableDAO = database.tableDAO();
+        int restaurant_id = getIntent().getExtras().getInt("RestaurantID");
         addtableNo = findViewById(R.id.addTableNo);
         addtablePax = findViewById(R.id.editTablePax);
         deletetableNo = findViewById(R.id.deleteTableNo);
@@ -44,34 +50,27 @@ public class table_manage extends AppCompatActivity {
             public void onClick(View view) {
 
                 TableDAO tableDAO = database.tableDAO();
-                Table table = new Table();
-
-                if(addtableNo != null && deletetableNo == null){
-                    String  tableno = addtableNo.toString();
-                    int tablepax = Integer.parseInt(addtablePax.toString());
+                    String  tableno = addtableNo.getText().toString();
+                    int tablepax = Integer.parseInt(addtablePax.getText().toString());
                     String[] split =tableno.split("T");
-                    int tableid = Integer.parseInt(split[0]);
 
                     //update table in database
-                    table.setTable_id(tableid);
-                    table.setName(tableno);
-                    table.setSize(tablepax);
-                    List<Table> tableList = tableDAO.getTableById(tableid);
-                    table.setRestaurant_id(0);
-                    tableDAO.insertTables(table);
+//                    table.setTable_id(tableid);
+//                    table.setName(tableno);
+//                    table.setSize(tablepax);
+                    tableDAO.insertTables(new Table(restaurant_id,tableno,tablepax));
 
 
-                }else if(addtableNo == null && deletetableNo != null){
-                    String deleteTable = deletetableNo.toString();
-                    String[] split =deleteTable.split("T");
-                    int tableid = Integer.parseInt(split[0]);
+//                    String deleteTable = deletetableNo.toString();
+//                    String[] split =deleteTable.split("T");
+//                    int tableid = Integer.parseInt(split[0]);
+//
+//                    //update table in database
+//                    List<Table> tableList = tableDAO.getTableById(tableid);
+//                    table = tableList.get(0);
+//                    tableDAO.deleteTables(table);
 
-                    //update table in database
-                    List<Table> tableList = tableDAO.getTableById(tableid);
-                    table = tableList.get(0);
-                    tableDAO.deleteTables(table);
 
-                }
             }
         });
 
@@ -83,7 +82,7 @@ public class table_manage extends AppCompatActivity {
         });
 
         //to separate into table category
-        tableList = tableDAO.getTableByRestaurant(0);
+        tableList = tableDAO.getTableByRestaurant(restaurant_id);
         tableList2 = new ArrayList<Table>();
         tableList4 = new ArrayList<Table>();
         tableList6 = new ArrayList<Table>();
@@ -110,35 +109,38 @@ public class table_manage extends AppCompatActivity {
 
 
 
-        RecyclerView recyclerView1 = findViewById(R.id.RC2Table);
-        tableAdapter1 = new TableAdapter(this,tableList2);
-        recyclerView1.setAdapter(tableAdapter1);
-        recyclerView1.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+//        RecyclerView recyclerView1 = findViewById(R.id.RC2Table);
+//        tableAdapter1 = new TableAdapter(this,tableList2);
+//        recyclerView1.setAdapter(tableAdapter1);
+//        recyclerView1.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+//
+//        RecyclerView recyclerView2 = findViewById(R.id.RC4Table);
+//        tableAdapter2 = new TableAdapter(this,tableList4);
+//        recyclerView2.setAdapter(tableAdapter2);
+//        recyclerView2.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+//
+//        RecyclerView recyclerView3 = findViewById(R.id.RC6Table);
+//        tableAdapter3 = new TableAdapter(this,tableList6);
+//        recyclerView3.setAdapter(tableAdapter3);
+//        recyclerView3.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+//
+//        RecyclerView recyclerView4 = findViewById(R.id.RC8Table);
+//        tableAdapter4 = new TableAdapter(this,tableList8);
+//        recyclerView4.setAdapter(tableAdapter4);
+//        recyclerView4.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
-        RecyclerView recyclerView2 = findViewById(R.id.RC4Table);
-        tableAdapter2 = new TableAdapter(this,tableList4);
-        recyclerView2.setAdapter(tableAdapter2);
-        recyclerView2.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
-        RecyclerView recyclerView3 = findViewById(R.id.RC6Table);
-        tableAdapter3 = new TableAdapter(this,tableList6);
-        recyclerView3.setAdapter(tableAdapter3);
-        recyclerView3.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-
-        RecyclerView recyclerView4 = findViewById(R.id.RC8Table);
-        tableAdapter4 = new TableAdapter(this,tableList8);
-        recyclerView4.setAdapter(tableAdapter4);
-        recyclerView4.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-
-//        tableViewModel = new ViewModelProvider(this).get(TableViewModel.class);
-//        tableViewModel.getAllTable().observe(this, new Observer<List<Table>>() {
-//            @Override
-//            public void onChanged(List<Table> tables) {
-//                tableAdapter.setTable(tables);
-//            }
-//        });
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull android.view.MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }

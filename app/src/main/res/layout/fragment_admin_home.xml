@@ -13,7 +13,7 @@
         android:id="@+id/circle"
         android:layout_width="466dp"
         android:layout_height="328dp"
-        android:layout_marginTop="-164dp"
+        android:layout_marginTop="-120dp"
         android:layout_marginBottom="60dp"
         android:src="@drawable/circle"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,9 +22,11 @@
 
     <TextView
         android:id="@+id/ResName"
-        android:layout_width="wrap_content"
+        android:textStyle="bold"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.7"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="60dp"
         android:text="Restaurant Name"
         android:textAlignment="center"
         android:textColor="@color/white"
@@ -46,129 +48,95 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/circle">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
+            android:layout_margin="16sp"
+            android:orientation="vertical"
             android:layout_height="wrap_content">
 
             <Button
                 android:id="@+id/ResMenu"
-                android:layout_width="300dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
                 android:backgroundTint="#C1121F"
                 android:text="Restaurant Menu"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ResInfo" />
+                android:textSize="18sp"/>
 
             <Button
                 android:id="@+id/BookList"
-                android:layout_width="300dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
                 android:backgroundTint="#C1121F"
                 android:text="Booking List"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TableAvai" />
+                android:textSize="18sp" />
 
             <Button
+                android:layout_marginBottom="10dp"
                 android:id="@+id/TableArrangement"
-                android:layout_width="300dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
                 android:backgroundTint="#C1121F"
                 android:text="Table Arrangement"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ResMenu" />
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/TableAvai"
-                android:layout_width="300dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
                 android:backgroundTint="#C1121F"
                 android:text="Table Avalability"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TableArrangement" />
+                android:layout_marginBottom="10dp"
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/ResInfo"
-                android:layout_width="300dp"
-                android:layout_height="48dp"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
                 android:backgroundTint="#C1121F"
                 android:text="Restaurant Info"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginBottom="10dp"
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/AdminNoti"
-                android:layout_width="300dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
                 android:backgroundTint="#C1121F"
                 android:text="Notification"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/BookList" />
+                android:layout_marginBottom="10dp"
+                android:textSize="18sp" />
 
 
             <Button
                 android:id="@+id/viewReport"
-                android:layout_width="300dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
                 android:backgroundTint="#C1121F"
+                android:layout_marginBottom="10dp"
                 android:text="View Report"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/AdminNoti" />
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/viewStats"
-                android:layout_width="300dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
                 android:backgroundTint="#C1121F"
                 android:text="View Statistic"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/viewReport" />
+                android:textSize="18sp"/>
             <Button
                 android:id="@+id/ResMenu_Logout2"
-                android:layout_width="300dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
                 android:backgroundTint="#C1121F"
                 android:text="Log Out"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/viewStats" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_marginBottom="10dp"
+                android:textSize="18sp" />
+        </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -22,6 +23,7 @@ import java.util.Set;
 
 import wia2007.project.tablebooking.dao.TableDAO;
 import wia2007.project.tablebooking.database.TableBookingDatabase;
+import wia2007.project.tablebooking.entity.Restaurant;
 import wia2007.project.tablebooking.entity.Table;
 
 
@@ -60,11 +62,12 @@ public class SelectTableActivity extends AppCompatActivity {
 
         TableBookingDatabase db = TableBookingDatabase.getDatabase(getApplicationContext());
         TableDAO tableDAO = db.tableDAO();
-        List<Table> tableList = tableDAO.getTableById(restaurantID);
+        List<Table> tableList = tableDAO.getTableByRestaurant(restaurantID);
         Set<Integer> size = new HashSet<>();
         for (int i = 0; i < tableList.size(); i++) {
             size.add(tableList.get(i).getSize());
         }
+        System.out.println(Arrays.toString(size.toArray()));
         int n = size.size();
         Integer arr[] = new Integer[n];
         int i = 0;
@@ -77,20 +80,14 @@ public class SelectTableActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 int size = Integer.parseInt(TableSize.getSelectedItem().toString());
-                List<Table> tables = db.tableDAO().getAvailableTable(restaurantID, startT, endT);
-                Set<String> tableName = new HashSet<>();
+                List<Table> tables = db.tableDAO().getTableBySize(restaurantID,size);
                 map = new HashMap<>();
+                String[] name = new String[tables.size()];
                 for (int j = 0; j < tables.size(); j++) {
-                    if (tables.get(i).getSize() == size) {
-                        tableName.add(tables.get(i).getName());
-                        map.put(tables.get(i).getTable_id(),tables.get(i).getName());
+                    if (tables.get(j).getSize() >= size) {
+                        map.put(tables.get(j).getTable_id(),tables.get(j).getName());
+                        name[j] = tables.get(j).getName();
                     }
-                }
-
-                String[] name = new String[tableName.size()];
-                int k = 0;
-                for (String s : tableName) {
-                    name[k++] = s;
                 }
                 ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, name);
                 spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -128,7 +125,6 @@ public class SelectTableActivity extends AppCompatActivity {
                         break;
                     }
                 }
-                System.out.println("TableID:"+tableID);
                 openNextActivity(customerID, restaurantID, tableSize, startTime, endTime, tableID,startString,endString,numPeople);
             }
         });
@@ -150,8 +146,7 @@ public class SelectTableActivity extends AppCompatActivity {
 
 
     public void openPreviousActivity() {
-        Intent backIntent = new Intent(this, SelectTimeActivity.class);
-        startActivity(backIntent);
+        finish();
     }
 
     public void openNextActivity(int customerID, int restaurantID, int tableSize, long startTime, long endTime, int tID, String startString, String endString,int numPeople) {
@@ -171,8 +166,8 @@ public class SelectTableActivity extends AppCompatActivity {
     }
 
     public void cancelActivity() {
-//        Intent backIntent = new Intent(this, MainMenuFragment.class);
-//        startActivity(backIntent);
-        finish();
+        Intent backIntent = new Intent(this, RestaurantMainActivity.class);
+        backIntent.putExtra("ID",getIntent().getIntExtra("resID",0));
+        startActivity(backIntent);
     }
 }

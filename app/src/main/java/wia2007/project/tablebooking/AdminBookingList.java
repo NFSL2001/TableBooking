@@ -101,7 +101,7 @@ public class AdminBookingList extends Fragment {
                     prefEditor.commit();
                     SpinnerSortCondition.setSelection(spinnerValue);
                     sortCondition = Integer.toString(SpinnerSortCondition.getSelectedItemPosition());
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.NHFMain, AdminBookingList.class, null).commit();
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.NHFMain, AdminBookingList.class, getArguments()).commit();
                 }
             }
 
@@ -115,7 +115,6 @@ public class AdminBookingList extends Fragment {
         if (bundle != null) {
             restaurant_id = Integer.toString(bundle.getInt("Restaurant_Id"));
         }
-        System.out.println(bundle.getInt("Restaurant_Id"));
 
         BackGroundTaskBooking backGroundTaskBooking = new BackGroundTaskBooking(this.getContext());
         backGroundTaskBooking.execute("get_info", sortCondition, restaurant_id);
@@ -127,7 +126,7 @@ public class AdminBookingList extends Fragment {
     public boolean onOptionsItemSelected(@NonNull android.view.MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                getActivity().getSupportFragmentManager().popBackStackImmediate();
+                getActivity().getSupportFragmentManager().popBackStack();
                 return true;
         }
         return super.onOptionsItemSelected(item);

@@ -1,72 +1,81 @@
 package wia2007.project.tablebooking;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import wia2007.project.tablebooking.entity.Table;
 
-import java.util.List;
+public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableHolder> {
+    Context context;
+    List<TableViewModel> tableItem;
+    List<Table> itemList = new ArrayList<>();
+    List<Table> NotAvailable;
+    RecycleViewInterface recycleViewInterface;
+    ItemAdapter itemAdapter;
 
-public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableViewHolder> {
-   private LayoutInflater layoutInflater;
-    private Context mcontext;
-    private List<Table> mTable;
+    public TableAdapter(Context context, List<TableViewModel> menuItem,List<Table> NotAvailable, RecycleViewInterface recycleViewInterface) {
+        this.context = context;
+        this.tableItem = menuItem;
+        this.NotAvailable = NotAvailable;
+        this.recycleViewInterface = recycleViewInterface;
+    }
 
-    public TableAdapter(Context context, List<Table> tableList ) {
-        layoutInflater = LayoutInflater.from(context);
-        mcontext = context;
-        mTable = tableList;
+    public void notifyNewData(List<TableViewModel> menu){
+        this.tableItem.clear();
+        tableItem = menu;
+        notifyDataSetChanged();
     }
 
     @NonNull
     @Override
-    public TableViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = layoutInflater.from(parent.getContext()).inflate(R.layout.table_list,parent,false);
-        TableViewHolder viewHolder = new TableViewHolder(itemView);
-        return viewHolder;
+    public TableAdapter.TableHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.table_list_section, parent, false);
+        return new TableHolder(view, recycleViewInterface);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TableViewHolder holder, int position) {
-        if (mTable != null){
-            Table table = mTable.get(position);
-            holder.setData(table.getName());
+    public void onBindViewHolder(@NonNull TableHolder holder, int position) {
+        int pos = position;
+        TableViewModel dataModel = tableItem.get(position);
+        holder.table_title.setText(Integer.toString(dataModel.getSize())+" People Table");
+        itemList = dataModel.getTable();
+        itemAdapter = new ItemAdapter(itemList,NotAvailable,recycleViewInterface);
+        holder.nestedRV.setLayoutManager(new LinearLayoutManager(holder.itemView.getContext(),RecyclerView.HORIZONTAL,false));
+        holder.nestedRV.setHasFixedSize(true);
+        holder.nestedRV.setAdapter(itemAdapter);
 
-        }else{
-            //cover the data that is not ready yet
-            holder.tableView.setText(R.string.no_table);
-        }
     }
 
     @Override
     public int getItemCount() {
-        if(mTable != null){
-            return mTable.size();
-        }else{
-            return 0;
-        }
+        return tableItem.size();
     }
 
-    public void setTable(List<Table>table){
-        mTable = table;
-        notifyDataSetChanged();
-    }
+    public class TableHolder extends RecyclerView.ViewHolder {
 
-    public class TableViewHolder extends RecyclerView.ViewHolder {
-        private TextView tableView;
-        public TableViewHolder(@NonNull View itemView) {
+        private TextView table_title;
+        private RecyclerView nestedRV;
+
+        public TableHolder(@NonNull View itemView, RecycleViewInterface recycleViewInterface) {
             super(itemView);
-            tableView = itemView.findViewById(R.id.N1);
+            table_title = itemView.findViewById(R.id.TableSize);
+            nestedRV = itemView.findViewById(R.id.child_rv);
         }
 
-        public void setData(String tablename) {
-            tableView.setText(tablename);
-        }
+    }
+
+    public ItemAdapter getItemAdapter() {
+        return itemAdapter;
     }
 }

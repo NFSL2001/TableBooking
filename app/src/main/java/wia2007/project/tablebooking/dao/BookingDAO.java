@@ -14,7 +14,6 @@ import androidx.sqlite.db.SimpleSQLiteQuery;
 import java.util.ArrayList;
 import java.util.List;
 
-import wia2007.project.tablebooking.BookingRestaurant;
 import wia2007.project.tablebooking.entity.Booking;
 
 @Dao
@@ -37,10 +36,10 @@ public interface BookingDAO {
     @Query("SELECT * FROM Booking WHERE customer_id = :restaurantId")
     public List<Booking> getBookingByRestaurant(Integer restaurantId);
 
-    @Query("SELECT restaurant_name, start_time, booking_id FROM Booking JOIN `Table` USING (table_id) JOIN Restaurant USING (restaurant_id) WHERE customer_id = :customerId ORDER BY start_time DESC")
+    @Query("SELECT restaurant_name, start_time, booking_id _id FROM Booking JOIN `Table` USING (table_id) JOIN Restaurant USING (restaurant_id) WHERE customer_id = :customerId ORDER BY start_time DESC")
     public Cursor getBookingRestaurantByCustomer(Integer customerId);
 
-    @Query("SELECT restaurant_name, start_time, booking_id FROM Booking JOIN `Table` USING (table_id) JOIN Restaurant USING (restaurant_id) WHERE customer_id = :customerId ORDER BY restaurant_name")
+    @Query("SELECT restaurant_name, start_time, booking_id _id FROM Booking JOIN `Table` USING (table_id) JOIN Restaurant USING (restaurant_id) WHERE customer_id = :customerId ORDER BY restaurant_name")
     public Cursor getBookingRestaurantByCustomerOrderByName(Integer customerId);
 
     @Query("SELECT Booking_id,start_time,End_time,Remark,T.Name AS TableName, C.name AS CustName,Mobile_number,Email FROM Booking B INNER JOIN Customer C, `Table` T ON B.Customer_id = C.Customer_id AND B.Table_id=T.Table_id WHERE Restaurant_id=:restaurant_id ORDER BY " +

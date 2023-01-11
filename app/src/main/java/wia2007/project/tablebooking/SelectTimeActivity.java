@@ -44,7 +44,6 @@ public class SelectTimeActivity extends AppCompatActivity {
         restaurantID = intent.getExtras().getInt("resID");
         SharedPreferences sharedPreferences = this.getSharedPreferences("user", Context.MODE_PRIVATE);
         customerID = sharedPreferences.getInt("userID",-1);
-        System.out.println(customerID);
 
         AdultNumberPicker = findViewById(R.id.select_time_adultNumberPicker);
         ChildrenNumberPicker = findViewById(R.id.select_time_childrenNumberPicker);
@@ -174,7 +173,6 @@ public class SelectTimeActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SelectTableActivity.class);
         intent.putExtra("numPeople",numPeople);
         intent.putExtra("cusID", customerID);
-        System.out.println(customerID);
         intent.putExtra("resID", restaurantID);
         intent.putExtra("tSize", tableSize);
         intent.putExtra("sTime", startTime);
@@ -185,8 +183,7 @@ public class SelectTimeActivity extends AppCompatActivity {
     }
 
     public void cancelActivity() {
-        Intent backIntent = new Intent(this, MainMenuFragment.class);
-        startActivity(backIntent);
+        finish();
     }
 
 

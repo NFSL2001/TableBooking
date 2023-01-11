@@ -56,14 +56,13 @@ public class PreOrderFoodActivity extends AppCompatActivity {
         String startString = getIntent().getStringExtra("startString");
         String endString = getIntent().getStringExtra("endString");
         int numPeople = getIntent().getIntExtra("numPeople",1);
-        System.out.println("tid:"+tID);
         SkipButton = findViewById(R.id.pre_order_food_buttonSkipNow);
         NextButton = findViewById(R.id.pre_order_food_nextButton);
         BackButton = findViewById(R.id.pre_order_food_backButton);
         CancelButton = findViewById(R.id.pre_order_food_cancelButton);
         recyclerView = findViewById(R.id.pre_order_food_listMenu);
 
-        List<MenuItem> menuItem = TableBookingDatabase.getDatabase(getApplicationContext()).menuDAO().getMenuByRestaurant(1);
+        List<MenuItem> menuItem = TableBookingDatabase.getDatabase(getApplicationContext()).menuDAO().getMenuByRestaurant(restaurantID);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             menuMap = menuItem.stream().collect(Collectors.groupingBy(m -> m.getCategory() == null ? "Not defined" : m.getCategory()));
             menuByType = menuMap
