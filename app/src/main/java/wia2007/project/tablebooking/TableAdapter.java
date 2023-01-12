@@ -20,7 +20,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableHolder>
     Context context;
     List<TableViewModel> tableItem;
     List<Table> itemList = new ArrayList<>();
-    List<Table> NotAvailable;
+    List<Table> NotAvailable = new ArrayList<>();
     RecycleViewInterface recycleViewInterface;
     ItemAdapter itemAdapter;
 
@@ -28,6 +28,12 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableHolder>
         this.context = context;
         this.tableItem = menuItem;
         this.NotAvailable = NotAvailable;
+        this.recycleViewInterface = recycleViewInterface;
+    }
+
+    public TableAdapter(Context context, List<TableViewModel> menuItem, RecycleViewInterface recycleViewInterface) {
+        this.context = context;
+        this.tableItem = menuItem;
         this.recycleViewInterface = recycleViewInterface;
     }
 

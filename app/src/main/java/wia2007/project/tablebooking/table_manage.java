@@ -1,5 +1,9 @@
 package wia2007.project.tablebooking;
 
+import static java.util.Map.Entry.comparingByKey;
+import static java.util.stream.Collectors.toMap;
+
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,15 +21,21 @@ import wia2007.project.tablebooking.database.TableBookingDatabase;
 import wia2007.project.tablebooking.entity.Table;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
-public class table_manage extends AppCompatActivity {
+public class table_manage extends AppCompatActivity implements RecycleViewInterface {
 
-    TableAdapter tableAdapter, tableAdapter1, tableAdapter2, tableAdapter3, tableAdapter4;
+    TableAdapter tableAdapter;
     EditText addtableNo, addtablePax, deletetableNo;
     Button save, cancel;
-    List<Table> tableList, tableList2, tableList4, tableList6, tableList8;
-
+    List<TableViewModel> tableList;
+    Map<Integer, List<Table>> tableMap = new HashMap<>();
+    Map<Integer, List<Table>> tableBySize = new HashMap();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +53,21 @@ public class table_manage extends AppCompatActivity {
         deletetableNo = findViewById(R.id.deleteTableNo);
         save = findViewById(R.id.btnSave);
         cancel = findViewById(R.id.btnCancel);
+
+        List<Table> total = tableDAO.getTableByRestaurant(restaurant_id);
+        RecyclerView recyclerView = findViewById(R.id.RVTable);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            tableMap = total.stream().collect(Collectors.groupingBy(m -> m.getSize() == -1 ? -1 : m.getSize()));
+            tableBySize = tableMap
+                    .entrySet()
+                    .stream()
+                    .sorted(Collections.reverseOrder(comparingByKey()))
+                    .collect(toMap(e -> e.getKey(), e -> e.getValue(), (e1, e2) -> e2, LinkedHashMap::new));
+        }
+        tableList = addToTableBaseData(tableBySize);
+        tableAdapter = new TableAdapter(this, tableList,this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(tableAdapter);
 
         save.setOnClickListener(new View.OnClickListener(){
 
@@ -81,53 +106,8 @@ public class table_manage extends AppCompatActivity {
             }
         });
 
-        //to separate into table category
-        tableList = tableDAO.getTableByRestaurant(restaurant_id);
-        tableList2 = new ArrayList<Table>();
-        tableList4 = new ArrayList<Table>();
-        tableList6 = new ArrayList<Table>();
-        tableList8 = new ArrayList<Table>();
-
-        for(int i=0;i<tableList.size();i++){
-            switch(tableList.get(i).getSize()) {
-                case 2:
-                    tableList2.add(tableList.get(i));
-                    break;
-                case 4:
-                    tableList4.add(tableList.get(i));
-                    break;
-                case 6:
-                    tableList6.add(tableList.get(i));
-                    break;
-                case 8:
-                    tableList8.add(tableList.get(i));
-                    break;
-                default:
-                    new RuntimeException("No Table");
-            }
-        }
 
 
-
-//        RecyclerView recyclerView1 = findViewById(R.id.RC2Table);
-//        tableAdapter1 = new TableAdapter(this,tableList2);
-//        recyclerView1.setAdapter(tableAdapter1);
-//        recyclerView1.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-//
-//        RecyclerView recyclerView2 = findViewById(R.id.RC4Table);
-//        tableAdapter2 = new TableAdapter(this,tableList4);
-//        recyclerView2.setAdapter(tableAdapter2);
-//        recyclerView2.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-//
-//        RecyclerView recyclerView3 = findViewById(R.id.RC6Table);
-//        tableAdapter3 = new TableAdapter(this,tableList6);
-//        recyclerView3.setAdapter(tableAdapter3);
-//        recyclerView3.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-//
-//        RecyclerView recyclerView4 = findViewById(R.id.RC8Table);
-//        tableAdapter4 = new TableAdapter(this,tableList8);
-//        recyclerView4.setAdapter(tableAdapter4);
-//        recyclerView4.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
 
 
@@ -143,4 +123,23 @@ public class table_manage extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public List<TableViewModel> addToTableBaseData(Map<Integer, List<Table>> tableBySize) {
+        ArrayList<TableViewModel> list = new ArrayList<>();
+        List<Integer> sizeArr = new ArrayList<>(tableBySize.keySet());
+        List<List<Table>> tableArr = new ArrayList<>(tableBySize.values());
+        for (int j = 0; j < sizeArr.size(); j++) {
+            list.add(new TableViewModel(tableArr.get(j),sizeArr.get(j)));
+        }
+        return list;
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
+    }
+
+    @Override
+    public void onLongClick(int position) {
+
+    }
 }
