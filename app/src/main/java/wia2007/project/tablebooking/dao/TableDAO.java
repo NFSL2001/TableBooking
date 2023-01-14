@@ -55,4 +55,10 @@ public interface TableDAO {
             "GROUP  BY name " +
             "ORDER BY Quantity DESC")
     public List<DownloadPDF.saveTableData> calculateTableBooking(int restaurant_id, String year);
+
+    @Query("DELETE FROM 'table' WHERE table_id = :id;")
+    public void deleteById(int id);
+
+    @Query("Update 'table' set name = :name,size=:size WHERE table_id = :table_id")
+    public void updateByID(String name, int size, int table_id);
 }

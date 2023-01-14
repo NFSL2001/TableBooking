@@ -52,6 +52,7 @@ public class fragment_AdminHome extends Fragment {
         BtnRestaurantInfo = view.findViewById(R.id.ResInfo);
         BtnTableArrangement = view.findViewById(R.id.TableArrangement);
         BtnTableAvailability = view.findViewById(R.id.TableAvai);
+        BtnNotification = view.findViewById(R.id.AdminNoti);
 
         BtnRestaurantMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +81,6 @@ public class fragment_AdminHome extends Fragment {
         BtnBookingList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AdminBookingList adminBookingList = new AdminBookingList();
                 Bundle bundle = new Bundle();
                 bundle.putInt("Restaurant_Id",restaurant_id);
                 getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.NHFMain,AdminBookingList.class,bundle).commit();
@@ -110,6 +110,16 @@ public class fragment_AdminHome extends Fragment {
                 startActivity(intent);
             }
         });
+
+        BtnNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("Restaurant_Id",restaurant_id);
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.NHFMain,fragment_AdminNoti.class,bundle).commit();
+
+            }
+        });
         return view;
     }
 
@@ -119,7 +129,20 @@ public class fragment_AdminHome extends Fragment {
 
         SharedPreferences sharedPref = this.getActivity().getSharedPreferences("admin", Context.MODE_PRIVATE);
         Button BtnLogOut = view.findViewById(R.id.ResMenu_Logout);
+        Button BtnLogOut2 = view.findViewById(R.id.ResMenu_Logout2);
         BtnLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor edit = sharedPref.edit();
+                edit.remove("user");
+                edit.putBoolean(UserStatus.IS_ADMIN, false);
+                edit.apply();
+
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        BtnLogOut2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SharedPreferences.Editor edit = sharedPref.edit();

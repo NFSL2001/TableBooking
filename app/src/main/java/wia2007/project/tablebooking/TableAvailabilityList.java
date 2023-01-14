@@ -27,7 +27,7 @@ import wia2007.project.tablebooking.dao.TableDAO;
 import wia2007.project.tablebooking.database.TableBookingDatabase;
 import wia2007.project.tablebooking.entity.Table;
 
-public class TableAvailabilityList extends AppCompatActivity implements RecycleViewInterface{
+public class TableAvailabilityList extends AppCompatActivity{
 
     TextView date, time, numOfTableBooked, numOfTableAvailable, totalTable;
     TableAdapter tableAdapter;
@@ -85,7 +85,7 @@ public class TableAvailabilityList extends AppCompatActivity implements RecycleV
         tableList = addToTableBaseData(tableBySize);
         List<Table> NotAvailable = new ArrayList<>(total);
         NotAvailable.removeAll(availableTableList);
-        tableAdapter = new TableAdapter(this, tableList,NotAvailable,this);
+        tableAdapter = new TableAdapter(this, tableList,NotAvailable);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(tableAdapter);
 //        tableAdapter.notifyNewData(tableList);
@@ -99,16 +99,6 @@ public class TableAvailabilityList extends AppCompatActivity implements RecycleV
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onItemClick(int position) {
-
-    }
-
-    @Override
-    public void onLongClick(int position) {
-
     }
 
     public List<TableViewModel> addToTableBaseData(Map<Integer, List<Table>> tableBySize) {

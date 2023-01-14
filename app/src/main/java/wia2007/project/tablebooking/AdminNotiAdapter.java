@@ -19,7 +19,7 @@ public class AdminNotiAdapter extends RecyclerView.Adapter<AdminNotiAdapter.Admi
     private List<Booking> bookingList;
     private Context mContext;
 
-    public AdminNotiAdapter(Context context) {
+    public AdminNotiAdapter(Context context,List<Booking> bookingList) {
         layoutInflater = LayoutInflater.from(context);
         mContext = context;
     }

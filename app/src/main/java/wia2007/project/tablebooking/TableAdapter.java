@@ -24,23 +24,15 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableHolder>
     RecycleViewInterface recycleViewInterface;
     ItemAdapter itemAdapter;
 
-    public TableAdapter(Context context, List<TableViewModel> menuItem,List<Table> NotAvailable, RecycleViewInterface recycleViewInterface) {
+    public TableAdapter(Context context, List<TableViewModel> menuItem,List<Table> NotAvailable) {
         this.context = context;
         this.tableItem = menuItem;
         this.NotAvailable = NotAvailable;
-        this.recycleViewInterface = recycleViewInterface;
     }
 
-    public TableAdapter(Context context, List<TableViewModel> menuItem, RecycleViewInterface recycleViewInterface) {
+    public TableAdapter(Context context, List<TableViewModel> menuItem) {
         this.context = context;
         this.tableItem = menuItem;
-        this.recycleViewInterface = recycleViewInterface;
-    }
-
-    public void notifyNewData(List<TableViewModel> menu){
-        this.tableItem.clear();
-        tableItem = menu;
-        notifyDataSetChanged();
     }
 
     @NonNull
@@ -56,7 +48,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableHolder>
         TableViewModel dataModel = tableItem.get(position);
         holder.table_title.setText(Integer.toString(dataModel.getSize())+" People Table");
         itemList = dataModel.getTable();
-        itemAdapter = new ItemAdapter(itemList,NotAvailable,recycleViewInterface);
+        itemAdapter = new ItemAdapter(context,itemList,NotAvailable);
         holder.nestedRV.setLayoutManager(new LinearLayoutManager(holder.itemView.getContext(),RecyclerView.HORIZONTAL,false));
         holder.nestedRV.setHasFixedSize(true);
         holder.nestedRV.setAdapter(itemAdapter);
