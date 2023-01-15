@@ -12,6 +12,7 @@ import android.view.MenuItem;
 public class RestaurantMainActivity extends AppCompatActivity {
 
     Integer restaurantID;
+    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +27,9 @@ public class RestaurantMainActivity extends AppCompatActivity {
         // get current restaurant
         Intent intent = getIntent();
         this.restaurantID = intent.getExtras().getInt("ID");
+        this.name = intent.getStringExtra("name");
         //set restaurant name
-        getSupportActionBar().setTitle(intent.getStringExtra("name"));
+        getSupportActionBar().setTitle(name);
     }
 
     @Override

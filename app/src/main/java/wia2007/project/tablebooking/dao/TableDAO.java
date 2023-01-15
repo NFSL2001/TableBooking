@@ -29,13 +29,13 @@ public interface TableDAO {
     @Query("SELECT * FROM `Table` WHERE restaurant_id = :restaurantId")
     public List<Table> getTableByRestaurant(Integer restaurantId);
 
-    @Query("SELECT * FROM `Table` WHERE restaurant_id = :restaurantId AND size = :size")
-    public List<Table> getTableBySize(Integer restaurantId, Integer size);
+    @Query("SELECT * FROM `Table` WHERE table_id = :tableId1 OR table_id = :tableId2")
+    public List<Table> getTableInfo(Integer tableId1, Integer tableId2);
 
     @Query("SELECT * FROM `Table` " +
-            "WHERE restaurant_id = :restaurantId " +
+            "WHERE restaurant_id = :restaurantId AND size >= :size " +
             "AND table_id NOT IN (SELECT table_id FROM Booking WHERE start_time < :endTime AND :startTime < end_time)")
-    public List<Table> getAvailableTable(Integer restaurantId, Time startTime, Time endTime);
+    public List<Table> getAvailableTableAndSize(Integer restaurantId, String startTime, String endTime, Integer size);
 
     @Query("SELECT * FROM `Table` " +
             "WHERE restaurant_id = :restaurantId " +

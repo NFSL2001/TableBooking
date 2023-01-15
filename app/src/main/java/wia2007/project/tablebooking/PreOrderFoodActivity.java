@@ -35,7 +35,6 @@ public class PreOrderFoodActivity extends AppCompatActivity {
 
     Button SkipButton, NextButton, BackButton, CancelButton;
     static TextView Price;
-    int menuID;
     MenuAdapter2 adapter;
     Map<String, List<MenuItem>> menuMap = null;
     Map<String, List<MenuItem>> menuByType = null;
@@ -47,11 +46,10 @@ public class PreOrderFoodActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_order_food);
 
+        String name = getIntent().getStringExtra("name");
         int customerID = getIntent().getIntExtra("cusID", 0);
         int restaurantID = getIntent().getIntExtra("resID", 1);
         int tableSize = getIntent().getIntExtra("tSize", 0);
-        long startTime = getIntent().getIntExtra("sTime", 0);
-        long endTime = getIntent().getIntExtra("eTime", 0);
         int tID = getIntent().getIntExtra("tableID", 0);
         String startString = getIntent().getStringExtra("startString");
         String endString = getIntent().getStringExtra("endString");
@@ -91,14 +89,14 @@ public class PreOrderFoodActivity extends AppCompatActivity {
         SkipButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                skipToActivity(customerID, restaurantID, tableSize, startTime, endTime, tID, menuID,startString,endString,numPeople);
+                skipToActivity(customerID, restaurantID, tableSize, tID,startString,endString,numPeople,name);
             }
         });
 
         NextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openNextActivity(customerID, restaurantID, tableSize, startTime, endTime, tID, menuID,startString,endString,numPeople);
+                openNextActivity(customerID, restaurantID, tableSize, tID,startString,endString,numPeople,name);
             }
         });
 
@@ -119,47 +117,44 @@ public class PreOrderFoodActivity extends AppCompatActivity {
 
     }
 
-    public void openNextActivity(int customerID, int restaurantID, int tableSize, long startTime, long endTime, int tID, int mID, String startString, String endString,int numPeople) {
+    public void openNextActivity(int customerID, int restaurantID, int tableSize, int tID, String startString, String endString,int numPeople,String name) {
         Intent intent = new Intent(this, CheckBookingActivity.class);
         intent.putExtra("cusID", customerID);
         intent.putExtra("resID", restaurantID);
         intent.putExtra("numPeople",numPeople);
         intent.putExtra("tSize", tableSize);
-        intent.putExtra("sTime", startTime);
-        intent.putExtra("eTime", endTime);
         intent.putExtra("tableID", tID);
         intent.putExtra("startString",startString);
         intent.putExtra("endString",endString);
+        intent.putExtra("name",name);
         intent.putExtra("Skip","No");
         intent.putExtra("Price",Price.getText().toString());
         startActivity(intent);
     }
 
-    public void skipToActivity(int customerID, int restaurantID, int tableSize, long startTime, long endTime, int tID, int mID, String startString, String endString,int numPeople) {
+    public void skipToActivity(int customerID, int restaurantID, int tableSize, int tID, String startString, String endString,int numPeople,String name) {
         Intent intent = new Intent(this, CheckBookingActivity.class);
         intent.putExtra("cusID", customerID);
         intent.putExtra("resID", restaurantID);
         intent.putExtra("numPeople",numPeople);
         intent.putExtra("tSize", tableSize);
-        intent.putExtra("sTime", startTime);
-        intent.putExtra("eTime", endTime);
+        intent.putExtra("name",name);
         intent.putExtra("tableID", tID);
         intent.putExtra("startString",startString);
         intent.putExtra("endString",endString);
-        intent.putExtra("Skip","No");
-        intent.putExtra("Price",Price.getText().toString());
         intent.putExtra("Skip","Yes");
         startActivity(intent);
     }
 
     public void openPreviousActivity() {
-//        Intent backIntent = new Intent(this, SelectTableActivity.class);
-//        startActivity(backIntent);
         finish();
     }
 
     public void cancelActivity() {
-        Intent backIntent = new Intent(this, MainMenuFragment.class);
+        ItemAdapter.selectedTable.clear();
+        Intent backIntent = new Intent(this, RestaurantMainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        backIntent.putExtra("ID",getIntent().getIntExtra("resID",0));
+        backIntent.putExtra("name",getIntent().getStringExtra("name"));
         startActivity(backIntent);
     }
 }

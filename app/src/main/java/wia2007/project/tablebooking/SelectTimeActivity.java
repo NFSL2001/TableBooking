@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,11 +19,8 @@ import android.widget.NumberPicker;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.List;
-
-import wia2007.project.tablebooking.dao.RestaurantDAO;
-import wia2007.project.tablebooking.database.TableBookingDatabase;
-import wia2007.project.tablebooking.entity.Restaurant;
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class SelectTimeActivity extends AppCompatActivity {
@@ -30,10 +28,8 @@ public class SelectTimeActivity extends AppCompatActivity {
     NumberPicker AdultNumberPicker, ChildrenNumberPicker, DurationNumberPicker, StartTimeSelector1, StartTimeSelector2;
     CalendarView DateSelector;
     Button NextButton, CancelButton;
-    int AdultVal, ChildrenVal, Person, restaurantID, customerID, hour;
-    long StartTime, EndTime;
-
-    String Date, StartHour, StartMinute, EndHour;
+    int AdultVal, ChildrenVal, restaurantID, customerID, hour;
+    String Date, StartHour, StartMinute, EndHour,name;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,6 +38,7 @@ public class SelectTimeActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         restaurantID = intent.getExtras().getInt("resID");
+        name = intent.getStringExtra("name");
         SharedPreferences sharedPreferences = this.getSharedPreferences("user", Context.MODE_PRIVATE);
         customerID = sharedPreferences.getInt("userID",-1);
 
@@ -56,7 +53,7 @@ public class SelectTimeActivity extends AppCompatActivity {
         NextButton = findViewById(R.id.select_time_nextButton);
         CancelButton = findViewById(R.id.select_time_cancelButton);
 
-        AdultNumberPicker.setMinValue(0);
+        AdultNumberPicker.setMinValue(1);
         ChildrenNumberPicker.setMinValue(0);
         DurationNumberPicker.setMinValue(1);
 
@@ -64,20 +61,42 @@ public class SelectTimeActivity extends AppCompatActivity {
         ChildrenNumberPicker.setMaxValue(8);
         DurationNumberPicker.setMaxValue(4);
 
-        TableBookingDatabase db = TableBookingDatabase.getDatabase(getApplicationContext());
-        RestaurantDAO restaurantDAO = db.restaurantDAO();
-        List<Restaurant> restaurantList = restaurantDAO.getRestaurantById(restaurantID);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            AdultNumberPicker.setTextSize(50f);
+            ChildrenNumberPicker.setTextSize(50f);
+            DurationNumberPicker.setTextSize(50f);
+            StartTimeSelector1.setTextSize(50f);
+            StartTimeSelector2.setTextSize(50f);
+            StartTimeSelector2.setTextSize(50f);
+
+        }
+
 
         StartTimeSelector1.setMinValue(8);
         StartTimeSelector1.setMaxValue(20);
 
         StartTimeSelector2.setMinValue(0);
         StartTimeSelector2.setMaxValue(59);
+        NumberPicker.Formatter formatter = new NumberPicker.Formatter() {
+            @Override
+            public String format(int i) {
+                return String.format("%02d", i);
+            }
+        };
+
+        StartTimeSelector1.setFormatter(formatter);
+        StartTimeSelector2.setFormatter(formatter);
+
+        DateSelector.setMinDate((new Date().getTime()));
+        Calendar cal = Calendar.getInstance(); //Get the Calendar instance
+        cal.add(Calendar.MONTH,2);//Three months from now
+        Date date = cal.getTime();
+        DateSelector.setMaxDate(date.getTime());
 
         DateSelector.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
-                String Date = i + "-" + i1 + "-" + i2 + " ";
+                Date = i + "-" + i1+1 + "-" + i2;
             }
         });
 
@@ -128,9 +147,6 @@ public class SelectTimeActivity extends AppCompatActivity {
         NextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                Date = sdf.format(new java.util.Date(DateSelector.getDate()));
-
                 int numPeople = AdultNumberPicker.getValue() + ChildrenNumberPicker.getValue();
 
                 if (StartTimeSelector1.getValue() < 10)
@@ -148,15 +164,15 @@ public class SelectTimeActivity extends AppCompatActivity {
                     EndHour = "0" + temp;
                 else
                     EndHour = valueOf(temp);
+                if(Date == null){
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    Date = sdf.format(new Date().getTime());
+                }
 
                 String startString = Date +" "+ StartHour + ":" + StartMinute+":00";
                 String endString = Date +" "+ EndHour + ":" + StartMinute+":00";
-                Timestamp startTS = Timestamp.valueOf(startString);
-                Timestamp endTS = Timestamp.valueOf(endString);
-                StartTime = startTS.getTime();
-                EndTime = endTS.getTime();
-                Person = ChildrenVal + AdultVal;
-                openNextActivity(customerID, restaurantID, Person, StartTime, EndTime,startString,endString,numPeople);
+
+                openNextActivity(customerID, restaurantID, numPeople,startString,endString,numPeople,name);
             }
         });
 
@@ -169,14 +185,13 @@ public class SelectTimeActivity extends AppCompatActivity {
 
     }
 
-    public void openNextActivity(int customerID, int restaurantID, int tableSize, long startTime, long endTime, String startString, String endString,int numPeople) {
+    public void openNextActivity(int customerID, int restaurantID, int tableSize, String startString, String endString,int numPeople,String name) {
         Intent intent = new Intent(this, SelectTableActivity.class);
         intent.putExtra("numPeople",numPeople);
         intent.putExtra("cusID", customerID);
+        intent.putExtra("name",name);
         intent.putExtra("resID", restaurantID);
         intent.putExtra("tSize", tableSize);
-        intent.putExtra("sTime", startTime);
-        intent.putExtra("eTime", endTime);
         intent.putExtra("startString",startString);
         intent.putExtra("endString",endString);
         startActivity(intent);

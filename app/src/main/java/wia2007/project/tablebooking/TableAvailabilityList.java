@@ -85,10 +85,9 @@ public class TableAvailabilityList extends AppCompatActivity{
         tableList = addToTableBaseData(tableBySize);
         List<Table> NotAvailable = new ArrayList<>(total);
         NotAvailable.removeAll(availableTableList);
-        tableAdapter = new TableAdapter(this, tableList,NotAvailable);
+        tableAdapter = new TableAdapter(this, tableList,NotAvailable,getClass());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(tableAdapter);
-//        tableAdapter.notifyNewData(tableList);
     }
 
     @Override

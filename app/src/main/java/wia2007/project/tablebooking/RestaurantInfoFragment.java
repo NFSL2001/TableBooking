@@ -46,6 +46,7 @@ public class RestaurantInfoFragment extends Fragment {
         // get current restaurant ID
         RestaurantMainActivity parentActivity = (RestaurantMainActivity) getActivity();
         Integer restaurantID = parentActivity.restaurantID;
+        String restaurant_name = parentActivity.name;
 
         // get current restaurant info
         TableBookingDatabase database = TableBookingDatabase.getDatabase(getActivity());
@@ -111,6 +112,7 @@ public class RestaurantInfoFragment extends Fragment {
                 Context context = v.getContext();
                 Intent intent = new Intent(context, SelectTimeActivity.class);
                 intent.putExtra("resID", restaurantID);
+                intent.putExtra("name",restaurant_name);
                 context.startActivity(intent);
             }
         });

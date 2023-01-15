@@ -1,7 +1,5 @@
 package wia2007.project.tablebooking;
 
-import static android.content.Context.MODE_PRIVATE;
-
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -19,7 +17,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import wia2007.project.tablebooking.database.TableBookingDatabase;
 import wia2007.project.tablebooking.entity.MenuBaseData;
@@ -30,19 +27,12 @@ public class MenuAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     Context context;
     List<MenuBaseData> menuList, originalMenuList;
     RecyclerView recyclerView;
-    static Map<Integer,Integer> map = new HashMap<>();
+    static Map<Integer, Integer> map = new HashMap<>();
+
     public MenuAdapter2(Context context, List<MenuBaseData> menuList) {
         this.context = context;
         this.menuList = menuList;
         this.originalMenuList = new ArrayList<MenuBaseData>(menuList);
-    }
-
-    public void notifyNewData(List<MenuBaseData> menu) {
-        this.menuList.clear();
-        this.originalMenuList.clear();
-        menuList = menu;
-        originalMenuList = new ArrayList<>(menu);
-        notifyDataSetChanged();
     }
 
     @NonNull
@@ -123,7 +113,6 @@ public class MenuAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
 
-
     public class MenuCategoryHolder extends RecyclerView.ViewHolder {
 
         TextView menuCategoryTitle;
@@ -161,7 +150,6 @@ public class MenuAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             OrderQuantity.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-
                 }
 
                 @Override
@@ -170,19 +158,22 @@ public class MenuAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
                 @Override
                 public void afterTextChanged(Editable s) {
-                    if(!OrderQuantity.getText().toString().equals("")){
                         MenuItem menuItem = (MenuItem) menuList.get(getAdapterPosition());
-                        map.put(menuItem.getMenu_id(),Integer.parseInt(OrderQuantity.getText().toString()));
+                        String qty = OrderQuantity.getText().toString();
+                        if(qty.equals("")){
+                            qty = "0";
+                        }
+                        map.put(menuItem.getMenu_id(), Integer.parseInt(qty));
                         List<Integer> key = new ArrayList<>(map.keySet());
                         List<Integer> values = new ArrayList<>(map.values());
                         double price = 0;
-                        for(int i = 0; i<map.size();i++){
-                            if(values.get(i) != 0){
+                        for (int i = 0; i < map.size(); i++) {
+                            if (values.get(i) != 0) {
                                 price += TableBookingDatabase.getDatabase(context).menuDAO().getMenuById(key.get(i)).get(0).getPrice() * values.get(i);
                             }
                         }
-                        PreOrderFoodActivity.Price.setText("RM"+String.format("%.2f",price));
-                    }
+                        PreOrderFoodActivity.Price.setText("RM" + String.format("%.2f", price));
+
                 }
             });
 
@@ -205,20 +196,22 @@ public class MenuAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 this.menuPrice.setVisibility(View.GONE);
             }
             String path = item.getPath();
-            if (path != null) {
-                //File img = new File(path);
-                this.menuImage.setVisibility(View.VISIBLE);
-                this.setImageView(this.menuImage, path);
-                //this.menuImage.setImageURI(Uri.fromFile(img));
-            } else {
+            if (path == null) {
                 this.menuImage.setVisibility(View.GONE);
             }
+            boolean isSet = this.setImageView(this.menuImage, path);
+            if (!isSet)
+                this.menuImage.setVisibility(View.GONE);
+            else
+                this.menuImage.setVisibility(View.VISIBLE);
+
             this.internalMenuCategory = item.getCategory();
+
             this.OrderQuantity.setText("0");
         }
     }
 
-    public static Map<Integer,Integer> getMap(){
+    public static Map<Integer, Integer> getMap() {
         return map;
     }
 }

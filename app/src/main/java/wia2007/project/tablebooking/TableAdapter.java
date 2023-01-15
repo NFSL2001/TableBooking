@@ -23,16 +23,19 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableHolder>
     List<Table> NotAvailable = new ArrayList<>();
     RecycleViewInterface recycleViewInterface;
     ItemAdapter itemAdapter;
+    Class pClass;
 
-    public TableAdapter(Context context, List<TableViewModel> menuItem,List<Table> NotAvailable) {
+    public TableAdapter(Context context, List<TableViewModel> menuItem,List<Table> NotAvailable,Class pClass) {
         this.context = context;
         this.tableItem = menuItem;
         this.NotAvailable = NotAvailable;
+        this.pClass = pClass;
     }
 
-    public TableAdapter(Context context, List<TableViewModel> menuItem) {
+    public TableAdapter(Context context, List<TableViewModel> menuItem,Class pClass) {
         this.context = context;
         this.tableItem = menuItem;
+        this.pClass = pClass;
     }
 
     @NonNull
@@ -48,11 +51,10 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableHolder>
         TableViewModel dataModel = tableItem.get(position);
         holder.table_title.setText(Integer.toString(dataModel.getSize())+" People Table");
         itemList = dataModel.getTable();
-        itemAdapter = new ItemAdapter(context,itemList,NotAvailable);
+        itemAdapter = new ItemAdapter(context,itemList,NotAvailable,pClass);
         holder.nestedRV.setLayoutManager(new LinearLayoutManager(holder.itemView.getContext(),RecyclerView.HORIZONTAL,false));
         holder.nestedRV.setHasFixedSize(true);
         holder.nestedRV.setAdapter(itemAdapter);
-
     }
 
     @Override
@@ -73,7 +75,4 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableHolder>
 
     }
 
-    public ItemAdapter getItemAdapter() {
-        return itemAdapter;
-    }
 }

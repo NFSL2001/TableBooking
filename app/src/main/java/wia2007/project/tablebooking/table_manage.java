@@ -72,7 +72,7 @@ public class table_manage extends AppCompatActivity {
                     .collect(toMap(e -> e.getKey(), e -> e.getValue(), (e1, e2) -> e2, LinkedHashMap::new));
         }
         tableList = addToTableBaseData(tableBySize);
-        tableAdapter = new TableAdapter(this, tableList);
+        tableAdapter = new TableAdapter(this, tableList,getClass());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(tableAdapter);
 

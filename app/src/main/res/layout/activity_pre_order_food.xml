@@ -26,12 +26,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pre_order_food_listMenu"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="10dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/pre_order_food_foodSelectText" />
+        app:layout_constraintTop_toBottomOf="@id/pre_order_food_foodSelectText"
+        app:layout_constraintBottom_toTopOf="@+id/pre_order_food_buttonSkipNow" />
 
 
     <Button
@@ -81,53 +82,52 @@
             android:textSize="24sp" />
     </LinearLayout>
 
+
     <LinearLayout
         android:id="@+id/pre_order_food_bottomNavLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:weightSum="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/pre_order_food_backButton"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="wrap_content"
+            style="@style/TextAppearance.Material3.LabelLarge"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.8"
-            android:background="#000000"
-            android:fontFamily="@font/stixtwo"
+            android:layout_weight="0.2"
+            android:background="@color/black"
             android:text="@string/back_button"
             android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/pre_order_food_nextButton"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="243dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.8"
-            android:background="#C1121F"
-            android:fontFamily="@font/stixtwo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:background="?attr/colorPrimary"
             android:text="@string/next_button"
             android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="20dp" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/pre_order_food_cancelButton"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="99dp"
-            android:layout_height="wrap_content"
+            style="@style/TextAppearance.Material3.LabelLarge"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="0.2"
-            android:background="#000000"
-            android:fontFamily="@font/stixtwo"
+            android:background="@color/black"
             android:text="@string/cancel_button"
             android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textColor="@color/white" />
+
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
