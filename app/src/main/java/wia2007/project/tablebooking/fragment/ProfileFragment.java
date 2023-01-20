@@ -1,6 +1,6 @@
 package wia2007.project.tablebooking.fragment;
 
-import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,20 +27,11 @@ import wia2007.project.tablebooking.dao.CustomerDAO;
 import wia2007.project.tablebooking.database.TableBookingDatabase;
 import wia2007.project.tablebooking.entity.Customer;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ProfileFragment extends Fragment {
 
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -48,14 +39,6 @@ public class ProfileFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment.
-     */
     // TODO: Rename and change types and number of parameters
     public static ProfileFragment newInstance(String param1, String param2) {
         ProfileFragment fragment = new ProfileFragment();
@@ -113,16 +96,12 @@ public class ProfileFragment extends Fragment {
                     startActivity(intent);
                 }
             });
-
             TextView TVLogOut = view.findViewById(R.id.TVSignUp);
             TVLogOut.setText("Log out");
             TVLogOut.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    SharedPreferences.Editor edit = sharedPref.edit();
-                    edit.remove("user");
-                    edit.commit();
-
+                    sharedPref.edit().clear().commit();
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     startActivity(intent);
                 }
@@ -140,7 +119,7 @@ public class ProfileFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(getActivity(), LoginActivity.class);
-                    startActivity(intent);
+                    startActivityForResult(intent,1);
                 }
             });
             view.findViewById(R.id.TVSignUp).setOnClickListener(new View.OnClickListener() {
@@ -150,6 +129,18 @@ public class ProfileFragment extends Fragment {
                     startActivity(intent);
                 }
             });
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (resultCode == Activity.RESULT_OK && requestCode == 1) {
+//            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+//            if (Build.VERSION.SDK_INT >= 26) {
+//                ft.setReorderingAllowed(false);
+//            }
+//            ft.replace(R.id.NHFMain,ProfileFragment.class,null).commit();
+            startActivity(new Intent(getContext(),MainActivity.class));
         }
     }
 }

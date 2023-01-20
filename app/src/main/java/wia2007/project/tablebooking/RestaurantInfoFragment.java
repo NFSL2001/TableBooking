@@ -1,5 +1,6 @@
 package wia2007.project.tablebooking;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -110,10 +111,14 @@ public class RestaurantInfoFragment extends Fragment {
             public void onClick(View v) {
                 // TODO: Add navigation to new booking
                 Context context = v.getContext();
-                Intent intent = new Intent(context, SelectTimeActivity.class);
-                intent.putExtra("resID", restaurantID);
-                intent.putExtra("name",restaurant_name);
-                context.startActivity(intent);
+                if(context.getSharedPreferences("user", Context.MODE_PRIVATE).getInt("userID",-1) == -1){
+                    startActivity(new Intent(context,LoginActivity.class));
+                }else{
+                    Intent intent = new Intent(context, SelectTimeActivity.class);
+                    intent.putExtra("resID", restaurantID);
+                    intent.putExtra("name",restaurant_name);
+                    context.startActivity(intent);
+                }
             }
         });
 

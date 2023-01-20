@@ -26,10 +26,10 @@
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textStyle="bold"
+            android:text="Maximum 1 tables allowed"
             android:textColor="@color/red"
-            android:text="Maximum 2 tables allowed" />
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
 
         <androidx.recyclerview.widget.RecyclerView

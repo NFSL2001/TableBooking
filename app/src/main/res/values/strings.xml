@@ -14,7 +14,6 @@
         <item>Thai</item>
     </string-array>
     <string name="no_table">No table</string>
-
     <string name="app_name">Invitable</string>
     <string name="number_of_customer">No. of customer</string>
     <string name="next_button">Next</string>
@@ -46,22 +45,6 @@
     <string name="other">Other:</string>
     <string name="booking_details">Booking Details</string>
 
-
-    <string-array name="phoneNumbers">
-        <item>+60</item>
-        <item>+62</item>
-        <item>+1</item>
-        <item>+32</item>
-        <item>+599</item>
-
-    </string-array>
-
-    <string-array name="cancel_reason">
-        <item>Change of plans</item>
-        <item>Wrong Date/Time</item>
-        <item>Rather not say</item>
-
-    </string-array>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="check_booking_ask_reminder">Do you need a reminder a day before the booking?</string>
 

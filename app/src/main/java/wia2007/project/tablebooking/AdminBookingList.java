@@ -2,6 +2,9 @@ package wia2007.project.tablebooking;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,9 +15,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -114,6 +120,9 @@ public class AdminBookingList extends Fragment {
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             restaurant_id = Integer.toString(bundle.getInt("Restaurant_Id"));
+        }else{
+            sharedPref = getActivity().getSharedPreferences("admin", Context.MODE_PRIVATE);
+            restaurant_id = Integer.toString(sharedPref.getInt("userID",-1));
         }
 
         BackGroundTaskBooking backGroundTaskBooking = new BackGroundTaskBooking(this.getContext());

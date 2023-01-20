@@ -21,8 +21,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import wia2007.project.tablebooking.database.TableBookingDatabase;
-
 public class BookingsAdapter extends ArrayAdapter {
     List list = new ArrayList();
     Intent intent = new Intent(getContext(), BookingDetails.class);
@@ -59,7 +57,7 @@ public class BookingsAdapter extends ArrayAdapter {
             bookingsHolder.TVBookedCustName = row.findViewById(R.id.TVBookedCustName);
             bookingsHolder.TVBookingDate = row.findViewById(R.id.TVBookingDate);
             bookingsHolder.TVBookingTime = row.findViewById(R.id.TVBookingTime);
-            bookingsHolder.TVShowCompleted = row.findViewById(R.id.TVShowCompleted);
+            bookingsHolder.TVShowStatus = row.findViewById(R.id.TVShowStatus);
             row.setTag(bookingsHolder);
         }else{
             bookingsHolder = (BookingsHolder) row.getTag();
@@ -69,8 +67,9 @@ public class BookingsAdapter extends ArrayAdapter {
         String tableName= showBookingsList.getTable_name();
         String customerName = showBookingsList.getCustName();
         Integer bookingId = showBookingsList.getBooking_id();
-        Time startTime = showBookingsList.getStartTime();
-        Time endTime = showBookingsList.getEndTime();
+        Time startTime = showBookingsList.getStart_time();
+        Time endTime = showBookingsList.getEnd_time();
+        String status = showBookingsList.getStatus();
 
         //Time to String
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -86,13 +85,19 @@ public class BookingsAdapter extends ArrayAdapter {
             compareDate = simpleDateFormat.parse(start_time);
             if (compareDate.before(calendar.getTime())) {
                 bookingOver = true;
-                bookingsHolder.TVShowCompleted.setVisibility(View.VISIBLE);
+                bookingsHolder.TVShowStatus.setVisibility(View.VISIBLE);
             } else {
                 bookingOver = false;
-                bookingsHolder.TVShowCompleted.setVisibility(View.INVISIBLE);
+                bookingsHolder.TVShowStatus.setVisibility(View.INVISIBLE);
             }
         } catch (ParseException e) {
             e.printStackTrace();
+        }
+        if("Cancelled".equalsIgnoreCase(status)){
+            bookingOver=true;
+            bookingsHolder.TVShowStatus.setText("Cancelled");
+            bookingsHolder.TVShowStatus.setVisibility(View.VISIBLE);
+
         }
 
 
@@ -106,8 +111,8 @@ public class BookingsAdapter extends ArrayAdapter {
         BtnViewBooking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String customerPhone = showBookingsList.getCustMobile();
-                String customerEmail = showBookingsList.getCustEmail();
+                String customerPhone = showBookingsList.getMobile_number();
+                String customerEmail = showBookingsList.getEmail();
                 String remark = showBookingsList.getRemark();
 
                 intent.putExtra("CustomerName",customerName);
@@ -117,10 +122,10 @@ public class BookingsAdapter extends ArrayAdapter {
                 intent.putExtra("TableName",tableName);
                 intent.putExtra("Date",date);
                 intent.putExtra("Time",time_interval);
-                intent.putExtra("BookingId",bookingId);
+                intent.putExtra("bookingID",bookingId);
                 intent.putExtra("BookingOver", finalBookingOver);
+                intent.putExtra("status",status);
                 ((Activity)getContext()).startActivityForResult(intent,1);
-
             }
         });
 
@@ -128,6 +133,6 @@ public class BookingsAdapter extends ArrayAdapter {
     }
 
     static class BookingsHolder{
-        TextView TVTableID, TVBookedCustName, TVBookingDate, TVBookingTime,TVShowCompleted;
+        TextView TVTableID, TVBookedCustName, TVBookingDate, TVBookingTime, TVShowStatus;
     }
 }

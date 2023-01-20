@@ -74,7 +74,9 @@ public class MenuAdmin extends AppCompatActivity implements RecycleViewInterface
         BtnAddItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MenuAdmin.this, ItemDetails.class));
+                Intent intent = new Intent(MenuAdmin.this, ItemDetails.class);
+                intent.putExtra("RestaurantID",getIntent().getExtras().getInt("RestaurantID"));
+                startActivity(intent);
             }
         });
 
@@ -170,6 +172,7 @@ public class MenuAdmin extends AppCompatActivity implements RecycleViewInterface
         intent.putExtra("ItemPrice", itemPrice);
         intent.putExtra("ItemImage", menuItemList.getPath());
         intent.putExtra("ItemType", menuItemList.getCategory());
+        intent.putExtra("RestaurantID",getIntent().getExtras().getInt("RestaurantID"));
         startActivity(intent);
     }
 

@@ -15,24 +15,24 @@ import wia2007.project.tablebooking.entity.BookingContainMenu;
 import wia2007.project.tablebooking.entity.MenuItem;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodListViewHolder> {
 
-    Map<MenuItem,Integer> food;
+    Map<MenuItem,Integer> food = new HashMap<>();
     List<MenuItem> key;
     List<Integer> values;
-    List<BookingContainMenu> order;
+    List<ShowFoodOrderList> list = new ArrayList<>();
 
     public FoodListAdapter(Context context, Map<MenuItem,Integer> menuItems) {
         this.food = menuItems;
         key = new ArrayList<>(food.keySet());
         values = new ArrayList<>(food.values());
     }
-
-    public FoodListAdapter(Context context, List<BookingContainMenu> order) {
-        this.order = order;
+    public FoodListAdapter(Context context, List<ShowFoodOrderList> menuItems) {
+        this.list = menuItems;
     }
 
     @NonNull
@@ -47,15 +47,26 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodLi
 
     @Override
     public void onBindViewHolder(@NonNull FoodListAdapter.FoodListViewHolder holder, int position) {
-        float total = key.get(position).getPrice()*values.get(position);
-        System.out.println(key.get(position).toString());
-        holder.FoodName.setText(key.get(position).getMenu_name());
-        holder.Price.setText("RM"+String.format("%.2f",total));
-        holder.Quantity.setText(Integer.toString(values.get(position)));
+        if(!food.isEmpty()){
+            float total = key.get(position).getPrice()*values.get(position);
+            holder.FoodName.setText(key.get(position).getMenu_name());
+            holder.Price.setText("RM"+String.format("%.2f",total));
+            holder.Quantity.setText(Integer.toString(values.get(position)));
+        }else{
+            holder.FoodName.setText(list.get(position).getMenuName());
+            holder.Quantity.setText(Integer.toString(list.get(position).getQuantity()));
+            double total = list.get(position).getQuantity() * list.get(position).getTotalcost();
+            holder.Price.setText("RM"+String.format("%.2f",total));
+        }
     }
 
     @Override
-    public int getItemCount() { return food.size(); }
+    public int getItemCount() {
+        if(!food.isEmpty())
+            return food.size();
+        else
+            return list.size();
+    }
 
     public static class FoodListViewHolder extends RecyclerView.ViewHolder {
 
@@ -68,4 +79,13 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodLi
             Price = itemView.findViewById(R.id.foodList_price);
         }
     }
+
+    String grandTotal() {
+        double totalPrice = 0;
+        for (int i = 0; i < list.size(); i++) {
+            totalPrice += list.get(i).getQuantity() * list.get(i).getTotalcost();
+        }
+        return "RM"+String.format("%.2f",totalPrice);
+    }
+
 }

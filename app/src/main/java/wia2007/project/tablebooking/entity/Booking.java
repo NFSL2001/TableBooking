@@ -18,26 +18,18 @@ public class Booking {
     private Time start_time;
     private Time end_time;
     private String remark;
+    private String status;
 
     public Booking() {
     }
 
-    @Ignore
-    public Booking(Integer booking_id, Integer table_id, Integer customer_id, Time start_time, Time end_time, String remark) {
-        this.booking_id = booking_id;
+    public Booking(Integer table_id, Integer customer_id, Time start_time, Time end_time, String remark, String status) {
         this.table_id = table_id;
         this.customer_id = customer_id;
         this.start_time = start_time;
         this.end_time = end_time;
         this.remark = remark;
-    }
-
-    public Booking(Integer table_id, Integer customer_id, Time start_time, Time end_time, String remark) {
-        this.table_id = table_id;
-        this.customer_id = customer_id;
-        this.start_time = start_time;
-        this.end_time = end_time;
-        this.remark = remark;
+        this.status = status;
     }
 
     public Integer getBooking_id() {
@@ -88,6 +80,14 @@ public class Booking {
         this.remark = remark;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "Booking{" +
@@ -97,6 +97,7 @@ public class Booking {
                 ", start_time=" + start_time +
                 ", end_time=" + end_time +
                 ", remark='" + remark + '\'' +
+                ", status='" + status + '\'' +
                 '}';
     }
 }

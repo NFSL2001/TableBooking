@@ -7,136 +7,128 @@
     android:layout_height="match_parent"
     tools:context="wia2007.project.tablebooking.ManageBookingPastActivity" >
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/manageBooking_MenuActLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+<!--    <com.google.android.material.appbar.AppBarLayout-->
+<!--        android:id="@+id/manageBooking_MenuActLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/manageBooking_TB"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.ActionBar" />
-    </com.google.android.material.appbar.AppBarLayout>
+<!--        <androidx.appcompat.widget.Toolbar-->
+<!--            android:id="@+id/manageBooking_TB"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:theme="@style/AppTheme.ActionBar" />-->
+<!--    </com.google.android.material.appbar.AppBarLayout>-->
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/manageBooking_MenuActLayout"
-        app:layout_constraintBottom_toTopOf="@+id/manageBooking_layoutButton">
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/manageBooking_MenuActLayout"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/manageBooking_layoutButton">-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:padding="16dp">-->
 
-            <TextView
-                style="@style/TextAppearance.AppCompat.Subhead"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/customer_name"
-                android:textStyle="bold"/>
+<!--            <TextView-->
+<!--                style="@style/TextAppearance.AppCompat.Subhead"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/customer_name"-->
+<!--                android:textStyle="bold"/>-->
 
-            <TextView
-                android:id="@+id/manageBooking_Past_name"
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:paddingVertical="4dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+<!--            <TextView-->
+<!--                android:id="@+id/manageBooking_Past_name"-->
+<!--                style="@style/TextAppearance.AppCompat.Body1"-->
+<!--                android:paddingVertical="4dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"/>-->
 
-            <TextView
-                android:id="@+id/manageBooking_Past_person"
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:padding="4dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/person"/>
+<!--            <TextView-->
+<!--                android:id="@+id/manageBooking_Past_date"-->
+<!--                style="@style/TextAppearance.AppCompat.Body1"-->
+<!--                android:padding="4dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:drawableStart="@drawable/vector"/>-->
 
-            <TextView
-                android:id="@+id/manageBooking_Past_date"
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:padding="4dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/vector"/>
+<!--            <TextView-->
+<!--                android:id="@+id/manageBooking_Past_time"-->
+<!--                style="@style/TextAppearance.AppCompat.Body1"-->
+<!--                android:padding="4dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:drawableStart="@drawable/access_time"/>-->
 
-            <TextView
-                android:id="@+id/manageBooking_Past_time"
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:padding="4dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/access_time"/>
-
-            <TextView
-                android:id="@+id/manageBooking_Past_table"
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:padding="4dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_baseline_table_restaurant_24" />
+<!--            <TextView-->
+<!--                android:id="@+id/manageBooking_Past_table"-->
+<!--                style="@style/TextAppearance.AppCompat.Body1"-->
+<!--                android:padding="4dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:drawableStart="@drawable/ic_baseline_table_restaurant_24" />-->
 
 
-            <TextView
-                style="@style/TextAppearance.AppCompat.Subhead"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/request"
-                android:textStyle="bold"/>
+<!--            <TextView-->
+<!--                style="@style/TextAppearance.AppCompat.Subhead"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:text="@string/request"-->
+<!--                android:textStyle="bold"/>-->
 
-            <TextView
-                android:id="@+id/manageBooking_Past_request"
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="-" />
+<!--            <TextView-->
+<!--                android:id="@+id/manageBooking_Past_request"-->
+<!--                style="@style/TextAppearance.AppCompat.Body1"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="-" />-->
 
 
-            <TextView
-                style="@style/TextAppearance.AppCompat.Subhead"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/food"
-                android:textStyle="bold" />
+<!--            <TextView-->
+<!--                style="@style/TextAppearance.AppCompat.Subhead"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:text="@string/food"-->
+<!--                android:textStyle="bold" />-->
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/manageBooking_Past_foodList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/foodlist_recyclerview"/>
-        </LinearLayout>
-    </ScrollView>
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:id="@+id/manageBooking_Past_foodList"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--                tools:listitem="@layout/foodlist_recyclerview"/>-->
+<!--        </LinearLayout>-->
+<!--    </ScrollView>-->
 
-    <LinearLayout
-        android:id="@+id/manageBooking_layoutButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+<!--    <LinearLayout-->
+<!--        android:id="@+id/manageBooking_layoutButton"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent">-->
 
-        <Button
-            android:id="@+id/manageBooking_Past_bookButton"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="90"
-            android:background="#C1121F"
-            android:text="@string/book_again_button"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+<!--        <Button-->
+<!--            android:id="@+id/manageBooking_Past_bookButton"-->
+<!--            style="@style/Widget.AppCompat.Button.Borderless"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="90"-->
+<!--            android:background="#C1121F"-->
+<!--            android:text="@string/book_again_button"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textColor="#FFFFFF"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textStyle="bold" />-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

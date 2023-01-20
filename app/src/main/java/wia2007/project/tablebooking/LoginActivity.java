@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,6 +28,7 @@ import wia2007.project.tablebooking.database.TableBookingDatabase;
 import wia2007.project.tablebooking.entity.Customer;
 import wia2007.project.tablebooking.entity.Restaurant;
 import wia2007.project.tablebooking.entity.UserStatus;
+import wia2007.project.tablebooking.fragment.ProfileFragment;
 
 public class LoginActivity extends AppCompatActivity {
     @Override
@@ -61,10 +63,10 @@ public class LoginActivity extends AppCompatActivity {
                         editor.putInt("userID",customerList.get(0).getCustomer_id());
                         editor.putString("user", username);
                         editor.putBoolean(UserStatus.IS_ADMIN, false);
-                        editor.commit();
-
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
+                        editor.apply();
+                        Intent replyIntent = new Intent();
+                        setResult(RESULT_OK,replyIntent);
+                        finish();
                     } else
                         findViewById(R.id.TVIncorrect).setVisibility(View.VISIBLE);
                 } else {

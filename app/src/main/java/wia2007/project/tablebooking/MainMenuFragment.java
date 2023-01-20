@@ -51,14 +51,7 @@ public class MainMenuFragment extends Fragment {
         TableBookingDatabase database = TableBookingDatabase.getDatabase(context);
         RestaurantDAO dao = database.restaurantDAO();
         List<RestaurantDAO.RestaurantNameInfo> allList = dao.listAllRestaurantInfo();
-        //
-        /*ArrayList<RestaurantDAO.RestaurantNameInfo> allList = new ArrayList<>();
-        allList.add(new RestaurantDAO.RestaurantNameInfo(1,"Atmosphere 360", 1, "https://cdn.myfunnow.com/imgs/branch/cover%2Fatmosphere%20(2)_6861e3.jpg"));
-        allList.add(new RestaurantDAO.RestaurantNameInfo(2,"Cons Transphere", 2, ""));
-        allList.add(new RestaurantDAO.RestaurantNameInfo(3,"KFC Malaysia", 1, "https://play-lh.googleusercontent.com/MQDfTBh4VBrD4MQt5hX4b26OnGb9l57_pBWaBFw-mvfrfwOY9aHcwgF2mtDKvE0W-Bw=w240-h480-rw"));
-        allList.add(new RestaurantDAO.RestaurantNameInfo(4,"Malaysia Cuisine", 3, ""));
-        allList.add(new RestaurantDAO.RestaurantNameInfo(5,"Domino's 360", 7, ""));
-*/
+
         // get recycler view and bind view holder
         RecyclerView recyclerView = view.findViewById(R.id.main_menuListAllRV);
         // set layout manager

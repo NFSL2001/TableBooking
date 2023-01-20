@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +20,7 @@ import android.widget.Spinner;
 
 import java.util.List;
 
+import wia2007.project.tablebooking.AdminBookingList;
 import wia2007.project.tablebooking.BookingAdapter;
 import wia2007.project.tablebooking.R;
 import wia2007.project.tablebooking.dao.BookingDAO;
@@ -84,6 +86,9 @@ public class BookingFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Toolbar toolbar = getActivity().findViewById(R.id.TVMainAct);
+        toolbar.setVisibility(View.VISIBLE);
+        toolbar.setTitle("Bookings");
 
         TableBookingDatabase database = TableBookingDatabase.getDatabase(getActivity().getApplicationContext());
 
@@ -100,17 +105,19 @@ public class BookingFragment extends Fragment {
 
         BookingDAO bookingDAO = database.bookingDAO();
         ListView listView = getActivity().findViewById(R.id.LVBooking);
-        final BookingAdapter adapter = new BookingAdapter(getContext(), bookingDAO.getBookingRestaurantByCustomer(customer_id), false);
+        BookingAdapter adapter = new BookingAdapter(getContext(), bookingDAO.getBookingRestaurantByCustomer(customer_id), false);
         listView.setAdapter(adapter);
 
         ((Spinner) view.findViewById(R.id.SPBookingSort)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Object item = adapterView.getItemIdAtPosition(i);
-                if (item.equals("Sort by date"))
+                Object item2 = adapterView.getSelectedItem();
+                String item = item2.toString();
+                if (item.equals("Sort by date DESC")) {
                     adapter.changeCursor(bookingDAO.getBookingRestaurantByCustomer(customer_id));
-                else
+                }else {
                     adapter.changeCursor(bookingDAO.getBookingRestaurantByCustomerOrderByName(customer_id));
+                }
             }
 
             @Override

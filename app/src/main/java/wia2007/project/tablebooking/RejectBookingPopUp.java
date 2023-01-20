@@ -1,5 +1,11 @@
 package wia2007.project.tablebooking;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,7 +15,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import java.text.SimpleDateFormat;
+import java.util.List;
+
 import wia2007.project.tablebooking.database.TableBookingDatabase;
+import wia2007.project.tablebooking.entity.Booking;
+import wia2007.project.tablebooking.entity.Notification;
+import wia2007.project.tablebooking.fragment.BookingFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,13 +29,11 @@ import wia2007.project.tablebooking.database.TableBookingDatabase;
  * create an instance of this fragment.
  */
 public class RejectBookingPopUp extends Fragment {
-    int bookingId;
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    int bookingId,customerId,restaurantId;
+    String name;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -31,15 +41,6 @@ public class RejectBookingPopUp extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment RejectBookingPopUp.
-     */
-    // TODO: Rename and change types and number of parameters
     public static RejectBookingPopUp newInstance(String param1, String param2) {
         RejectBookingPopUp fragment = new RejectBookingPopUp();
         Bundle args = new Bundle();
@@ -66,20 +67,59 @@ public class RejectBookingPopUp extends Fragment {
 
         Bundle bundle = getActivity().getIntent().getExtras();
         if(bundle != null){
-            bookingId=bundle.getInt("BookingId");
-            System.out.println("BookingID:"+bookingId);
+            bookingId=bundle.getInt("bookingID");
         }
+
+        Bundle bundle1 = getArguments();
+        if(bundle1 != null){
+            restaurantId = bundle1.getInt("restaurant_id");
+            customerId = bundle1.getInt("customer_id");
+            name = bundle1.getString("name");
+        }
+
+        SharedPreferences user = getContext().getSharedPreferences("user", Context.MODE_PRIVATE);
+        SharedPreferences admin = getContext().getSharedPreferences("admin", Context.MODE_PRIVATE);
+        int custId = user.getInt("userID",-1);
+        int restId = admin.getInt("userID",-1);
 
         Button BtnConfirmReject = view.findViewById(R.id.BtnConfirmReject);
         BtnConfirmReject.setOnClickListener(new View.OnClickListener() {
-
+            @SuppressLint("Range")
             @Override
             public void onClick(View v) {
                 view.setVisibility(View.INVISIBLE);
                 TableBookingDatabase.getDatabase(view.getContext()).bookingDAO().rejectBooking(bookingId);
-                TableBookingDatabase.getDatabase(view.getContext()).bookingContainMenuDAO().rejectBooking(bookingId);
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.NHFMain, AdminBookingList.class,null).commit();
-                getActivity().overridePendingTransition(0,0);
+                if(custId == -1){
+                    String restaurant_name = TableBookingDatabase.getDatabase(view.getContext()).restaurantDAO().getRestaurantById(restId).get(0).getRestaurant_name();
+                    Cursor cursorBook = TableBookingDatabase.getDatabase(view.getContext()).bookingDAO().getBookingById(bookingId);
+                    String startTime = "           ", endTime ="           ";
+                    String tableName = "";
+                    while(cursorBook.moveToNext()){
+                        tableName = cursorBook.getString(cursorBook.getColumnIndex("TableName"));
+                        startTime = cursorBook.getString(cursorBook.getColumnIndex("start_time"));
+                        endTime = cursorBook.getString(cursorBook.getColumnIndex("end_time"));
+                    }
+                    String notification = "<b>"+restaurant_name+"</b> cancelled your order<br><b>("+tableName+", "+startTime+"-"+endTime.substring(11)+", "+tableName+")</b>";
+                    String notificationRestaurant = "You cancelled the order from <b>"+name+"</b><br><b>("+tableName+", "+startTime+"-"+endTime.substring(11)+")</b>";
+                    TableBookingDatabase.getDatabase(view.getContext()).notificationDAO().insertNotification(new Notification(notification,customerId,-1));
+                    TableBookingDatabase.getDatabase(view.getContext()).notificationDAO().insertNotification(new Notification(notificationRestaurant,-1,restId));
+                }
+                if(restId == -1){
+                    String restaurant_name = TableBookingDatabase.getDatabase(view.getContext()).restaurantDAO().getRestaurantById(restaurantId).get(0).getRestaurant_name();
+                    Cursor cursorBook = TableBookingDatabase.getDatabase(view.getContext()).bookingDAO().getBookingById(bookingId);
+                    String startTime = "           ", endTime ="           ";
+                    String tableName = "";
+                    while(cursorBook.moveToNext()){
+                        tableName = cursorBook.getString(cursorBook.getColumnIndex("TableName"));
+                        startTime = cursorBook.getString(cursorBook.getColumnIndex("start_time"));
+                        endTime = cursorBook.getString(cursorBook.getColumnIndex("end_time"));
+                    }
+                    String notification = "<b>"+name+"</b> cancelled the order<br><b>("+tableName+", "+startTime+"-"+endTime.substring(11)+", "+tableName+")</b>";
+                    String notificationRestaurant = "You cancelled the order of <b>"+restaurant_name+"</b><br><b>("+tableName+", "+startTime+"-"+endTime.substring(11)+")</b>";
+                    TableBookingDatabase.getDatabase(view.getContext()).notificationDAO().insertNotification(new Notification(notificationRestaurant,custId,-1));
+                    TableBookingDatabase.getDatabase(view.getContext()).notificationDAO().insertNotification(new Notification(notification,-1,restaurantId));
+                }
+                getActivity().setResult(Activity.RESULT_OK,new Intent());
                 getActivity().finish();
             }
         });

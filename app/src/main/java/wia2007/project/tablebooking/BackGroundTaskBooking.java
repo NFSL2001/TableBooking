@@ -41,7 +41,7 @@ public class BackGroundTaskBooking extends AsyncTask<String, ShowBookingsList, S
 
             Integer booking_id;
             String startTime, endTime;
-            String remark, custName, custEmail, custMobile,tableName;
+            String remark, custName, custEmail, custMobile,tableName,status;
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
             while (cursor.moveToNext()) {
@@ -53,6 +53,7 @@ public class BackGroundTaskBooking extends AsyncTask<String, ShowBookingsList, S
                 remark = cursor.getString(cursor.getColumnIndex("remark"));
                 custEmail = cursor.getString(cursor.getColumnIndex("email"));
                 custMobile = cursor.getString(cursor.getColumnIndex("mobile_number"));
+                status = cursor.getString(cursor.getColumnIndex("status"));
 
                 Time start_time = new Time(0);
                 Time end_time = new Time(0);
@@ -63,7 +64,7 @@ public class BackGroundTaskBooking extends AsyncTask<String, ShowBookingsList, S
                     e.printStackTrace();
                 }
 
-                ShowBookingsList showBookingsList = new ShowBookingsList(booking_id, start_time,end_time, tableName, custName, remark, custEmail, custMobile);
+                ShowBookingsList showBookingsList = new ShowBookingsList(booking_id, start_time,end_time, tableName, custName, remark, custEmail, custMobile,status);
 
                 publishProgress(showBookingsList);
             }

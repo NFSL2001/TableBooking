@@ -1,170 +1,153 @@
 package wia2007.project.tablebooking;
 
-import android.content.Intent;
-import android.content.pm.ActivityInfo;
+import android.annotation.SuppressLint;
+import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.sqlite.db.SimpleSQLiteQuery;
 
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import wia2007.project.tablebooking.converter.TimeConverter;
-import wia2007.project.tablebooking.dao.BookingContainMenuDAO;
-import wia2007.project.tablebooking.dao.BookingDAO;
-import wia2007.project.tablebooking.dao.CustomerDAO;
-import wia2007.project.tablebooking.dao.MenuDAO;
-import wia2007.project.tablebooking.dao.RestaurantDAO;
-import wia2007.project.tablebooking.dao.TableDAO;
 import wia2007.project.tablebooking.database.TableBookingDatabase;
-import wia2007.project.tablebooking.entity.Booking;
-import wia2007.project.tablebooking.entity.BookingContainMenu;
-import wia2007.project.tablebooking.entity.Customer;
-import wia2007.project.tablebooking.entity.Menu;
-import wia2007.project.tablebooking.entity.MenuItem;
-import wia2007.project.tablebooking.entity.Restaurant;
-import wia2007.project.tablebooking.entity.Table;
 
 
 public class ManageBookingFutureActivity extends AppCompatActivity {
 
-    TextView Name, DateText, TableID, TableSize, TimeText, Request;
+    TextView Name, DateText, TableID, TimeText, Request,RestaurantContact, RestaurantAddress,TVTotal,bookingCancelled;
     RecyclerView FoodList;
     FoodListAdapter foodListAdapter;
-    Button EditBookingButton, CancelBookingButton;
-    long startTime, endTime;
-
+    Button CancelBookingButton;
+    int bookingID;
+    String restName;
+    @SuppressLint({"Range", "SetTextI18n"})
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage_booking__future);
+        setContentView(R.layout.activity_manage_booking);
 
+        int customerID = this.getSharedPreferences("user",MODE_PRIVATE).getInt("userID",-1);
+        restName = getIntent().getStringExtra("restName");
+        bookingID = getIntent().getIntExtra("bookingID", 0);
+        boolean bookingOver = getIntent().getBooleanExtra("bookingOver",false);
+        String status = getIntent().getStringExtra("status");
         //get action bar
         Toolbar toolbar = findViewById(R.id.manageBooking_TB);
         setSupportActionBar(toolbar);
-        // add back button
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        int customerID = getIntent().getIntExtra("cusID", 0);
-        int restaurantID = getIntent().getIntExtra("resID", 0);
-        int bookingID = getIntent().getIntExtra("bookID", 0);
+        getSupportActionBar().setTitle(restName);
 
         Name = findViewById(R.id.manageBooking_Future_name);
         DateText = findViewById(R.id.manageBooking_Future_date);
         TableID = findViewById(R.id.manageBooking_Future_table);
-        TableSize = findViewById(R.id.manageBooking_Future_person);
         TimeText = findViewById(R.id.manageBooking_Future_time);
         Request = findViewById(R.id.manageBooking_Future_request);
+        RestaurantAddress = findViewById(R.id.RestaurantAddress);
+        RestaurantContact = findViewById(R.id.RestaurantContact);
+        TVTotal = findViewById(R.id.TVTotal);
+        bookingCancelled = findViewById(R.id.bookingCancelled);
 
-        EditBookingButton = findViewById(R.id.manageBooking_Future_editBookingButton);
         CancelBookingButton = findViewById(R.id.manageBooking_Future_cancelBookingButton);
-
-        TableBookingDatabase database = TableBookingDatabase.getDatabase(getApplicationContext());
-
-        BookingDAO bookingDAO = database.bookingDAO();
-        CustomerDAO customerDAO = database.customerDAO();
-        TableDAO tableDAO = database.tableDAO();
-        RestaurantDAO restaurantDAO = database.restaurantDAO();
-        MenuDAO menuDAO = database.menuDAO();
-        BookingContainMenuDAO BCMDAO = database.bookingContainMenuDAO();
-
-        List<Booking> bookingList = bookingDAO.getBookingById(bookingID);
-        List<Customer> customerList = customerDAO.getCustomerById(customerID);
-        List<Table> tableList = tableDAO.getTableById(bookingList.get(0).getTable_id());
-        List<Restaurant> restaurantList = restaurantDAO.getRestaurantById(restaurantID);
-        List<BookingContainMenu> BCMList = BCMDAO.getContainsByBookingId(bookingID);
-        List<MenuItem> menuList = menuDAO.getMenuByRestaurant(restaurantID);
-
-        List<Integer> MenuIDList= new ArrayList<>();
-        List<String> MenuNameList = new ArrayList<>();
-        List<Integer> MenuPriceList = new ArrayList<>();
-
-        for(int i = 0; i < BCMList.size(); i++) {
-            MenuIDList.add(BCMList.get(i).getMenu_id());
-        }
-
-        for(int i = 0; i < menuList.size(); i++) {
-            if (MenuIDList.get(i) == menuList.get(i).getMenu_id()) {
-                MenuNameList.add(menuList.get(i).getMenu_name());
-                MenuPriceList.add(Math.round(menuList.get(i).getPrice()));
+        if(bookingOver) {
+            CancelBookingButton.setVisibility(View.GONE);
+            if("Cancelled".equalsIgnoreCase(status)){
+                bookingCancelled.setVisibility(View.VISIBLE);
+                bookingCancelled.setText("Cancelled");
+            }else{
+                bookingCancelled.setVisibility(View.VISIBLE);
+                bookingCancelled.setText("Completed");
             }
+        }else {
+            CancelBookingButton.setVisibility(View.VISIBLE);
+            bookingCancelled.setVisibility(View.GONE);
+        }
+        List<ShowFoodOrderList> foodList = new ArrayList<>();
+        Cursor cursor = TableBookingDatabase.getDatabase(this).bookingContainMenuDAO().getFoodOrder(bookingID);
+        String menuName;
+        int booking_id, quantity;
+        double totalPrice;
+        while (cursor.moveToNext()) {
+            booking_id = cursor.getInt(cursor.getColumnIndex("booking_id"));
+            quantity = cursor.getInt(cursor.getColumnIndex("quantity"));
+            totalPrice = cursor.getDouble(cursor.getColumnIndex("Total_cost"));
+            menuName = cursor.getString(cursor.getColumnIndex("menu_name"));
+
+            ShowFoodOrderList showFoodOrderList = new ShowFoodOrderList(booking_id, menuName, quantity, totalPrice);
+            foodList.add(showFoodOrderList);
+        }
+        Cursor cursorBook = TableBookingDatabase.getDatabase(this).bookingDAO().getBookingById(bookingID);
+        String startTime = "           ", endTime ="           ";
+        String remark ="", restaurant_address = "", contact_number = "",tableName = "";
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat df2 = new SimpleDateFormat("dd-MM-yyyy");
+        int size = 0;
+
+        while(cursorBook.moveToNext()){
+            tableName = cursorBook.getString(cursorBook.getColumnIndex("TableName"));
+            size = cursorBook.getInt(cursorBook.getColumnIndex("size"));
+            startTime = cursorBook.getString(cursorBook.getColumnIndex("start_time"));
+            endTime = cursorBook.getString(cursorBook.getColumnIndex("end_time"));
+            remark = cursorBook.getString(cursorBook.getColumnIndex("remark"));
+            restaurant_address = cursorBook.getString(cursorBook.getColumnIndex("address"));
+            contact_number = cursorBook.getString(cursorBook.getColumnIndex("contact_number"));
         }
 
-        startTime = TimeConverter.timeToTimestamp(bookingList.get(0).getStart_time());
-        endTime = TimeConverter.timeToTimestamp(bookingList.get(0).getEnd_time());
-
-        Timestamp startTS = new Timestamp(startTime);
-        Timestamp endTS = new Timestamp(endTime);
-
-        String[] Date = startTS.toString().split(" ");
-        String[] Date2 = endTS.toString().split(" ");
-
-        Name.setText(customerList.get(0).getUser_name());
-        TableID.setText(bookingList.get(0).getTable_id());
-        TableSize.setText(tableList.get(0).getSize());
-        Request.setText(bookingList.get(0).getRemark());
-        DateText.setText(Date[0]);
-        TimeText.setText(Date[1] + " " + Date2[1]);
-
-        // set appbar title
-        getSupportActionBar().setTitle(restaurantList.get(0).getRestaurant_name());
+        Name.setText(TableBookingDatabase.getDatabase(this).customerDAO().getCustomerById(customerID).get(0).getName());
+        try {
+            DateText.setText(df2.format(df.parse(startTime.substring(0,10))));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        TimeText.setText(startTime.substring(11)+"-"+endTime.substring(11));
+        Request.setText(remark);
+        TableID.setText(tableName +", "+size + " People Table" );
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            contact_number = "<b>Restaurant Contact: </b><br>"+contact_number;
+            restaurant_address = "<b>Restaurant Address:</b><br>"+restaurant_address;
+            RestaurantContact.setText(Html.fromHtml(contact_number));
+            RestaurantAddress.setText(Html.fromHtml(restaurant_address));
+        }
 
         FoodList = findViewById(R.id.manageBooking_Future_foodList);
-
+        foodListAdapter = new FoodListAdapter(this,foodList);
+        FoodList.setLayoutManager(new LinearLayoutManager(this));
         FoodList.setAdapter(foodListAdapter);
+        TVTotal.setText(foodListAdapter.grandTotal());
 
-        EditBookingButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openEditActivity();
-            }
-        });
-
-        CancelBookingButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cancelBooking(bookingID, customerID, restaurantID);
-            }
-        });
-
-
-
+        CancelBookingButton.setOnClickListener(call_reject);
     }
 
 
-    public void cancelBooking(int bookingID, int customerID, int restaurantID) {
-        getIntent().putExtra("bookingID", bookingID);
-        getIntent().putExtra("cusID", customerID);
-        getIntent().putExtra("resID", restaurantID);
-
-        // TODO: cancel booking delete record
-    }
-
-    public void openPreviousActivity() {
-        Intent backIntent = new Intent(this, PreOrderFoodActivity.class);
-        startActivity(backIntent);
-    }
-
-    public void openEditActivity() {
-        Intent backIntent = new Intent(this, SelectTimeActivity.class);
-        startActivity(backIntent);
-    }
+    private View.OnClickListener call_reject = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Bundle bundle = new Bundle();
+            bundle.putInt("restaurant_id",TableBookingDatabase.getDatabase(getApplicationContext()).bookingDAO().getId(new SimpleSQLiteQuery("SELECT restaurant.restaurant_id FROM Booking INNER JOIN `table` ON Booking.table_id = `table`.table_id INNER JOIN restaurant ON restaurant.restaurant_id =  `table`.restaurant_id WHERE booking_id = "+bookingID)));
+            bundle.putString("name",TableBookingDatabase.getDatabase(getApplicationContext()).bookingDAO().getName(new SimpleSQLiteQuery("SELECT customer.name FROM booking INNER JOIN customer ON booking.customer_id = customer.customer_id WHERE booking_id ="+bookingID)));
+            RejectBookingPopUp rejectBookingPopUp = new RejectBookingPopUp();
+            rejectBookingPopUp.setArguments(bundle);
+            getSupportFragmentManager().beginTransaction().add(R.id.RejectReasonLayout2,rejectBookingPopUp,null).commit();
+        }
+    };
 
     @Override
     public boolean onOptionsItemSelected(@NonNull android.view.MenuItem item) {
         switch (item.getItemId()) {
             // map toolbar back button same as system back button
             case android.R.id.home:
-                onBackPressed();
+                finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);

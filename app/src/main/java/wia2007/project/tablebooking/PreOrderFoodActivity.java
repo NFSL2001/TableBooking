@@ -151,6 +151,7 @@ public class PreOrderFoodActivity extends AppCompatActivity {
     }
 
     public void cancelActivity() {
+        MenuAdapter2.map.clear();
         ItemAdapter.selectedTable.clear();
         Intent backIntent = new Intent(this, RestaurantMainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         backIntent.putExtra("ID",getIntent().getIntExtra("resID",0));

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,6 +24,7 @@ import wia2007.project.tablebooking.dao.TableDAO;
 import wia2007.project.tablebooking.database.TableBookingDatabase;
 import wia2007.project.tablebooking.entity.BookingContainMenu;
 import wia2007.project.tablebooking.entity.MenuItem;
+import wia2007.project.tablebooking.entity.Notification;
 import wia2007.project.tablebooking.entity.Restaurant;
 import wia2007.project.tablebooking.entity.Table;
 
@@ -98,21 +100,28 @@ public class CheckBookingActivity extends AppCompatActivity {
         Price.setText(getIntent().getExtras().getString("Price", "RM 0.00"));
         Name.setText(customerDAO.getCustomerById(customerID).get(0).getName());
         DateText.setText(startString.substring(0, 11));
-        Time.setText(startString.substring(11) + " - " + endString.substring(11));
+        String timeInterval = startString.substring(11) + " - " + endString.substring(11);
+        Time.setText(timeInterval);
         RestaurantName.setText(restaurantList.get(0).getRestaurant_name());
 
         TableID.setText(tableList.get(0).getName() + ", " + tableSize + " People");
 
-
+        timeInterval = startString + " - " + endString.substring(11);
+        String finalTimeInterval = timeInterval;
         ConfirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String query = "INSERT INTO Booking (Table_id,Customer_id,start_time,end_time,Remark)VALUES('" + tID + "','" + customerID + "','" + startString.substring(0, 16) + "','" + endString.substring(0, 16) + "','" + Request.getText().toString() + "');";
+                String query = "INSERT INTO Booking (Table_id,Customer_id,start_time,end_time,Remark,Status)VALUES('" + tID + "','" + customerID + "','" + startString.substring(0, 16) + "','" + endString.substring(0, 16) + "','" + Request.getText().toString() + "','Accepted');";
                 db.bookingDAO().insert(new SimpleSQLiteQuery(query));
                 int booking_id = db.bookingDAO().rawQuery(new SimpleSQLiteQuery("SELECT * FROM booking ORDER BY booking_id DESC LIMIT 1;")).get(0).getBooking_id();
                 for (int i = 0; i < menuId.size(); i++) {
                     db.bookingContainMenuDAO().insertContains(new BookingContainMenu(booking_id, menuId.get(i), quantity.get(i)));
                 }
+                String notification = "You make a booking in <b>"+restaurantList.get(0).getRestaurant_name()+"</b><br>Date & Time: <b>"+ finalTimeInterval +"</b><br>Table: <b>"+tableList.get(0).getName()+"</br>";
+                String notificationRestaurant = "<b>"+customerDAO.getCustomerById(customerID).get(0).getName()+"</b>"+" make a booking on <b>"+ finalTimeInterval +"</b><br>(Table: <b>"+tableList.get(0).getName()+"</b>)";
+                db.notificationDAO().insertNotification(new Notification(notification,customerID,-1));
+                db.notificationDAO().insertNotification(new Notification(notificationRestaurant,-1,restaurantID));
+                Toast.makeText(getApplicationContext(),"Book Successfully",Toast.LENGTH_SHORT).show();
                 openNextActivity();
             }
         });
@@ -135,6 +144,8 @@ public class CheckBookingActivity extends AppCompatActivity {
     }
 
     public void openNextActivity() {
+        ItemAdapter.selectedTable.clear();
+        MenuAdapter2.map.clear();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
@@ -144,6 +155,7 @@ public class CheckBookingActivity extends AppCompatActivity {
     }
 
     public void cancelActivity() {
+        MenuAdapter2.map.clear();
         ItemAdapter.selectedTable.clear();
         Intent backIntent = new Intent(this, RestaurantMainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         backIntent.putExtra("ID", getIntent().getIntExtra("resID", 0));

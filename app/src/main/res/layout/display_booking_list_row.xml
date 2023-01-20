@@ -66,7 +66,7 @@
             app:layout_constraintWidth_percent="0.45" />
 
         <TextView
-            android:id="@+id/TVShowCompleted"
+            android:id="@+id/TVShowStatus"
             style="@style/TextAppearance.AppCompat.Subhead"
             android:layout_width="89dp"
             android:layout_height="23dp"
@@ -74,9 +74,9 @@
             android:layout_marginEnd="16dp"
             android:gravity="right"
             android:text="Completed"
-            android:visibility="invisible"
             android:textColor="@color/red"
             android:textStyle="bold"
+            android:visibility="invisible"
             app:layout_constraintEnd_toStartOf="@+id/BtnViewBooking"
             app:layout_constraintTop_toBottomOf="@+id/TVBookedCustName"
             app:layout_constraintWidth_percent="0.45" />

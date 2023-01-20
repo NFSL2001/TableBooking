@@ -2,6 +2,8 @@ package wia2007.project.tablebooking;
 
 import android.content.Context;
 import android.text.Editable;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,7 +34,7 @@ public class MenuAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public MenuAdapter2(Context context, List<MenuBaseData> menuList) {
         this.context = context;
         this.menuList = menuList;
-        this.originalMenuList = new ArrayList<MenuBaseData>(menuList);
+        this.originalMenuList = new ArrayList<>(menuList);
     }
 
     @NonNull
@@ -147,6 +149,7 @@ public class MenuAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             this.menuImage = itemView.findViewById(R.id.MenuImage2);
             this.OrderQuantity = itemView.findViewById(R.id.OrderQuantity);
 
+            OrderQuantity.setFilters(new InputFilter[]{new InputFilterMinMax(0, 10)});
             OrderQuantity.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -213,5 +216,30 @@ public class MenuAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     public static Map<Integer, Integer> getMap() {
         return map;
+    }
+
+    public class InputFilterMinMax implements InputFilter {
+        private int min;
+        private int max;
+
+        public InputFilterMinMax(int min, int max) {
+            this.min = min;
+            this.max = max;
+        }
+
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+            //noinspection EmptyCatchBlock
+            try {
+                int input = Integer.parseInt(dest.subSequence(0, dstart).toString() + source + dest.subSequence(dend, dest.length()));
+                if (isInRange(min, max, input))
+                    return null;
+            } catch (NumberFormatException nfe) { }
+            return "";
+        }
+
+        private boolean isInRange(int a, int b, int c) {
+            return b > a ? c >= a && c <= b : c >= b && c <= a;
+        }
     }
 }

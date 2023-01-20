@@ -84,12 +84,12 @@ public class SelectTableActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ArrayList<Table> selectedTable = new ArrayList<>(ItemAdapter.selectedTable);
-                int table = selectedTable.get(0).getTable_id();
-                int size = selectedTable.get(0).getSize();
 
                 if(selectedTable.isEmpty()){
                     Toast.makeText(getApplicationContext(),"Table Selection Cannot be Empty",Toast.LENGTH_SHORT).show();
                 }else{
+                    int table = selectedTable.get(0).getTable_id();
+                    int size = selectedTable.get(0).getSize();
                     openNextActivity(customerID, restaurantID, size,table,startString,endString,name);
                 }
             }

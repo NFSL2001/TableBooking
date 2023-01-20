@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import wia2007.project.tablebooking.database.TableBookingDatabase;
 import wia2007.project.tablebooking.entity.UserStatus;
@@ -117,7 +118,6 @@ public class fragment_AdminHome extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putInt("Restaurant_Id",restaurant_id);
                 getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.NHFMain,fragment_AdminNoti.class,bundle).commit();
-
             }
         });
         return view;
@@ -134,10 +134,7 @@ public class fragment_AdminHome extends Fragment {
             @Override
             public void onClick(View view) {
                 SharedPreferences.Editor edit = sharedPref.edit();
-                edit.remove("user");
-                edit.putBoolean(UserStatus.IS_ADMIN, false);
-                edit.apply();
-
+                sharedPref.edit().clear().commit();
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
             }
@@ -146,10 +143,7 @@ public class fragment_AdminHome extends Fragment {
             @Override
             public void onClick(View view) {
                 SharedPreferences.Editor edit = sharedPref.edit();
-                edit.remove("user");
-                edit.putBoolean(UserStatus.IS_ADMIN, false);
-                edit.apply();
-
+                sharedPref.edit().clear().commit();
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
             }

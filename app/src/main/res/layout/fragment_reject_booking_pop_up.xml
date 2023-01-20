@@ -5,8 +5,6 @@
     android:id="@+id/ConstrainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-
     tools:context=".RejectBookingPopUp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,13 +16,12 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5">
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintVertical_bias="0.5"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/RRLayout"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/food_order_layout"
@@ -82,7 +79,7 @@
 
         <Button
             android:id="@+id/BtnConfirmReject"
-            android:layout_width="399dp"
+            android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="-5dp"
