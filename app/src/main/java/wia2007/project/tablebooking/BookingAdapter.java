@@ -9,12 +9,16 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
+import androidx.sqlite.db.SimpleSQLiteQuery;
+
 import org.w3c.dom.Text;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import wia2007.project.tablebooking.database.TableBookingDatabase;
 
 public class BookingAdapter extends CursorAdapter{
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -43,7 +47,7 @@ public class BookingAdapter extends CursorAdapter{
         }
         String status = cursor.getString(cursor.getColumnIndexOrThrow("status"));
         boolean bookingOver = false;
-
+        int booking = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
         TextView TVShowStatus = view.findViewById(R.id.TVStatus);
         Date compareDate = null;
         if ("Cancelled".equalsIgnoreCase(status)) {
@@ -59,13 +63,13 @@ public class BookingAdapter extends CursorAdapter{
             compareDate = dateFormat.parse(cursor.getString(cursor.getColumnIndexOrThrow("start_time")));
             if(compareDate.before(calendar.getTime())) {
                 bookingOver = true;
+                TableBookingDatabase.getDatabase(context).bookingDAO().rawQuery(new SimpleSQLiteQuery("UPDATE Booking SET status = 'Completed' WHERE booking_id = "+booking));
                 TVShowStatus.setVisibility(View.VISIBLE);
                 TVShowStatus.setText("Completed");
             }
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        int booking = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
         boolean finalBookingOver = bookingOver;
         view.setOnClickListener(new View.OnClickListener() {
             @Override

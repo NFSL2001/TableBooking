@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.sqlite.db.SimpleSQLiteQuery;
 
 import java.sql.Time;
 import java.text.ParseException;
@@ -20,6 +21,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import wia2007.project.tablebooking.database.TableBookingDatabase;
 
 public class BookingsAdapter extends ArrayAdapter {
     List list = new ArrayList();
@@ -90,6 +93,7 @@ public class BookingsAdapter extends ArrayAdapter {
             compareDate = simpleDateFormat.parse(start_time);
             if (compareDate.before(calendar.getTime())) {
                 bookingOver = true;
+                TableBookingDatabase.getDatabase(getContext()).bookingDAO().rawQuery(new SimpleSQLiteQuery("UPDATE Booking SET status = 'Completed' WHERE booking_id = "+bookingId));
                 bookingsHolder.TVShowStatus.setVisibility(View.VISIBLE);
             } else {
                 bookingOver = false;
