@@ -30,7 +30,6 @@ public class BookingAdapter extends CursorAdapter{
     public View newView(Context context, Cursor cursor, ViewGroup viewGroup) {
         return LayoutInflater.from(context).inflate(R.layout.individual_booking_item, viewGroup, false);
     }
-
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         TextView restaurantName = view.findViewById(R.id.TVBookingListRestaurantName);
@@ -47,28 +46,24 @@ public class BookingAdapter extends CursorAdapter{
 
         TextView TVShowStatus = view.findViewById(R.id.TVStatus);
         Date compareDate = null;
-        try {
-            Calendar calendar = Calendar.getInstance();
-            compareDate = dateFormat.parse(cursor.getString(cursor.getColumnIndexOrThrow("start_time")));
-            if (compareDate.before(calendar.getTime())) {
-                bookingOver = true;
-                TVShowStatus.setVisibility(View.VISIBLE);
-                TVShowStatus.setText("Completed");
-            } else {
-                bookingOver = false;
-                TVShowStatus.setVisibility(View.GONE);
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        if("Cancelled".equalsIgnoreCase(status)) {
+        if ("Cancelled".equalsIgnoreCase(status)) {
             bookingOver = true;
             TVShowStatus.setVisibility(View.VISIBLE);
             TVShowStatus.setText("Cancelled");
-        }else{
+        } else {
             bookingOver = false;
             TVShowStatus.setVisibility(View.GONE);
+        }
+        try {
+            Calendar calendar = Calendar.getInstance();
+            compareDate = dateFormat.parse(cursor.getString(cursor.getColumnIndexOrThrow("start_time")));
+            if(compareDate.before(calendar.getTime())) {
+                bookingOver = true;
+                TVShowStatus.setVisibility(View.VISIBLE);
+                TVShowStatus.setText("Completed");
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
         int booking = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
         boolean finalBookingOver = bookingOver;
@@ -78,6 +73,7 @@ public class BookingAdapter extends CursorAdapter{
                 Intent intent = new Intent(context,ManageBookingFutureActivity.class);
                 intent.putExtra("restName",name);
                 intent.putExtra("bookingID",booking);
+                System.out.println(name+":"+ finalBookingOver);
                 intent.putExtra("bookingOver", finalBookingOver);
                 intent.putExtra("status",status);
                 context.startActivity(intent);

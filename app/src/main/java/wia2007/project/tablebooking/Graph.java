@@ -40,7 +40,7 @@ public class Graph extends AppCompatActivity {
     String month1 = "01";
     String month2 = "02";
     String data_type = "Food";
-    int restaurant_id = 1;
+    int restaurant_id;
     ArrayList<String> xAxisValues;
     Map<String, List<DownloadPDF.saveFoodData>> map2;
     Map<String, List<DownloadPDF.saveTableData>> mapTable2;

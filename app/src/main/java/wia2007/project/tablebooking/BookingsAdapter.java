@@ -80,6 +80,11 @@ public class BookingsAdapter extends ArrayAdapter {
 
         boolean bookingOver = false;
         Date compareDate = null;
+        if("Cancelled".equalsIgnoreCase(status)){
+            bookingOver=true;
+            bookingsHolder.TVShowStatus.setText("Cancelled");
+            bookingsHolder.TVShowStatus.setVisibility(View.VISIBLE);
+        }
         try {
             Calendar calendar = Calendar.getInstance();
             compareDate = simpleDateFormat.parse(start_time);
@@ -92,12 +97,6 @@ public class BookingsAdapter extends ArrayAdapter {
             }
         } catch (ParseException e) {
             e.printStackTrace();
-        }
-        if("Cancelled".equalsIgnoreCase(status)){
-            bookingOver=true;
-            bookingsHolder.TVShowStatus.setText("Cancelled");
-            bookingsHolder.TVShowStatus.setVisibility(View.VISIBLE);
-
         }
 
 

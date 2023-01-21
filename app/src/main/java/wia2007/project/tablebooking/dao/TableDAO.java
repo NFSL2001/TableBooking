@@ -34,12 +34,12 @@ public interface TableDAO {
 
     @Query("SELECT * FROM `Table` " +
             "WHERE restaurant_id = :restaurantId AND size >= :size " +
-            "AND table_id NOT IN (SELECT table_id FROM Booking WHERE start_time < :endTime AND :startTime < end_time)")
+            "AND table_id NOT IN (SELECT table_id FROM Booking WHERE start_time < :endTime AND :startTime < end_time AND status = 'Cancelled')")
     public List<Table> getAvailableTableAndSize(Integer restaurantId, String startTime, String endTime, Integer size);
 
     @Query("SELECT * FROM `Table` " +
             "WHERE restaurant_id = :restaurantId " +
-            "AND table_id NOT IN (SELECT table_id FROM Booking WHERE start_time < :endTime AND :startTime < end_time)")
+            "AND table_id NOT IN (SELECT table_id FROM Booking WHERE start_time < :endTime AND :startTime < end_time AND status = 'Cancelled')")
     public List<Table> getAvailableTable(Integer restaurantId, String startTime, String endTime);
 
     @Query("WITH Dist AS (SELECT T.name,T.size, B.booking_id  FROM 'table' T, Booking B WHERE T.restaurant_id = :restaurant_id AND B.table_id = T.table_id AND substr(start_time,0,5) = :year AND substr(start_time,6,2) = :month) " +
