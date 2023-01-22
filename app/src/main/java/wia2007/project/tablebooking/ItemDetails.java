@@ -121,7 +121,7 @@ public class ItemDetails extends AppCompatActivity {
 
         menuName.setText(itemName);
         menuDescription.setText(itemDescription);
-        if ("-1.00".equals(itemPrice)) {
+        if ("0.0".equals(itemPrice)) {
             menuPrice.setText("");
         } else {
             menuPrice.setText(itemPrice);
@@ -209,7 +209,7 @@ public class ItemDetails extends AppCompatActivity {
                 String name = menuName.getText().toString();
                 String description = menuDescription.getText().toString();
                 String priceStr = menuPrice.getText().toString();
-                float price = -1;
+                float price = 0f;
                 if (!priceStr.isEmpty()) {
                     price = Float.parseFloat(priceStr);
                 }

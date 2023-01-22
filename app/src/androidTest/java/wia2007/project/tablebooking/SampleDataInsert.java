@@ -197,6 +197,768 @@ public class SampleDataInsert {
             );
         }
 
+        { //Makan Kitchen @ DoubleTree by Hilton Hotel Melaka
+            Restaurant restaurant = new Restaurant(
+                    "HiltonMelaka",
+                    "HiltonMelaka123",
+                    "Makan Kitchen @ DoubleTree by Hilton Hotel Melaka",
+                    "+6062223333",
+                    (float)50,
+                    "Level 12, DoubleTree by Hilton Hotel Melaka, Hatten City, Jalan Melaka Raya 23, 75000 Melaka.",
+                    "Mon - Fri:\n" +
+                            "Breakfast: 6:00am - 10:30am\n" +
+                            "\n" +
+                            "Sat - Sun, Public Holidays:\n" +
+                            "Breakfast: 6:00am - 11:00am\n" +
+                            "\n" +
+                            "Daily:\n" +
+                            "Dinner: 6:30pm - 10:00pm",
+                    "MasterCard, Visa, AMEX",
+                    "",
+                    null,
+                    null,
+                    "https://eatdrinkhilton.com/hotel/doubletree-melaka/",
+                    Cuisine.CHINESE,
+                    "Indulge in an authentic regional Malaysian dining experience at Makan Kitchen in the DoubleTree by Hilton Melaka. Live interactive show kitchens showcase the enormous diversity of Malaysian cuisine and you will experience the journey from the raw ingredients to the pan and plate. The restaurant's se veral cooking stations feature iconic specialties from Malay, Peranakan, Portuguese, Chinese, and Indian cooking traditions, giving a true flavor of the area's local cuisines.",
+                    "https://cf.bstatic.com/xdata/images/hotel/max1280x900/221840922.jpg?k=a5a615534e1436b8763178f9368ac7f7ff10e1d1efcce5da3fe6f5ed717809de&o=&hp=1"
+            );
+            restaurant.setImages(
+                    "https://d16jvv1mxapgw7.cloudfront.net/cover_makan_kitchen_doubletree_hilton_melaka.jpg",
+                    "https://d3do4qdmxa1ui8.cloudfront.net/mk_mkzmm_env2.jpg");
+            long restaurantId = restaurantDAO.insertRestaurants(restaurant)[0];
+
+            tableDAO.insertTables(new Table((int) restaurantId, "A1", 2),
+                    new Table((int) restaurantId, "A2", 2),
+                    new Table((int) restaurantId, "A3", 2),
+                    new Table((int) restaurantId, "A4", 2),
+                    new Table((int) restaurantId, "B1", 3),
+                    new Table((int) restaurantId, "B2", 3),
+                    new Table((int) restaurantId, "B3", 3),
+                    new Table((int) restaurantId, "C1", 4),
+                    new Table((int) restaurantId, "C2", 4),
+                    new Table((int) restaurantId, "C3", 4),
+                    new Table((int) restaurantId, "D1", 5),
+                    new Table((int) restaurantId, "D2", 5),
+                    new Table((int) restaurantId, "D3", 5),
+                    new Table((int) restaurantId, "D4", 5),
+                    new Table((int) restaurantId, "D5", 5),
+                    new Table((int) restaurantId, "D6", 5)
+            );
+
+            menuDAO.insertMenus(
+                    new MenuItem(
+                            "Hot & Sweet ‘Pisang Goreng’",
+                            16f,
+                            "Coconut battered banana fritter, hippie pandanus, sweet peanut butter and Chilli-soya dip",
+                            (int) restaurantId, "AXIS LOUNGE", ""),
+                    new MenuItem(
+                            "Cheesy Potato Wedges",
+                            18f,
+                            "",
+                            (int) restaurantId, "AXIS LOUNGE", ""),
+                    new MenuItem(
+                            "‘Half & Half’ Fries",
+                            18f,
+                            "Sesame coated & tempura fried straight-cut Idaho Potato, Chilli-Cheese-Mayo dip",
+                            (int) restaurantId, "AXIS LOUNGE", ""),
+                    new MenuItem(
+                            "Selection Of Premium Artisan Gelato And Sorbet (2 Scoop)",
+                            18f,
+                            "After Eight ( Mint Chocolate )\n" +
+                                    "Vanigalia Del Madagascar ( Vanilla )\n" +
+                                    "Strawberry Yogurt\n" +
+                                    "Belgian Chocolate\n" +
+                                    "Cookies and Cream\n" +
+                                    "Passion Fruit sorbet\n" +
+                                    "Lemon Sorbet",
+                            (int) restaurantId, "AXIS LOUNGE", "https://eatdrinkhilton.com/wp-content/uploads/2022/03/al_mlk2.jpg"),
+                    new MenuItem(
+                            "Aglio olio (V)",
+                            28f,
+                            "Capsicum, tomato cherry, garlic, parsley and chili flakes",
+                            (int) restaurantId, "TOSCA ITALIAN TRATTORIA", "https://eatdrinkhilton.com/wp-content/uploads/2022/03/Untitled-2-1.jpg"),
+                    new MenuItem(
+                            "Pollo di Primavera (C) ",
+                            55f,
+                            "(Cooking time 1/2hr)\n" +
+                                    "Brick oven roasted honey glazed spring chicken, \n" +
+                                    "home-fried potato and green chili-coriander risotto",
+                            (int) restaurantId, "TOSCA ITALIAN TRATTORIA", ""),
+                    new MenuItem(
+                            "Selection Of Premium Artisan Gelato And Sorbetto (2 Scoops) ",
+                            18f,
+                            "Handmade ice cream and sorbet of your choice\n" +
+                                    "• After Eight (Mint-chocolate) - Passion Fruit Sorbet (V)\n" +
+                                    "• Lemon Sorbet (V) - Cookies & Cream \n" +
+                                    "• Vaniglia Del Madagascar (Vanilla) - Belgian Chocolate\n" +
+                                    "• Strawberry yoghurt",
+                            (int) restaurantId, "TOSCA ITALIAN TRATTORIA", ""),
+                    new MenuItem(
+                            "Trattoria Special- Sharing (Serves 2) Carbonade Valdostana (C)",
+                            160f,
+                            "Chef’s special an aromatic vacuum cooked hickory\n" +
+                                    "smoked short rib of beef on creamy polenta\n" +
+                                    "Roesti potato with sour cream and chives \n" +
+                                    "Roasted medley vegetables & mushroom fritto\n" +
+                                    "Its own jus, chimichurri sauce \n" +
+                                    "(Pre Order Only)\n",
+                            (int) restaurantId, "TOSCA ITALIAN TRATTORIA", ""),
+                    new MenuItem(
+                            "Little Indian Station",
+                            0f,
+                            "o Roti Pratha\n" +
+                                    "o Dhall Curry \n" +
+                                    "o Fish curry",
+                            (int) restaurantId, "MAKAN KITCHEN", ""),
+                    new MenuItem(
+                            "Porridge",
+                            0f,
+                            "Plain/ Chicken/ Fish congee \n" +
+                                    "Served with condiments, soya sauce & sesame oil",
+                            (int) restaurantId, "MAKAN KITCHEN", ""),
+                    new MenuItem(
+                            "Nyonya Style Fried rice",
+                            0f,
+                            "",
+                            (int) restaurantId, "MAKAN KITCHEN", ""),
+                    new MenuItem(
+                            "Fried Noodle of the Day",
+                            0f,
+                            "",
+                            (int) restaurantId, "MAKAN KITCHEN", ""),
+                    new MenuItem(
+                            "Herbal Tea Leaf Egg",
+                            0f,
+                            "",
+                            (int) restaurantId, "MAKAN KITCHEN", ""),
+                    new MenuItem(
+                            "Assorted Pao",
+                            0f,
+                            "",
+                            (int) restaurantId, "MAKAN KITCHEN", ""),
+                    new MenuItem(
+                            "Butter Plain Croissant",
+                            0f,
+                            "",
+                            (int) restaurantId, "MAKAN KITCHEN", ""),
+                    new MenuItem(
+                            "Assorted Dim Sum",
+                            0f,
+                            "",
+                            (int) restaurantId, "MAKAN KITCHEN", ""),
+                    new MenuItem(
+                            "Pain Au Chocolate",
+                            0f,
+                            "",
+                            (int) restaurantId, "MAKAN KITCHEN", "")
+            );
+        }
+
+        { //The 19th SUZUKI SHOTEN @ Publika
+            Restaurant restaurant = new Restaurant(
+                    "SuzukiShoten19",
+                    "Suzuki19",
+                    "The 19th SUZUKI SHOTEN @ Publika",
+                    "+60362114994",
+                    (float)350,
+                    "A3-G2-6 Publika, No.1, Jalan Dutamas 1, Solaris Dutamas, 50480 Kuala Lumpur, Malaysia.",
+                    "Tuesday - Sunday: 6:00PM - 10:00PM",
+                    "Mastercard, Visa",
+                    "",
+                    null,
+                    null,
+                    "http://suzuki-shoten.com.my/shops/publika.html",
+                    Cuisine.JAPANESE,
+                    "The 19th SUZUKI SHOTEN offers private space where customers can enjoy Sushi and Washoku Omakase course prepared by Japanese chef. Here, you can have the best Omakase dining experience with curated Japanese rice, fresh seafood imported directly from Tokyo's Toyosu market, dashimaki tamago, and more. Also, the unique sake pairing curated by our sake specialist is a must-try, so don’t miss it! Visit us for an affordable yet authentic Omakase in a casual atmosphere.",
+                    "https://d16jvv1mxapgw7.cloudfront.net/cover_the_19th_suzuki_shoten_oct2022_202210210210.jpeg"
+            );
+            restaurant.setImages(
+                    "http://suzuki-shoten.com.my/images/Publika_Bar.jpg",
+                    "http://suzuki-shoten.com.my/images/klcc_07.jpg",
+                    "http://suzuki-shoten.com.my/images/klcc_01.jpg",
+                    "http://suzuki-shoten.com.my/images/concept_tastes.png",
+                    "http://suzuki-shoten.com.my/images/Publika_masu.jpg");
+            long restaurantId = restaurantDAO.insertRestaurants(restaurant)[0];
+
+            tableDAO.insertTables(new Table((int) restaurantId, "A1", 1),
+                    new Table((int) restaurantId, "A2", 1),
+                    new Table((int) restaurantId, "A3", 1),
+                    new Table((int) restaurantId, "A4", 1),
+                    new Table((int) restaurantId, "B1", 2),
+                    new Table((int) restaurantId, "B2", 2),
+                    new Table((int) restaurantId, "B3", 2),
+                    new Table((int) restaurantId, "C1", 3),
+                    new Table((int) restaurantId, "C2", 3),
+                    new Table((int) restaurantId, "C3", 3),
+                    new Table((int) restaurantId, "D1", 4),
+                    new Table((int) restaurantId, "D2", 4),
+                    new Table((int) restaurantId, "D3", 4),
+                    new Table((int) restaurantId, "D4", 4),
+                    new Table((int) restaurantId, "D5", 4),
+                    new Table((int) restaurantId, "D6", 4),
+                    new Table((int) restaurantId, "E1", 5),
+                    new Table((int) restaurantId, "E2", 5),
+                    new Table((int) restaurantId, "F1", 6),
+                    new Table((int) restaurantId, "F2", 6),
+                    new Table((int) restaurantId, "G1", 7),
+                    new Table((int) restaurantId, "G2", 7),
+                    new Table((int) restaurantId, "H1", 8),
+                    new Table((int) restaurantId, "H2", 8)
+            );
+
+            menuDAO.insertMenus(
+                    new MenuItem(
+                            "Tuna Sashimi",
+                            72f,
+                            "Limited Quantity",
+                            (int) restaurantId, "LUNCH", ""),
+                    new MenuItem(
+                            "Special Horse Mackerel\n" +
+                                    "Merinated Soya Sauce",
+                            55f,
+                            "",
+                            (int) restaurantId, "LUNCH", ""),
+                    new MenuItem(
+                            "Mapo Tohu Lunch Set",
+                            29f,
+                            "",
+                            (int) restaurantId, "LUNCH", ""),
+                    new MenuItem(
+                            "Trout Salmon Two Taste Don",
+                            45f,
+                            "",
+                            (int) restaurantId, "LUNCH", ""),
+                    new MenuItem(
+                            "Stir Fried Chicken & Veggie Lunch Set",
+                            28f,
+                            "",
+                            (int) restaurantId, "LUNCH", ""),
+                    new MenuItem(
+                            "2 Choice Karaage Lunch Set ",
+                            29f,
+                            "",
+                            (int) restaurantId, "LUNCH", ""),
+                    new MenuItem(
+                            "Shoten Original Ramen",
+                            29f,
+                            "",
+                            (int) restaurantId, "LUNCH", ""),
+                    new MenuItem(
+                            "生本鮪 赤身",
+                            15f,
+                            "",
+                            (int) restaurantId, "Sushi A La Carte", ""),
+                    new MenuItem(
+                            "活き〆鯛",
+                            15f,
+                            "",
+                            (int) restaurantId, "Sushi A La Carte", ""),
+                    new MenuItem(
+                            "平目昆布〆",
+                            30f,
+                            "",
+                            (int) restaurantId, "Sushi A La Carte", ""),
+                    new MenuItem(
+                            "炙りノドグロ",
+                            50f,
+                            "",
+                            (int) restaurantId, "Sushi A La Carte", ""),
+                    new MenuItem(
+                            "むらさき雲丹",
+                            65f,
+                            "",
+                            (int) restaurantId, "Sushi A La Carte", "")
+            );
+        }
+        { //De.Wan 1958 by Chef Wan Kuala Lumpur (The LINC KL)
+            Restaurant restaurant = new Restaurant(
+                    "De.WanLINCKL",
+                    "De.WanLINCKL1958",
+                    "De.Wan 1958 by Chef Wan Kuala Lumpur (The LINC KL)",
+                    "+60102070383",
+                    (float) 70,
+                    "Lot 2-2, Level 2, The LINC KL, No. 360, Jalan Tun Razak, 50400 Kuala Lumpur",
+                    "Monday - Friday:\n" +
+                            "Lunch: 1st Session: 11:00am/11:30am / 2nd Session: 12:30pm/1:00pm (last call 2:00pm)\n" +
+                            "Afternoon Tea: 2:30pm (last call 3:30pm)\n" +
+                            "Dinner: 1st Session: 6:00pm/6:30pm / 2nd Session: 8:00pm/8:30pm (last call 9:30pm)\n" +
+                            "\n" +
+                            "Saturday, Sunday & Public Holiday:\n" +
+                            "Lunch: 1st Session: 11:00am/11:30am / 2nd Session: 1:00pm/1:30pm (last call 5:00pm)\n" +
+                            "Afternoon Tea: 1st Session: 3:00pm / 2nd Session: 4:00pm (last call 5:00pm)\n" +
+                            "Dinner: 1st Session: 6:00pm/6:30pm / 2nd Session: 8:00pm/8:30pm (last call 9:30pm)",
+                    "MasterCard, Visa, AMEX, JCB, UnionPay",
+                    "",
+                    null,
+                    null,
+                    "https://dewan.space/",
+                    Cuisine.MALAYSIAN,
+                    "De.Wan 1958 by Chef Wan is located on Level 2 of THE LINC, an upcoming lifestyle retail centre in town. Inspired by greenery, the mall is designed to bring visitors back to nature with its luscious green plants and decorations. The interior design concept of the restaurant comes from the context of Chef Wan’s fun and cheery character. Colours from a tropical palette are chosen to evoke the feel of sun, freshness and cool vibes in an urban setting. Our entire restaurant and event hall can accommodate up to 450 seated dining, or 600 in theatre style setting, or 650 standing guests and fully fitted with audio-visual equipment, and stage. When the occasion calls for, we can provide security, valet parking services as well as red carpet entryway to make your VVIPs feel extra special.",
+                    "https://d16jvv1mxapgw7.cloudfront.net/cover_dewan_the_linc_kl_feb2021.png"
+            );
+            restaurant.setImages(
+                    "https://d3do4qdmxa1ui8.cloudfront.net/de_wan_dish1_thumb.jpg",
+                    "https://d3do4qdmxa1ui8.cloudfront.net/de_wan_dish5_thumb.jpg",
+                    "https://d3do4qdmxa1ui8.cloudfront.net/de_wan_by_chef_wan_env1_thumb.jpg",
+                    "https://d3do4qdmxa1ui8.cloudfront.net/de_wan_by_chef_wan_env2_thumb.jpg",
+                    "https://d1zjeba1okg8co.cloudfront.net/1667957684dewan_food_menu_nov2022.jpg");
+            long restaurantId = restaurantDAO.insertRestaurants(restaurant)[0];
+
+            tableDAO.insertTables(new Table((int) restaurantId, "A1", 1),
+                    new Table((int) restaurantId, "A2", 1),
+                    new Table((int) restaurantId, "A3", 1),
+                    new Table((int) restaurantId, "A4", 1),
+                    new Table((int) restaurantId, "B1", 2),
+                    new Table((int) restaurantId, "B2", 2),
+                    new Table((int) restaurantId, "B3", 2),
+                    new Table((int) restaurantId, "C1", 3),
+                    new Table((int) restaurantId, "C2", 3),
+                    new Table((int) restaurantId, "C3", 3),
+                    new Table((int) restaurantId, "D1", 4),
+                    new Table((int) restaurantId, "D2", 4),
+                    new Table((int) restaurantId, "D3", 4),
+                    new Table((int) restaurantId, "D4", 4),
+                    new Table((int) restaurantId, "D5", 4),
+                    new Table((int) restaurantId, "D6", 4),
+                    new Table((int) restaurantId, "E1", 5),
+                    new Table((int) restaurantId, "E2", 5),
+                    new Table((int) restaurantId, "F1", 6),
+                    new Table((int) restaurantId, "F2", 6),
+                    new Table((int) restaurantId, "G1", 7),
+                    new Table((int) restaurantId, "G2", 7),
+                    new Table((int) restaurantId, "H1", 8),
+                    new Table((int) restaurantId, "H2", 8)
+            );
+
+            menuDAO.insertMenus(
+                    new MenuItem(
+                            "DE.WAN YEE SANG WITH ABALONE",
+                            188f,
+                            "Available from 14th Jan to 15th Feb 2023",
+                            (int) restaurantId, "CHEF WAN'S PROSPERITY YEE SANG", "https://trysmartbite.imgix.net/images/food/c63eb260-3d9c-4adf-82a8-fddefb38e8a3.jpg?auto=format,compress&fit=crop&dpr=2"),
+                    new MenuItem(
+                            "DE.WAN YEE SANG WITH SMOKED SALMON",
+                            118f,
+                            "Available from 14th Jan to 15th Feb 2023",
+                            (int) restaurantId, "CHEF WAN'S PROSPERITY YEE SANG", "https://trysmartbite.imgix.net/images/food/7880aae1-c40a-42a4-976c-83920e267900.jpg?auto=format,compress&fit=crop&dpr=2"),
+                    new MenuItem(
+                            "DE.WAN YEE SANG WITH SNOW PEAR",
+                            88f,
+                            "Available from 14th Jan to 15th Feb 2023",
+                            (int) restaurantId, "CHEF WAN'S PROSPERITY YEE SANG", "https://trysmartbite.imgix.net/images/food/ac530392-759b-4443-b356-dbc8e1c9ea35.jpg?auto=format,compress&fit=crop&dpr=2"),
+                    new MenuItem(
+                            "De Wan Family Set A (4-5 pax)",
+                            458f,
+                            "Appetizers\n" +
+                                    "Satay Ayam with Condiments\n" +
+                                    "Kerabu Pomelo with crispy Prawn Cheeks\n\n" +
+                                    "Mains\n" +
+                                    "Live Seabass Asam Pedas\n" +
+                                    "Kambing Kuzi\n" +
+                                    "Ayam Dara Panggang Istimewa\n" +
+                                    "Sotong Kari Hijau Telur Asin\n" +
+                                    "Peria Goreng Ikan Masin\n\n" +
+                                    "Rice\n" +
+                                    "Nasi Pandan Delima OR Nasi Telur Terengganu OR Nasi Putih\n\n" +
+                                    "Desserts\n" +
+                                    "Fresh Tropical Fruits",
+                            (int) restaurantId, "Family Set", "https://trysmartbite.imgix.net/images/food/ab7c82d8-6ab7-4cad-8c00-13b2710d62c7.png?auto=format,compress&fit=crop&dpr=2"),
+                    new MenuItem(
+                            "De Wan Family Set B (4-5 pax)",
+                            688f,
+                            "Appetizers\n" +
+                                    "Kerabu Pucuk Paku with Kerang\n" +
+                                    "Ayam/Daging/Mix Satay with Condiments\n\n" +
+                                    "Soup\n" +
+                                    "Sup Ketam Singgang & Homemade Roti\n\n" +
+                                    "Mains\n" +
+                                    "Live Jenahak Bakar (Whole)\n" +
+                                    "Ayam Kapitan\n" +
+                                    "Daging Rendang Tok Wan\n" +
+                                    "Udang Sambal Petai\n" +
+                                    "Stir-fried Broccoli with soft Beancurd\n\n" +
+                                    "Rice\n\n" +
+                                    "Nasi Pandan Delima OR Nasi Telur Terengganu OR Nasi Putih\n\n" +
+                                    "Desserts\n" +
+                                    "Fresh Tropical Fruits\n" +
+                                    "Custard Nangka Madu",
+                            (int) restaurantId, "Family Set", "https://trysmartbite.imgix.net/images/food/3cbecec5-4b1e-4b3a-bf6a-ff8b3982acb6.png?auto=format,compress&fit=crop&dpr=2"),
+                    new MenuItem(
+                            "Daging Rendang Tok Wan",
+                            88f,
+                            "Premium beef tenderloin stewed in creamy coconut, and infused with the rich flavour of local spices, aromatic kerisik, and fresh grated coconut.",
+                            (int) restaurantId, "Mains (Sharing)", ""),
+                    new MenuItem(
+                            "Ayam Kapitan",
+                            48f,
+                            "An Aromatic chicken curry dish, cooked with a unique mixture of local herbs and spices. The perfect amalgamation of our multicultural Malaysia roots.",
+                            (int) restaurantId, "Mains (Sharing)", ""),
+                    new MenuItem(
+                            "Chef Wan's Ayam Kampung Goreng Lengkuas (Half)",
+                            78f,
+                            "Organic free-range chicken, cut into perfect pieces, carefully boiled and fried in spicy and fragrant galangal paste,\n" +
+                                    "\n" +
+                                    "Served with crunchy kruk kruk and generously topped with flavourful belado sauce",
+                            (int) restaurantId, "Mains (Sharing)", "https://trysmartbite.imgix.net/images/food/683f8be2-c5b2-427d-b30d-157cab84ff98.jpg?auto=format,compress&fit=crop&dpr=2"),
+                    new MenuItem(
+                            "Daging Salai Lemak Cili Padi",
+                            88f,
+                            "Smoked beef tenderloin, slow-cooked in creamy coconut milk and aromatic spice paste, flavoured with hot chili padi and fresh turmeric leaves.",
+                            (int) restaurantId, "Mains (Sharing)", ""),
+                    new MenuItem(
+                            "Kambing Kurma",
+                            78f,
+                            "Tender Australian lamb shank simmered in a creamy spicy sauce, steeped with rich aromas and flavoured with coriander and cumin.",
+                            (int) restaurantId, "Mains (Sharing)", ""),
+                    new MenuItem(
+                            "Cruzan Macadamia Mini",
+                            28f,
+                            "",
+                            (int) restaurantId, "Mini Cakes (Available at The Linc Only)", "https://trysmartbite.imgix.net/images/food/cb840abc-3e06-4e5c-8613-dfaaa08359f3.jpg?auto=format,compress&fit=crop&dpr=2"),
+                    new MenuItem(
+                            "Original Choc Mini",
+                            28f,
+                            "",
+                            (int) restaurantId, "Mini Cakes (Available at The Linc Only)", "https://trysmartbite.imgix.net/images/food/7a441c67-341d-4f8b-9bea-c1878896aa55.jpg?auto=format,compress&fit=crop&dpr=2")
+            );
+        }
+
+        { //FLOUR Restaurant
+            Restaurant restaurant = new Restaurant(
+                    "FLOUR",
+                    "FLOUR2023",
+                    "FLOUR Restaurant",
+                    "+60129600053",
+                    (float)900,
+                    "No. 12 & 14, Jalan Kamuning, Off Jalan Imbi, 55100 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur",
+                    "Wed - Mon: 6:00pm - 10:00pm\n" +
+                            "\n" +
+                            "Closed on Tuesdays",
+                    "Mastercard, Visa, AMEX, GrabPay",
+                    "",
+                    null,
+                    null,
+                    "https://flourrestaurant.com.my/",
+                    Cuisine.INDIAN,
+                    "FLOUR® showcases a new, modern fine Indian cuisine by redefining, recreating, and reinventing through deep knowledge and technique of application of spices and herbs. Located at the heart of the bustling city of Kuala Lumpur, our customers come from all around the world, be it United States of Amer ica, Europe, North Asia, South East Asia, to local Malaysians. Come to appreciate, get exposed, and learn about our culinary creations. Enjoy our hospitality and ambience with French touch for an unforgettable meal.",
+                    "https://d16jvv1mxapgw7.cloudfront.net/cover_flour_restaurant_aug2022_202208290520.jpg"
+            );
+            restaurant.setImages(
+                    "https://d3do4qdmxa1ui8.cloudfront.net/flour_restaurant_env4_aug2022_thumb_202208290538.jpg",
+                    "https://d3do4qdmxa1ui8.cloudfront.net/flour_restaurant_dish2_aug2022_thumb_202208290535.jpg",
+                    "https://d3do4qdmxa1ui8.cloudfront.net/flour_restaurant_dish3_aug2022_thumb_202208290535.jpg",
+                    "https://d3do4qdmxa1ui8.cloudfront.net/flour_restaurant_dish4_aug2022_thumb_202208290535.jpg",
+                    "https://d3do4qdmxa1ui8.cloudfront.net/flour_restaurant_env6_aug2022_thumb_202208290540.jpg");
+            long restaurantId = restaurantDAO.insertRestaurants(restaurant)[0];
+
+            tableDAO.insertTables(new Table((int) restaurantId, "A1", 1),
+                    new Table((int) restaurantId, "A2", 1),
+                    new Table((int) restaurantId, "A3", 1),
+                    new Table((int) restaurantId, "A4", 1),
+                    new Table((int) restaurantId, "B1", 2),
+                    new Table((int) restaurantId, "B2", 2),
+                    new Table((int) restaurantId, "B3", 2),
+                    new Table((int) restaurantId, "C1", 3),
+                    new Table((int) restaurantId, "C2", 3),
+                    new Table((int) restaurantId, "C3", 3),
+                    new Table((int) restaurantId, "D1", 4),
+                    new Table((int) restaurantId, "D2", 4),
+                    new Table((int) restaurantId, "D3", 4),
+                    new Table((int) restaurantId, "D4", 4),
+                    new Table((int) restaurantId, "D5", 4),
+                    new Table((int) restaurantId, "D6", 4),
+                    new Table((int) restaurantId, "E1", 5),
+                    new Table((int) restaurantId, "E2", 5),
+                    new Table((int) restaurantId, "F1", 6),
+                    new Table((int) restaurantId, "F2", 6),
+                    new Table((int) restaurantId, "G1", 7),
+                    new Table((int) restaurantId, "G2", 7),
+                    new Table((int) restaurantId, "H1", 8),
+                    new Table((int) restaurantId, "H2", 8)
+            );
+
+            menuDAO.insertMenus(
+                    new MenuItem(
+                            "आरंभ AARRAMBH",
+                            650f,
+                            "Origins, Part 1.",
+                            (int) restaurantId, "AARRAMBH", ""),
+                    new MenuItem(
+                            "START.",
+                            0f,
+                            "Sago vada, scallop tartare, caviar.\n" +
+                                    "Fafda, jalebi, wasabi.",
+                            (int) restaurantId, "AARRAMBH", ""),
+                    new MenuItem(
+                            "LENTILS & ROOT.",
+                            0f,
+                            "Split moong lentils, caviar, onion cream.",
+                            (int) restaurantId, "AARRAMBH", ""),
+                    new MenuItem(
+                            "VEGETABLE FARM.",
+                            0f,
+                            "Single farm french beans, asparagus, hung curd, juanita cherry tomatoes, greek cheese, raspberry purée, tamarind, herbs.",
+                            (int) restaurantId, "AARRAMBH", ""),
+                    new MenuItem(
+                            "FISH.",
+                            0f,
+                            "Salmon, béarnaise, zucchini, buttered prawn.",
+                            (int) restaurantId, "AARRAMBH", ""),
+                    new MenuItem(
+                            "MANGO LASSI.",
+                            0f,
+                            "Creamed mango pulp, caviar.",
+                            (int) restaurantId, "AARRAMBH", ""),
+                    new MenuItem(
+                            "BIRD.",
+                            0f,
+                            "Charcoal roasted spring chicken, morel mushroom sauce, Japanese pumpkin, caviar.",
+                            (int) restaurantId, "AARRAMBH", ""),
+                    new MenuItem(
+                            "PUMPKIN.",
+                            0f,
+                            "Baked butternut squash, Japanese pumpkin, pumpkin seeds and Jerusalem artichoke sauce, orange, basil oil.",
+                            (int) restaurantId, "AARRAMBH", ""),
+                    new MenuItem(
+                            "CATTLE.",
+                            0f,
+                            "Charcoal grilled organic lamb, cucumber mint gel, spiced jus, king oyster mushroom, thepla.",
+                            (int) restaurantId, "AARRAMBH", ""),
+                    new MenuItem(
+                            "WHITE APRICOT.",
+                            0f,
+                            "",
+                            (int) restaurantId, "AARRAMBH", ""),
+                    new MenuItem(
+                            "END.",
+                            0f,
+                            "Cognac / masala cha / coffee.",
+                            (int) restaurantId, "AARRAMBH", "")
+            );
+        }
+
+        { //Rama V Fine Thai Cuisine
+            Restaurant restaurant = new Restaurant(
+                    "RamaVFineThai",
+                    "RamaVFine2023",
+                    "Rama V Fine Thai Cuisine",
+                    "+60321432663",
+                    (float) 45,
+                    "No. 5, Jalan U Thant, Kuala Lumpur.",
+                    "Daily: 12:00pm - 2:30pm, 6:00pm - 9:30pm",
+                    "MasterCard, Visa, AMEX, JCB, UnionPay",
+                    "",
+                    null,
+                    null,
+                    "http://www.ramav.com.my/",
+                    Cuisine.THAI,
+                    "Experience the gracious elegance that is Rama V. A Thai Restaurant set amongst a magnificent pool of lotus blossoms, quietly tucked away from the busy district of Kuala Lumpur. Our innovative chefs cook up a blend of authentic and modern Thai dishes and present their creations as a feast not only fo r your palate but for your eyes. Herbs and natural seasonings are used to create a variety of colours and sensations in taste that makes a meal at Rama V memorable, exciting and enjoyable. So, head down to start your gastronomical culinary journey of Thai and soak in our cozy and laid-back ambience for an escape from everyday hustle and bustle.",
+                    "https://d16jvv1mxapgw7.cloudfront.net/cover_ramav_jalanuthant_1.jpg"
+            );
+            restaurant.setImages(
+                    "https://d3do4qdmxa1ui8.cloudfront.net/ramav_env4.jpg",
+                    "https://d3do4qdmxa1ui8.cloudfront.net/ramav_env3_thumb.jpg",
+                    "https://d3do4qdmxa1ui8.cloudfront.net/ramav_dish12_thumb.jpg",
+                    "https://d3do4qdmxa1ui8.cloudfront.net/ramav_dish11_thumb.jpg",
+                    "https://d3do4qdmxa1ui8.cloudfront.net/ramav_dish13_thumb.jpg");
+            long restaurantId = restaurantDAO.insertRestaurants(restaurant)[0];
+
+            tableDAO.insertTables(new Table((int) restaurantId, "A1", 1),
+                    new Table((int) restaurantId, "A2", 1),
+                    new Table((int) restaurantId, "A3", 1),
+                    new Table((int) restaurantId, "A4", 1),
+                    new Table((int) restaurantId, "B1", 2),
+                    new Table((int) restaurantId, "B2", 2),
+                    new Table((int) restaurantId, "B3", 2),
+                    new Table((int) restaurantId, "C1", 3),
+                    new Table((int) restaurantId, "C2", 3),
+                    new Table((int) restaurantId, "C3", 3),
+                    new Table((int) restaurantId, "D1", 4),
+                    new Table((int) restaurantId, "D2", 4),
+                    new Table((int) restaurantId, "D3", 4),
+                    new Table((int) restaurantId, "D4", 4),
+                    new Table((int) restaurantId, "D5", 4),
+                    new Table((int) restaurantId, "D6", 4),
+                    new Table((int) restaurantId, "E1", 5),
+                    new Table((int) restaurantId, "E2", 5),
+                    new Table((int) restaurantId, "F1", 6),
+                    new Table((int) restaurantId, "F2", 6),
+                    new Table((int) restaurantId, "G1", 7),
+                    new Table((int) restaurantId, "G2", 7),
+                    new Table((int) restaurantId, "H1", 8),
+                    new Table((int) restaurantId, "H2", 8)
+            );
+
+            menuDAO.insertMenus(
+                    new MenuItem(
+                            "Rama 1",
+                            160f,
+                            "Suitable for 2 pax",
+                            (int) restaurantId, "RAMA I", ""),
+                    new MenuItem(
+                            "Appetiser",
+                            0f,
+                            "Tangy Papaya Salad with Golden Stuffed Spring Roll",
+                            (int) restaurantId, "RAMA I", ""),
+                    new MenuItem(
+                            "Soup",
+                            0f,
+                            "Rama V Red Tom Tam Kai",
+                            (int) restaurantId, "RAMA I", ""),
+                    new MenuItem(
+                            "Main",
+                            0f,
+                            "Steamed Whole Seabass with Chilli Lime Sauce\n" +
+                                    "Green Curry Chicken\n" +
+                                    "Stir-fried Morning Glory with Shrimp Paste\n" +
+                                    "Steamed Thai Jasmine Rice",
+                            (int) restaurantId, "RAMA I", ""),
+                    new MenuItem(
+                            "Dessert",
+                            0f,
+                            "Chef's Dessert of the Day",
+                            (int) restaurantId, "RAMA I", ""),
+                    new MenuItem(
+                            "Rama II",
+                            178f,
+                            "Suitable of 2 pax",
+                            (int) restaurantId, "RAMA II", ""),
+                    new MenuItem(
+                            "Appetiser",
+                            0f,
+                            "Thai Fish Cake with Mango Salad and Crispy Fish",
+                            (int) restaurantId, "RAMA II", ""),
+                    new MenuItem(
+                            "Soup",
+                            0f,
+                            "Rama V Red Tom Yam Kai",
+                            (int) restaurantId, "RAMA II", ""),
+                    new MenuItem(
+                            "Main",
+                            0f,
+                            "Deep-fried Whole Seabass in Sweet Sour Spicy Sauce\n" +
+                                    "Red Curry Chicken with Bamboo Shoot\n" +
+                                    "Rama V Wok Fried Mixed Vegetables\n" +
+                                    "Steamed Thai Jasmine Rice",
+                            (int) restaurantId, "RAMA II", ""),
+                    new MenuItem(
+                            "Dessert",
+                            0f,
+                            "Chef's Dessert of the Day",
+                            (int) restaurantId, "RAMA II", "")
+            );
+        }
+
+        { //Pavilions Lounge @ Sheraton Imperial KL
+            Restaurant restaurant = new Restaurant(
+                    "PavilionsLounge",
+                    "PavilionsLounge2023",
+                    "Pavilions Lounge @ Sheraton Imperial KL",
+                    "03-2717 9027",
+                    (float) 100,
+                    "129, Jalan Sultan Ismail, Chow Kit, 50250 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia",
+                    "Daily: 09:00-01:00",
+                    "Master Card, Visa",
+                    "",
+                    null,
+                    "Child Friendly",
+                    "http://www.pavilionslounge.com/",
+                    Cuisine.HIGH_TEA_BUFFET,
+                    "With its intimate and charming setting, Pavilions Lounge provides an ideal venue for a sensual yet cosy evening gathering with your family and friends.In addition to the relaxing ambiance and delightful menu, our talented musician will entertain you with soothing live tunes as you enjoy the evening hours at Pavilions Lounge.",
+                    "https://ninjafound.com/wp-content/uploads/2019/05/ninjafound.com-Pavilions-Lounge-@-Sheraton-Imperial-Kuala-Lumpur-food-9.jpg"
+            );
+            restaurant.setImages(
+                    "https://ninjafound.com/wp-content/uploads/2019/05/ninjafound.com-Pavilions-Lounge-@-Sheraton-Imperial-Kuala-Lumpur-food-8.jpg",
+                    "https://ninjafound.com/wp-content/uploads/2019/05/ninjafound.com-Pavilions-Lounge-@-Sheraton-Imperial-Kuala-Lumpur-food-7.jpg",
+                    "https://ninjafound.com/wp-content/uploads/2019/05/ninjafound.com-Pavilions-Lounge-@-Sheraton-Imperial-Kuala-Lumpur-food-1.jpg",
+                    "https://ninjafound.com/wp-content/uploads/2019/05/ninjafound.com-Pavilions-Lounge-@-Sheraton-Imperial-Kuala-Lumpur-food-2.jpg",
+                    "https://ninjafound.com/wp-content/uploads/2019/05/ninjafound.com-Pavilions-Lounge-@-Sheraton-Imperial-Kuala-Lumpur-food-4.jpg");
+            long restaurantId = restaurantDAO.insertRestaurants(restaurant)[0];
+
+            tableDAO.insertTables(new Table((int) restaurantId, "A1", 1),
+                    new Table((int) restaurantId, "A2", 1),
+                    new Table((int) restaurantId, "A3", 1),
+                    new Table((int) restaurantId, "A4", 1),
+                    new Table((int) restaurantId, "B1", 2),
+                    new Table((int) restaurantId, "B2", 2),
+                    new Table((int) restaurantId, "B3", 2),
+                    new Table((int) restaurantId, "C1", 3),
+                    new Table((int) restaurantId, "C2", 3),
+                    new Table((int) restaurantId, "C3", 3),
+                    new Table((int) restaurantId, "D1", 4),
+                    new Table((int) restaurantId, "D2", 4),
+                    new Table((int) restaurantId, "D3", 4),
+                    new Table((int) restaurantId, "D4", 4),
+                    new Table((int) restaurantId, "D5", 4),
+                    new Table((int) restaurantId, "D6", 4),
+                    new Table((int) restaurantId, "E1", 5),
+                    new Table((int) restaurantId, "E2", 5),
+                    new Table((int) restaurantId, "F1", 6),
+                    new Table((int) restaurantId, "F2", 6),
+                    new Table((int) restaurantId, "G1", 7),
+                    new Table((int) restaurantId, "G2", 7),
+                    new Table((int) restaurantId, "H1", 8),
+                    new Table((int) restaurantId, "H2", 8)
+            );
+
+            menuDAO.insertMenus(
+                    new MenuItem(
+                            "Quesadilla",
+                            52f,
+                            "Toasted tortilla filled with grilled chicken, bell pepper, onion, crispy iceberg, guacamole, tomato salsa and chips",
+                            (int) restaurantId, "Bar Snack Menu", ""),
+                    new MenuItem(
+                            "Imperial Long Chicken",
+                            53f,
+                            "Sundried tomato bun, caramelized onion sweet relish, honey mustard mayonnaise and spicy wedges",
+                            (int) restaurantId, "Bar Snack Menu", ""),
+                    new MenuItem(
+                            "Swiss Cheese Plate",
+                            54f,
+                            "Brie, cheddar edam ball, emmentale served with dried fruit, grape and cracker",
+                            (int) restaurantId, "Bar Snack Menu", ""),
+                    new MenuItem(
+                            "Club Sandwich",
+                            55f,
+                            "Grilled smoked beef brisket, chicken breast, egg, tomato, mayonnaise lettuce, fries, toasted ona white bread",
+                            (int) restaurantId, "Bar Snack Menu", ""),
+                    new MenuItem(
+                            "Prime Beef Burger",
+                            57f,
+                            "Sesame bun, pickled dill, grilled onion, vine tomato and steak fries",
+                            (int) restaurantId, "Bar Snack Menu", ""),
+                    new MenuItem(
+                            "Steak Sandwich",
+                            58f,
+                            "Beef steak on potato bread with fresh tomato, caramelized onion",
+                            (int) restaurantId, "Bar Snack Menu", ""),
+                    new MenuItem(
+                            "Green Apple",
+                            29f,
+                            "",
+                            (int) restaurantId, "Fresh Juices", ""),
+                    new MenuItem(
+                            "Watermelon",
+                            29f,
+                            "",
+                            (int) restaurantId, "Fresh Juices", ""),
+                    new MenuItem(
+                            "Carrot",
+                            29f,
+                            "",
+                            (int) restaurantId, "Fresh Juices", ""),
+                    new MenuItem(
+                            "Orange",
+                            29f,
+                            "",
+                            (int) restaurantId, "Fresh Juices", ""),
+                    new MenuItem(
+                            "Pineapple",
+                            29f,
+                            "",
+                            (int) restaurantId, "Fresh Juices", "")
+            );
+        }
         Log.d("dataInsert()", "Data insertion done.");
     }
 }
