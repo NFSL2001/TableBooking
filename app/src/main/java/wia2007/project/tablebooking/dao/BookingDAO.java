@@ -46,8 +46,8 @@ public interface BookingDAO {
     @Query("UPDATE Booking SET status = 'Cancelled' WHERE booking_id = :booking_id;")
     public void rejectBooking(int booking_id);
 
-    @Query("Select Distinct substr(start_time,0,5) FROM Booking")
-    public String[] selectYear();
+    @Query("Select Distinct substr(start_time,0,5) FROM Booking INNER JOIN `table` ON `table`.table_id = Booking.table_id WHERE restaurant_id = :restaurant_id")
+    public String[] selectYear(int restaurant_id);
 
     @RawQuery
     List<Booking> rawQuery(SimpleSQLiteQuery query);

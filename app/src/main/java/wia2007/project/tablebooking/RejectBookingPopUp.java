@@ -100,7 +100,7 @@ public class RejectBookingPopUp extends Fragment {
                         startTime = cursorBook.getString(cursorBook.getColumnIndex("start_time"));
                         endTime = cursorBook.getString(cursorBook.getColumnIndex("end_time"));
                     }
-                    String notification = "<b>"+restaurant_name+"</b> cancelled your order<br><b>("+tableName+", "+startTime+"-"+endTime.substring(11)+", "+tableName+")</b>";
+                    String notification = "<b>"+restaurant_name+"</b> cancelled your order<br><b>("+tableName+", "+startTime+"-"+endTime.substring(11)+")</b>";
                     String notificationRestaurant = "You cancelled the order from <b>"+name+"</b><br><b>("+tableName+", "+startTime+"-"+endTime.substring(11)+")</b>";
                     TableBookingDatabase.getDatabase(view.getContext()).notificationDAO().insertNotification(new Notification(notification,customerId,-1));
                     TableBookingDatabase.getDatabase(view.getContext()).notificationDAO().insertNotification(new Notification(notificationRestaurant,-1,restId));
@@ -115,7 +115,7 @@ public class RejectBookingPopUp extends Fragment {
                         startTime = cursorBook.getString(cursorBook.getColumnIndex("start_time"));
                         endTime = cursorBook.getString(cursorBook.getColumnIndex("end_time"));
                     }
-                    String notification = "<b>"+name+"</b> cancelled the order<br><b>("+tableName+", "+startTime+"-"+endTime.substring(11)+", "+tableName+")</b>";
+                    String notification = "<b>"+name+"</b> cancelled the order<br><b>("+tableName+", "+startTime+"-"+endTime.substring(11)+")</b>";
                     String notificationRestaurant = "You cancelled the order of <b>"+restaurant_name+"</b><br><b>("+tableName+", "+startTime+"-"+endTime.substring(11)+")</b>";
                     TableBookingDatabase.getDatabase(view.getContext()).notificationDAO().insertNotification(new Notification(notificationRestaurant,custId,-1));
                     TableBookingDatabase.getDatabase(view.getContext()).notificationDAO().insertNotification(new Notification(notification,-1,restaurantId));

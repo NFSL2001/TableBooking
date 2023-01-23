@@ -3,20 +3,25 @@ package wia2007.project.tablebooking;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.sqlite.db.SimpleSQLiteQuery;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.Test;
 
 import java.sql.Date;
 
+import wia2007.project.tablebooking.dao.BookingDAO;
 import wia2007.project.tablebooking.dao.CustomerDAO;
 import wia2007.project.tablebooking.dao.MenuDAO;
+import wia2007.project.tablebooking.dao.NotificationDAO;
 import wia2007.project.tablebooking.dao.RestaurantDAO;
 import wia2007.project.tablebooking.dao.TableDAO;
 import wia2007.project.tablebooking.database.TableBookingDatabase;
+import wia2007.project.tablebooking.entity.Booking;
 import wia2007.project.tablebooking.entity.Cuisine;
 import wia2007.project.tablebooking.entity.Customer;
 import wia2007.project.tablebooking.entity.MenuItem;
+import wia2007.project.tablebooking.entity.Notification;
 import wia2007.project.tablebooking.entity.Restaurant;
 import wia2007.project.tablebooking.entity.Table;
 
@@ -30,15 +35,51 @@ public class SampleDataInsert {
         RestaurantDAO restaurantDAO = database.restaurantDAO();
         TableDAO tableDAO = database.tableDAO();
         MenuDAO menuDAO = database.menuDAO();
+        BookingDAO bookingDAO = database.bookingDAO();
+        NotificationDAO notificationDAO = database.notificationDAO();
+        {
+            customerDAO.insertCustomers(new Customer(
+                    "lion77",
+                    "77noiL77",
+                    "Peter Griffin",
+                    "01160895030",
+                    "lion77@gmail.com",
+                    Customer.GENDER_MALE,
+                    new Date(System.currentTimeMillis())));
 
-        customerDAO.insertCustomers(new Customer(
-                "lion77",
-                "77noiL77",
-                "Peter Griffin",
-                "01160895030",
-                "lion77@gmail.com",
-                Customer.GENDER_MALE,
-                new Date(System.currentTimeMillis())));
+            bookingDAO.insert(new SimpleSQLiteQuery("INSERT INTO booking(table_id,customer_id,start_time,end_time,remark,status)" +
+                    "VALUES(1,1,'2019-12-23 09:30:00','2019-12-23 10:30:00','More Sauce','Completed')"));
+            bookingDAO.insert(new SimpleSQLiteQuery("INSERT INTO booking(table_id,customer_id,start_time,end_time,remark,status)" +
+                    "VALUES(15,1,'2020-03-08 19:00:00','2020-03-08 21:00:00','','Cancelled')"));
+            bookingDAO.insert(new SimpleSQLiteQuery("INSERT INTO booking(table_id,customer_id,start_time,end_time,remark,status)" +
+                    "VALUES(50,1,'2021-08-31 21:30:00','2021-08-31 22:30:00','','Cancelled')"));
+            bookingDAO.insert(new SimpleSQLiteQuery("INSERT INTO booking(table_id,customer_id,start_time,end_time,remark,status)" +
+                    "VALUES(7,1,'2022-12-23 08:00:00','2022-12-23 10:00:00','','Completed')"));
+            bookingDAO.insert(new SimpleSQLiteQuery("INSERT INTO booking(table_id,customer_id,start_time,end_time,remark,status)" +
+                    "VALUES(26,1,'2023-02-23 09:30:00','2023-02-23 10:30:00','','Accepted')"));
+            bookingDAO.insert(new SimpleSQLiteQuery("INSERT INTO booking(table_id,customer_id,start_time,end_time,remark,status)" +
+                    "VALUES(44,1,'2023-01-30 09:30:00','2023-01-30 10:30:00','','Accepted')"));
+
+            notificationDAO.insertNotification(
+                    new Notification("You make a booking in <b>KFC</b><br>Date & Time: <b>2019-12-23 09:30:00-10:30:00</b><br>Table: <b>A4</b>",1,-1),
+                    new Notification("<b>Peter Griffin</b> make a booking on <b>2019-12-23 09:30:00-10:30:00</b><br>(Table: <b>A4</b>)",-1,1),
+                    new Notification("You make a booking in <b>Makan Kitchen @ DoubleTree by Hilton Hotel Melaka</b><br>Date & Time: <b>2020-03-08 19:00:00-21:00:00</b><br>Table: <b>B2</b>",1,-1),
+                    new Notification("<b>Peter Griffin</b> make a booking on <b>2020-03-08 19:00:00-21:00:00</b><br>(Table: <b>B2</b>)",-1,3),
+                    new Notification("You cancelled the order of <b>Makan Kitchen @ DoubleTree by Hilton Hotel Melaka</b><br><b>(B2, 2020-03-08 19:00:00-21:00:00)",1,-1),
+                    new Notification("<b>Peter Griffin</b> cancelled the order<br><b>(B2, 2020-03-08 19:00:00-21:00:00)",-1,3),
+                    new Notification("You make a booking in <b>De.Wan 1958 by Chef Wan Kuala Lumpur (The LINC KL)</b><br>Date & Time: <b>2021-08-31 21:30:00-22:30:00</b><br>Table: <b>A1</b>",1,-1),
+                    new Notification("<b>Peter Griffin</b> make a booking on <b>2021-08-31 21:30:00-22:30:00</b><br>(Table: <b>A1</b>)",-1,5),
+                    new Notification("<b>De.Wan 1958 by Chef Wan Kuala Lumpur (The LINC KL)</b> cancelled your order<br><b>(A1, 2021-08-31 21:30:00-22:30:00)</b>",1,-1),
+                    new Notification("You cancelled the order from <b>Peter Griffin</b><br><b>(A1,2021-08-31 21:30:00-22:30:00)</b>",-1,5),
+                    new Notification("You make a booking in <b>Atmosphere 360</b><br>Date & Time: <b>2022-12-23 08:00:00-10:00:00</b><br>Table: <b>X1</b>",1,-1),
+                    new Notification("<b>Peter Griffin</b> make a booking on <b>2022-12-23 08:00:00-10:00:00</b><br>(Table: <b>X1</b>)",-1,2),
+                    new Notification("You make a booking in <b>The 19th SUZUKI SHOTEN @ Publika</b><br>Date & Time: <b>2023-02-23 09:30:00-10:30:00</b><br>Table: <b>A1</b>",1,-1),
+                    new Notification("<b>Peter Griffin</b> make a booking on <b>2023-02-23 09:30:00-10:30:00</b><br>(Table: <b>A1</b>)",-1,4),
+                    new Notification("You make a booking in <b>The 19th SUZUKI SHOTEN @ Publika</b><br>Date & Time: <b>2023-01-30 09:30:00-10:30:00</b><br>Table: <b>F1</b>",1,-1),
+                    new Notification("<b>Peter Griffin</b> make a booking on <b>2023-02-23 09:30:00-10:30:00</b><br>(Table: <b>F1</b>)",-1,4)
+            );
+
+        }
 
         { // KFC
             Restaurant restaurant = new Restaurant(

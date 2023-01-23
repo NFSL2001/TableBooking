@@ -61,7 +61,9 @@ public class Graph extends AppCompatActivity {
         Spinner SpinnerGraphData = findViewById(R.id.SpinnerGraphData);
         Button BtnSubmit = findViewById(R.id.BtnSubmit);
 
-        String year[] = TableBookingDatabase.getDatabase(this).bookingDAO().selectYear();
+        restaurant_id = getIntent().getExtras().getInt("RestaurantID");
+
+        String year[] = TableBookingDatabase.getDatabase(this).bookingDAO().selectYear(restaurant_id);
         ArrayAdapter<String> spinnerArrayAdapterYear = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, year);
         spinnerArrayAdapterYear.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         SpinnerGraph1.setAdapter(spinnerArrayAdapterYear);
@@ -81,7 +83,6 @@ public class Graph extends AppCompatActivity {
         BtnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                restaurant_id = getIntent().getExtras().getInt("RestaurantID");
                 year1 = SpinnerGraph1.getSelectedItem().toString();
                 year2 = SpinnerGraph2.getSelectedItem().toString();
                 month1 = SpinnerGraphM1.getSelectedItem().toString();

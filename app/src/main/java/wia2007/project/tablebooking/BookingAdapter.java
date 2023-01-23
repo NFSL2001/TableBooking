@@ -61,7 +61,7 @@ public class BookingAdapter extends CursorAdapter{
         try {
             Calendar calendar = Calendar.getInstance();
             compareDate = dateFormat.parse(cursor.getString(cursor.getColumnIndexOrThrow("start_time")));
-            if(compareDate.before(calendar.getTime())) {
+            if(compareDate.before(calendar.getTime()) && !"Cancelled".equalsIgnoreCase(status)) {
                 bookingOver = true;
                 TableBookingDatabase.getDatabase(context).bookingDAO().rawQuery(new SimpleSQLiteQuery("UPDATE Booking SET status = 'Completed' WHERE booking_id = "+booking));
                 TVShowStatus.setVisibility(View.VISIBLE);

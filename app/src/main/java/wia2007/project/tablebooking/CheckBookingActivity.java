@@ -117,7 +117,7 @@ public class CheckBookingActivity extends AppCompatActivity {
                 for (int i = 0; i < menuId.size(); i++) {
                     db.bookingContainMenuDAO().insertContains(new BookingContainMenu(booking_id, menuId.get(i), quantity.get(i)));
                 }
-                String notification = "You make a booking in <b>"+restaurantList.get(0).getRestaurant_name()+"</b><br>Date & Time: <b>"+ finalTimeInterval +"</b><br>Table: <b>"+tableList.get(0).getName()+"</br>";
+                String notification = "You make a booking in <b>"+restaurantList.get(0).getRestaurant_name()+"</b><br>Date & Time: <b>"+ finalTimeInterval +"</b><br>Table: <b>"+tableList.get(0).getName()+"</b>";
                 String notificationRestaurant = "<b>"+customerDAO.getCustomerById(customerID).get(0).getName()+"</b>"+" make a booking on <b>"+ finalTimeInterval +"</b><br>(Table: <b>"+tableList.get(0).getName()+"</b>)";
                 db.notificationDAO().insertNotification(new Notification(notification,customerID,-1));
                 db.notificationDAO().insertNotification(new Notification(notificationRestaurant,-1,restaurantID));

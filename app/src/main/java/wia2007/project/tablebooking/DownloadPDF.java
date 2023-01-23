@@ -34,7 +34,7 @@ public class DownloadPDF extends AppCompatActivity {
 
     String yearSelected = "2023";
     String monthSelected = "January";
-    int restaurant_id = 1;
+    int restaurant_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +48,14 @@ public class DownloadPDF extends AppCompatActivity {
         Spinner SpinnerSelectYear = findViewById(R.id.SpinnerSelectYear);
         Spinner SpinnerSelectMonth = findViewById(R.id.SpinnerSelectMonth);
 
+        restaurant_id = getIntent().getIntExtra("RestaurantID",-1);
+
         String month[] = {"All", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, month);
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         SpinnerSelectMonth.setAdapter(spinnerArrayAdapter);
 
-        String year[] = TableBookingDatabase.getDatabase(this).bookingDAO().selectYear();
+        String year[] = TableBookingDatabase.getDatabase(this).bookingDAO().selectYear(restaurant_id);
         ArrayAdapter<String> spinnerArrayAdapterYear = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, year);
         spinnerArrayAdapterYear.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         SpinnerSelectYear.setAdapter(spinnerArrayAdapterYear);

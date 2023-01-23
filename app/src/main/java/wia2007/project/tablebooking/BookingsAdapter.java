@@ -83,15 +83,10 @@ public class BookingsAdapter extends ArrayAdapter {
 
         boolean bookingOver = false;
         Date compareDate = null;
-        if("Cancelled".equalsIgnoreCase(status)){
-            bookingOver=true;
-            bookingsHolder.TVShowStatus.setText("Cancelled");
-            bookingsHolder.TVShowStatus.setVisibility(View.VISIBLE);
-        }
         try {
             Calendar calendar = Calendar.getInstance();
             compareDate = simpleDateFormat.parse(start_time);
-            if (compareDate.before(calendar.getTime())) {
+            if (compareDate.before(calendar.getTime()) && !"Cancelled".equalsIgnoreCase(status)) {
                 bookingOver = true;
                 TableBookingDatabase.getDatabase(getContext()).bookingDAO().rawQuery(new SimpleSQLiteQuery("UPDATE Booking SET status = 'Completed' WHERE booking_id = "+bookingId));
                 bookingsHolder.TVShowStatus.setVisibility(View.VISIBLE);
@@ -103,7 +98,11 @@ public class BookingsAdapter extends ArrayAdapter {
             e.printStackTrace();
         }
 
-
+        if("Cancelled".equalsIgnoreCase(status)){
+            bookingOver=true;
+            bookingsHolder.TVShowStatus.setText("Cancelled");
+            bookingsHolder.TVShowStatus.setVisibility(View.VISIBLE);
+        }
         bookingsHolder.TVTableID.setText(tableName);
         bookingsHolder.TVBookedCustName.setText(customerName);
         bookingsHolder.TVBookingDate.setText(date);
