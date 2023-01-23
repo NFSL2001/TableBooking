@@ -88,6 +88,7 @@ public class BookingsAdapter extends ArrayAdapter {
             compareDate = simpleDateFormat.parse(start_time);
             if (compareDate.before(calendar.getTime()) && !"Cancelled".equalsIgnoreCase(status)) {
                 bookingOver = true;
+                bookingsHolder.TVShowStatus.setText("Completed");
                 TableBookingDatabase.getDatabase(getContext()).bookingDAO().rawQuery(new SimpleSQLiteQuery("UPDATE Booking SET status = 'Completed' WHERE booking_id = "+bookingId));
                 bookingsHolder.TVShowStatus.setVisibility(View.VISIBLE);
             } else {

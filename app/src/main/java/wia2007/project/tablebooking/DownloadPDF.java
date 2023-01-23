@@ -249,7 +249,7 @@ public class DownloadPDF extends AppCompatActivity {
         PdfDocument.Page page = pdfDocument.startPage(pageInfo);
         Canvas canvas = page.getCanvas();
 
-        List<Restaurant> restaurant = TableBookingDatabase.getDatabase(this).restaurantDAO().getRestaurantInfoById(1);
+        List<Restaurant> restaurant = TableBookingDatabase.getDatabase(this).restaurantDAO().getRestaurantInfoById(restaurant_id);
         paint.setTextSize(50);
         canvas.drawText(restaurant.get(0).getRestaurant_name(), 30, 80, paint);
 
@@ -284,10 +284,10 @@ public class DownloadPDF extends AppCompatActivity {
 
         paint.setColor(Color.WHITE);
         canvas.drawText("Item Name", 50, 395, paint);
-        canvas.drawText("Price", 450, 395, paint);
+        canvas.drawText("Price(RM)", 450, 395, paint);
         canvas.drawText("Quantity", 600, 395, paint);
         paint.setTextAlign(Paint.Align.RIGHT);
-        canvas.drawText("Total Amount", canvas.getWidth() - 40, 395, paint);
+        canvas.drawText("Total(RM)", canvas.getWidth() - 40, 395, paint);
         paint.setTextAlign(Paint.Align.LEFT);
 
         paint.setColor(Color.BLACK);
@@ -299,7 +299,10 @@ public class DownloadPDF extends AppCompatActivity {
         for (int i = 0; i < temp; i++) {
             y += 50;
             double totalAmount = list.get(i).getTotal();
-            canvas.drawText(list.get(i).getMenu_name(), 50, y, paint);
+            String name = list.get(i).getMenu_name();
+            if(name.length() > 25)
+                name = name.substring(0,20)+"......";
+            canvas.drawText(name, 50, y, paint);
             canvas.drawText(String.format("%.2f", list.get(i).getPrice()), 450, y, paint);
             canvas.drawText(Integer.toString(list.get(i).getQuantity()), 600, y, paint);
             paint.setTextAlign(Paint.Align.RIGHT);

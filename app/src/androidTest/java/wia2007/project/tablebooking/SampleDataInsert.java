@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import java.sql.Date;
 
+import wia2007.project.tablebooking.dao.BookingContainMenuDAO;
 import wia2007.project.tablebooking.dao.BookingDAO;
 import wia2007.project.tablebooking.dao.CustomerDAO;
 import wia2007.project.tablebooking.dao.MenuDAO;
@@ -18,6 +19,7 @@ import wia2007.project.tablebooking.dao.RestaurantDAO;
 import wia2007.project.tablebooking.dao.TableDAO;
 import wia2007.project.tablebooking.database.TableBookingDatabase;
 import wia2007.project.tablebooking.entity.Booking;
+import wia2007.project.tablebooking.entity.BookingContainMenu;
 import wia2007.project.tablebooking.entity.Cuisine;
 import wia2007.project.tablebooking.entity.Customer;
 import wia2007.project.tablebooking.entity.MenuItem;
@@ -37,6 +39,8 @@ public class SampleDataInsert {
         MenuDAO menuDAO = database.menuDAO();
         BookingDAO bookingDAO = database.bookingDAO();
         NotificationDAO notificationDAO = database.notificationDAO();
+        BookingContainMenuDAO bookingContainMenuDAO = database.bookingContainMenuDAO();
+
         {
             customerDAO.insertCustomers(new Customer(
                     "lion77",
@@ -59,6 +63,23 @@ public class SampleDataInsert {
                     "VALUES(26,1,'2023-02-23 09:30:00','2023-02-23 10:30:00','','Accepted')"));
             bookingDAO.insert(new SimpleSQLiteQuery("INSERT INTO booking(table_id,customer_id,start_time,end_time,remark,status)" +
                     "VALUES(44,1,'2023-01-30 09:30:00','2023-01-30 10:30:00','','Accepted')"));
+            bookingDAO.insert(new SimpleSQLiteQuery("INSERT INTO booking(table_id,customer_id,start_time,end_time,remark,status)" +
+                    "VALUES(27,1,'2023-01-01 20:30:00','2023-01-01 22:30:00','','Completed')"));
+            bookingDAO.insert(new SimpleSQLiteQuery("INSERT INTO booking(table_id,customer_id,start_time,end_time,remark,status)" +
+                    "VALUES(28,1,'2023-01-01 20:30:00','2023-01-01 22:30:00','','Completed')"));
+            bookingDAO.insert(new SimpleSQLiteQuery("INSERT INTO booking(table_id,customer_id,start_time,end_time,remark,status)" +
+                    "VALUES(26,1,'2022-12-23 09:30:00','2022-12-23 10:30:00','','Completed')"));
+            bookingDAO.insert(new SimpleSQLiteQuery("INSERT INTO booking(table_id,customer_id,start_time,end_time,remark,status)" +
+                    "VALUES(26,1,'2022-12-01 09:30:00','2022-12-01 10:30:00','','Completed')"));
+            bookingDAO.insert(new SimpleSQLiteQuery("INSERT INTO booking(table_id,customer_id,start_time,end_time,remark,status)" +
+                    "VALUES(27,1,'2022-12-01 09:30:00','2022-12-01 10:30:00','','Completed')"));
+            bookingDAO.insert(new SimpleSQLiteQuery("INSERT INTO booking(table_id,customer_id,start_time,end_time,remark,status)" +
+                    "VALUES(29,1,'2022-12-01 09:30:00','2022-12-01 10:30:00','','Completed')"));
+            bookingDAO.insert(new SimpleSQLiteQuery("INSERT INTO booking(table_id,customer_id,start_time,end_time,remark,status)" +
+                    "VALUES(28,1,'2023-01-01 20:30:00','2023-01-01 21:00:00','','Cancelled')"));
+            bookingDAO.insert(new SimpleSQLiteQuery("INSERT INTO booking(table_id,customer_id,start_time,end_time,remark,status)" +
+                    "VALUES(28,1,'2023-01-02 20:30:00','2023-01-02 21:30:00','','Cancelled')"));
+
 
             notificationDAO.insertNotification(
                     new Notification("You make a booking in <b>KFC</b><br>Date & Time: <b>2019-12-23 09:30:00-10:30:00</b><br>Table: <b>A4</b>",1,-1),
@@ -76,8 +97,45 @@ public class SampleDataInsert {
                     new Notification("You make a booking in <b>The 19th SUZUKI SHOTEN @ Publika</b><br>Date & Time: <b>2023-02-23 09:30:00-10:30:00</b><br>Table: <b>A1</b>",1,-1),
                     new Notification("<b>Peter Griffin</b> make a booking on <b>2023-02-23 09:30:00-10:30:00</b><br>(Table: <b>A1</b>)",-1,4),
                     new Notification("You make a booking in <b>The 19th SUZUKI SHOTEN @ Publika</b><br>Date & Time: <b>2023-01-30 09:30:00-10:30:00</b><br>Table: <b>F1</b>",1,-1),
-                    new Notification("<b>Peter Griffin</b> make a booking on <b>2023-02-23 09:30:00-10:30:00</b><br>(Table: <b>F1</b>)",-1,4)
+                    new Notification("<b>Peter Griffin</b> make a booking on <b>2023-02-23 09:30:00-10:30:00</b><br>(Table: <b>F1</b>)",-1,4),
+                    new Notification("You make a booking in <b>The 19th SUZUKI SHOTEN @ Publika</b><br>Date & Time: <b>2023-01-01 20:30:00-22:30:00</b><br>Table: <b>A2</b>",1,-1),
+                    new Notification("<b>Peter Griffin</b> make a booking on <b>2023-01-01 20:30:00-22:30:00</b><br>(Table: <b>A2</b>)",-1,4),
+                    new Notification("You make a booking in <b>The 19th SUZUKI SHOTEN @ Publika</b><br>Date & Time: <b>2023-01-01 20:30:00-22:30:00</b><br>Table: <b>A3</b>",1,-1),
+                    new Notification("<b>Peter Griffin</b> make a booking on <b>2023-01-01 20:30:00-22:30:00</b><br>(Table: <b>A3</b>)",-1,4),
+                    new Notification("You make a booking in <b>The 19th SUZUKI SHOTEN @ Publika</b><br>Date & Time: <b>2022-12-23 09:30:00-10:30:00</b><br>Table: <b>A1</b>",1,-1),
+                    new Notification("<b>Peter Griffin</b> make a booking on <b>2022-12-23 09:30:00-10:30:00</b><br>(Table: <b>A1</b>)",-1,4),
+                    new Notification("You make a booking in <b>The 19th SUZUKI SHOTEN @ Publika</b><br>Date & Time: <b>2022-12-01 09:30:00-10:30:00</b><br>Table: <b>A1</b>",1,-1),
+                    new Notification("<b>Peter Griffin</b> make a booking on <b>2022-12-01 09:30:00-10:30:00</b><br>(Table: <b>A1</b>)",-1,4),
+                    new Notification("You make a booking in <b>The 19th SUZUKI SHOTEN @ Publika</b><br>Date & Time: <b>2022-12-01 09:30:00-10:30:00</b><br>Table: <b>A2</b>",1,-1),
+                    new Notification("<b>Peter Griffin</b> make a booking on <b>2022-12-01 09:30:00-10:30:00</b><br>(Table: <b>A2</b>)",-1,4),
+                    new Notification("You make a booking in <b>The 19th SUZUKI SHOTEN @ Publika</b><br>Date & Time: <b>2022-12-01 09:30:00-10:30:00</b><br>Table: <b>A4</b>",1,-1),
+                    new Notification("<b>Peter Griffin</b> make a booking on <b>2022-12-01 09:30:00-10:30:00</b><br>(Table: <b>A4</b>)",-1,4),
+                    new Notification("You make a booking in <b>The 19th SUZUKI SHOTEN @ Publika</b><br>Date & Time: <b>2023-01-01 20:30:00-21:00:00</b><br>Table: <b>A3</b>",1,-1),
+                    new Notification("<b>Peter Griffin</b> make a booking on <b>2023-01-01 20:30:00-21:00:00</b><br>(Table: <b>A3</b>)",-1,4),
+                    new Notification("<b>The 19th SUZUKI SHOTEN @ Publika</b> cancelled your order<br><b>(A3, 2023-01-01 20:30:00-21:00:00)</b>",1,-1),
+                    new Notification("You cancelled the order from <b>Peter Griffin</b><br><b>(A3,2023-01-01 20:30:00-21:00:00)</b>",-1,4),
+                    new Notification("You make a booking in <b>The 19th SUZUKI SHOTEN @ Publika</b><br>Date & Time: <b>2023-01-02 20:30:00-21:30:00</b><br>Table: <b>A3</b>",1,-1),
+                    new Notification("<b>Peter Griffin</b> make a booking on <b>2023-01-02 20:30:00-21:30:00</b><br>(Table: <b>A3</b>)",-1,4),
+                    new Notification("You cancelled the order of <b>The 19th SUZUKI SHOTEN @ Publika</b><br><b>(A3, 2020-03-08 19:00:00-21:00:00)",1,-1),
+                    new Notification("<b>Peter Griffin</b> cancelled the order<br><b>(A3, 2023-01-02 20:30:00-21:30:00)",-1,4)
             );
+
+            bookingContainMenuDAO.insertContains(
+                    new BookingContainMenu(5,37,1),
+                    new BookingContainMenu(6,38,1),
+                    new BookingContainMenu(7,38,1),
+                    new BookingContainMenu(8,48,5),
+                    new BookingContainMenu(8,44,3),
+                    new BookingContainMenu(8,43,1),
+                    new BookingContainMenu(9,40,1),
+                    new BookingContainMenu(9,46,2),
+                    new BookingContainMenu(10,42,2),
+                    new BookingContainMenu(11,38,3),
+                    new BookingContainMenu(12,39,2),
+                    new BookingContainMenu(13,41,1),
+                    new BookingContainMenu(13,45,1),
+                    new BookingContainMenu(14,47,1)
+                    );
 
         }
 
@@ -414,11 +472,11 @@ public class SampleDataInsert {
                     "https://d16jvv1mxapgw7.cloudfront.net/cover_the_19th_suzuki_shoten_oct2022_202210210210.jpeg"
             );
             restaurant.setImages(
-                    "http://suzuki-shoten.com.my/images/Publika_Bar.jpg",
-                    "http://suzuki-shoten.com.my/images/klcc_07.jpg",
-                    "http://suzuki-shoten.com.my/images/klcc_01.jpg",
-                    "http://suzuki-shoten.com.my/images/concept_tastes.png",
-                    "http://suzuki-shoten.com.my/images/Publika_masu.jpg");
+                    "https://discoverkl.com/wp-content/uploads/sites/20/2019/02/Feature-Image-3-1024x511.png",
+                    "https://discoverkl.com/wp-content/uploads/sites/20/2019/02/19-Suzuki.png",
+                    "https://discoverkl.com/wp-content/uploads/sites/20/2019/02/Shuseki.jpg",
+                    "https://discoverkl.com/wp-content/uploads/sites/20/2019/02/Oribe-1.jpg",
+                    "https://discoverkl.com/wp-content/uploads/sites/20/2019/02/sakekami_products_b_49_800x.jpg");
             long restaurantId = restaurantDAO.insertRestaurants(restaurant)[0];
 
             tableDAO.insertTables(new Table((int) restaurantId, "A1", 1),
@@ -488,7 +546,7 @@ public class SampleDataInsert {
                             "生本鮪 赤身",
                             15f,
                             "",
-                            (int) restaurantId, "Sushi A La Carte", ""),
+                            (int) restaurantId, "Sushi A La Carte", "https://i.unu.edu/media/ourworld.unu.edu-en/article/2254/debate-2-0-will-you-eat-the-last-bluefin.jpg"),
                     new MenuItem(
                             "活き〆鯛",
                             15f,
@@ -508,7 +566,7 @@ public class SampleDataInsert {
                             "むらさき雲丹",
                             65f,
                             "",
-                            (int) restaurantId, "Sushi A La Carte", "")
+                            (int) restaurantId, "Sushi A La Carte", "https://shop.r10s.jp/f013331-shiriuchi/cabinet/item3/pp077_2.jpg")
             );
         }
         { //De.Wan 1958 by Chef Wan Kuala Lumpur (The LINC KL)

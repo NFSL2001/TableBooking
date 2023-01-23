@@ -29,14 +29,14 @@ public interface BookingContainMenuDAO {
     @Query("DELETE FROM Contain WHERE booking_id = :booking_id;")
     public void rejectBooking(int booking_id);
 
-    @Query("WITH Dist AS (SELECT M.menu_name, M.price, C.quantity FROM menuitem M, Contain C, Booking B WHERE M.menu_id = C.menu_id AND M.restaurant = :restaurant_id AND C.booking_id = B.booking_id AND substr(start_time,0,5) = :year AND substr(start_time,6,2) = :month) " +
+    @Query("WITH Dist AS (SELECT M.menu_name, M.price, C.quantity FROM menuitem M, Contain C, Booking B WHERE M.menu_id = C.menu_id AND M.restaurant = :restaurant_id AND status != 'Cancelled' AND C.booking_id = B.booking_id AND substr(start_time,0,5) = :year AND substr(start_time,6,2) = :month) " +
             "SELECT menu_name, price,SUM(quantity) AS Quantity, price*SUM(quantity) AS Total " +
             "FROM   Dist " +
             "GROUP  BY menu_name " +
             "ORDER BY Total DESC;")
     public List<DownloadPDF.saveFoodData> calculateFoodOrder(int restaurant_id, String year, String month);
 
-    @Query("WITH Dist AS (SELECT M.menu_name, M.price, C.quantity FROM menuitem M, Contain C, Booking B WHERE M.menu_id = C.menu_id AND M.restaurant = :restaurant_id AND C.booking_id = B.booking_id AND substr(start_time,0,5) = :year) " +
+    @Query("WITH Dist AS (SELECT M.menu_name, M.price, C.quantity FROM menuitem M, Contain C, Booking B WHERE M.menu_id = C.menu_id AND M.restaurant = :restaurant_id AND status != 'Cancelled' AND C.booking_id = B.booking_id AND substr(start_time,0,5) = :year) " +
             "SELECT menu_name, price,SUM(quantity) AS Quantity, price*SUM(quantity) AS Total " +
             "FROM   Dist " +
             "GROUP  BY menu_name " +

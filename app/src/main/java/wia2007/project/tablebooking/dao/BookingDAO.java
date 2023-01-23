@@ -28,18 +28,18 @@ public interface BookingDAO {
     @Query("SELECT Booking_id,start_time,End_time,Remark,T.Name AS TableName,T.size, R.restaurant_name, R.contact_number,R.address FROM Booking B INNER JOIN Restaurant R, `Table` T ON T.restaurant_id = R.restaurant_id AND B.Table_id=T.Table_id WHERE booking_id = :id")
     public Cursor getBookingById(Integer id);
 
-    @Query("SELECT restaurant_name, start_time, booking_id _id,status FROM Booking JOIN `Table` USING (table_id) JOIN Restaurant USING (restaurant_id) WHERE customer_id = :customerId ORDER BY start_time DESC, status ASC")
+    @Query("SELECT restaurant_name, start_time, booking_id _id,status FROM Booking JOIN `Table` USING (table_id) JOIN Restaurant USING (restaurant_id) WHERE customer_id = :customerId ORDER BY status ASC,start_time DESC")
     public Cursor getBookingRestaurantByCustomer(Integer customerId);
 
-    @Query("SELECT restaurant_name, start_time, booking_id _id,status FROM Booking JOIN `Table` USING (table_id) JOIN Restaurant USING (restaurant_id) WHERE customer_id = :customerId ORDER BY restaurant_name, status ASC")
+    @Query("SELECT restaurant_name, start_time, booking_id _id,status FROM Booking JOIN `Table` USING (table_id) JOIN Restaurant USING (restaurant_id) WHERE customer_id = :customerId ORDER BY status ASC, restaurant_name")
     public Cursor getBookingRestaurantByCustomerOrderByName(Integer customerId);
 
     @Query("SELECT Booking_id,start_time,End_time,Remark,T.Name AS TableName, C.name AS CustName,Mobile_number,Email,status FROM Booking B INNER JOIN Customer C, `Table` T ON B.Customer_id = C.Customer_id AND B.Table_id=T.Table_id WHERE Restaurant_id=:restaurant_id ORDER BY " +
-            "CASE WHEN :sortCondition = 0 THEN C.name END COLLATE NOCASE ASC, " +
-            "CASE WHEN :sortCondition = 1 THEN start_time END COLLATE NOCASE ASC," +
-            "CASE WHEN :sortCondition = 2 THEN T.name END COLLATE NOCASE ASC," +
-            "CASE WHEN :sortCondition = 3 THEN C.name END COLLATE NOCASE DESC, " +
-            "CASE WHEN :sortCondition = 4 THEN start_time END COLLATE NOCASE DESC," +
+            "CASE WHEN :sortCondition = 0 THEN C.name END COLLATE NOCASE ASC, status ASC," +
+            "CASE WHEN :sortCondition = 1 THEN start_time END COLLATE NOCASE ASC, status ASC," +
+            "CASE WHEN :sortCondition = 2 THEN T.name END COLLATE NOCASE ASC, status ASC," +
+            "CASE WHEN :sortCondition = 3 THEN C.name END COLLATE NOCASE DESC, status ASC," +
+            "CASE WHEN :sortCondition = 4 THEN start_time END COLLATE NOCASE DESC, status ASC," +
             "CASE WHEN :sortCondition = 5 THEN T.name END COLLATE NOCASE DESC, status ASC")
     Cursor getBookingsList(int restaurant_id,int sortCondition);
 

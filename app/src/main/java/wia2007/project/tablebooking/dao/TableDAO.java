@@ -42,14 +42,14 @@ public interface TableDAO {
             "AND table_id NOT IN (SELECT table_id FROM Booking WHERE start_time < :endTime AND :startTime < end_time OR status = 'Cancelled')")
     public List<Table> getAvailableTable(Integer restaurantId, String startTime, String endTime);
 
-    @Query("WITH Dist AS (SELECT T.name,T.size, B.booking_id  FROM 'table' T, Booking B WHERE T.restaurant_id = :restaurant_id AND B.table_id = T.table_id AND substr(start_time,0,5) = :year AND substr(start_time,6,2) = :month) " +
+    @Query("WITH Dist AS (SELECT T.name,T.size, B.booking_id  FROM 'table' T, Booking B WHERE T.restaurant_id = :restaurant_id  AND status != 'Cancelled' AND B.table_id = T.table_id AND substr(start_time,0,5) = :year AND substr(start_time,6,2) = :month) " +
             "SELECT name, size,COUNT(*) AS Quantity " +
             "FROM Dist " +
             "GROUP  BY name " +
             "ORDER BY Quantity DESC")
     public List<DownloadPDF.saveTableData> calculateTableBooking(int restaurant_id, String year, String month);
 
-    @Query("WITH Dist AS (SELECT T.name,T.size, B.booking_id  FROM 'table' T, Booking B WHERE T.restaurant_id = :restaurant_id AND B.table_id = T.table_id AND substr(start_time,0,5) = :year) " +
+    @Query("WITH Dist AS (SELECT T.name,T.size, B.booking_id  FROM 'table' T, Booking B WHERE T.restaurant_id = :restaurant_id  AND status != 'Cancelled' AND B.table_id = T.table_id AND substr(start_time,0,5) = :year) " +
             "SELECT name, size,COUNT(*) AS Quantity " +
             "FROM Dist " +
             "GROUP  BY name " +
