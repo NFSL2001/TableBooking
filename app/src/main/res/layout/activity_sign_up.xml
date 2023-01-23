@@ -27,6 +27,7 @@
         android:paddingEnd="10dp">
 
         <TextView
+            android:textColor="@color/black"
             android:id="@+id/TVSignUpUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,6 +35,7 @@
             android:textSize="16sp"/>
 
         <EditText
+            android:background="@drawable/edit_text_layout"
             android:id="@+id/ETSignUpUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -51,6 +53,7 @@
             android:visibility="invisible" />
 
         <TextView
+            android:textColor="@color/black"
             android:id="@+id/TVSignUpEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -58,6 +61,7 @@
             android:textSize="16sp" />
 
         <EditText
+            android:background="@drawable/edit_text_layout"
             android:id="@+id/ETSignUpEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -75,6 +79,7 @@
             android:visibility="invisible" />
 
         <TextView
+            android:textColor="@color/black"
             android:id="@+id/TVSignUpName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -82,6 +87,7 @@
             android:textSize="16sp" />
 
         <EditText
+            android:background="@drawable/edit_text_layout"
             android:id="@+id/ETSignUpName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -91,6 +97,7 @@
             android:minHeight="48dp" />
 
         <TextView
+            android:textColor="@color/red"
             android:id="@+id/TVSignUpExplainNamePurpose"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -98,6 +105,7 @@
             android:textSize="14sp" />
 
         <TextView
+            android:textColor="@color/black"
             android:id="@+id/TVSignUpContactNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -105,6 +113,7 @@
             android:textSize="16sp" />
 
         <EditText
+            android:background="@drawable/edit_text_layout"
             android:id="@+id/ETSignUpPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -115,6 +124,7 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
+            android:textColor="@color/black"
             android:id="@+id/TVSignUpGender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -142,6 +152,7 @@
         </RadioGroup>
 
         <TextView
+            android:textColor="@color/black"
             android:id="@+id/TVSignUpBirthDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -149,6 +160,7 @@
             android:textSize="16sp" />
 
         <EditText
+            android:background="@drawable/edit_text_layout"
             android:id="@+id/ETSignUpBirthDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -158,12 +170,14 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
+            android:textColor="@color/red"
             android:id="@+id/TVSignUpDateFormatExplain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/input_date_in_yyyy_mm_dd" />
 
         <TextView
+            android:textColor="@color/black"
             android:id="@+id/TVSignUpPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -171,6 +185,7 @@
             android:textSize="16sp" />
 
         <EditText
+            android:background="@drawable/edit_text_layout"
             android:id="@+id/ETSignUpPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -180,6 +195,7 @@
             android:minHeight="48dp" />
 
         <TextView
+            android:textColor="@color/red"
             android:id="@+id/TVSignUpPasswordExplain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -187,6 +203,7 @@
             android:textSize="14sp" />
 
         <TextView
+            android:textColor="@color/black"
             android:id="@+id/TVSignUpConfirmPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -194,6 +211,7 @@
             android:textSize="16sp" />
 
         <EditText
+            android:background="@drawable/edit_text_layout"
             android:id="@+id/ETSignUpConfirmPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

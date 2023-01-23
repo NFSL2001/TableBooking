@@ -96,7 +96,13 @@ public class SelectTimeActivity extends AppCompatActivity {
         DateSelector.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
-                Date = i + "-" + i1+1 + "-" + i2;
+                int month = i1+1;
+                String monthstr = "";
+                if (month < 10)
+                    monthstr = "0" + month;
+                else
+                    monthstr = valueOf(month);
+                Date = i + "-" + monthstr + "-" + i2;
             }
         });
 

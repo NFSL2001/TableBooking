@@ -30,11 +30,13 @@ public class MenuAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     List<MenuBaseData> menuList, originalMenuList;
     RecyclerView recyclerView;
     static Map<Integer, Integer> map = new HashMap<>();
+    private String[] mTextList;
 
     public MenuAdapter2(Context context, List<MenuBaseData> menuList) {
         this.context = context;
         this.menuList = menuList;
         this.originalMenuList = new ArrayList<>(menuList);
+        mTextList = new String[getItemCount()];
     }
 
     @NonNull
@@ -72,7 +74,11 @@ public class MenuAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 MenuAdapter2.MenuItemHolder menuItemHolder = (MenuAdapter2.MenuItemHolder) holder;
                 //set holder display info
                 menuItemHolder.setViewData(item);
+                menuItemHolder.disableTextChangeListener();
+                menuItemHolder.OrderQuantity.setText(mTextList[position]);
+                menuItemHolder.addTextChangedListener();
 
+                menuItemHolder.setIsRecyclable(false);
                 break;
             case R.layout.individual_restaurant_menu_section:
                 // get the associate object and cast to class
@@ -134,7 +140,7 @@ public class MenuAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     }
 
-    public class MenuItemHolder extends BaseImageHolder {
+    public class MenuItemHolder extends BaseImageHolder implements TextWatcher {
 
         TextView menuName, menuPrice, menuDescription;
         ImageView menuImage;
@@ -150,36 +156,51 @@ public class MenuAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             this.OrderQuantity = itemView.findViewById(R.id.OrderQuantity);
 
             OrderQuantity.setFilters(new InputFilter[]{new InputFilterMinMax(0, 10)});
-            OrderQuantity.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
+            OrderQuantity.addTextChangedListener(this);
+
+        }
+
+        public void addTextChangedListener() {
+            // This will add the listener. So, it will start to listen to new events
+            OrderQuantity.addTextChangedListener(this);
+        }
+
+        public void disableTextChangeListener() {
+            // This will remove the listener. So, it will stop to listen to new events
+            OrderQuantity.removeTextChangedListener(this);
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void afterTextChanged(final Editable s) {
+            MenuItem menuItem = (MenuItem) menuList.get(getAdapterPosition());
+            String qty = OrderQuantity.getText().toString();
+            if (qty.equals("")) {
+                qty = "0";
+            }
+            map.put(menuItem.getMenu_id(), Integer.parseInt(qty));
+            List<Integer> key = new ArrayList<>(map.keySet());
+            List<Integer> values = new ArrayList<>(map.values());
+            double price = 0;
+            for (int i = 0; i < map.size(); i++) {
+                if (values.get(i) != 0) {
+                    price += TableBookingDatabase.getDatabase(context).menuDAO().getMenuById(key.get(i)).get(0).getPrice() * values.get(i);
                 }
-
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-                        MenuItem menuItem = (MenuItem) menuList.get(getAdapterPosition());
-                        String qty = OrderQuantity.getText().toString();
-                        if(qty.equals("")){
-                            qty = "0";
-                        }
-                        map.put(menuItem.getMenu_id(), Integer.parseInt(qty));
-                        List<Integer> key = new ArrayList<>(map.keySet());
-                        List<Integer> values = new ArrayList<>(map.values());
-                        double price = 0;
-                        for (int i = 0; i < map.size(); i++) {
-                            if (values.get(i) != 0) {
-                                price += TableBookingDatabase.getDatabase(context).menuDAO().getMenuById(key.get(i)).get(0).getPrice() * values.get(i);
-                            }
-                        }
-                        PreOrderFoodActivity.Price.setText("RM" + String.format("%.2f", price));
-
-                }
-            });
-
+            }
+            PreOrderFoodActivity.Price.setText("RM" + String.format("%.2f", price));
+            int index = getAdapterPosition();
+            if (index >= 0) {
+                mTextList[index] = OrderQuantity.getText().toString();
+            }
         }
 
         public void setViewData(MenuItem item) {
@@ -209,8 +230,6 @@ public class MenuAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 this.menuImage.setVisibility(View.VISIBLE);
 
             this.internalMenuCategory = item.getCategory();
-
-            this.OrderQuantity.setText("0");
         }
     }
 
@@ -234,7 +253,8 @@ public class MenuAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 int input = Integer.parseInt(dest.subSequence(0, dstart).toString() + source + dest.subSequence(dend, dest.length()));
                 if (isInRange(min, max, input))
                     return null;
-            } catch (NumberFormatException nfe) { }
+            } catch (NumberFormatException nfe) {
+            }
             return "";
         }
 

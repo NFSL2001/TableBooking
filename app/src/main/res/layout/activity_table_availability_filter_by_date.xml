@@ -101,7 +101,6 @@
         android:minHeight="48dp"
         android:backgroundTint="#C1121F"
         android:text="Confirm"
-        android:textSize="20sp"
         android:layout_marginBottom="-8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
