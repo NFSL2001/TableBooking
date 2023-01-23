@@ -3,6 +3,7 @@ package wia2007.project.tablebooking;
 import static android.app.PendingIntent.getActivity;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -95,6 +96,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+                intent.putExtra("BackRest",getIntent().getBooleanExtra("BackRest",false));
                 startActivity(intent);
             }
         });
@@ -109,5 +111,13 @@ public class LoginActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK && requestCode == 2) {
+            finish();
+        }
     }
 }

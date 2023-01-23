@@ -135,11 +135,6 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (resultCode == Activity.RESULT_OK && requestCode == 1) {
-//            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-//            if (Build.VERSION.SDK_INT >= 26) {
-//                ft.setReorderingAllowed(false);
-//            }
-//            ft.replace(R.id.NHFMain,ProfileFragment.class,null).commit();
             startActivity(new Intent(getContext(),MainActivity.class));
         }
     }

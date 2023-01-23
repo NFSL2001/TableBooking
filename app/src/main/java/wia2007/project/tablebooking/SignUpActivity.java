@@ -74,8 +74,15 @@ public class SignUpActivity extends AppCompatActivity {
                     }
 
                     customerDAO.insertCustomers(new Customer(username, password, name, phone, email, gender, date));
-                    Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
-                    startActivity(intent);
+
+                    if(getIntent().getBooleanExtra("BackRest",false)){
+                        Intent replyIntent = new Intent();
+                        setResult(RESULT_OK,replyIntent);
+                        finish();
+                    }else{
+                        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
                 }
                 catch (IllegalArgumentException e) {
                     TypedValue typedValue = new TypedValue();

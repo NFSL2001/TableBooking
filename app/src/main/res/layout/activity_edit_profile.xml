@@ -9,11 +9,10 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/TBEditProfileAct"
-        android:theme="@style/AppTheme.ActionBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24">
-    </androidx.appcompat.widget.Toolbar>
+        android:theme="@style/AppTheme.ActionBar"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24"></androidx.appcompat.widget.Toolbar>
 
     <ImageView
         android:id="@+id/IVUserProfileImage"
@@ -26,35 +25,38 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp">
+        android:layout_marginEnd="10dp"
+        android:orientation="vertical">
 
         <TextView
+            android:id="@+id/TVEditProfileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name"
             android:textColor="@color/black"
-                android:id="@+id/TVEditProfileName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/name"
-                android:textSize="16sp" />
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/ETEditProfileName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints="name"
+            android:background="@drawable/edit_text_layout"
             android:ems="10"
             android:inputType="textPersonName"
             android:minHeight="48dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
             tools:ignore="SpeakableTextPresentCheck" />
 
 
         <TextView
-            android:textColor="@color/black"
             android:id="@+id/TVEditProfileContactNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/contact_number"
+            android:textColor="@color/black"
             android:textSize="16sp" />
 
         <EditText
@@ -62,17 +64,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints="phone"
+            android:background="@drawable/edit_text_layout"
             android:ems="10"
             android:inputType="phone"
             android:minHeight="48dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
-            android:textColor="@color/black"
             android:id="@+id/TVEditProfileEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/email"
+            android:textColor="@color/black"
             android:textSize="16sp" />
 
         <EditText
@@ -80,9 +85,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints="emailAddress"
+            android:background="@drawable/edit_text_layout"
             android:ems="10"
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
@@ -93,11 +101,11 @@
             android:visibility="gone" />
 
         <TextView
-            android:textColor="@color/black"
             android:id="@+id/TVEditProfileGender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/gender"
+            android:textColor="@color/black"
             android:textSize="16sp" />
 
         <RadioGroup
@@ -120,35 +128,38 @@
         </RadioGroup>
 
         <TextView
-            android:textColor="@color/black"
             android:id="@+id/TVEditProfileBirthDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/date_of_birth"
+            android:textColor="@color/black"
             android:textSize="16sp" />
 
         <EditText
             android:id="@+id/ETEditProfileBirthDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_layout"
             android:ems="10"
             android:inputType="date"
             android:minHeight="48dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
-            android:textColor="@color/red"
             android:id="@+id/TVEditProfileDateFormatExplain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/input_date_in_yyyy_mm_dd" />
+            android:text="@string/input_date_in_yyyy_mm_dd"
+            android:textColor="@color/red" />
 
         <TextView
-            android:textColor="@color/black"
             android:id="@+id/TVEditProfilePassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/password"
+            android:textColor="@color/black"
             android:textSize="16sp" />
 
         <EditText
@@ -156,9 +167,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints="password"
+            android:background="@drawable/edit_text_layout"
             android:ems="10"
             android:inputType="textPassword"
-            android:minHeight="48dp" />
+            android:minHeight="48dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp" />
 
         <TextView
             android:id="@+id/TVEditProfileIncorrectPassword"
@@ -166,12 +180,12 @@
             android:layout_height="wrap_content"
             android:text="@string/incorrect_password"
             android:visibility="gone" />
-
-        <Button
-            android:id="@+id/BtnEditProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/save" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/BtnEditProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/save" />
 </LinearLayout>

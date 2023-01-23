@@ -112,7 +112,9 @@ public class RestaurantInfoFragment extends Fragment {
                 // TODO: Add navigation to new booking
                 Context context = v.getContext();
                 if(context.getSharedPreferences("user", Context.MODE_PRIVATE).getInt("userID",-1) == -1){
-                    startActivity(new Intent(context,LoginActivity.class));
+                    Intent intent = new Intent(context,LoginActivity.class);
+                    intent.putExtra("BackRest",true);
+                    startActivityForResult(intent,2);
                 }else{
                     Intent intent = new Intent(context, SelectTimeActivity.class);
                     intent.putExtra("resID", restaurantID);
