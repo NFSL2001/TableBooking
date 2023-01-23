@@ -312,6 +312,7 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     Intent intent = new Intent(context, ItemDetails.class);
                     MenuBaseData.MenuAddItemButton menuAddItem = (MenuBaseData.MenuAddItemButton) menuList.get(getAbsoluteAdapterPosition());
                     intent.putExtra("ItemType", menuAddItem.type);
+                    intent.putExtra("RestaurantID",context.getSharedPreferences("admin",Context.MODE_PRIVATE).getInt("userID",-1));
                     ((Activity) itemView.getContext()).startActivity(intent);
                 }
             });

@@ -206,7 +206,7 @@ public class MenuAdmin extends AppCompatActivity implements RecycleViewInterface
     public boolean onOptionsItemSelected(@NonNull android.view.MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                this.finish();
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
                 return true;
         }
         return super.onOptionsItemSelected(item);
