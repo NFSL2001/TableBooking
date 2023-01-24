@@ -83,7 +83,6 @@ public class RejectBookingPopUp extends Fragment {
         int restId = admin.getInt("userID",-1);
 
         Button BtnConfirmReject = view.findViewById(R.id.BtnConfirmReject);
-        System.out.println(getActivity().getClass().getName());
         BtnConfirmReject.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("Range")
             @Override
@@ -122,8 +121,10 @@ public class RejectBookingPopUp extends Fragment {
                 }
                 if(getActivity().getClass().getName().equalsIgnoreCase("wia2007.project.tablebooking.ManageBookingFutureActivity"))
                     startActivity(new Intent(getContext(),MainActivity.class));
-                else
+                else{
+                    getActivity().setResult(Activity.RESULT_OK);
                     getActivity().finish();
+                }
             }
         });
 

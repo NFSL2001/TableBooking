@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK && requestCode == 1) {
-            System.out.println("Reload");
             getSupportFragmentManager().beginTransaction().replace(R.id.NHFMain,new AdminBookingList()).commit();
         }
     }
