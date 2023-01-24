@@ -26,7 +26,7 @@
     <string name="booking_date">Date</string>
     <string name="booking_time">Time</string>
     <string name="booking_duration">Duration (hour)</string>
-    <string name="select_booking_table">Select your table(s)</string>
+    <string name="select_booking_table">Select your table</string>
     <string name="table_size_text">Table Size</string>
     <string name="table_choice_text">Table Choice</string>
     <string name="table_selected">Table Selected:</string>
