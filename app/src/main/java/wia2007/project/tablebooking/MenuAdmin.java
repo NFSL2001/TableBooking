@@ -43,6 +43,7 @@ public class MenuAdmin extends AppCompatActivity implements RecycleViewInterface
     Map<String, List<MenuItem>> menuByType = null;
     Spinner SpinnerItemSortCondition;
     ArrayList<MenuBaseData> fullMenuList = new ArrayList<>();
+    TableBookingDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +62,8 @@ public class MenuAdmin extends AppCompatActivity implements RecycleViewInterface
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         SpinnerItemSortCondition.setAdapter(spinnerItemAdapter);
 
-        List<MenuItem> menuItem = TableBookingDatabase.getDatabase(getApplicationContext()).menuDAO().getMenuSortedList(getIntent().getExtras().getInt("RestaurantID"), SpinnerItemSortCondition.getSelectedItemPosition());
+        db = TableBookingDatabase.getDatabase(getApplicationContext());
+        List<MenuItem> menuItem = db.menuDAO().getMenuSortedList(getIntent().getExtras().getInt("RestaurantID"), SpinnerItemSortCondition.getSelectedItemPosition());
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             menuMap = menuItem.stream().collect(Collectors.groupingBy(m -> m.getCategory() == null ? "Not defined" : m.getCategory()));
         }
@@ -113,7 +115,8 @@ public class MenuAdmin extends AppCompatActivity implements RecycleViewInterface
         SpinnerItemSortCondition.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                List<MenuItem> sortedItem = TableBookingDatabase.getDatabase(getApplicationContext()).menuDAO().getMenuSortedList(getIntent().getExtras().getInt("RestaurantID"), SpinnerItemSortCondition.getSelectedItemPosition());
+                db = TableBookingDatabase.getDatabase(getApplicationContext());
+                List<MenuItem> sortedItem = db.menuDAO().getMenuSortedList(getIntent().getExtras().getInt("RestaurantID"), SpinnerItemSortCondition.getSelectedItemPosition());
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
                     menuMap = sortedItem.stream().collect(Collectors.groupingBy(m -> m.getCategory() == null ? "Not Defined" : m.getCategory()));
                     int pos = SpinnerMenuSortCondition.getSelectedItemPosition();
@@ -197,7 +200,8 @@ public class MenuAdmin extends AppCompatActivity implements RecycleViewInterface
 
     private void deleteItem(int position) {
         MenuItem menuItemList = (MenuItem) adapter.menuList.get(position);
-        TableBookingDatabase.getDatabase(getApplicationContext()).menuDAO().deleteMenuItem(menuItemList.getMenu_id());
+        db = TableBookingDatabase.getDatabase(getApplicationContext());
+        db.menuDAO().deleteMenuItem(menuItemList.getMenu_id());
         String toast = menuItemList.getMenu_name() + " is successfully deleted";
         Toast.makeText(getApplicationContext(), toast, Toast.LENGTH_LONG).show();
     }
@@ -206,10 +210,9 @@ public class MenuAdmin extends AppCompatActivity implements RecycleViewInterface
     public boolean onOptionsItemSelected(@NonNull android.view.MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                this.finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
-
 }
