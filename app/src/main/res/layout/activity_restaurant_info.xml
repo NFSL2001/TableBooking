@@ -34,379 +34,285 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingBottom="5dp">
+            android:padding="16dp">
 
             <TextView
                 android:id="@+id/name"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="20dp"
-                android:text="Name"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:text="Name" />
 
             <EditText
                 android:id="@+id/FillName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="15dp"
                 android:background="@drawable/edit_text_layout"
-                android:ems="10"
                 android:hint="Name"
                 android:inputType="textMultiLine"
-                android:minHeight="50dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:minHeight="48dp"
+                android:paddingHorizontal="16dp" />
 
             <TextView
                 android:id="@+id/address"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="15dp"
-                android:text="Address"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:layout_marginTop="8dp"
+                android:text="Address" />
 
             <EditText
                 android:id="@+id/fillAdd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="15dp"
                 android:background="@drawable/edit_text_layout"
                 android:ems="10"
                 android:hint="Address"
-                android:inputType="textMultiLine"
-                android:minHeight="50dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:inputType="textMultiLine"
+                android:minHeight="48dp"
+                android:paddingHorizontal="16dp" />
 
             <TextView
                 android:id="@+id/Contact"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="15dp"
-                android:text="Contact Number"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:layout_marginTop="8dp"
+                android:text="Contact Number"/>
 
             <EditText
                 android:id="@+id/fillContact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="15dp"
                 android:background="@drawable/edit_text_layout"
                 android:ems="10"
                 android:hint="Contact Number"
+                android:textColor="@color/black"
                 android:inputType="number|phone"
-                android:minHeight="50dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:textColor="@color/black" />
+                android:minHeight="48dp"
+                android:paddingHorizontal="16dp" />
 
             <TextView
                 android:id="@+id/AveragePrice"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="15dp"
-                android:text="Average Price"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:layout_marginTop="8dp"
+                android:text="Average Price" />
 
             <EditText
                 android:id="@+id/FillAverageP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="15dp"
                 android:background="@drawable/edit_text_layout"
                 android:ems="10"
                 android:hint="Average Price"
+                android:textColor="@color/black"
                 android:inputType="number|numberDecimal"
-                android:minHeight="50dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:textColor="@color/black" />
+                android:minHeight="48dp"
+                android:paddingHorizontal="16dp" />
 
             <TextView
                 android:id="@+id/CuisineType"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="15dp"
-                android:text="Cuisine Type"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:layout_marginTop="8dp"
+                android:text="Cuisine Type"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="15dp"
                 android:background="@drawable/edit_text_layout">
 
                 <Spinner
                     android:id="@+id/fillCuisineT"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:minHeight="50dp"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:spinnerMode="dropdown" />
+                    android:minHeight="48dp"
+                    android:paddingHorizontal="16dp"
+                    android:spinnerMode="dropdown"
+                    android:textColor="@color/black"/>
             </RelativeLayout>
 
             <TextView
                 android:id="@+id/Description"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="15dp"
-                android:text="Description"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fillCuisineT" />
+                android:layout_marginTop="8dp"
+                android:text="Description"/>
 
             <EditText
                 android:id="@+id/fillDes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="15dp"
                 android:background="@drawable/edit_text_layout"
                 android:ems="10"
+                android:gravity="top"
                 android:hint="Description"
+                android:textColor="@color/black"
                 android:inputType="textMultiLine"
-                android:minHeight="50dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
+                android:minHeight="92dp"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="12dp"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
-                android:textColor="@color/black" />
+                tools:ignore="RtlCompat" />
 
             <TextView
                 android:id="@+id/OperationHour"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="15dp"
-                android:text="Operation Hour"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/IVDes" />
+                android:layout_marginTop="8dp"
+                android:text="Operation Hour"/>
 
             <EditText
                 android:id="@+id/FillOperationHour"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="15dp"
                 android:background="@drawable/edit_text_layout"
                 android:ems="10"
                 android:hint="Operation Hour"
-                android:inputType="textMultiLine"
-                android:minHeight="50dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:inputType="textMultiLine"
+                android:minHeight="48dp"
+                android:paddingHorizontal="16dp" />
 
             <TextView
                 android:id="@+id/website"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="20dp"
-                android:text="Website"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:layout_marginTop="8dp"
+                android:text="Website"/>
 
             <EditText
                 android:id="@+id/fillWebsite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="15dp"
                 android:background="@drawable/edit_text_layout"
                 android:ems="10"
                 android:hint="Website"
-                android:inputType="textMultiLine|textWebEmailAddress|textWebEditText"
-                android:minHeight="50dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:inputType="textMultiLine|textWebEmailAddress|textWebEditText"
+                android:minHeight="48dp"
+                android:paddingHorizontal="16dp" />
 
             <TextView
                 android:id="@+id/payment"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="20dp"
-                android:text="Payment Type"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:layout_marginTop="8dp"
+                android:text="Payment Type" />
 
             <EditText
                 android:id="@+id/ETPayment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="15dp"
                 android:background="@drawable/edit_text_layout"
                 android:ems="10"
                 android:hint="Payment Type"
-                android:inputType="textMultiLine"
-                android:minHeight="50dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:inputType="textMultiLine"
+                android:minHeight="48dp"
+                android:paddingHorizontal="16dp" />
 
             <TextView
                 android:id="@+id/parking"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="20dp"
-                android:text="Parking"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:layout_marginTop="8dp"
+                android:text="Parking" />
 
             <EditText
                 android:id="@+id/ETParking"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="15dp"
                 android:background="@drawable/edit_text_layout"
                 android:ems="10"
                 android:hint="Parking"
-                android:inputType="textMultiLine"
-                android:minHeight="50dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:inputType="textMultiLine"
+                android:minHeight="48dp"
+                android:paddingHorizontal="16dp" />
 
             <TextView
                 android:id="@+id/accessibility"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="20dp"
-                android:text="Accessibility"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:layout_marginTop="8dp"
+                android:text="Accessibility" />
 
             <EditText
                 android:id="@+id/ETAccessibility"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="15dp"
                 android:background="@drawable/edit_text_layout"
                 android:ems="10"
                 android:hint="Accessibility"
-                android:inputType="textMultiLine"
-                android:minHeight="50dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:inputType="textMultiLine"
+                android:minHeight="48dp"
+                android:paddingHorizontal="16dp"/>
 
             <TextView
                 android:id="@+id/dressCode"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="20dp"
-                android:text="Dress Code"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:layout_marginTop="8dp"
+                android:text="Dress Code" />
 
             <EditText
                 android:id="@+id/ETDressCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="15dp"
                 android:background="@drawable/edit_text_layout"
                 android:ems="10"
                 android:hint="Dress Code"
-                android:inputType="textMultiLine"
-                android:minHeight="50dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:inputType="textMultiLine"
+                android:minHeight="48dp"
+                android:paddingHorizontal="16dp" />
 
             <TextView
                 android:id="@+id/TVTitleImage"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
-                android:text="Title Image"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:layout_marginTop="8dp"
+                android:text="Title Image" />
 
             <TextView
                 android:id="@+id/TVTitleImage2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:text="MANDATORY. Only URL are allowed."
                 android:textColor="@color/red"
-                android:textSize="16sp"
                 android:textStyle="bold|italic" />
 
             <EditText
                 android:id="@+id/ETURLTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
                 android:background="@drawable/edit_text_layout"
                 android:ems="10"
                 android:hint="Image URL"
-                android:inputType="textWebEmailAddress|textMultiLine"
-                android:minHeight="50dp"
-                android:paddingLeft="16dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TVInsertPic" />
+                android:textColor="@color/black"
+                android:inputType="textWebEmailAddress|textMultiLine|textUri"
+                android:minHeight="48dp"
+                android:paddingHorizontal="16dp"/>
 
             <ImageView
                 android:id="@+id/IVTitleImg"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -418,152 +324,136 @@
 
             <TextView
                 android:id="@+id/TVImageN1"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
-                android:text="Restaurant Image 1"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:layout_marginTop="8dp"
+                android:text="Restaurant Image 1" />
 
             <TextView
                 android:id="@+id/TVImage1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:text="OPTIONAL. Only URL are allowed."
                 android:textColor="@color/red"
-                android:textSize="16sp"
                 android:textStyle="bold|italic" />
 
             <EditText
                 android:id="@+id/ETURLImg1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
                 android:background="@drawable/edit_text_layout"
                 android:ems="10"
                 android:hint="Image URL"
+                android:textColor="@color/black"
                 android:inputType="textWebEmailAddress|textMultiLine"
-                android:minHeight="50dp"
-                android:paddingLeft="16dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TVInsertPic"
+                android:minHeight="48dp"
+                android:paddingHorizontal="16dp"
                 tools:ignore="TextFields" />
 
             <ImageView
                 android:id="@+id/IVImg1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:adjustViewBounds="true"
                 android:paddingBottom="12dp"
                 android:scaleType="fitCenter"
                 android:visibility="gone" />
-        <LinearLayout
-            android:id="@+id/LLImg2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/TVImageN2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
-                android:text="Restaurant Image 2"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/TVImage2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="OPTIONAL. Only URL are allowed."
-                android:textColor="@color/red"
-                android:textSize="16sp"
-                android:textStyle="bold|italic" />
-
-            <EditText
-                android:id="@+id/ETURLImg2"
+            <LinearLayout
+                android:id="@+id/LLImg2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/edit_text_layout"
-                android:ems="10"
-                android:hint="Image URL"
-                android:inputType="textWebEmailAddress|textMultiLine"
-                android:minHeight="50dp"
-                android:paddingLeft="16dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TVInsertPic" />
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/TVImageN2"
+                    style="@style/TextAppearance.AppCompat.Subhead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Restaurant Image 2" />
 
-            <ImageView
-                android:id="@+id/IVImg2"
+                <TextView
+                    android:id="@+id/TVImage2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OPTIONAL. Only URL are allowed."
+                    android:textColor="@color/red"
+                    android:textStyle="bold|italic" />
+
+                <EditText
+                    android:id="@+id/ETURLImg2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_layout"
+                    android:ems="10"
+                    android:hint="Image URL"
+                    android:textColor="@color/black"
+                    android:inputType="textWebEmailAddress|textMultiLine|textUri"
+                    android:minHeight="48dp"
+                    android:paddingHorizontal="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TVInsertPic" />
+
+                <ImageView
+                    android:id="@+id/IVImg2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:paddingBottom="12dp"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/LLImg3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:adjustViewBounds="true"
-                android:paddingBottom="12dp"
-                android:scaleType="fitCenter"
-                android:visibility="gone" />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/LLImg3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/TVImageN3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
-                android:text="Restaurant Image 3"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/TVImageN3"
+                    style="@style/TextAppearance.AppCompat.Subhead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Restaurant Image 3" />
 
-            <TextView
-                android:id="@+id/TVImage3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="OPTIONAL. Only URL are allowed."
-                android:textColor="@color/red"
-                android:textSize="16sp"
-                android:textStyle="bold|italic" />
+                <TextView
+                    android:id="@+id/TVImage3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OPTIONAL. Only URL are allowed."
+                    android:textColor="@color/red"
+                    android:textStyle="bold|italic" />
 
-            <EditText
-                android:id="@+id/ETURLImg3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/edit_text_layout"
-                android:ems="10"
-                android:hint="Image URL"
-                android:inputType="textWebEmailAddress|textMultiLine"
-                android:minHeight="50dp"
-                android:paddingLeft="16dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TVInsertPic" />
+                <EditText
+                    android:id="@+id/ETURLImg3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_layout"
+                    android:ems="10"
+                    android:hint="Image URL"
+                    android:textColor="@color/black"
+                    android:inputType="textWebEmailAddress|textMultiLine|textUri"
+                    android:minHeight="48dp"
+                    android:paddingHorizontal="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TVInsertPic" />
 
-            <ImageView
-                android:id="@+id/IVImg3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:adjustViewBounds="true"
-                android:paddingBottom="12dp"
-                android:scaleType="fitCenter"
-                android:visibility="gone" />
-        </LinearLayout>
+                <ImageView
+                    android:id="@+id/IVImg3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:adjustViewBounds="true"
+                    android:paddingBottom="12dp"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone" />
+            </LinearLayout>
             <LinearLayout
                 android:id="@+id/LLImg4"
                 android:layout_width="match_parent"
@@ -572,46 +462,39 @@
 
                 <TextView
                     android:id="@+id/TVImageN4"
+                    style="@style/TextAppearance.AppCompat.Subhead"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="32dp"
-                    android:text="Restaurant Image 4"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:layout_marginTop="8dp"
+                    android:text="Restaurant Image 4" />
 
                 <TextView
                     android:id="@+id/TVImage4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
                     android:text="OPTIONAL. Only URL are allowed."
                     android:textColor="@color/red"
-                    android:textSize="16sp"
                     android:textStyle="bold|italic" />
 
                 <EditText
                     android:id="@+id/ETURLImg4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
                     android:background="@drawable/edit_text_layout"
                     android:ems="10"
                     android:hint="Image URL"
-                    android:inputType="textWebEmailAddress|textMultiLine"
-                    android:minHeight="50dp"
-                    android:paddingLeft="16dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/TVInsertPic" />
+                    android:textColor="@color/black"
+                    android:inputType="textWebEmailAddress|textMultiLine|textUri"
+                    android:minHeight="48dp"
+                    android:paddingHorizontal="16dp" />
 
                 <ImageView
                     android:id="@+id/IVImg4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    android:adjustViewBounds="true"
                     android:paddingBottom="12dp"
                     android:scaleType="fitCenter"
                     android:visibility="gone" />
@@ -625,38 +508,31 @@
 
                 <TextView
                     android:id="@+id/TVImageN5"
+                    style="@style/TextAppearance.AppCompat.Subhead"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="32dp"
-                    android:text="Restaurant Image 5"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:layout_marginTop="8dp"
+                    android:text="Restaurant Image 5" />
 
                 <TextView
                     android:id="@+id/TVImage5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
                     android:text="OPTIONAL. Only URL are allowed."
                     android:textColor="@color/red"
-                    android:textSize="16sp"
                     android:textStyle="bold|italic" />
 
                 <EditText
                     android:id="@+id/ETURLImg5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
                     android:background="@drawable/edit_text_layout"
                     android:ems="10"
                     android:hint="Image URL"
-                    android:inputType="textWebEmailAddress|textMultiLine"
-                    android:minHeight="50dp"
-                    android:paddingLeft="16dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/TVInsertPic" />
+                    android:textColor="@color/black"
+                    android:inputType="textWebEmailAddress|textMultiLine|textUri"
+                    android:minHeight="48dp"
+                    android:paddingHorizontal="16dp" />
 
                 <ImageView
                     android:id="@+id/IVImg5"
@@ -677,19 +553,19 @@
         android:id="@+id/saveButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="-8dp"
-        android:backgroundTint="#C1121F"
+        android:background="#C1121F"
         android:text="Save"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintWidth_percent="0.7" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/cancelButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="-8dp"
-        android:backgroundTint="#000000"
+        android:background="@color/black"
+        android:textColor="@color/white"
         android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/saveButton"
