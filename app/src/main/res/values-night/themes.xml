@@ -10,6 +10,9 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <!-- App font -->
+        <item name="android:fontFamily">@font/stix_font_family</item>
+        <item name="fontFamily">@font/stix_font_family</item>
         <!-- Action bar colour. -->
         <item name="actionBarStyle">@style/ThemeOverlay.AppCompat.DayNight.ActionBar</item>
         <!-- Customize your theme here. -->
