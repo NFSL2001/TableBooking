@@ -12,7 +12,6 @@
             android:id="@+id/select_time_tButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/stixtwo"
             android:text="time"
             android:textAllCaps="false"
             android:textSize="16sp" />

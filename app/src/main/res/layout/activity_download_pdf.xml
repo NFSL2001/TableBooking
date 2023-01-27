@@ -22,25 +22,35 @@
 
     <TextView
         android:id="@+id/TVDownload"
-        android:layout_width="333dp"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:text="Download the pdf of the analysis of the sales"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="24sp"
+        android:layout_margin="24dp"
+        android:text="@string/download_pdf_title"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AppBarLayout2" />
 
+    <TextView
+        android:id="@+id/TVYear"
+        style="@style/TextAppearance.AppCompat.Subhead"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:text="Select Year"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVDownload" />
+
     <RelativeLayout
         android:id="@+id/SpinnerRelativeLayoutYear"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginHorizontal="20dp"
         android:background="@drawable/edit_text_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -49,9 +59,8 @@
 
         <Spinner
             android:id="@+id/SpinnerSelectYear"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="4dp"
             android:contentDescription="@string/sort_by"
             android:dropDownWidth="130dp"
             android:overlapAnchor="false"
@@ -61,27 +70,13 @@
 
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/TVYear"
-        android:layout_width="333dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:text="Select Year"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TVDownload" />
 
     <RelativeLayout
         android:id="@+id/SpinnerRelativeLayoutMonth"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginHorizontal="20dp"
         android:background="@drawable/edit_text_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -90,9 +85,8 @@
 
         <Spinner
             android:id="@+id/SpinnerSelectMonth"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="4dp"
             android:contentDescription="@string/sort_by"
             android:dropDownWidth="130dp"
             android:overlapAnchor="false"
@@ -104,14 +98,11 @@
 
     <TextView
         android:id="@+id/TVMonth"
-        android:layout_width="333dp"
+        style="@style/TextAppearance.AppCompat.Subhead"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_margin="24dp"
         android:text="Select Month"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
