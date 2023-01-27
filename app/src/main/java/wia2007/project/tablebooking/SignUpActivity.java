@@ -74,7 +74,7 @@ public class SignUpActivity extends AppCompatActivity {
                     }
 
                     customerDAO.insertCustomers(new Customer(username, password, name, phone, email, gender, date));
-                    Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                    Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                     startActivity(intent);
                 }
                 catch (IllegalArgumentException e) {
