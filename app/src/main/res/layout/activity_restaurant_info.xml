@@ -132,9 +132,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:minHeight="48dp"
-                    android:paddingHorizontal="16dp"
+                    android:contentDescription="Cuisine Type"
                     android:spinnerMode="dropdown"
-                    style="@style/TextAppearance.AppCompat.Subhead"/>
+                    android:paddingHorizontal="16dp"
+                    app:popupTheme="@style/AppTheme.PopupOverlay"
+                    tools:ignore="DuplicateSpeakableTextCheck" />
             </RelativeLayout>
 
             <TextView
