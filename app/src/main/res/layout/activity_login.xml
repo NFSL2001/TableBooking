@@ -12,91 +12,103 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/TBLogInAct"
-        android:theme="@style/AppTheme.ActionBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
+        android:theme="@style/AppTheme.ActionBar"
         app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24" />
 
-    <TextView
-        android:id="@+id/TVLoginTitle"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="75dp"
-        android:gravity="center_horizontal"
-        android:text="@string/invitable"
-        android:textColor="@color/red_500"
-        android:textSize="34sp"
-        android:textStyle="bold" />
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/TVLoginSubtitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="@string/log_in"
-        android:textSize="34sp"
-        android:textStyle="bold" />
+            <TextView
+                android:id="@+id/TVLoginTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="75dp"
+                android:gravity="center_horizontal"
+                android:text="@string/invitable"
+                android:textColor="@color/red_500"
+                android:textSize="34sp"
+                android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/TVIncorrect"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="75dp"
-        android:text="@string/incorrect_username_or_password"
-        android:textColor="?attr/colorPrimary"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:visibility="invisible" />
+            <TextView
+                android:id="@+id/TVLoginSubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/log_in"
+                android:textSize="34sp"
+                android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/ETUsername"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="@string/username"
-        android:inputType="textPersonName"
-        android:minHeight="48dp" />
+            <TextView
+                android:id="@+id/TVIncorrect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="75dp"
+                android:text="@string/incorrect_username_or_password"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:visibility="invisible" />
 
-    <EditText
-        android:id="@+id/ETPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="@string/password"
-        android:inputType="textPassword"
-        android:minHeight="48dp" />
+            <EditText
+                android:id="@+id/ETUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="@string/username"
+                android:inputType="textPersonName"
+                android:minHeight="48dp" />
 
-    <TextView
-        android:id="@+id/TVStatusTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:gravity="end"
-        android:text="@string/choose_you_status"
-        android:textSize="16sp" />
+            <EditText
+                android:id="@+id/ETPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:minHeight="48dp" />
 
-    <Spinner
-        android:id="@+id/SPStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:entries="@array/SpinnerForLogIn"
-        android:minHeight="48dp" />
+            <TextView
+                android:id="@+id/TVStatusTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:gravity="end"
+                android:text="@string/choose_you_status"
+                android:textSize="16sp" />
 
-    <Button
-        android:id="@+id/BtnLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/log_in" />
+            <Spinner
+                android:id="@+id/SPStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:entries="@array/SpinnerForLogIn"
+                android:minHeight="48dp" />
 
-    <Button
-        android:id="@+id/BtnGoSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/sign_up" />
+            <Button
+                android:id="@+id/BtnLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/log_in" />
+
+            <Button
+                android:id="@+id/BtnGoSignUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/sign_up" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
