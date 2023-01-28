@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/name"
-                android:textColor="@color/black"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:textSize="16sp" />
 
             <EditText
@@ -60,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/contact_number"
-                android:textColor="@color/black"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:textSize="16sp" />
 
             <EditText
@@ -81,7 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/email"
-                android:textColor="@color/black"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:textSize="16sp" />
 
             <EditText
@@ -109,7 +109,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/gender"
-                android:textColor="@color/black"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:textSize="16sp" />
 
             <RadioGroup
@@ -136,7 +136,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/date_of_birth"
-                android:textColor="@color/black"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:textSize="16sp" />
 
             <EditText
@@ -163,7 +163,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/password"
-                android:textColor="@color/black"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:textSize="16sp" />
 
             <EditText

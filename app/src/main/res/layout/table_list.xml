@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal"
         android:text="Name"
-        android:textColor="@color/black"
+        style="@style/TextAppearance.AppCompat.Subhead"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

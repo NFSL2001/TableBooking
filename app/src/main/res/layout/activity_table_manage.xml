@@ -100,7 +100,7 @@
                 android:ems="12"
                 android:hint="Table Name"
                 android:inputType="textPersonName"
-                android:textColor="@color/black"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:textSize="20sp" />
         </LinearLayout>
 
@@ -122,7 +122,7 @@
                 android:layout_height="wrap_content"
                 android:ems="12"
                 android:hint="Table Pax"
-                android:textColor="@color/black"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:inputType="number"
                 android:textSize="20sp" />
         </LinearLayout>

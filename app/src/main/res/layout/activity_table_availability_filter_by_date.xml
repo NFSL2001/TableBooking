@@ -37,7 +37,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
                 android:text="Pick a date: "
-                android:textColor="@color/black"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -47,7 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:calendarTextColor="@color/black"
+                android:calendarTextColor="?colorOnBackground"
                 android:headerBackground="#c1121f" />
 
             <TextView
@@ -57,7 +57,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:text="Pick Start Time:"
-                android:textColor="@color/black"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -68,7 +68,7 @@
                 android:layout_marginTop="10dp"
                 android:numbersBackgroundColor="#FFFFFF"
                 android:numbersSelectorColor="#C1121F"
-                android:numbersTextColor="@color/black"
+                android:numbersTextColor="?colorOnBackground"
                 android:timePickerMode="spinner" />
 
             <TextView
@@ -78,7 +78,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:text="Pick End Time:"
-                android:textColor="@color/black"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -89,7 +89,7 @@
                 android:layout_marginTop="10dp"
                 android:numbersBackgroundColor="#FFFFFF"
                 android:numbersSelectorColor="#C1121F"
-                android:numbersTextColor="@color/black"
+                android:numbersTextColor="?colorOnBackground"
                 android:timePickerMode="spinner" />
 
         </LinearLayout>

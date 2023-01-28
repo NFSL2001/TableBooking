@@ -70,7 +70,7 @@
             android:layout_width="59dp"
             android:layout_height="59dp"
             android:text="×"
-            android:textColor="@color/black"
+            android:textColor="?colorOnBackground"
             android:textSize="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

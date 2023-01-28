@@ -50,15 +50,11 @@
             <solid android:color="#50CCCCCC"/>
         </shape>
     </item>
-
     <item>
-
         <shape android:shape="rectangle">
             <stroke android:color="#CCC" android:width="1dp"/>
             <solid android:color="#FFF" />
             <corners android:radius="2dp" />
-
         </shape>
-
     </item>
 </layer-list>
