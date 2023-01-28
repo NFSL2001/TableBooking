@@ -8,13 +8,12 @@
 
     <TextView
         android:id="@+id/TVBookingListRestaurantName"
+        style="@style/TextAppearance.AppCompat.Subhead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="TextView"
-        android:textColor="@color/black"
-        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,17 +23,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
         android:text="Cancelled"
-        android:textColor="@color/red"
-        android:textSize="16sp"
+        android:textColor="?colorPrimary"
         android:textStyle="bold"
         android:visibility="gone"
         app:layout_constraintStart_toEndOf="@id/TVBookingListRestaurantName"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/TVBookingListRestaurantName"
+        app:layout_constraintBottom_toBottomOf="@+id/TVBookingListRestaurantName"/>
 
     <TextView
         android:id="@+id/TVBookingListBookingDate"
+        style="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -42,15 +41,14 @@
         android:layout_marginStart="8dp"
         android:text="TextView"
         app:layout_constraintLeft_toRightOf="@id/TVStatus"
-        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height=".6dp"
         android:layout_marginTop="12dp"
-        android:background="#000000"
+        android:background="?colorOnBackground"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TVBookingListRestaurantName" />
 </androidx.constraintlayout.widget.ConstraintLayout>

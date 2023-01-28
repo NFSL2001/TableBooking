@@ -68,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Click the table above to Update\nLong Click to Delete"
-            android:textColor="@color/red"
+            android:textColor="?colorPrimary"
             android:textStyle="bold"
             android:textSize="18sp"/>
 
@@ -88,12 +88,10 @@
 
             <TextView
                 android:id="@+id/addtableName"
-                style="@style/TextAppearance.AppCompat.Subhead"
+                style="@style/TextAppearance.AppCompat.Menu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Table Name: "
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:text="Table Name: " />
 
             <EditText
                 android:id="@+id/addTableName"
@@ -102,6 +100,7 @@
                 android:ems="12"
                 android:hint="Table Name"
                 android:inputType="textPersonName"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
         </LinearLayout>
 
@@ -112,11 +111,10 @@
 
             <TextView
                 android:id="@+id/tableSize"
-                style="@style/TextAppearance.AppCompat.Subhead"
+                style="@style/TextAppearance.AppCompat.Menu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Table Pax:"
-                android:textSize="20sp" />
+                android:text="Table Pax:" />
 
             <EditText
                 android:id="@+id/editTablePax"
@@ -124,6 +122,7 @@
                 android:layout_height="wrap_content"
                 android:ems="12"
                 android:hint="Table Pax"
+                android:textColor="@color/black"
                 android:inputType="number"
                 android:textSize="20sp" />
         </LinearLayout>

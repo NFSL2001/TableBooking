@@ -23,12 +23,11 @@
             android:text="@string/select_booking_table" />
 
         <TextView
-            style="@style/TextAppearance.AppCompat.Title"
+            style="@style/TextAppearance.AppCompat.Body1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Maximum 1 tables allowed"
-            android:textColor="@color/red"
-            android:textSize="14sp"
+            android:textColor="?colorPrimary"
             android:textStyle="bold" />
 
 

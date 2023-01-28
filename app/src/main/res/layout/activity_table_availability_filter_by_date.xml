@@ -32,12 +32,10 @@
 
             <TextView
                 android:id="@+id/PickDate"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pick a date: "
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:text="Pick a date"/>
 
             <DatePicker
                 android:id="@+id/datepicker"
@@ -50,13 +48,11 @@
 
             <TextView
                 android:id="@+id/pickTimeS"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Pick Start Time:"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:text="Pick Start Time" />
 
             <TimePicker
                 android:id="@+id/timepickerS"
@@ -69,13 +65,11 @@
 
             <TextView
                 android:id="@+id/pickTimeE"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Pick End Time:"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:text="Pick End Time" />
 
             <TimePicker
                 android:id="@+id/timepickerE"
@@ -93,7 +87,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="48dp"
-        android:background="#C1121F"
+        android:background="?colorPrimary"
         android:text="Confirm"
         android:textColor="@color/white"
         android:textSize="20sp"
