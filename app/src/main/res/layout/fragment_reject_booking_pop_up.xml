@@ -57,7 +57,7 @@
             android:ems="10"
             android:gravity="center"
             android:minHeight="133dp"
-            android:text="Are you sure to reject the booking? Once reject, the booking will be permanently deleted.\n\nTo confirm reject, click the button down below."
+            android:text="Are you sure to reject the booking? Once reject, the booking will be permanently rejected.\n\nTo confirm reject, click the button down below."
             android:textColor="?colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

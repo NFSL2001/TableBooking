@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -64,6 +65,14 @@ public class RejectBookingPopUp extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_reject_booking_pop_up, container, false);
+
+        TextView textView = view.findViewById(R.id.textView);
+        TextView TVRejectConfirmation = view.findViewById(R.id.TVRejectConfirmation);
+
+        if(getActivity().getClass().getName().equalsIgnoreCase("wia2007.project.tablebooking.ManageBookingFutureActivity")){
+            textView.setText("Cancellation Confirmation");
+            TVRejectConfirmation.setText("Are you sure to cancel the booking? Once cancel, the booking will be permanently cancelled.\\n\\nTo confirm cancellation, click the button down below.");
+        }
 
         Bundle bundle = getActivity().getIntent().getExtras();
         if(bundle != null){
