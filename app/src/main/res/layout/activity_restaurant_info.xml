@@ -555,7 +555,6 @@
         android:layout_height="wrap_content"
         android:background="#C1121F"
         android:text="Save"
-        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintWidth_percent="0.7" />
