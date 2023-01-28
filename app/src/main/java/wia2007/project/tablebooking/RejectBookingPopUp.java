@@ -69,7 +69,7 @@ public class RejectBookingPopUp extends Fragment {
         TextView textView = view.findViewById(R.id.textView);
         TextView TVRejectConfirmation = view.findViewById(R.id.TVRejectConfirmation);
 
-        if(getActivity().getClass().getName().equalsIgnoreCase("wia2007.project.tablebooking.ManageBookingFutureActivity")){
+        if(getActivity().getClass().getName().equalsIgnoreCase("wia2007.project.tablebooking.ManageBookingActivity")){
             textView.setText("Cancellation Confirmation");
             TVRejectConfirmation.setText("Are you sure to cancel the booking? Once cancel, the booking will be permanently cancelled.\n\nTo confirm cancellation, click the button down below.");
         }
@@ -128,7 +128,7 @@ public class RejectBookingPopUp extends Fragment {
                     TableBookingDatabase.getDatabase(view.getContext()).notificationDAO().insertNotification(new Notification(notificationRestaurant,custId,-1));
                     TableBookingDatabase.getDatabase(view.getContext()).notificationDAO().insertNotification(new Notification(notification,-1,restaurantId));
                 }
-                if(getActivity().getClass().getName().equalsIgnoreCase("wia2007.project.tablebooking.ManageBookingFutureActivity"))
+                if(getActivity().getClass().getName().equalsIgnoreCase("wia2007.project.tablebooking.ManageBookingActivity"))
                     startActivity(new Intent(getContext(),MainActivity.class));
                 else{
                     getActivity().setResult(Activity.RESULT_OK);

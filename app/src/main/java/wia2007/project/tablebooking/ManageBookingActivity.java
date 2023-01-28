@@ -25,7 +25,7 @@ import java.util.List;
 import wia2007.project.tablebooking.database.TableBookingDatabase;
 
 
-public class ManageBookingFutureActivity extends AppCompatActivity {
+public class ManageBookingActivity extends AppCompatActivity {
 
     TextView Name, DateText, TableID, TimeText, Request,RestaurantContact, RestaurantAddress,TVTotal,bookingCancelled;
     RecyclerView FoodList;

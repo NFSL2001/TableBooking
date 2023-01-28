@@ -11,8 +11,6 @@ import android.widget.TextView;
 
 import androidx.sqlite.db.SimpleSQLiteQuery;
 
-import org.w3c.dom.Text;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -74,7 +72,7 @@ public class BookingAdapter extends CursorAdapter{
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context,ManageBookingFutureActivity.class);
+                Intent intent = new Intent(context, ManageBookingActivity.class);
                 intent.putExtra("restName",name);
                 intent.putExtra("bookingID",booking);
                 System.out.println(name+":"+ finalBookingOver);
