@@ -31,15 +31,16 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 
             <TextView
                 android:id="@+id/main_all_storeName"
-                style="?attr/textAppearanceSearchResultTitle"
+                style="@style/TextAppearance.AppCompat.SearchResult.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Restaurant Name"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/main_all_storeType"
-                style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+                style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Restaurant Type" />

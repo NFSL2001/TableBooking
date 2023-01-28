@@ -26,7 +26,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingBottom="10dp"
+        android:layout_margin="8dp"
         app:layout_constraintBottom_toTopOf="@+id/AddLayout"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -43,9 +43,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:scrollbars="horizontal">
-
-            </androidx.recyclerview.widget.RecyclerView>
+                android:scrollbars="horizontal"
+                tools:listitem="@layout/table_list_section"/>
 
         </LinearLayout>
     </ScrollView>
@@ -58,29 +57,30 @@
         android:layout_marginEnd="-10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="16dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/btnAdd"
         app:layout_constraintLeft_toLeftOf="parent"
         android:background="@drawable/edit_text_layout"
         app:layout_constraintRight_toRightOf="parent">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Click the table above to Update\nLong Click to Delete"
-            android:textColor="@color/red"
+            android:textColor="?colorPrimary"
             android:textStyle="bold"
-            android:textSize="18sp"
-            android:layout_marginStart="20dp"/>
+            android:textSize="18sp"/>
+
         <TextView
             android:id="@+id/AddTable"
+            style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:text="Add Table:"
-            android:textColor="@color/black"
-            android:textSize="20sp"
+            android:text="Add Table"
             android:textStyle="bold" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -88,23 +88,19 @@
 
             <TextView
                 android:id="@+id/addtableName"
+                style="@style/TextAppearance.AppCompat.Menu"
                 android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:text="Table Name. :"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:layout_height="wrap_content"
+                android:text="Table Name: " />
 
             <EditText
                 android:id="@+id/addTableName"
                 android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:ems="10"
+                android:layout_height="wrap_content"
+                android:ems="12"
                 android:hint="Table Name"
                 android:inputType="textPersonName"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
         </LinearLayout>
 
@@ -115,22 +111,18 @@
 
             <TextView
                 android:id="@+id/tableSize"
+                style="@style/TextAppearance.AppCompat.Menu"
                 android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:text="Table Pax :"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:layout_height="wrap_content"
+                android:text="Table Pax:" />
 
             <EditText
                 android:id="@+id/editTablePax"
                 android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:ems="10"
+                android:layout_height="wrap_content"
+                android:ems="12"
                 android:hint="Table Pax"
+                android:textColor="@color/black"
                 android:inputType="number"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -141,18 +133,18 @@
         android:id="@+id/btnAdd"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="-8dp"
+        android:background="?colorPrimary"
         android:text="ADD"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintWidth_percent="0.7" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnCancel"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="-8dp"
-        android:backgroundTint="#000000"
+        android:background="@color/black"
+        android:textColor="@color/white"
         android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/btnAdd"

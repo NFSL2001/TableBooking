@@ -84,7 +84,10 @@ public class fragment_AdminHome extends Fragment {
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
                 bundle.putInt("Restaurant_Id",restaurant_id);
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.NHFMain,AdminBookingList.class,bundle).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().
+                        addToBackStack(null).
+                        replace(R.id.NHFMain,AdminBookingList.class,bundle)
+                        .commit();
             }
         });
         BtnRestaurantInfo.setOnClickListener(new View.OnClickListener() {
@@ -117,7 +120,10 @@ public class fragment_AdminHome extends Fragment {
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
                 bundle.putInt("Restaurant_Id",restaurant_id);
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.NHFMain,fragment_AdminNoti.class,bundle).commit();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .addToBackStack(null)
+                        .replace(R.id.NHFMain,fragment_AdminNoti.class,bundle)
+                        .commit();
             }
         });
         return view;

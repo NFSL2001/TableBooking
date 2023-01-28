@@ -32,6 +32,7 @@
 
         <TextView
             android:id="@+id/TVSelectGraphData"
+            style="@style/TextAppearance.AppCompat.Body1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -39,8 +40,7 @@
             android:layout_marginTop="7dp"
             android:gravity="center_vertical"
             android:paddingStart="10dp"
-            android:text="Select the type of Data:"
-            android:textColor="@color/black" />
+            android:text="Select the type of Data:" />
 
 
         <RelativeLayout
@@ -88,14 +88,14 @@
 
         <TextView
             android:id="@+id/TVSelectGraph1"
+            style="@style/TextAppearance.AppCompat.Body1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginTop="7dp"
             android:gravity="center_vertical"
             android:paddingStart="10dp"
-            android:text="Select Year and Month for First Data:"
-            android:textColor="@color/black" />
+            android:text="Select Year and Month for First Data:" />
 
 
         <LinearLayout
@@ -152,13 +152,13 @@
 
             <TextView
                 android:id="@+id/TVSelectGraph2"
+                style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
                 android:gravity="center_vertical"
                 android:paddingStart="10dp"
-                android:text="Select Year and Month for Second Data:"
-                android:textColor="@color/black" />
+                android:text="Select Year and Month for Second Data:" />
 
         </LinearLayout>
 

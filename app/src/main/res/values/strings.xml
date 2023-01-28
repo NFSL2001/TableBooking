@@ -37,7 +37,7 @@
     <string name="any_request">Any Request?</string>
     <string name="phone_number">Phone Number</string>
     <string name="email">Email</string>
-    <string name="request">Request : </string>
+    <string name="request">Requests</string>
     <string name="edit_booking_button">Edit Booking</string>
     <string name="cancel_booking_button">Cancel Booking</string>
     <string name="book_again_button">Book Again</string>
@@ -74,11 +74,6 @@
     <string name="restaurant_info_description">Description</string>
     <string name="restaurant_sampleText">No information available currently</string>
     <string name="restaurant_sampleDescription">The owner did not put any descriptions here~</string>
-    <!-- old sample
-    <string name="restaurant_workingTimeSample"><b>Lunch</b>\n12:00-14:30\n<b>Hi-Tea</b>\n15:30-17:30\n<b>Dinner</b>\n17:00-22:00</string>
-    <string name="restaurant_parkingSample">TNG card and Credit Card Payment only\n<b>Car</b>\n1st hour or part thereof   : RM 4.00\n2nd hour or part thereof  : RM 3.00\nFlat rate (after 6pm)         : RM 6.00 / entry\n<b>Motorcycle Parking</b>: Free\n<b>Lost ticket penalty</b>: RM 50.00</string>
-    -->
-    <string name="restaurant_descriptionSample">Atmosphere 360 is a modern and elegant revolving restaurant situated 282m above ground level located at the tallest tower at the tallest tower in Southeast Asia - KL Tower.\n\nIndulge in modern authentic Malaysian and International cuisine at Atmosphere 360. Housed in the world’s 7th tallest tower - the KL Tower, its splendid atmosphere and impeccable service offer you one of a king luxurious fine dining experience that will leave a lasting mark in your heart.</string>
 
 
     <string name="title_activity_login">Login Activity</string>
@@ -112,4 +107,5 @@
     <string name="input_date_in_yyyy_mm_dd">Input date in yyyy-mm-dd</string>
     <string name="incorrect_password">Incorrect password</string>
     <string name="save">SAVE</string>
+    <string name="download_pdf_title">Download sales analysis PDF</string>
 </resources>

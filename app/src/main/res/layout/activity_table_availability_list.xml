@@ -32,120 +32,125 @@
 
             <TextView
                 android:id="@+id/DateTableAvailability"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="25dp"
                 android:text="Date:"
-                android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="@dimen/abc_text_size_medium_material"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/Time"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:text="Time:"
-                android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="@dimen/abc_text_size_medium_material"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/DateTableAvailability" />
 
             <TextView
                 android:id="@+id/TableBooked"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:text="No. of Table Booked:"
-                android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="@dimen/abc_text_size_medium_material"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Time" />
 
             <TextView
                 android:id="@+id/TableAvailable"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:text="No. of Table Available:"
-                android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="@dimen/abc_text_size_medium_material"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/TableBooked" />
 
             <TextView
                 android:id="@+id/TotalTable"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:text="Total No. of Table:"
-                android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="@dimen/abc_text_size_medium_material"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/TableAvailable" />
 
             <TextView
                 android:id="@+id/availableTable"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="16dp"
                 android:text="Table Overview:"
-                android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="@dimen/abc_text_size_medium_material"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/TotalTable" />
 
             <View
+                android:id="@+id/view"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="40dp"
                 android:background="@drawable/round_rectangle"
                 android:backgroundTint="@color/red"
+                app:layout_constraintBottom_toBottomOf="@+id/textView3"
                 app:layout_constraintStart_toEndOf="@id/availableTable"
-                app:layout_constraintTop_toBottomOf="@+id/TotalTable" />
+                app:layout_constraintTop_toTopOf="@+id/textView3" />
 
             <TextView
+                android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="38dp"
                 android:text="Not Available"
-                android:textColor="@color/red"
+                android:textColor="?colorPrimary"
+                app:layout_constraintBottom_toBottomOf="@+id/availableTable"
                 app:layout_constraintStart_toEndOf="@id/availableTable"
-                app:layout_constraintTop_toBottomOf="@+id/TotalTable"/>
+                app:layout_constraintTop_toTopOf="@+id/availableTable" />
 
             <View
+                android:id="@+id/view2"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_marginLeft="130dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/round_rectangle"
+                app:layout_constraintBottom_toBottomOf="@+id/textView4"
                 app:layout_constraintStart_toEndOf="@id/availableTable"
-                app:layout_constraintTop_toBottomOf="@+id/TotalTable" />
+                app:layout_constraintTop_toTopOf="@+id/textView4" />
 
             <TextView
+                android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="145dp"
-                android:layout_marginTop="38dp"
                 android:text="Available"
-                android:textColor="@color/black"
+                android:textColor="?colorOnBackground"
+                app:layout_constraintBottom_toBottomOf="@+id/availableTable"
                 app:layout_constraintStart_toEndOf="@id/availableTable"
-                app:layout_constraintTop_toBottomOf="@+id/TotalTable"/>
+                app:layout_constraintTop_toTopOf="@+id/availableTable" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/RVTableAvailability"
@@ -161,63 +166,59 @@
 
             <TextView
                 android:id="@+id/showDate"
+                style="@style/TextAppearance.AppCompat.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="25dp"
                 android:text="Show Date"
-                android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textColor="?colorOnBackground"
                 app:layout_constraintStart_toEndOf="@+id/DateTableAvailability"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/showTableAvailable"
+                style="@style/TextAppearance.AppCompat.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
                 android:text="Table Available"
-                android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textColor="?colorOnBackground"
                 app:layout_constraintStart_toEndOf="@+id/TableAvailable"
-                app:layout_constraintTop_toBottomOf="@+id/showTableBooked2" />
+                app:layout_constraintTop_toTopOf="@+id/TableAvailable" />
 
             <TextView
                 android:id="@+id/showTotalTable"
+                style="@style/TextAppearance.AppCompat.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
                 android:text="Total Table"
-                android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textColor="?colorOnBackground"
                 app:layout_constraintStart_toEndOf="@+id/TotalTable"
-                app:layout_constraintTop_toBottomOf="@+id/showTableAvailable" />
+                app:layout_constraintTop_toTopOf="@+id/TotalTable" />
 
             <TextView
                 android:id="@+id/showTableBooked2"
+                style="@style/TextAppearance.AppCompat.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
                 android:text="Table Booked"
-                android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textColor="?colorOnBackground"
                 app:layout_constraintStart_toEndOf="@+id/TableBooked"
-                app:layout_constraintTop_toBottomOf="@+id/showTime2" />
+                app:layout_constraintTop_toTopOf="@+id/TableBooked" />
 
             <TextView
                 android:id="@+id/showTime2"
+                style="@style/TextAppearance.AppCompat.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
                 android:text="Show Time"
-                android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textColor="?colorOnBackground"
                 app:layout_constraintStart_toEndOf="@+id/Time"
-                app:layout_constraintTop_toBottomOf="@+id/showDate" />
+                app:layout_constraintTop_toTopOf="@+id/Time" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

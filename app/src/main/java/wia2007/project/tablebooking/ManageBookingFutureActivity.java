@@ -114,8 +114,8 @@ public class ManageBookingFutureActivity extends AppCompatActivity {
         Request.setText(remark);
         TableID.setText(tableName +", "+size + " People Table" );
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            contact_number = "<b>Restaurant Contact: </b><br>"+contact_number;
-            restaurant_address = "<b>Restaurant Address:</b><br>"+restaurant_address;
+            contact_number = "<b>Restaurant Contact</b><br>"+contact_number;
+            restaurant_address = "<b>Restaurant Address</b><br>"+restaurant_address;
             RestaurantContact.setText(Html.fromHtml(contact_number));
             RestaurantAddress.setText(Html.fromHtml(restaurant_address));
         }

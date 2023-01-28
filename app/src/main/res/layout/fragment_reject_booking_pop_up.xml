@@ -34,13 +34,12 @@
 
         <TextView
             android:id="@+id/textView"
+            style="@style/TextAppearance.AppCompat.Headline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="34dp"
             android:layout_marginTop="46dp"
-            android:text="Reject Confirmation:"
-            android:textColor="@color/black"
-            android:textSize="20sp"
+            android:text="Reject Confirmation"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/BtnCloseReject"
             app:layout_constraintHorizontal_bias="0.5"
@@ -49,6 +48,7 @@
 
         <TextView
             android:id="@+id/TVRejectConfirmation"
+            style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
             android:layout_width="344dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -58,9 +58,7 @@
             android:gravity="center"
             android:minHeight="133dp"
             android:text="Are you sure to reject the booking? Once reject, the booking will be permanently deleted.\n\nTo confirm reject, click the button down below."
-            android:textColor="@color/red"
-            android:textSize="16sp"
-            android:textStyle="bold"
+            android:textColor="?colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -71,9 +69,9 @@
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="59dp"
             android:layout_height="59dp"
-            android:text="X"
+            android:text="×"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textSize="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
