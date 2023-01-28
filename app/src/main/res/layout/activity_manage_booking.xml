@@ -40,9 +40,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cancelled"
-                android:visibility="gone"
                 android:textColor="@color/red"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="gone" />
 
             <TextView
                 style="@style/TextAppearance.AppCompat.Subhead"
@@ -131,12 +131,6 @@
                 android:layout_height="wrap_content"
                 android:text="-" />
 
-
-            <RelativeLayout
-                android:id="@+id/RejectReasonLayout2"
-                android:layout_width="match_parent"
-                android:layout_height="0dp" />
-
             <TextView
                 style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="wrap_content"
@@ -156,17 +150,17 @@
 
     <TextView
         android:id="@+id/TVTotal"
-        android:textSize="24sp"
-        android:textColor="@color/red"
-        android:layout_marginEnd="16dp"
-        android:textStyle="bold"
-        android:text="RM 123"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:gravity="right"
+        android:text="RM 123"
+        android:textColor="@color/red"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/manageBooking_layoutButton"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent" />
 
     <LinearLayout
         android:id="@+id/manageBooking_layoutButton"
@@ -188,6 +182,15 @@
             android:textAllCaps="false"
             android:textColor="@color/white" />
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/RejectReasonLayout2"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

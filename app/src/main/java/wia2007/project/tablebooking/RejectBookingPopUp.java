@@ -71,7 +71,7 @@ public class RejectBookingPopUp extends Fragment {
 
         if(getActivity().getClass().getName().equalsIgnoreCase("wia2007.project.tablebooking.ManageBookingFutureActivity")){
             textView.setText("Cancellation Confirmation");
-            TVRejectConfirmation.setText("Are you sure to cancel the booking? Once cancel, the booking will be permanently cancelled.\\n\\nTo confirm cancellation, click the button down below.");
+            TVRejectConfirmation.setText("Are you sure to cancel the booking? Once cancel, the booking will be permanently cancelled.\n\nTo confirm cancellation, click the button down below.");
         }
 
         Bundle bundle = getActivity().getIntent().getExtras();
