@@ -61,9 +61,11 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/btnAdd"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:background="@drawable/edit_text_layout"
         app:layout_constraintRight_toRightOf="parent">
-
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:dividerColor="?colorOnBackground"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

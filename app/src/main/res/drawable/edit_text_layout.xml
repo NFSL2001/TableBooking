@@ -7,7 +7,8 @@
                 android:right="1dp"
                 android:bottom="1dp"
                 android:left="1dp"/>
-            <solid android:color="#00CCCCCC"/>
+            <stroke android:color="#00CCCCCC"
+                android:width="5dp"/>
         </shape>
     </item>
     <item>
@@ -17,7 +18,8 @@
                 android:right="1dp"
                 android:bottom="1dp"
                 android:left="1dp"/>
-            <solid android:color="#10CCCCCC"/>
+            <stroke android:color="#10CCCCCC"
+                android:width="5dp"/>
         </shape>
     </item>
     <item>
@@ -27,7 +29,8 @@
                 android:right="1dp"
                 android:bottom="1dp"
                 android:left="1dp"/>
-            <solid android:color="#20CCCCCC"/>
+            <stroke android:color="#20CCCCCC"
+                android:width="5dp"/>
         </shape>
     </item>
     <item>
@@ -37,7 +40,8 @@
                 android:right="1dp"
                 android:bottom="1dp"
                 android:left="1dp"/>
-            <solid android:color="#30CCCCCC"/>
+            <stroke android:color="#30CCCCCC"
+                android:width="4dp"/>
         </shape>
     </item>
     <item>
@@ -47,13 +51,13 @@
                 android:right="1dp"
                 android:bottom="1dp"
                 android:left="1dp"/>
-            <solid android:color="#50CCCCCC"/>
+            <stroke android:color="#50CCCCCC"
+                android:width="3dp"/>
         </shape>
     </item>
     <item>
         <shape android:shape="rectangle">
-            <stroke android:color="#CCC" android:width="1dp"/>
-            <solid android:color="#FFF" />
+            <stroke android:color="#20000000" android:width="1dp" />
             <corners android:radius="2dp" />
         </shape>
     </item>

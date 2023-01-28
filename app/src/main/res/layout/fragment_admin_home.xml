@@ -62,7 +62,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="50sp"
                 android:layout_marginBottom="10dp"
-                android:backgroundTint="#C1121F"
                 android:text="Restaurant Info"
                 android:textSize="18sp" />
 
@@ -71,7 +70,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="50sp"
                 android:layout_marginBottom="10dp"
-                android:backgroundTint="#C1121F"
                 android:text="Restaurant Menu"
                 android:textSize="18sp" />
 
@@ -80,7 +78,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="50sp"
                 android:layout_marginBottom="10dp"
-                android:backgroundTint="#C1121F"
                 android:text="Booking List"
                 android:textSize="18sp" />
 
@@ -89,7 +86,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="50sp"
                 android:layout_marginBottom="10dp"
-                android:backgroundTint="#C1121F"
                 android:text="Table Arrangement"
                 android:textSize="18sp" />
 
@@ -98,7 +94,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="50sp"
                 android:layout_marginBottom="10dp"
-                android:backgroundTint="#C1121F"
                 android:text="Table Avalability"
                 android:textSize="18sp" />
 
@@ -107,7 +102,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="50sp"
                 android:layout_marginBottom="10dp"
-                android:backgroundTint="#C1121F"
                 android:text="Notification"
                 android:textSize="18sp" />
 
@@ -117,7 +111,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="50sp"
                 android:layout_marginBottom="10dp"
-                android:backgroundTint="#C1121F"
                 android:text="View Report"
                 android:textSize="18sp" />
 
@@ -126,7 +119,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="50sp"
                 android:layout_marginBottom="10dp"
-                android:backgroundTint="#C1121F"
                 android:text="View Statistic"
                 android:textSize="18sp" />
 
@@ -135,7 +127,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="50sp"
                 android:layout_marginBottom="10dp"
-                android:backgroundTint="#C1121F"
                 android:text="Log Out"
                 android:textSize="18sp" />
         </LinearLayout>

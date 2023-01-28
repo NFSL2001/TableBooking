@@ -19,7 +19,7 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:textSize">18sp</item>
         <item name="android:paddingBottom">5dp</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/black</item>z
         <item name="android:fontFamily">@font/stix_font_family</item>
         <item name="fontFamily">@font/stix_font_family</item>
     </style>
