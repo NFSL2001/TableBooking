@@ -37,7 +37,7 @@ public class RestaurantMainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             // map toolbar back button same as system back button
             case android.R.id.home:
-                onBackPressed();
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
                 return true;
         }
         return super.onOptionsItemSelected(item);
