@@ -33,8 +33,8 @@
         app:fontStyle="italic"
         app:fontWeight="700"
 
-        android:font="@font/stixtwo_bold"
-        android:fontStyle="normal"
+        android:font="@font/stixtwo_bolditalic"
+        android:fontStyle="italic"
         android:fontWeight="700"
         />
 </font-family>
