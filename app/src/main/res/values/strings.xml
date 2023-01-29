@@ -108,4 +108,5 @@
     <string name="incorrect_password">Incorrect password</string>
     <string name="save">SAVE</string>
     <string name="download_pdf_title">Download sales analysis PDF</string>
+    <string name="add">Add</string>
 </resources>
