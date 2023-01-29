@@ -53,12 +53,12 @@ public class MenuAdmin extends AppCompatActivity implements RecycleViewInterface
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Restaurant Menu");
         Spinner SpinnerMenuSortCondition = findViewById(R.id.SpinnerMenuSortCondition);
-        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.SpinnerForMenuAdmin, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this, R.array.SpinnerForMenuAdmin, android.R.layout.simple_spinner_item);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         SpinnerMenuSortCondition.setAdapter(spinnerAdapter);
 
         SpinnerItemSortCondition = findViewById(R.id.SpinnerItemSortCondition);
-        ArrayAdapter<CharSequence> spinnerItemAdapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.SpinnerForMenuItemAdmin, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> spinnerItemAdapter = ArrayAdapter.createFromResource(this, R.array.SpinnerForMenuItemAdmin, android.R.layout.simple_spinner_item);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         SpinnerItemSortCondition.setAdapter(spinnerItemAdapter);
 

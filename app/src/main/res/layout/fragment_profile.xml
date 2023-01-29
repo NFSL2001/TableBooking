@@ -41,7 +41,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@android:color/black" />
+            android:background="?colorOnBackground" />
 
         <TextView
             android:id="@+id/TVLogIn"
@@ -60,7 +60,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@android:color/black" />
+            android:background="?colorOnBackground" />
 
         <TextView
             android:id="@+id/TVSignUp"
@@ -78,7 +78,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@android:color/black" />
+            android:background="?colorOnBackground" />
 
     </LinearLayout>
 

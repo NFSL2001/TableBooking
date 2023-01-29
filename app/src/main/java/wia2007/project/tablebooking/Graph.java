@@ -408,6 +408,8 @@ public class Graph extends AppCompatActivity {
 
         set1.setColor(Color.parseColor("#C1121F"));
         set2.setColor(Color.BLACK);
+        set2.setBarBorderWidth(1f);
+        set2.setBarBorderColor(Color.WHITE);
 
         ArrayList<IBarDataSet> dataSets = new ArrayList<>();
         dataSets.add(set1);
