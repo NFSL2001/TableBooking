@@ -16,8 +16,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.NumberPicker;
+import android.widget.Toast;
 
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -178,7 +180,23 @@ public class SelectTimeActivity extends AppCompatActivity {
                 String startString = Date +" "+ StartHour + ":" + StartMinute+":00";
                 String endString = Date +" "+ EndHour + ":" + StartMinute+":00";
 
-                openNextActivity(customerID, restaurantID, numPeople,startString,endString,numPeople,name);
+                Calendar cal = Calendar.getInstance(); //Get the Calendar instance
+                cal.add(Calendar.HOUR,2);
+                Date date = cal.getTime();
+                Date compareDate = new Date();
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                try {
+                    compareDate = df.parse(startString);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                if(compareDate.before(date)){
+                    System.out.println(compareDate);
+                    System.out.println(date);
+                    Toast.makeText(getApplicationContext(),"Booking time should be at least 2 hour from current time",Toast.LENGTH_LONG).show();
+                }else{
+                    openNextActivity(customerID, restaurantID, numPeople,startString,endString,numPeople,name);
+                }
             }
         });
 
