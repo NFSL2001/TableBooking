@@ -136,6 +136,7 @@
                 android:layout_height="15dp"
                 android:layout_marginLeft="130dp"
                 android:layout_marginBottom="5dp"
+                android:backgroundTint="#50FFFFFF"
                 android:background="@drawable/round_rectangle"
                 app:layout_constraintBottom_toBottomOf="@+id/textView4"
                 app:layout_constraintStart_toEndOf="@id/availableTable"

@@ -53,7 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/username_already_exist_try_another"
-                android:textColor="?attr/colorPrimary"
+                android:textColor="@color/red"
                 android:visibility="invisible" />
 
             <TextView
@@ -80,7 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/email_already_register_try_another_email"
-                android:textColor="?attr/colorPrimary"
+                android:textColor="@color/red"
                 android:visibility="invisible" />
 
             <TextView
