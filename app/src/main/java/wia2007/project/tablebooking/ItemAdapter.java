@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.text.Html;
 import android.text.InputType;
@@ -83,7 +84,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         public void onClick(View view) {
             if (pClass.getName().equals("wia2007.project.tablebooking.table_manage")) {
                 LinearLayout layout = new LinearLayout(context);
-
                 layout.setOrientation(LinearLayout.VERTICAL);
                 layout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT));
                 final TextView TName = new TextView(context);
@@ -111,8 +111,12 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
                 ETName.setGravity(1);
                 ETPax.setGravity(1);
                 ETPax.setInputType(InputType.TYPE_CLASS_NUMBER);
-                TName.setTextColor(Color.BLACK);
-                TPax.setTextColor(Color.BLACK);
+                int nightModeFlag = context.getResources().getConfiguration().uiMode &
+                        Configuration.UI_MODE_NIGHT_MASK;
+                if(nightModeFlag == Configuration.UI_MODE_NIGHT_NO){
+                    TName.setTextColor(Color.BLACK);
+                    TPax.setTextColor(Color.BLACK);
+                }
 
                 layout.addView(TName);
                 layout.addView(ETName);
@@ -140,12 +144,13 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
                                 }
                             }
                         });
-
                 alertDialogBuilder.setNegativeButton("No", null);
                 AlertDialog alertDialog;
                 alertDialog = alertDialogBuilder.create();
                 alertDialog.setView(layout);
                 alertDialog.show();
+                alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(Color.parseColor("#C1121F"));
+                alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#C1121F"));
             }else if (pClass.getName().equals("wia2007.project.tablebooking.SelectTableActivity")){
                 isSelected[getAdapterPosition()] = !isSelected[getAdapterPosition()];
                 if(selectedTable.contains(itemList.get(getAdapterPosition()))){
@@ -173,7 +178,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
                 }
                 SelectTableActivity.TableSelected.setText(selection);
             }
-
         }
 
         @SuppressLint("SetTextI18n")
@@ -194,8 +198,12 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
                 TPax.setTextSize(20f);
                 TName.setGravity(1);
                 TPax.setGravity(1);
-                TName.setTextColor(Color.BLACK);
-                TPax.setTextColor(Color.BLACK);
+                int nightModeFlag = context.getResources().getConfiguration().uiMode &
+                        Configuration.UI_MODE_NIGHT_MASK;
+                if(nightModeFlag == Configuration.UI_MODE_NIGHT_NO){
+                    TName.setTextColor(Color.BLACK);
+                    TPax.setTextColor(Color.BLACK);
+                }
 
                 layout.addView(TName);
                 layout.addView(TPax);
@@ -221,6 +229,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
                 alertDialog = alertDialogBuilder.create();
                 alertDialog.setView(layout);
                 alertDialog.show();
+                alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(Color.parseColor("#C1121F"));
+                alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#C1121F"));
             }
 
             return true;
