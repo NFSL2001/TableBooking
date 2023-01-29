@@ -145,7 +145,7 @@
         android:clickable="true"
         android:text="Add"
         android:textColor="@color/white"
-        app:backgroundTint="@color/red"
+        app:backgroundTint="?colorPrimary"
         app:borderWidth="0dp"
         app:icon="@drawable/ic_baseline_restaurant_menu_24"
         app:iconTint="@color/white"
