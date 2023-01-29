@@ -3,8 +3,10 @@ package wia2007.project.tablebooking;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.Image;
 import android.os.Bundle;
@@ -19,6 +21,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -81,6 +84,13 @@ public class ItemDetails extends AppCompatActivity {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ItemDetails.this);
         alertDialogBuilder.setMessage("Add new type of dishes");
         edittext = new EditText(getApplicationContext());
+        edittext.setHint("Other Category");
+        int nightModeFlag = this.getResources().getConfiguration().uiMode &
+                Configuration.UI_MODE_NIGHT_MASK;
+        if(nightModeFlag == Configuration.UI_MODE_NIGHT_YES){
+            edittext.setTextColor(Color.WHITE);
+            edittext.setHintTextColor(Color.parseColor("#50FFFFFF"));
+        }
         alertDialogBuilder.setView(edittext, 50, 0, 50, 0);
         alertDialogBuilder.setPositiveButton("yes",
                 new DialogInterface.OnClickListener() {
@@ -133,6 +143,8 @@ public class ItemDetails extends AppCompatActivity {
                 edittext.setText(type);
                 SpinnerMenuType.setSelection(adapterList.size() - 1);
                 alertDialog.show();
+                alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(Color.parseColor("#C1121F"));
+                alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#C1121F"));
                 alertDialog.dismiss();
                 alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).performClick();
             }
@@ -177,8 +189,13 @@ public class ItemDetails extends AppCompatActivity {
         SpinnerMenuType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if(nightModeFlag == Configuration.UI_MODE_NIGHT_YES){
+                    ((TextView) adapterView.getChildAt(0)).setTextColor(0xFFFFFFFF);
+                }
                 if ("Others".equals(SpinnerMenuType.getSelectedItem().toString())) {
                     alertDialog.show();
+                    alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(Color.parseColor("#C1121F"));
+                    alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#C1121F"));
                 }
             }
 
