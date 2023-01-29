@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,20 +42,16 @@ public class MainMenuFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main_menu, container, false);
 
+        Toolbar toolbar = getActivity().findViewById(R.id.TVMainAct);
+        toolbar.setVisibility(View.GONE);
+
         /** ALL RESTAURANT **/
         Context context = requireActivity();
         // get all restaurant
         TableBookingDatabase database = TableBookingDatabase.getDatabase(context);
         RestaurantDAO dao = database.restaurantDAO();
         List<RestaurantDAO.RestaurantNameInfo> allList = dao.listAllRestaurantInfo();
-        //
-        /*ArrayList<RestaurantDAO.RestaurantNameInfo> allList = new ArrayList<>();
-        allList.add(new RestaurantDAO.RestaurantNameInfo(1,"Atmosphere 360", 1, "https://cdn.myfunnow.com/imgs/branch/cover%2Fatmosphere%20(2)_6861e3.jpg"));
-        allList.add(new RestaurantDAO.RestaurantNameInfo(2,"Cons Transphere", 2, ""));
-        allList.add(new RestaurantDAO.RestaurantNameInfo(3,"KFC Malaysia", 1, "https://play-lh.googleusercontent.com/MQDfTBh4VBrD4MQt5hX4b26OnGb9l57_pBWaBFw-mvfrfwOY9aHcwgF2mtDKvE0W-Bw=w240-h480-rw"));
-        allList.add(new RestaurantDAO.RestaurantNameInfo(4,"Malaysia Cuisine", 3, ""));
-        allList.add(new RestaurantDAO.RestaurantNameInfo(5,"Domino's 360", 7, ""));
-*/
+
         // get recycler view and bind view holder
         RecyclerView recyclerView = view.findViewById(R.id.main_menuListAllRV);
         // set layout manager

@@ -33,8 +33,10 @@ public class NotificationAdapter extends ListAdapter<Notification, NotificationV
 
         @Override
         public boolean areContentsTheSame(@NonNull Notification oldItem, @NonNull Notification newItem) {
-            return oldItem.getCustomer_id().equals(newItem.getCustomer_id()) &&
-                    oldItem.getNotification().equals(newItem.getNotification());
+            if(oldItem.getCustomer_id() == -1)
+                return oldItem.getRestaurant_id().equals(newItem.getRestaurant_id()) && oldItem.getNotification().equals(newItem.getNotification());
+            else
+                return oldItem.getCustomer_id().equals(newItem.getCustomer_id()) && oldItem.getNotification().equals(newItem.getNotification());
         }
     }
 }

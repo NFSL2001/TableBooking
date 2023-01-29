@@ -2,13 +2,18 @@ package wia2007.project.tablebooking;
 
 import static android.app.PendingIntent.getActivity;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,12 +29,19 @@ import wia2007.project.tablebooking.database.TableBookingDatabase;
 import wia2007.project.tablebooking.entity.Customer;
 import wia2007.project.tablebooking.entity.Restaurant;
 import wia2007.project.tablebooking.entity.UserStatus;
+import wia2007.project.tablebooking.fragment.ProfileFragment;
 
 public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.TBLogInAct);
+        setSupportActionBar(toolbar);
+        // add back button
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Button btnLogin = findViewById(R.id.BtnLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -49,12 +61,13 @@ public class LoginActivity extends AppCompatActivity {
                     if(customerList.size() > 0 && password.equals(customerList.get(0).getPassword())){
                         SharedPreferences sharedPref = getSharedPreferences("user", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPref.edit();
+                        editor.putInt("userID",customerList.get(0).getCustomer_id());
                         editor.putString("user", username);
                         editor.putBoolean(UserStatus.IS_ADMIN, false);
-                        editor.commit();
-
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
+                        editor.apply();
+                        Intent replyIntent = new Intent();
+                        setResult(RESULT_OK,replyIntent);
+                        finish();
                     } else
                         findViewById(R.id.TVIncorrect).setVisibility(View.VISIBLE);
                 } else {
@@ -62,8 +75,9 @@ public class LoginActivity extends AppCompatActivity {
                     List<Restaurant> restaurantList = restaurantDAO.getRestaurantByRestaurantUserName(username);
 
                     if(restaurantList.size() > 0 && password.equals(restaurantList.get(0).getPassword())){
-                        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+                        SharedPreferences sharedPref = getSharedPreferences("admin", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPref.edit();
+                        editor.putInt("userID",restaurantList.get(0).getRestaurant_id());
                         editor.putString("user", username); // false on logout
                         editor.putBoolean(UserStatus.IS_ADMIN, true);
                         editor.apply();
@@ -82,8 +96,28 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+                intent.putExtra("BackRest",getIntent().getBooleanExtra("BackRest",false));
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            // map toolbar back button same as system back button
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK && requestCode == 2) {
+            finish();
+        }
     }
 }

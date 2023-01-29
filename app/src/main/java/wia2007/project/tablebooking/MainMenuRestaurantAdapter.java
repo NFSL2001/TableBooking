@@ -15,6 +15,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import org.w3c.dom.Text;
 
 import java.io.File;
@@ -54,7 +56,7 @@ public class MainMenuRestaurantAdapter extends RecyclerView.Adapter<MainMenuRest
     public void onBindViewHolder(@NonNull MainMenuRestaurantHolder holder, int position) {
         RestaurantDAO.RestaurantNameInfo item = allList.get(position);
         ((TextView) holder.TVName).setText(item.name);
-        ((TextView) holder.TVCategory).setText(Cuisine.getCuisineItem(item.cuisine_type).name);
+        ((TextView) holder.TVCategory).setText(Cuisine.getCuisineItem(item.cuisine_type-1).name);
         ImageView titleImage = holder.IVTitle;
         if (item.title_image_path != null) {
             titleImage.setVisibility(View.VISIBLE);
@@ -78,29 +80,17 @@ class BaseImageHolder extends RecyclerView.ViewHolder {
     public BaseImageHolder(@NonNull View itemView) {
         super(itemView);
     }
+
     public boolean setImageView(ImageView imageView, String uriString){
         /** Input: uriString, may be web address or File path address
-         *  Output: boolean, true for web address, false for File address
+         *  Output: boolean, true for image is set, false if not
          * **/
-        URI u = null;
-        try {
-            // convert path to URI
-            u = new URI(uriString);
-            boolean isWeb = "http".equalsIgnoreCase(u.getScheme())
-                    || "https".equalsIgnoreCase(u.getScheme());
-            if (isWeb) {
-                //change thread policy then get image
-                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-                StrictMode.setThreadPolicy(policy);
-                imageView.setImageBitmap(BitmapFactory.decodeStream((InputStream)u.toURL().getContent()));
-                return true;
-            } else throw new MalformedURLException("Not web URI"); //share throw exception
-        } catch (IOException | URISyntaxException e) {
-            // set image using local File Uri
-            File img = new File(uriString);
-            imageView.setImageURI(Uri.fromFile(img));
-            return false;
-        }
+        if(uriString.isEmpty()) return false;
+
+        Picasso.get().load(uriString)
+                .placeholder(android.R.drawable.ic_menu_gallery)
+                .into(imageView);
+        return true;
     }
 }
 

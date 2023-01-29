@@ -39,14 +39,7 @@ public class RestaurantGalleryFragment extends Fragment {
         TableBookingDatabase database = TableBookingDatabase.getDatabase(getActivity());
         RestaurantDAO dao = database.restaurantDAO();
         List<String> restaurantImages = dao.getRestaurantById(restaurantID).get(0).getImages();
-        //
-        // prepare list for adapter to show
-        /*restaurantImages = new ArrayList<>();
-        restaurantImages.add("https://cdn.myfunnow.com/imgs/branch/cover%2Fatmosphere%20(2)_6861e3.jpg");
-        restaurantImages.add("https://www.berjayahotel.com/sites/default/files/atmosphere%20360%20restaurant_0.jpg");
-        restaurantImages.add("https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/09/4e/d6/c7.jpg");
-        restaurantImages.add("https://res.klook.com/image/upload/fl_lossy.progressive,q_85/c_fill,w_680/v1605695943/blog/lnbvbyt5hqvkn92vuhfk.jpg");
-*/
+
         // get recycler view and bind view holder
         RecyclerView recyclerView = view.findViewById(R.id.restMenu_RVGallery);
         // set layout manager

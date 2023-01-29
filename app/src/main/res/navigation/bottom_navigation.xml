@@ -9,7 +9,7 @@
         android:id="@+id/DeskProfile"
         android:name="wia2007.project.tablebooking.fragment.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profileFragment_to_signUpActivity"
             app:destination="@id/signUpActivity" />
@@ -29,19 +29,27 @@
         tools:layout="@layout/activity_sign_up" />
     <fragment
         android:id="@+id/DeskHome"
-        android:name="wia2007.project.tablebooking.MainMenu"
+        android:name="wia2007.project.tablebooking.MainMenuFragment"
         android:label="fragment_main_menu"
-        tools:layout="@layout/fragment_main_menu" >
+        tools:layout="@layout/fragment_main_menu">
         <action
             android:id="@+id/action_mainMenu_to_DeskProfile"
             app:destination="@id/DeskProfile" />
         <action
             android:id="@+id/action_DeskHome_to_bookingFragment"
             app:destination="@id/DeskBooking" />
+        <action
+            android:id="@+id/action_DeskHome_to_notificationFragment"
+            app:destination="@id/DeskNotification" />
     </fragment>
     <fragment
         android:id="@+id/DeskBooking"
         android:name="wia2007.project.tablebooking.fragment.BookingFragment"
         android:label="fragment_booking"
         tools:layout="@layout/fragment_booking" />
+    <fragment
+        android:id="@+id/DeskNotification"
+        android:name="wia2007.project.tablebooking.fragment.NotificationFragment"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification" />
 </navigation>

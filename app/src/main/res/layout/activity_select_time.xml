@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="16dp"
+        android:scrollbars="none"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/select_time_bottomActionBar">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/select_time_title"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Booking"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/select_time_TVCustomer"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/number_of_customer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:rowCount="2"
+                android:columnCount="2"
+                android:weightSum="2">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:text="@string/adult"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:text="@string/children"
+                    android:textAlignment="center"/>
+                <NumberPicker
+                    android:id="@+id/select_time_adultNumberPicker"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="4dp"
+                    android:layout_columnWeight="1" />
+                <NumberPicker
+                    android:id="@+id/select_time_childrenNumberPicker"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="4dp"
+                    android:layout_columnWeight="1"/>
+            </GridLayout>
+
+            <TextView
+                android:id="@+id/select_time_TVDate"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/booking_date" />
+
+            <CalendarView
+                android:id="@+id/select_time_dateView"
+                style="@android:style/Widget.DeviceDefault.CalendarView"
+                android:dateTextAppearance="@style/TextAppearance.AppCompat.Small"
+                android:layout_width="match_parent"
+                android:layout_height="310dp" />
+
+            <TextView
+                android:id="@+id/select_time_TVDuration"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/booking_duration"/>
+
+            <NumberPicker
+                android:id="@+id/select_time_durationNumberPicker"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="128dp"
+                android:layout_height="64dp" />
+
+            <TextView
+                android:id="@+id/select_time_TVTime"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/booking_time"
+                android:textColor="#000000"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/select_time_dateView" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+                <NumberPicker
+                    android:id="@+id/select_time_numberPicker1"
+                    android:layout_width="0dp"
+                    android:layout_height="61dp"
+                    android:layout_weight="1"/>
+
+                <NumberPicker
+                    android:id="@+id/select_time_numberPicker2"
+                    android:layout_width="0dp"
+                    android:layout_height="61dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/select_time_bottomActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:weightSum="1">
+
+        <Button
+            android:id="@+id/select_time_nextButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"
+            android:background="?attr/colorPrimary"
+            android:text="@string/next_button"
+            android:textAllCaps="false"
+            android:textSize="20dp"
+            android:textColor="?attr/colorOnPrimary"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/select_time_cancelButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:background="@color/black"
+            android:textColor="@color/white"
+            android:text="@string/cancel_button"
+            android:textAllCaps="false" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

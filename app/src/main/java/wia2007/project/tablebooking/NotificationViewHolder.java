@@ -1,5 +1,6 @@
 package wia2007.project.tablebooking;
 
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,7 @@ public class NotificationViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(String description) {
-        this.notification.setText(description);
+        this.notification.setText(Html.fromHtml(description));
     }
 
     public static NotificationViewHolder create(ViewGroup parent) {

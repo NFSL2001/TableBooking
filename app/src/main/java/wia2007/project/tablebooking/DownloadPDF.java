@@ -34,7 +34,7 @@ public class DownloadPDF extends AppCompatActivity {
 
     String yearSelected = "2023";
     String monthSelected = "January";
-    int restaurant_id = 1;
+    int restaurant_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +48,14 @@ public class DownloadPDF extends AppCompatActivity {
         Spinner SpinnerSelectYear = findViewById(R.id.SpinnerSelectYear);
         Spinner SpinnerSelectMonth = findViewById(R.id.SpinnerSelectMonth);
 
+        restaurant_id = getIntent().getIntExtra("RestaurantID",-1);
+
         String month[] = {"All", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, month);
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         SpinnerSelectMonth.setAdapter(spinnerArrayAdapter);
 
-        String year[] = TableBookingDatabase.getDatabase(this).bookingDAO().selectYear();
+        String year[] = TableBookingDatabase.getDatabase(this).bookingDAO().selectYear(restaurant_id);
         ArrayAdapter<String> spinnerArrayAdapterYear = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, year);
         spinnerArrayAdapterYear.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         SpinnerSelectYear.setAdapter(spinnerArrayAdapterYear);
@@ -65,7 +67,7 @@ public class DownloadPDF extends AppCompatActivity {
                 try {
                     yearSelected = SpinnerSelectYear.getSelectedItem().toString();
                     monthSelected = SpinnerSelectMonth.getSelectedItem().toString();
-                    restaurant_id = getIntent().getExtras().getInt("Restaurant_id");
+                    restaurant_id = getIntent().getExtras().getInt("RestaurantID");
                     if ("All".equals(monthSelected))
                         monthSelected = "";
                     printPDF();
@@ -247,7 +249,7 @@ public class DownloadPDF extends AppCompatActivity {
         PdfDocument.Page page = pdfDocument.startPage(pageInfo);
         Canvas canvas = page.getCanvas();
 
-        List<Restaurant> restaurant = TableBookingDatabase.getDatabase(this).restaurantDAO().getRestaurantInfoById(1);
+        List<Restaurant> restaurant = TableBookingDatabase.getDatabase(this).restaurantDAO().getRestaurantInfoById(restaurant_id);
         paint.setTextSize(50);
         canvas.drawText(restaurant.get(0).getRestaurant_name(), 30, 80, paint);
 
@@ -282,10 +284,10 @@ public class DownloadPDF extends AppCompatActivity {
 
         paint.setColor(Color.WHITE);
         canvas.drawText("Item Name", 50, 395, paint);
-        canvas.drawText("Price", 450, 395, paint);
+        canvas.drawText("Price(RM)", 450, 395, paint);
         canvas.drawText("Quantity", 600, 395, paint);
         paint.setTextAlign(Paint.Align.RIGHT);
-        canvas.drawText("Total Amount", canvas.getWidth() - 40, 395, paint);
+        canvas.drawText("Total(RM)", canvas.getWidth() - 40, 395, paint);
         paint.setTextAlign(Paint.Align.LEFT);
 
         paint.setColor(Color.BLACK);
@@ -297,7 +299,10 @@ public class DownloadPDF extends AppCompatActivity {
         for (int i = 0; i < temp; i++) {
             y += 50;
             double totalAmount = list.get(i).getTotal();
-            canvas.drawText(list.get(i).getMenu_name(), 50, y, paint);
+            String name = list.get(i).getMenu_name();
+            if(name.length() > 25)
+                name = name.substring(0,20)+"......";
+            canvas.drawText(name, 50, y, paint);
             canvas.drawText(String.format("%.2f", list.get(i).getPrice()), 450, y, paint);
             canvas.drawText(Integer.toString(list.get(i).getQuantity()), 600, y, paint);
             paint.setTextAlign(Paint.Align.RIGHT);

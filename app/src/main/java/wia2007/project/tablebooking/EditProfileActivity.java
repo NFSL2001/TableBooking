@@ -1,12 +1,15 @@
 package wia2007.project.tablebooking;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -26,6 +29,11 @@ public class EditProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.TBEditProfileAct);
+        setSupportActionBar(toolbar);
+        // add back button
+        getSupportActionBar().setTitle("Edit Profile");
 
         SharedPreferences sharedPref = getSharedPreferences("user", Context.MODE_PRIVATE);
         String username = sharedPref.getString("user", null);
@@ -89,5 +97,16 @@ public class EditProfileActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            // map toolbar back button same as system back button
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

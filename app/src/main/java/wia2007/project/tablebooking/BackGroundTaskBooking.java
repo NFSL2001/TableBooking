@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -12,8 +11,6 @@ import android.widget.Toast;
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Iterator;
-import java.util.List;
 
 import wia2007.project.tablebooking.database.TableBookingDatabase;
 
@@ -44,18 +41,19 @@ public class BackGroundTaskBooking extends AsyncTask<String, ShowBookingsList, S
 
             Integer booking_id;
             String startTime, endTime;
-            String remark, custName, custEmail, custMobile,tableName;
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+            String remark, custName, custEmail, custMobile,tableName,status;
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
             while (cursor.moveToNext()) {
                 booking_id = cursor.getInt(cursor.getColumnIndex("booking_id"));
-                tableName = cursor.getString(cursor.getColumnIndex("name"));
+                tableName = cursor.getString(cursor.getColumnIndex("TableName"));
                 startTime = cursor.getString(cursor.getColumnIndex("start_time"));
                 endTime = cursor.getString(cursor.getColumnIndex("end_time"));
-                custName = cursor.getString(cursor.getColumnIndex("user_name"));
+                custName = cursor.getString(cursor.getColumnIndex("CustName"));
                 remark = cursor.getString(cursor.getColumnIndex("remark"));
                 custEmail = cursor.getString(cursor.getColumnIndex("email"));
                 custMobile = cursor.getString(cursor.getColumnIndex("mobile_number"));
+                status = cursor.getString(cursor.getColumnIndex("status"));
 
                 Time start_time = new Time(0);
                 Time end_time = new Time(0);
@@ -66,7 +64,7 @@ public class BackGroundTaskBooking extends AsyncTask<String, ShowBookingsList, S
                     e.printStackTrace();
                 }
 
-                ShowBookingsList showBookingsList = new ShowBookingsList(booking_id, start_time,end_time, tableName, custName, remark, custEmail, custMobile);
+                ShowBookingsList showBookingsList = new ShowBookingsList(booking_id, start_time,end_time, tableName, custName, remark, custEmail, custMobile,status);
 
                 publishProgress(showBookingsList);
             }

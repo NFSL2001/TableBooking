@@ -1,365 +1,574 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ScrollView"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    tools:context=".RestaurantInfo">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ResInfoFragment"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarResInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".RestaurantInfo">
+        android:theme="@style/AppTheme.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24" />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarResInfo"
-            android:layout_width="409dp"
+
+    <ScrollView
+        android:id="@+id/ScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="-5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/saveButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbarResInfo"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:id="@+id/ResInfoFragment"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#C1121F"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <TextView
-            android:id="@+id/resinfoTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Restaurant Info"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="34sp"
-            app:layout_constraintBottom_toBottomOf="@+id/toolbarResInfo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/toolbarResInfo" />
+            <TextView
+                android:id="@+id/name"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name" />
 
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="45dp"
-            android:text="Name"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbarResInfo" />
+            <EditText
+                android:id="@+id/FillName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_layout"
+                android:hint="Name"
+                android:inputType="textMultiLine"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:minHeight="48dp"
+                android:paddingHorizontal="16dp" />
 
-        <TextView
-            android:id="@+id/address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="20dp"
-            android:text="Address"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/FillName" />
+            <TextView
+                android:id="@+id/address"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Address" />
 
-        <TextView
-            android:id="@+id/Contact"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="20dp"
-            android:text="Phone Number"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fillAdd" />
+            <EditText
+                android:id="@+id/fillAdd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_layout"
+                android:ems="10"
+                android:hint="Address"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:inputType="textMultiLine"
+                android:minHeight="48dp"
+                android:paddingHorizontal="16dp" />
 
-        <TextView
-            android:id="@+id/AveragePrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="20dp"
-            android:text="Average Price"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/IVPhone" />
+            <TextView
+                android:id="@+id/Contact"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Contact Number"/>
 
-        <TextView
-            android:id="@+id/CuisineType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="20dp"
-            android:text="Cuisine Type"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/FillAverageP" />
+            <EditText
+                android:id="@+id/fillContact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_layout"
+                android:ems="10"
+                android:hint="Contact Number"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:inputType="number|phone"
+                android:minHeight="48dp"
+                android:paddingHorizontal="16dp" />
 
-        <TextView
-            android:id="@+id/Description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="20dp"
-            android:text="Description"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fillCuisineT" />
+            <TextView
+                android:id="@+id/AveragePrice"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Average Price" />
 
-        <EditText
-            android:id="@+id/FillName"
-            android:layout_width="350dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Name"
-            android:textColorHint="@color/material_dynamic_neutral80"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name" />
+            <EditText
+                android:id="@+id/FillAverageP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_layout"
+                android:ems="10"
+                android:hint="Average Price"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:inputType="number|numberDecimal"
+                android:minHeight="48dp"
+                android:paddingHorizontal="16dp" />
 
-        <EditText
-            android:id="@+id/fillAdd"
-            android:layout_width="350dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Address"
-            android:textColorHint="@color/material_dynamic_neutral80"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/address" />
+            <TextView
+                android:id="@+id/CuisineType"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Cuisine Type"/>
 
-        <ImageView
-            android:id="@+id/IVName"
-            android:layout_width="350dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/round_rectangle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_layout">
 
-        <ImageView
-            android:id="@+id/IVAdd"
-            android:layout_width="350dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/round_rectangle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/address" />
+                <Spinner
+                    android:id="@+id/fillCuisineT"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minHeight="48dp"
+                    android:contentDescription="Cuisine Type"
+                    android:spinnerMode="dropdown"
+                    android:paddingHorizontal="16dp"
+                    app:popupTheme="@style/AppTheme.PopupOverlay"
+                    tools:ignore="DuplicateSpeakableTextCheck" />
+            </RelativeLayout>
 
-        <ImageView
-            android:id="@+id/IVPhone"
-            android:layout_width="350dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/round_rectangle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Contact" />
+            <TextView
+                android:id="@+id/Description"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Description"/>
 
-        <EditText
-            android:id="@+id/fillContact"
-            android:layout_width="350dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:inputType="number|phone"
-            android:hint="Phone Number"
-            android:textColorHint="@color/material_dynamic_neutral80"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Contact" />
+            <EditText
+                android:id="@+id/fillDes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_layout"
+                android:ems="10"
+                android:gravity="top"
+                android:hint="Description"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:inputType="textMultiLine"
+                android:minHeight="92dp"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="12dp"
+                android:textAlignment="viewStart"
+                android:textAllCaps="false"
+                tools:ignore="RtlCompat" />
 
-        <EditText
-            android:id="@+id/FillAverageP"
-            android:layout_width="350dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:inputType="number"
-            android:hint="Average Price"
-            android:textColorHint="@color/material_dynamic_neutral80"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/AveragePrice" />
+            <TextView
+                android:id="@+id/OperationHour"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Operation Hour"/>
 
-        <ImageView
-            android:id="@+id/IVAP"
-            android:layout_width="350dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/round_rectangle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/AveragePrice" />
+            <EditText
+                android:id="@+id/FillOperationHour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_layout"
+                android:ems="10"
+                android:hint="Operation Hour"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:inputType="textMultiLine"
+                android:minHeight="48dp"
+                android:paddingHorizontal="16dp" />
 
-        <Spinner
-            android:id="@+id/fillCuisineT"
-            android:layout_width="350dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            android:spinnerMode="dropdown"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CuisineType" />
+            <TextView
+                android:id="@+id/website"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Website"/>
 
-        <ImageView
-            android:id="@+id/IVCT"
-            android:layout_width="350dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/round_rectangle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CuisineType" />
+            <EditText
+                android:id="@+id/fillWebsite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_layout"
+                android:ems="10"
+                android:hint="Website"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:inputType="textMultiLine|textWebEmailAddress|textWebEditText"
+                android:minHeight="48dp"
+                android:paddingHorizontal="16dp" />
 
-        <EditText
-            android:id="@+id/fillDes"
-            android:layout_width="350dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Description"
-            android:textAlignment="viewStart"
-            android:textAllCaps="false"
-            android:textColorHint="@color/material_dynamic_neutral80"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Description" />
+            <TextView
+                android:id="@+id/payment"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Payment Type" />
 
-        <ImageView
-            android:id="@+id/IVDes"
-            android:layout_width="350dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/round_rectangle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Description" />
+            <EditText
+                android:id="@+id/ETPayment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_layout"
+                android:ems="10"
+                android:hint="Payment Type"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:inputType="textMultiLine"
+                android:minHeight="48dp"
+                android:paddingHorizontal="16dp" />
 
-        <TextView
-            android:id="@+id/OperationHour"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="20dp"
-            android:text="Operation Hour"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/IVDes" />
+            <TextView
+                android:id="@+id/parking"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Parking" />
 
-        <EditText
-            android:id="@+id/FillOperationHour"
-            android:layout_width="350dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Operation Hour"
-            android:textColorHint="@color/material_dynamic_neutral80"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/OperationHour" />
+            <EditText
+                android:id="@+id/ETParking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_layout"
+                android:ems="10"
+                android:hint="Parking"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:inputType="textMultiLine"
+                android:minHeight="48dp"
+                android:paddingHorizontal="16dp" />
 
-        <ImageView
-            android:id="@+id/IVOH"
-            android:layout_width="350dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/round_rectangle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/OperationHour" />
+            <TextView
+                android:id="@+id/accessibility"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Accessibility" />
 
-        <TextView
-            android:id="@+id/website"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="30dp"
-            android:text="Website"
-            android:textSize="20sp"
-            android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@+id/IVOH"
-            app:layout_constraintStart_toStartOf="parent"
-            ></TextView>
+            <EditText
+                android:id="@+id/ETAccessibility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_layout"
+                android:ems="10"
+                android:hint="Accessibility"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:inputType="textMultiLine"
+                android:minHeight="48dp"
+                android:paddingHorizontal="16dp"/>
 
-        <EditText
-            android:id="@+id/fillWebsite"
-            android:layout_width="350dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Website"
-            android:textColorHint="@color/material_dynamic_neutral80"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/website" />
+            <TextView
+                android:id="@+id/dressCode"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Dress Code" />
 
-        <ImageView
-            android:id="@+id/IVWeb"
-            android:layout_width="350dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/round_rectangle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/website" />
+            <EditText
+                android:id="@+id/ETDressCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_layout"
+                android:ems="10"
+                android:hint="Dress Code"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:inputType="textMultiLine"
+                android:minHeight="48dp"
+                android:paddingHorizontal="16dp" />
 
-        <Button
-            android:id="@+id/saveButton"
-            android:layout_width="120dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="8dp"
-            android:backgroundTint="#C1121F"
-            android:text="Save"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toStartOf="@+id/cancelButton"
-            app:layout_constraintTop_toBottomOf="@+id/IVWeb" />
+            <TextView
+                android:id="@+id/TVTitleImage"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Title Image" />
 
-        <Button
-            android:id="@+id/cancelButton"
-            android:layout_width="120dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="30dp"
-            android:backgroundTint="#000000"
-            android:text="Cancel"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/IVWeb" />
+            <TextView
+                android:id="@+id/TVTitleImage2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MANDATORY. Only URL are allowed."
+                android:textColor="@color/red"
+                android:textStyle="bold|italic" />
 
-        <ImageView
-            android:id="@+id/backArrow"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
-            android:src="@drawable/ic_baseline_arrow_back_ios_24"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <EditText
+                android:id="@+id/ETURLTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_layout"
+                android:ems="10"
+                android:hint="Image URL"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:inputType="textWebEmailAddress|textMultiLine|textUri"
+                android:minHeight="48dp"
+                android:paddingHorizontal="16dp"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+            <ImageView
+                android:id="@+id/IVTitleImg"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:adjustViewBounds="true"
+                android:paddingBottom="12dp"
+                android:scaleType="fitCenter"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/TVImageN1"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Restaurant Image 1" />
+
+            <TextView
+                android:id="@+id/TVImage1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OPTIONAL. Only URL are allowed."
+                android:textColor="@color/red"
+                android:textStyle="bold|italic" />
+
+            <EditText
+                android:id="@+id/ETURLImg1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_layout"
+                android:ems="10"
+                android:hint="Image URL"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:inputType="textWebEmailAddress|textMultiLine"
+                android:minHeight="48dp"
+                android:paddingHorizontal="16dp"
+                tools:ignore="TextFields" />
+
+            <ImageView
+                android:id="@+id/IVImg1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:paddingBottom="12dp"
+                android:scaleType="fitCenter"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/LLImg2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/TVImageN2"
+                    style="@style/TextAppearance.AppCompat.Subhead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Restaurant Image 2" />
+
+                <TextView
+                    android:id="@+id/TVImage2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OPTIONAL. Only URL are allowed."
+                    android:textColor="@color/red"
+                    android:textStyle="bold|italic" />
+
+                <EditText
+                    android:id="@+id/ETURLImg2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_layout"
+                    android:ems="10"
+                    android:hint="Image URL"
+                    style="@style/TextAppearance.AppCompat.Subhead"
+                    android:inputType="textWebEmailAddress|textMultiLine|textUri"
+                    android:minHeight="48dp"
+                    android:paddingHorizontal="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TVInsertPic" />
+
+                <ImageView
+                    android:id="@+id/IVImg2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:paddingBottom="12dp"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/LLImg3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/TVImageN3"
+                    style="@style/TextAppearance.AppCompat.Subhead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Restaurant Image 3" />
+
+                <TextView
+                    android:id="@+id/TVImage3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OPTIONAL. Only URL are allowed."
+                    android:textColor="@color/red"
+                    android:textStyle="bold|italic" />
+
+                <EditText
+                    android:id="@+id/ETURLImg3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_layout"
+                    android:ems="10"
+                    android:hint="Image URL"
+                    style="@style/TextAppearance.AppCompat.Subhead"
+                    android:inputType="textWebEmailAddress|textMultiLine|textUri"
+                    android:minHeight="48dp"
+                    android:paddingHorizontal="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TVInsertPic" />
+
+                <ImageView
+                    android:id="@+id/IVImg3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:adjustViewBounds="true"
+                    android:paddingBottom="12dp"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/LLImg4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/TVImageN4"
+                    style="@style/TextAppearance.AppCompat.Subhead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Restaurant Image 4" />
+
+                <TextView
+                    android:id="@+id/TVImage4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OPTIONAL. Only URL are allowed."
+                    android:textColor="@color/red"
+                    android:textStyle="bold|italic" />
+
+                <EditText
+                    android:id="@+id/ETURLImg4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_layout"
+                    android:ems="10"
+                    android:hint="Image URL"
+                    style="@style/TextAppearance.AppCompat.Subhead"
+                    android:inputType="textWebEmailAddress|textMultiLine|textUri"
+                    android:minHeight="48dp"
+                    android:paddingHorizontal="16dp" />
+
+                <ImageView
+                    android:id="@+id/IVImg4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:paddingBottom="12dp"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LLImg5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/TVImageN5"
+                    style="@style/TextAppearance.AppCompat.Subhead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Restaurant Image 5" />
+
+                <TextView
+                    android:id="@+id/TVImage5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OPTIONAL. Only URL are allowed."
+                    android:textColor="@color/red"
+                    android:textStyle="bold|italic" />
+
+                <EditText
+                    android:id="@+id/ETURLImg5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_layout"
+                    android:ems="10"
+                    android:hint="Image URL"
+                    style="@style/TextAppearance.AppCompat.Subhead"
+                    android:inputType="textWebEmailAddress|textMultiLine|textUri"
+                    android:minHeight="48dp"
+                    android:paddingHorizontal="16dp" />
+
+                <ImageView
+                    android:id="@+id/IVImg5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:adjustViewBounds="true"
+                    android:paddingBottom="12dp"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#C1121F"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintWidth_percent="0.7" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/cancelButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:textColor="@color/white"
+        android:text="Cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/saveButton"
+        app:layout_constraintWidth_percent="0.3" />
+</androidx.constraintlayout.widget.ConstraintLayout>

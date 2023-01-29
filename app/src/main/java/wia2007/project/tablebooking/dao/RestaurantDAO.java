@@ -18,7 +18,7 @@ public interface RestaurantDAO {
     public void updateRestaurants(Restaurant ...restaurants);
 
     @Insert
-    public void insertRestaurants(Restaurant ...restaurants);
+    public long[] insertRestaurants(Restaurant ...restaurants);
 
     @Delete
     public void deleteRestaurants(Restaurant ...restaurants);
@@ -37,6 +37,9 @@ public interface RestaurantDAO {
 
     @Query("SELECT restaurant_name,address,contact_number,title_image_path FROM Restaurant WHERE restaurant_id = :id")
     public List<Restaurant> getRestaurantInfoById(Integer id);
+
+    @Query("UPDATE Restaurant SET restaurant_name = :restaurant_name, contact_number = :contact_number,average_price = :average_price, address = :address, working_hour = :working_hour, payment = :payment, parking = :parking, dresscode = :dresscode, accessibility = :accessibility, website = :website, cuisine_type = :cuisine_type, description = :description, title_image_path = :title_image_path, image_path_1 = :Img1, image_path_2 = :Img2, image_path_3 = :Img3, image_path_4 = :Img4, image_path_5 = :Img5 WHERE restaurant_id = :restaurant_id")
+    public void updateRestaurantInfo(int restaurant_id,String restaurant_name, String contact_number, Float average_price, String address, String working_hour, String payment, String parking, String dresscode, String accessibility, String website, Integer cuisine_type, String description, String title_image_path, String Img1, String Img2, String Img3, String Img4, String Img5);
 
     class RestaurantNameInfo {
         @ColumnInfo(name = "restaurant_id")

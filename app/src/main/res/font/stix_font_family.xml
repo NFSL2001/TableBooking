@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <font
+        app:font="@font/stixtwo"
+        app:fontStyle="normal"
+        app:fontWeight="400"
+
+        android:font="@font/stixtwo"
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        />
+    <font
+        app:font="@font/stixtwo_italic"
+        app:fontStyle="italic"
+        app:fontWeight="400"
+
+        android:font="@font/stixtwo_italic"
+        android:fontStyle="italic"
+        android:fontWeight="400"
+        />
+    <font
+        app:font="@font/stixtwo_bold"
+        app:fontStyle="normal"
+        app:fontWeight="700"
+
+        android:font="@font/stixtwo_bold"
+        android:fontStyle="normal"
+        android:fontWeight="700"
+        />
+    <font
+        app:font="@font/stixtwo_bolditalic"
+        app:fontStyle="italic"
+        app:fontWeight="700"
+
+        android:font="@font/stixtwo_bolditalic"
+        android:fontStyle="italic"
+        android:fontWeight="700"
+        />
+</font-family>
+

@@ -2,6 +2,9 @@ package wia2007.project.tablebooking;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,67 +14,36 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.sqlite.db.SimpleSQLiteQuery;
 
-import wia2007.project.tablebooking.database.TableBookingDatabase;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link BookingList#newInstance} factory method to
- * create an instance of this fragment.
  */
-public class BookingList extends Fragment {
-    //    DatabaseHelper myDb;
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class AdminBookingList extends Fragment {
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public BookingList() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment BookingList.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static BookingList newInstance(String param1, String param2) {
-        BookingList fragment = new BookingList();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    int iCurrentSelection;
+    String sortCondition;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        setHasOptionsMenu(true);
     }
-
-    int iCurrentSelection;
-    String sortCondition;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_booking_list, container, false);
-        getActivity().setTitle("Booking List");
+        Toolbar toolbar = view.findViewById(R.id.TVBookingListAct);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity)getActivity()).setTitle("Booking List");
 
         Spinner SpinnerSortCondition = (Spinner) view.findViewById(R.id.SpinnerSortCondition);
 
@@ -98,7 +70,7 @@ public class BookingList extends Fragment {
                     prefEditor.commit();
                     SpinnerSortCondition.setSelection(spinnerValue);
                     sortCondition = Integer.toString(SpinnerSortCondition.getSelectedItemPosition());
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.NHFMain, BookingList.class, null).commit();
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.NHFMain, AdminBookingList.class, getArguments()).commit();
                 }
             }
 
@@ -107,15 +79,28 @@ public class BookingList extends Fragment {
             }
         });
 
-        String restaurant_id = "1";
+        String restaurant_id = null;
         Bundle bundle = this.getArguments();
         if (bundle != null) {
-            restaurant_id = bundle.getString("Restaurant_Id");
+            restaurant_id = Integer.toString(bundle.getInt("Restaurant_Id"));
+        }else{
+            sharedPref = getActivity().getSharedPreferences("admin", Context.MODE_PRIVATE);
+            restaurant_id = Integer.toString(sharedPref.getInt("userID",-1));
         }
 
         BackGroundTaskBooking backGroundTaskBooking = new BackGroundTaskBooking(this.getContext());
         backGroundTaskBooking.execute("get_info", sortCondition, restaurant_id);
 
         return view;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull android.view.MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                getActivity().getSupportFragmentManager().popBackStack();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

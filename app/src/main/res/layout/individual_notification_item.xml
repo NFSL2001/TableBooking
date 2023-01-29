@@ -4,24 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout4"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/TVNotificationDesc"
-        android:layout_width="wrap_content"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:gravity="center_vertical"
         android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
+    <com.google.android.material.divider.MaterialDivider
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="16dp"
-        android:background="#ffffff"
-        app:layout_constraintTop_toBottomOf="@+id/TVNotificationDesc"
-        tools:layout_editor_absoluteX="0dp" />
+        android:layout_height="match_parent"
+        app:dividerColor="?colorOnBackground"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/TVNotificationDesc"
+        android:layout_marginTop="16dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

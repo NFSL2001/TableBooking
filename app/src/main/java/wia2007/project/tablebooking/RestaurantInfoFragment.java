@@ -1,13 +1,12 @@
 package wia2007.project.tablebooking;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentContainerView;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.util.Log;
@@ -48,44 +47,19 @@ public class RestaurantInfoFragment extends Fragment {
         // get current restaurant ID
         RestaurantMainActivity parentActivity = (RestaurantMainActivity) getActivity();
         Integer restaurantID = parentActivity.restaurantID;
+        String restaurant_name = parentActivity.name;
 
         // get current restaurant info
         TableBookingDatabase database = TableBookingDatabase.getDatabase(getActivity());
         RestaurantDAO dao = database.restaurantDAO();
         Restaurant restaurant = dao.getRestaurantById(restaurantID).get(0);
-        //
-        /*Restaurant restaurant = new Restaurant(
-                1,
-                "Atmosphere360",
-                "12345678",
-                "Atmosphere 360",
-                "012-3456789",
-                (float) 105.3,
-                "TH02, Menara Kuala Lumpur, 2, Jalan Puncak, 50250 Kuala Lumpur",
-                "",
-                "Cash only",
-                "No parking",
-                null,
-                null,
-                "www.atmosphere360.com",
-                1,
-                getResources().getString(R.string.restaurant_descriptionSample),
-                ""
-        );*/
 
         /** populate data **/
         populateViewData(view, restaurant);
 
         /** inflate viewPager (image gallery) **/
-        //
         // prepare list for adapter to show
         List<String> restaurantImages = restaurant.getImages();
-        /*List<String> restaurantImages = new ArrayList<>();
-        restaurantImages.add("https://cdn.myfunnow.com/imgs/branch/cover%2Fatmosphere%20(2)_6861e3.jpg");
-        restaurantImages.add("https://www.berjayahotel.com/sites/default/files/atmosphere%20360%20restaurant_0.jpg");
-        restaurantImages.add("https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/09/4e/d6/c7.jpg");
-        restaurantImages.add("https://res.klook.com/image/upload/fl_lossy.progressive,q_85/c_fill,w_680/v1605695943/blog/lnbvbyt5hqvkn92vuhfk.jpg");
-*/
         // get recycler view and bind view holder
         ViewPager2 viewPager = view.findViewById(R.id.restInfo_topGallery);
         // set adapter
@@ -136,6 +110,17 @@ public class RestaurantInfoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // TODO: Add navigation to new booking
+                Context context = v.getContext();
+                if(context.getSharedPreferences("user", Context.MODE_PRIVATE).getInt("userID",-1) == -1){
+                    Intent intent = new Intent(context,LoginActivity.class);
+                    intent.putExtra("BackRest",true);
+                    startActivityForResult(intent,2);
+                }else{
+                    Intent intent = new Intent(context, SelectTimeActivity.class);
+                    intent.putExtra("resID", restaurantID);
+                    intent.putExtra("name",restaurant_name);
+                    context.startActivity(intent);
+                }
             }
         });
 
@@ -151,7 +136,7 @@ public class RestaurantInfoFragment extends Fragment {
 
             ((TextView) view.findViewById(R.id.restInfo_topAddress)).setText(restaurant.getAddress());
             ((TextView) view.findViewById(R.id.menuInfo_dataAddress)).setText(restaurant.getAddress());
-            String cuisineType = Cuisine.getCuisineItem(restaurant.getCuisine_type()).name;
+            String cuisineType = Cuisine.getCuisineItem(restaurant.getCuisine_type()-1).name;
             ((TextView) view.findViewById(R.id.restInfo_topType)).setText(cuisineType);
             ((TextView) view.findViewById(R.id.menuInfo_dataCuisine)).setText(cuisineType);
             String price = "RM " + String.format("%.02f", restaurant.getAverage_price());
@@ -187,7 +172,9 @@ public class RestaurantInfoFragment extends Fragment {
             view.findViewById(R.id.menuInfo_parentWebsite).setVisibility(View.GONE);
         else
             ((TextView) view.findViewById(R.id.menuInfo_dataWebsite)).setText(restaurant.getWebsite());
-        if (restaurant.getDescription() != null && !restaurant.getDescription().trim().isEmpty())
-            ((TextView) view.findViewById(R.id.menuInfo_dataDescription)).setText(restaurant.getDescription());
+        if (restaurant.getDescription() != null && !restaurant.getDescription().trim().isEmpty()){
+            String outString = restaurant.getDescription().replace("\\n", System.getProperty("line.separator"));
+            ((TextView) view.findViewById(R.id.menuInfo_dataDescription)).setText(outString);
+        }
     }
 }

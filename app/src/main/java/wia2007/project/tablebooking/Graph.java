@@ -40,7 +40,7 @@ public class Graph extends AppCompatActivity {
     String month1 = "01";
     String month2 = "02";
     String data_type = "Food";
-    int restaurant_id = 1;
+    int restaurant_id;
     ArrayList<String> xAxisValues;
     Map<String, List<DownloadPDF.saveFoodData>> map2;
     Map<String, List<DownloadPDF.saveTableData>> mapTable2;
@@ -61,7 +61,9 @@ public class Graph extends AppCompatActivity {
         Spinner SpinnerGraphData = findViewById(R.id.SpinnerGraphData);
         Button BtnSubmit = findViewById(R.id.BtnSubmit);
 
-        String year[] = TableBookingDatabase.getDatabase(this).bookingDAO().selectYear();
+        restaurant_id = getIntent().getExtras().getInt("RestaurantID");
+
+        String year[] = TableBookingDatabase.getDatabase(this).bookingDAO().selectYear(restaurant_id);
         ArrayAdapter<String> spinnerArrayAdapterYear = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, year);
         spinnerArrayAdapterYear.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         SpinnerGraph1.setAdapter(spinnerArrayAdapterYear);
@@ -81,7 +83,6 @@ public class Graph extends AppCompatActivity {
         BtnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                restaurant_id = getIntent().getExtras().getInt("Restaurant_id");
                 year1 = SpinnerGraph1.getSelectedItem().toString();
                 year2 = SpinnerGraph2.getSelectedItem().toString();
                 month1 = SpinnerGraphM1.getSelectedItem().toString();
@@ -407,6 +408,8 @@ public class Graph extends AppCompatActivity {
 
         set1.setColor(Color.parseColor("#C1121F"));
         set2.setColor(Color.BLACK);
+        set2.setBarBorderWidth(1f);
+        set2.setBarBorderColor(Color.WHITE);
 
         ArrayList<IBarDataSet> dataSets = new ArrayList<>();
         dataSets.add(set1);

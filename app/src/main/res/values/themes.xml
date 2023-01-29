@@ -10,15 +10,23 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <!-- App font -->
+        <item name="android:fontFamily">@font/stix_font_family</item>
+        <item name="fontFamily">@font/stix_font_family</item>
         <!-- Customize your theme here. -->
     </style>
+
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:textSize">18sp</item>
         <item name="android:paddingBottom">5dp</item>
+        <item name="android:fontFamily">@font/stix_font_family</item>
+        <item name="fontFamily">@font/stix_font_family</item>
     </style>
+
     <style name="AppTheme.ActionBar" parent="ThemeOverlay.AppCompat.DayNight.ActionBar">
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.DayNight</item>
         <item name="android:background">?attr/colorPrimary</item>
         <item name="android:textColorPrimary">?attr/colorOnPrimary</item>
     </style>
+
 </resources>

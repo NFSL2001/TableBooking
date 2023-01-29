@@ -13,7 +13,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:menu="@menu/menu_search_activity"/>
+        app:menu="@menu/menu_search_activity"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/search_RVResult"

@@ -17,8 +17,8 @@
             android:id="@+id/TVItemDetailsAct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/red"
-            app:titleTextColor="@color/white" />
+            android:theme="@style/AppTheme.ActionBar"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24"  />
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
@@ -33,7 +33,7 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/ItemDetailsCL"
@@ -47,7 +47,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="32dp"
                     android:text="Price (RM)"
-                    android:textColor="@color/black"
+                    style="@style/TextAppearance.AppCompat.Subhead"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +60,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="41dp"
                     android:text="Name"
-                    android:textColor="@color/black"
+                    style="@style/TextAppearance.AppCompat.Subhead"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +73,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="41dp"
                     android:text="Type of dishes"
-                    android:textColor="@color/black"
+                    style="@style/TextAppearance.AppCompat.Subhead"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -81,9 +81,10 @@
 
                 <RelativeLayout
                     android:id="@+id/SpinnerLayout3"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginTop="7dp"
                     android:background="@drawable/edit_text_layout"
                     app:layout_constraintStart_toStartOf="parent"
@@ -91,27 +92,31 @@
 
                     <Spinner
                         android:id="@+id/SpinnerMenuType"
-                        android:layout_width="356dp"
+                        android:layout_width="match_parent"
                         android:layout_height="59dp"
                         android:dropDownWidth="356dp"
                         android:ems="10"
                         android:hint="Item Type"
                         android:overlapAnchor="false"
-                        android:paddingStart="10dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
                         android:spinnerMode="dropdown"
                         app:popupTheme="@style/AppTheme.PopupOverlay" />
                 </RelativeLayout>
 
                 <EditText
                     android:id="@+id/ETItemName"
-                    android:layout_width="356dp"
-                    android:layout_height="59dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="59dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginStart="16dp"
                     android:background="@drawable/edit_text_layout"
                     android:ems="10"
                     android:hint="Item Name"
                     android:inputType="textPersonName"
-                    android:paddingLeft="10dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/TVItemName" />
 
@@ -121,31 +126,50 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="32dp"
-                    android:text="Pictures/Images"
-                    android:textColor="@color/black"
+                    android:text="Picture/Image"
+                    style="@style/TextAppearance.AppCompat.Subhead"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/SpinnerLayout3" />
 
-                <Button
-                    android:id="@+id/btnInsertItemPic"
+                <TextView
+                    android:id="@+id/TVInsertPic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="Upload Image"
+                    android:text="Only URL are allowed."
+                    android:textColor="@color/red"
+                    android:textStyle="bold|italic"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/TVInsertItemPic" />
 
+                <EditText
+                    android:id="@+id/ETURL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="59dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/edit_text_layout"
+                    android:ems="10"
+                    android:hint="Image URL"
+                    android:inputType="textWebEmailAddress|textMultiLine"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TVInsertPic" />
 
                 <Button
                     android:id="@+id/btnDeleteItemPic"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="32dp"
                     android:background="@drawable/ic_baseline_delete_24"
-                    app:layout_constraintStart_toEndOf="@+id/btnInsertItemPic"
-                    app:layout_constraintTop_toBottomOf="@+id/TVInsertItemPic" />
+                    app:layout_constraintStart_toEndOf="@+id/TVInsertPic"
+                    app:layout_constraintTop_toBottomOf="@+id/SpinnerLayout3" />
 
                 <ImageView
                     android:id="@+id/IVItemPic"
@@ -159,34 +183,38 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btnInsertItemPic"
+                    app:layout_constraintTop_toBottomOf="@+id/ETURL"
                     app:layout_constraintWidth_percent="0.90" />
 
                 <EditText
                     android:id="@+id/ETItemPrice"
-                    android:layout_width="356dp"
-                    android:layout_height="59dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="59dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginStart="16dp"
                     android:background="@drawable/edit_text_layout"
                     android:ems="10"
                     android:hint="Price"
                     android:inputType="numberDecimal"
-                    android:paddingLeft="10sp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/TVItemPrice" />
 
                 <EditText
-
                     android:id="@+id/ETItemDescription"
-                    android:layout_width="356dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginStart="16dp"
                     android:background="@drawable/edit_text_layout"
                     android:ems="10"
                     android:hint="Description(Ingredients, Specials)"
                     android:inputType="textMultiLine"
                     android:minHeight="59dp"
-                    android:paddingLeft="10sp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/TVItemDescription" />
 
@@ -197,7 +225,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="32dp"
                     android:text="Description"
-                    android:textColor="@color/black"
+                    style="@style/TextAppearance.AppCompat.Subhead"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"

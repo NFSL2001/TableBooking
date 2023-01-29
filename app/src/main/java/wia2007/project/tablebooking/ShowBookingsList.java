@@ -5,24 +5,25 @@ import java.sql.Time;
 public class ShowBookingsList {
 
     private Integer booking_id;
-    private Time startTime;
-    private Time endTime;
-    private String remark;
-    private String custName;
-    private String custEmail;
-    private String custMobile;
-    private String tableName;
-    public static String SHOW_BOOKINGS_LIST =  "Show Bookings List";
+    private Time start_time;
+    private Time end_time;
+    private String Remark;
+    private String CustName;
+    private String Email;
+    private String Mobile_number;
+    private String TableName;
+    private String status;
 
-    public ShowBookingsList(Integer booking_id, Time startTime,Time endTime, String tableName, String custName, String remark, String custEmail, String custMobile) {
-        this.setRemark(remark);
-        this.setCustEmail(custEmail);
-        this.setCustMobile(custMobile);
+    public ShowBookingsList(Integer booking_id, Time start_time, Time end_time, String TableName, String CustName, String Remark, String Email, String Mobile_number,String status) {
+        this.setRemark(Remark);
+        this.setEmail(Email);
+        this.setMobile_number(Mobile_number);
         this.setBooking_id(booking_id);
-        this.setStartTime(startTime);
-        this.setEndTime(endTime);
-        this.setTableName(tableName);
-        this.setCustName(custName);
+        this.setStart_time(start_time);
+        this.setEnd_time(end_time);
+        this.setTableName(TableName);
+        this.setCustName(CustName);
+        this.setStatus(status);
     }
 
     public Integer getBooking_id() {
@@ -33,59 +34,71 @@ public class ShowBookingsList {
         this.booking_id = booking_id;
     }
 
-    public Time getStartTime() {
-        return startTime;
+    public Time getStart_time() {
+        return start_time;
     }
 
-    public void setStartTime(Time startTime) {
-        this.startTime = startTime;
+    public void setStart_time(Time start_time) {
+        this.start_time = start_time;
     }
 
-    public Time getEndTime() {
-        return endTime;
+    public Time getEnd_time() {
+        return end_time;
     }
 
-    public void setEndTime(Time endTime) {
-        this.endTime = endTime;
+    public void setEnd_time(Time end_time) {
+        this.end_time = end_time;
     }
 
     public String getRemark() {
-        return remark;
+        return Remark;
     }
 
-    public void setRemark(String remark) {
-        this.remark = remark;
+    public void setRemark(String Remark) {
+        this.Remark = Remark;
     }
 
     public String getCustName() {
-        return custName;
+        return CustName;
     }
 
-    public void setCustName(String custName) {
-        this.custName = custName;
+    public void setCustName(String CustName) {
+        this.CustName = CustName;
     }
 
-    public String getCustEmail() {
-        return custEmail;
+    public String getEmail() {
+        return Email;
     }
 
-    public void setCustEmail(String custEmail) {
-        this.custEmail = custEmail;
+    public void setEmail(String Email) {
+        this.Email = Email;
     }
 
-    public String getCustMobile() {
-        return custMobile;
+    public String getMobile_number() {
+        return Mobile_number;
     }
 
-    public void setCustMobile(String custMobile) {
-        this.custMobile = custMobile;
+    public void setMobile_number(String mobile_number) {
+        this.Mobile_number = mobile_number;
     }
 
     public String getTable_name() {
-        return tableName;
+        return TableName;
     }
 
-    public void setTableName(String tableName) {
-        this.tableName = tableName;
+    public void setTableName(String TableName) {
+        this.TableName = TableName;
+    }
+
+    public String getTableName() {
+        return TableName;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

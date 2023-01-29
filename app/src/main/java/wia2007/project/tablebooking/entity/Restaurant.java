@@ -44,8 +44,30 @@ public class Restaurant {
     }
 
     @Ignore
-    public Restaurant(Integer restaurant_id, String restaurant_user_name, String password, String restaurant_name, String contact_number, Float average_price, String address, String working_hour, String payment, String parking, String dresscode, String accessibility, String website, Integer cuisine_type, String description, @NonNull String title_image_path) {
-        this.restaurant_id = restaurant_id;
+    public Restaurant(String restaurant_user_name, String password, String restaurant_name, String contact_number, Float average_price, String address, String working_hour, String payment, String parking, String dresscode, String accessibility, String website, Integer cuisine_type, String description, @NonNull String title_image_path, @Nullable String image_path_1, @Nullable String image_path_2, @Nullable String image_path_3, @Nullable String image_path_4, @Nullable String image_path_5) {
+        this.restaurant_user_name = restaurant_user_name;
+        this.password = password;
+        this.restaurant_name = restaurant_name;
+        this.contact_number = contact_number;
+        this.average_price = average_price;
+        this.address = address;
+        this.working_hour = working_hour;
+        this.payment = payment;
+        this.parking = parking;
+        this.dresscode = dresscode;
+        this.accessibility = accessibility;
+        this.website = website;
+        this.cuisine_type = cuisine_type;
+        this.description = description;
+        this.title_image_path = title_image_path;
+        this.image_path_1 = image_path_1;
+        this.image_path_2 = image_path_2;
+        this.image_path_3 = image_path_3;
+        this.image_path_4 = image_path_4;
+        this.image_path_5 = image_path_5;
+    }
+
+    public Restaurant(String restaurant_user_name, String password, String restaurant_name, String contact_number, Float average_price, String address, String working_hour, String payment, String parking, String dresscode, String accessibility, String website, Integer cuisine_type, String description, @NonNull String title_image_path) {
         this.restaurant_user_name = restaurant_user_name;
         this.password = password;
         this.restaurant_name = restaurant_name;
@@ -271,11 +293,25 @@ public class Restaurant {
         return "Restaurant{" +
                 "restaurant_id=" + restaurant_id +
                 ", restaurant_user_name='" + restaurant_user_name + '\'' +
+                ", password='" + password + '\'' +
                 ", restaurant_name='" + restaurant_name + '\'' +
                 ", contact_number='" + contact_number + '\'' +
                 ", average_price=" + average_price +
                 ", address='" + address + '\'' +
+                ", working_hour='" + working_hour + '\'' +
+                ", payment='" + payment + '\'' +
+                ", parking='" + parking + '\'' +
+                ", dresscode='" + dresscode + '\'' +
+                ", accessibility='" + accessibility + '\'' +
+                ", website='" + website + '\'' +
                 ", cuisine_type=" + cuisine_type +
+                ", description='" + description + '\'' +
+                ", title_image_path='" + title_image_path + '\'' +
+                ", image_path_1='" + image_path_1 + '\'' +
+                ", image_path_2='" + image_path_2 + '\'' +
+                ", image_path_3='" + image_path_3 + '\'' +
+                ", image_path_4='" + image_path_4 + '\'' +
+                ", image_path_5='" + image_path_5 + '\'' +
                 '}';
     }
 }
